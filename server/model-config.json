@@ -49,7 +49,7 @@
         "principalType": "ROLE",
         "principalId": "$everyone",
         "permission": "ALLOW",
-        "property": "fuck"
+        "property": "resetPw"
       },
       {
         "principalType": "ROLE",

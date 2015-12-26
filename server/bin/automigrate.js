@@ -41,7 +41,7 @@ var member_array=[
   "password": "123456",
   "email": "sam@sam.com",
   "deviceToken": "fuckyeah",
-  "emailVerified": 1
+  e"emailVerified": 1
 }
 ];
 

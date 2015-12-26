@@ -2169,7 +2169,7 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.Member#resetPassword
+         * @name lbServices.Member#resetPw
          * @methodOf lbServices.Member
          *
          * @description
@@ -2201,8 +2201,8 @@ module.factory(
          *
          *  - `status` – `{string=}` - 
          */
-        "resetPassword": {
-          url: urlBase + "/Members/resetPassword",
+        "resetPw": {
+          url: urlBase + "/Members/resetPw",
           method: "POST"
         },
 
@@ -2257,9 +2257,9 @@ module.factory(
           method: "GET"
         },
 
-        // INTERNAL. Use Request.memberId() instead.
-        "::get::request::memberId": {
-          url: urlBase + "/requests/:id/memberId",
+        // INTERNAL. Use Request.member() instead.
+        "::get::request::member": {
+          url: urlBase + "/requests/:id/member",
           method: "GET"
         },
 
@@ -8492,9 +8492,9 @@ module.factory(
       { 'id': '@id' },
       {
 
-        // INTERNAL. Use Request.memberId() instead.
-        "prototype$__get__memberId": {
-          url: urlBase + "/requests/:id/memberId",
+        // INTERNAL. Use Request.member() instead.
+        "prototype$__get__member": {
+          url: urlBase + "/requests/:id/member",
           method: "GET"
         },
 
@@ -9386,12 +9386,12 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.Request#memberId
+         * @name lbServices.Request#member
          * @methodOf lbServices.Request
          *
          * @description
          *
-         * Fetches belongsTo relation memberId.
+         * Fetches belongsTo relation member.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -9414,9 +9414,9 @@ module.factory(
          * This usually means the response is a `Member` object.)
          * </em>
          */
-        R.memberId = function() {
+        R.member = function() {
           var TargetResource = $injector.get("Member");
-          var action = TargetResource["::get::request::memberId"];
+          var action = TargetResource["::get::request::member"];
           return action.apply(R, arguments);
         };
     /**

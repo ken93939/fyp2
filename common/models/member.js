@@ -1,6 +1,7 @@
 var path = require('path');
 var app = require(path.resolve(__dirname, '../../server/server'));
 var loopback=require('loopback');
+var config = require('../../server/config.json');
 
 module.exports = function(Member) {
 	Member.register=function(idk,cb){
@@ -93,16 +94,43 @@ module.exports = function(Member) {
 		}
 	});
 
-	Member.resetPassword=function(idk,cb){
-		User.resetPassword({email: idk.email},function(err){
-			if(err){
-				console.log(err);
-				cb(err,null);
-			}
-			cb(null,"Success");
-		});
-
+	Member.resetPw=function(idk,cb){
+		try{
+			console.log(idk.email);
+			var mail={ email: idk.email};
+			Member.resetPassword(mail,function(err){
+				console.log("test");
+				if(err){
+					console.log(err);
+					cb(err,null);
+				}
+				cb(null,"Success");
+			});
+		}
+		catch(err){
+			console.log(err);
+			cb(err,null);
+		}
 	};
+
+	Member.on('resetPasswordRequest', function(info){
+		try{
+			var url='http://' + config.host + ':' + config.port + '/reset-password';
+			var html = 'Click <a href="' + url + '?access_token=' +
+			info.accessToken.id + '">here</a> to reset your password';
+			app.models.Email.send({
+				to: "kenkwoktszting@gmail.com",
+				subject: "Password reset",
+				html: html
+			}, function(err){
+				if (err) return console.log('> error sending password reset email');
+				console.log('> sending password reset email to:', info.email);
+			});
+		}
+		catch(err){
+			console.log(err);
+		}
+	});
 
 	Member.updateToken=function(idk,cb){
 		try{
@@ -124,6 +152,49 @@ module.exports = function(Member) {
 		}
 	}
 
+	Member.updatePw=function(idk,cb){
+		try{
+			var ctx=loopback.getCurrentContext();
+			var currentUser = ctx && ctx.get('currentUser');
+			if(currentUser.password==idk.oldpassword){
+				currentUser.updateAttribute("password",idk.newpassword,function(err,user){
+					if(err){
+						console.log(err);
+						cb(err,null);
+					}
+					// console.log(user);
+					cb(null,"success");
+				});
+			}
+			else{
+				cb(null,"fail")
+			}
+		}
+		catch(err){
+			console.log(err);
+			cb(err,null);
+		}
+	};
+
+
+	Member.remoteMethod(
+		'updateVehicle',
+		{
+			http: {path: '/updateVehicle', verb: 'post'},
+			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}			
+		}
+	);
+
+	Member.remoteMethod(
+		'updatePw',
+		{
+			http: {path: '/updatePw', verb: 'post'},
+			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}			
+		}
+	);
+
 	Member.remoteMethod(
 		'updateToken',
 		{
@@ -135,9 +206,9 @@ module.exports = function(Member) {
 
 
 	Member.remoteMethod(
-		'resetPassword',
+		'resetPw',
 		{
-			http: {path: '/resetPassword', verb: 'post'},
+			http: {path: '/resetPw', verb: 'post'},
 			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
 			returns: {arg: 'status', type: 'string'}			
 		}

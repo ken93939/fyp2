@@ -2,7 +2,7 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 var path = require('path');
 var app = module.exports = loopback();
-
+var bodyParser = require('body-parser');
 
 
 // configure view handler
@@ -22,6 +22,9 @@ app.start = function() {
 
   });
 };
+
+// configure body parser
+app.use(bodyParser.urlencoded({extended: true}));
 
 // -- Add your pre-processing middleware here --
 app.use(loopback.context());
