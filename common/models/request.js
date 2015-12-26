@@ -2,7 +2,6 @@ var path = require('path');
 var app = require(path.resolve(__dirname, '../../server/server'));
 var loopback=require('loopback');
 var req=require('request');
-// var Algorithm = require('../../server/algorithm/Algorithm.js');
 
 module.exports = function(Request) {
 	Request.addRequest=function(idk,cb){
@@ -26,15 +25,7 @@ module.exports = function(Request) {
 			Request.create(idk,function(err,request){
 				if(err)
 					console.log(err);
-				// Algorithm.checkPossibleOffer(request, function(err, offer){
-				// 	if (err) console.log(err);
-				// 	if (offer != null){
-				// 		Request.push(offer, request,function(err, instance){
-				// 			if (err) console.log(err);
-				// 			console.log(offer);
-				// 		});
-				// 	}
-				// });
+				// Algorithm 
 				var RequestQueue = app.models.RequestQueue;
 				idk.requestId = request.id;
 				RequestQueue.create(idk, function(err, requestQ){
@@ -46,7 +37,7 @@ module.exports = function(Request) {
 								if (err) console.log(err);
 								Request.push(offer, request, function(err, instance){
 									if (err) console.log(err);
-									console.log(offerQ);
+									console.log(offer);
 									cb(null, "Pushed Possible Offer");
 								});
 							})
