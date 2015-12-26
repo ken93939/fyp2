@@ -23,27 +23,26 @@ module.exports = function(Ride) {
 	    	else{
 	    		idk["pickup_name"]="South Gate";
 	    	}
-	    	
+	    	//TODO: fix the ownid
 			var ownModel=app.models.Own;
-			ownModel.find({"memberId": currentUser.id, "license_number": idk.license_number},function(err,owns){
-				if(err)
+			ownModel.findOne({where: {and: [{memberId: currentUser.id},{license_number: idk.license_number}]}},function(err,ownIns){
+				if(err){
 					console.log(err);
-				if(owns[0]!=null){
-					idk["ownId"]=owns[0].id;
-					Ride.create(idk,function(err,ride){
-						if(err)
-							console.log(err);
-						Algorithm.addOffer(ride, function(err, ride){
-							if (err) console.log(err);
-							// console.log(ride);
-							cb(null, ride);
-						});
+					cb(err,null);					
+				}
+				idk["ownId"]=ownIns.id;
+				Ride.create(idk,function(err,ride){
+					if(err){
+						console.log(err);
+						cb(err,null);						
+					}
+					Algorithm.addOffer(ride, function(err, ride){
+						if (err) console.log(err);
+						// console.log(ride);
+						cb(null, ride);
 					});
-				}
-				else{
-					console.log("well..");
-					cb(null,"well");
-				}
+				});
+
 			});
 		}
 		catch(err){

@@ -27,7 +27,8 @@ var member_array=[
   "isDriver": "yes",
   "password": "123456",
   "email": "ken@ken.com",
-  "deviceToken": "fucku"
+  "deviceToken": "fucku",
+  "emailVerified": 1
 },
 {
   "first_name": "sam",
@@ -39,7 +40,8 @@ var member_array=[
   "isDriver": "yes",
   "password": "123456",
   "email": "sam@sam.com",
-  "deviceToken": "fuckyeah"
+  "deviceToken": "fuckyeah",
+  "emailVerified": 1
 }
 ];
 
