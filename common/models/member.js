@@ -4,17 +4,15 @@ var loopback=require('loopback');
 var config = require('../../server/config.json');
 
 module.exports = function(Member) {
+	//TODO: possible debt
 	Member.register=function(idk,cb){
 		try{
-			// console.log(arguments);
-			// console.log(well); 		//string
-			// var idk=JSON.parse(well);		//array
-			// console.log(idk);
 			if(idk.isDriver=="yes"){		//good to go
 				var veh=app.models.Vehicle;
 				var data={
 					"id": 0
 				};
+				var counter=0;
 				Member.create(idk,function(err,user){
 					//TODO: error handling
 					if(err)
@@ -37,7 +35,8 @@ module.exports = function(Member) {
 								own.updateAttribute("memberId",user.id,function(err,fown){
 									if(err)
 										console.log(err);
-									if(index==array.length-1){
+									counter++;
+									if(counter==array.length){
 										cb(null,user);
 									}
 								})

@@ -3,7 +3,6 @@ var app = require(path.resolve(__dirname, '../../server/server'));
 var loopback=require('loopback');
 
 module.exports = function(Own) {
-	//bugfixed
 	Own.getVehicle=function(cb){
 		try{
 			var ctx=loopback.getCurrentContext();

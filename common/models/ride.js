@@ -3,6 +3,8 @@ var app = require(path.resolve(__dirname, '../../server/server'));
 var loopback=require('loopback');
 
 module.exports = function(Ride) {
+	//addRide license_number, destination_name, beforeArrive, seatNumber
+	//TODO: PAY THE DEBT
 	Ride.addRide=function(idk,cb){
 		try{
 			var ctx=loopback.getCurrentContext();

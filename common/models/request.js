@@ -56,6 +56,8 @@ module.exports = function(Request) {
 	//userId,matchicon,ridetime,destination
 	//header: X-Ionic-Application-Id: d38fa26f
 	//Content type: application/json
+
+	//pay the debt
 	Request.push=function(ride,idk,cb){
 		try{
 			var obj={};
@@ -90,7 +92,7 @@ module.exports = function(Request) {
 								"matchicon": "FUCKUPKHIN",
 								"ridetime": ride.time,
 								"destination": ride.destination_name,
-								"license_number": rideIns.license_number
+								"license_number": rideIns.license_number	//debt
 							}
 						}
 					};
