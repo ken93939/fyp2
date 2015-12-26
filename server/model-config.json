@@ -56,6 +56,18 @@
         "principalId": "$everyone",
         "permission": "ALLOW",
         "property": "updateToken"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW",
+        "property": "updatePw"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW",
+        "property": "updateVehicle"
       }
     ]
   },

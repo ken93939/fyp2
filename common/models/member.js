@@ -151,6 +151,27 @@ module.exports = function(Member) {
 			cb(err,null);
 		}
 	}
+	//updateVehicle is a big problem
+	//try to do it later
+	Member.updateVehicle=function(idk,cb){
+		try{
+			var ctx=loopback.getCurrentContext();
+			var currentUser = ctx && ctx.get('currentUser');
+			currentUser.updateAttribute("deviceToken",idk.deviceToken,function(err,user){
+				if(err){
+					console.log(err);
+					cb(err,null);
+				}
+				// console.log(user);
+				cb(null,user);
+			});
+		}
+		catch(err){
+			console.log(err);
+			cb(err,null);
+		}
+
+	}
 
 	Member.updatePw=function(idk,cb){
 		try{
