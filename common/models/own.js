@@ -19,7 +19,7 @@ module.exports = function(Own) {
 					console.log(err)
 				console.log(owns);
 				if(owns.length==0){
-					console.log("lol");
+					console.log("not own any car");
 					cb(null,veh_array);
 				}
 				owns.forEach(function(eachown,index,array){

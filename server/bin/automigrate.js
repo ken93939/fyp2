@@ -58,12 +58,12 @@ var own_array=[
 {
   "id": 1,
   "memberId": 1,
-  "license_number": "D7689"
+  "vehicleId": 1,
 },
 {
   "id": 2,
   "memberId": 1,
-  "license_number": "FUCK FYP"
+  "vehicleId": 2,
 }
 ]
 

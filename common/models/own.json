@@ -16,7 +16,7 @@
     "vehicle": {
       "type": "belongsTo",
       "model": "Vehicle",
-      "foreignKey": "license_number"
+      "foreignKey": "vehicleId"
     },
     "rides": {
       "type": "hasMany",

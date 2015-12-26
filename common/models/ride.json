@@ -46,11 +46,6 @@
       "model": "Own",
       "foreignKey": "ownId"
     },
-    "vehicle": {
-      "type": "belongsTo",
-      "model": "Vehicle",
-      "foreignKey": "license_number"
-    },
     "matchedSeat": {
       "type": "hasMany",
       "model": "MatchedSeat",

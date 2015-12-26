@@ -1,14 +1,13 @@
 {
   "name": "Vehicle",
   "base": "PersistedModel",
-  "idInjection": false,
+  "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
     "license_number": {
       "type": "string",
-      "id": true,
       "required": true
     },
     "color": {
@@ -23,12 +22,7 @@
     "owns": {
       "type": "hasMany",
       "model": "Own",
-      "foreignKey": "license_number"
-    },
-    "rides": {
-      "type": "hasMany",
-      "model": "Ride",
-      "foreignKey": "license_number"
+      "foreignKey": "vehicleId"
     }
   },
   "acls": [],

@@ -4,7 +4,7 @@ var loopback=require('loopback');
 
 module.exports = function(Ride) {
 	//addRide license_number, destination_name, beforeArrive, seatNumber
-	//TODO: PAY THE DEBT
+	//TODO: PAY THE DEBT  maybe not
 	Ride.addRide=function(idk,cb){
 		try{
 			var ctx=loopback.getCurrentContext();
@@ -24,27 +24,50 @@ module.exports = function(Ride) {
 	    	else{
 	    		idk["pickup_name"]="South Gate";
 	    	}
-	    	//TODO: fix the ownid
+	    	//TODO: fix the ownid done?
 			var ownModel=app.models.Own;
-			ownModel.findOne({where: {and: [{memberId: currentUser.id},{license_number: idk.license_number}]}},function(err,ownIns){
-				if(err){
-					console.log(err);
-					cb(err,null);					
-				}
-				idk["ownId"]=ownIns.id;
-				Ride.create(idk,function(err,ride){
-					if(err){
-						console.log(err);
-						cb(err,null);						
-					}
-					// Algorithm 
-					var OfferQueue = app.models.OfferQueue;
-					idk.rideId = ride.id;
-					OfferQueue.create(idk, function(err, offerQ){
-						cb(null, offerQ);
+			ownModel.find({where: {memberId: currentUser.id}},function(err,ownIns){
+				ownIns.forEach(function(oIns){
+					oIns.vehicle(function(err,veh){
+						if(err){
+							console.log(err);
+							cb(err,null);					
+						}
+						if(idk.license_number==veh.license_number){
+							idk["ownId"]=oIns.id;
+							Ride.create(idk,function(err,ride){
+								if(err){
+									console.log(err);
+									cb(err,null);						
+								}
+								// Algorithm 
+								var OfferQueue = app.models.OfferQueue;
+								idk.rideId = ride.id;
+								OfferQueue.create(idk, function(err, offerQ){
+									cb(null, offerQ);
+								});
+							});
+						}
 					});
 				});
-
+				// if(err){
+				// 	console.log(err);
+				// 	cb(err,null);					
+				// }
+				
+				// idk["ownId"]=ownIns.id;
+				// Ride.create(idk,function(err,ride){
+				// 	if(err){
+				// 		console.log(err);
+				// 		cb(err,null);						
+				// 	}
+				// 	// Algorithm 
+				// 	var OfferQueue = app.models.OfferQueue;
+				// 	idk.rideId = ride.id;
+				// 	OfferQueue.create(idk, function(err, offerQ){
+				// 		cb(null, offerQ);
+				// 	});
+				// });
 			});
 		}
 		catch(err){
