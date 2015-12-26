@@ -114,7 +114,14 @@ var request_array=[
   "time": new Date()
 }
 ]
-
+var icon_array=[
+{
+  "match_icon": 1
+},
+{
+  "match_icon": 2
+}
+]
 
 dataSource.automigrate('destination', function(err) {
   if(err) throw err;
@@ -263,6 +270,24 @@ dataSource.automigrate('request', function(err) {
       count--;
       if(count==0){
         console.log("request_ko");
+      }
+    });
+  });
+});
+
+dataSource.automigrate('Icon', function(err) {
+  if(err) throw err;
+  console.log("Icon!");
+  var icon=app.models.Icon;
+  var count=request_array.length;
+  icon_array.forEach(function(Icon){
+    icon.create(Icon,function(err,record){
+      if(err)
+        return console.log(err);
+      console.log("ICON_done",record);
+      count--;
+      if(count==0){
+        console.log("ICON_ko");
       }
     });
   });
