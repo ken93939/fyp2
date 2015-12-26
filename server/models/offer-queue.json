@@ -1,0 +1,19 @@
+{
+  "name": "OfferQueue",
+  "base": "Ride",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "ride": {
+      "type": "belongsTo",
+      "model": "Ride",
+      "foreignKey": "rideId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

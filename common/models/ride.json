@@ -50,6 +50,21 @@
       "type": "belongsTo",
       "model": "Vehicle",
       "foreignKey": "license_number"
+    },
+    "matchedSeat": {
+      "type": "hasMany",
+      "model": "MatchedSeat",
+      "foreignKey": "rideId"
+    },
+    "pendingSeat": {
+      "type": "hasMany",
+      "model": "PendingSeat",
+      "foreignKey": "rideId"
+    },
+    "offerQueue": {
+      "type": "hasMany",
+      "model": "OfferQueue",
+      "foreignKey": "rideId"
     }
   },
   "acls": [],

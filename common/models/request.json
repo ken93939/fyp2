@@ -32,6 +32,21 @@
       "type": "belongsTo",
       "model": "pickup",
       "foreignKey": "pickup_name"
+    },
+    "matchedSeat": {
+      "type": "hasMany",
+      "model": "MatchedSeat",
+      "foreignKey": "requestId"
+    },
+    "pendingSeat": {
+      "type": "hasMany",
+      "model": "PendingSeat",
+      "foreignKey": "requestId"
+    },
+    "requestQueue": {
+      "type": "hasMany",
+      "model": "RequestQueue",
+      "foreignKey": "requestId"
     }
   },
   "acls": [],

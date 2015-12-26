@@ -1,0 +1,24 @@
+{
+  "name": "MatchedSeat",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "request": {
+      "type": "belongsTo",
+      "model": "request",
+      "foreignKey": "requestId"
+    },
+    "ride": {
+      "type": "belongsTo",
+      "model": "Ride",
+      "foreignKey": "rideId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

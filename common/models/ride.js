@@ -1,7 +1,7 @@
 var path = require('path');
 var app = require(path.resolve(__dirname, '../../server/server'));
 var loopback=require('loopback');
-var Algorithm = require('../../server/algorithm/Algorithm.js');
+// var Algorithm = require('../../server/algorithm/Algorithm.js');
 
 module.exports = function(Ride) {
 	Ride.addRide=function(idk,cb){
@@ -36,10 +36,15 @@ module.exports = function(Ride) {
 						console.log(err);
 						cb(err,null);						
 					}
-					Algorithm.addOffer(ride, function(err, ride){
-						if (err) console.log(err);
-						// console.log(ride);
-						cb(null, ride);
+					// Algorithm.addOffer(ride, function(err, ride){
+					// 	if (err) console.log(err);
+					// 	// console.log(ride);
+					// 	cb(null, ride);
+					// });
+					var OfferQueue = app.models.OfferQueue;
+					idk.rideId = ride.id;
+					OfferQueue.create(idk, function(err, offerQ){
+						cb(null, offerQ);
 					});
 				});
 

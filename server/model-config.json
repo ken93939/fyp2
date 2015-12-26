@@ -35,7 +35,7 @@
   "Member": {
     "dataSource": "mySQL",
     "public": true,
-    "options":{
+    "options": {
       "emailVerificationRequired": true
     },
     "acls": [
@@ -93,6 +93,22 @@
   },
   "Email": {
     "dataSource": "email",
+    "public": true
+  },
+  "OfferQueue": {
+    "dataSource": "db",
+    "public": true
+  },
+  "RequestQueue": {
+    "dataSource": "db",
+    "public": true
+  },
+  "MatchedSeat": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PendingSeat": {
+    "dataSource": "db",
     "public": true
   }
 }

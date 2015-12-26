@@ -1,0 +1,19 @@
+{
+  "name": "RequestQueue",
+  "base": "request",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+      "request": {
+      "type": "belongsTo",
+      "model": "request",
+      "foreignKey": "requestId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
