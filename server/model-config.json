@@ -68,6 +68,12 @@
         "principalId": "$everyone",
         "permission": "ALLOW",
         "property": "updateVehicle"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW",
+        "property": "validationandregister"
       }
     ]
   },

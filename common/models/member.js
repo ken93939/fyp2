@@ -2,8 +2,65 @@ var path = require('path');
 var app = require(path.resolve(__dirname, '../../server/server'));
 var loopback=require('loopback');
 var config = require('../../server/config.json');
+var bcrypt=require('bcryptjs');
 
 module.exports = function(Member) {
+	//firstname,last_name,phoneno,gender,genderpreference,authroized,isDriver,email,pw,car
+	//email,phone,car.license_number
+	Member.validationandregister=function(idk,cb){
+		try{
+			var veh=app.models.Vehicle;
+			Member.findOne({where: {email:idk.email}},function(err,memIns){
+				console.log(memIns);
+				if(err){
+					console.log(err);
+					cb(err,null);
+				}
+				else if(memIns==null){
+					Member.findOne({where: {phone_number: idk.phone_number}},function(err,mmIns){
+						console.log(mmIns);
+						if(err){
+							console.log(err);
+							cb(err,null);
+						}
+						else if(mmIns==null){
+							var counter=0;
+							idk.car.forEach(function(ka,index,array){
+								veh.findOne({where: {license_number: ka.license_number}},function(err,vehIns){
+									console.log(vehIns);
+									if(err){
+										console.log(err);
+										cb(err,null);
+									}
+									else if(vehIns==null){
+										counter++;
+										if(counter==array.length){
+											//TODO:call register
+											cb(null,"success");
+										}
+									}
+									else{
+										cb(null,"fail");
+									}
+								});
+							});
+						}
+						else{
+							cb(null,"fail");
+						}
+					})
+				}
+				else{
+					cb(null,"fail");
+				}
+			});
+		}
+		catch(err){
+			console.log(err);
+			cb(err,null);
+		}
+	}
+
 	//TODO: possible debt
 	Member.register=function(idk,cb){
 		try{
@@ -178,7 +235,9 @@ module.exports = function(Member) {
 			var currentUser = ctx && ctx.get('currentUser');
 			console.log(currentUser.password);
 			console.log(idk.oldpassword);
-			if(currentUser.password==idk.oldpassword){
+			// console.log(bcrypt.compareSync("123456",currentUser.password));
+
+			if(bcrypt.compareSync(idk.oldpassword,currentUser.password)){
 				currentUser.updateAttribute("password",idk.newpassword,function(err,user){
 					if(err){
 						console.log(err);
@@ -198,6 +257,14 @@ module.exports = function(Member) {
 		}
 	};
 
+	Member.remoteMethod(
+		'validationandregister',
+		{
+			http: {path: '/validationandregister', verb: 'post'},
+			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}
+		}
+	);
 
 	Member.remoteMethod(
 		'updateVehicle',
