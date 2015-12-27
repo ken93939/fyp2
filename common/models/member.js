@@ -176,6 +176,8 @@ module.exports = function(Member) {
 		try{
 			var ctx=loopback.getCurrentContext();
 			var currentUser = ctx && ctx.get('currentUser');
+			console.log(currentUser.password);
+			console.log(idk.oldpassword);
 			if(currentUser.password==idk.oldpassword){
 				currentUser.updateAttribute("password",idk.newpassword,function(err,user){
 					if(err){
