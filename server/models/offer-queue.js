@@ -12,8 +12,8 @@ module.exports = function(OfferQueue) {
 			} else{
 				var PendingSeat = app.models.PendingSeat;
 				var data = {};
-				data.offerId = offerQ.id;
-				data.requestId = requestQ.id;
+				data.rideId = offerQ.rideId;
+				data.requestId = requestQ.requestId;
 				PendingSeat.create(data, function(err, pendingS){
 					cb(null, offerQ);
 				});
