@@ -5,18 +5,34 @@ var loopback = require('loopback');
 module.exports = function(OfferQueue) {
 
 	OfferQueue.possibleOffer = function(requestQ, cb){
-		OfferQueue.findOne({"where": {"destination_name": requestQ.destination_name}}, function(err, offerQ){
+		var offerQFilter = {
+			"where": {
+				"destination_name": requestQ.destination_name,
+				"is_full": false
+			}, 
+			"order": "time ASC"
+		};
+		OfferQueue.findOne(offerQFilter, function(err, offerQ){
 			if (err){
 				console.log(err);
 				cb(err, null);
 			} else{
-				var PendingSeat = app.models.PendingSeat;
-				var data = {};
-				data.rideId = offerQ.rideId;
-				data.requestId = requestQ.requestId;
-				PendingSeat.create(data, function(err, pendingS){
+				if (offerQ != null){
+					var PendingSeat = app.models.PendingSeat;
+					var data = {};
+					data.rideId = offerQ.rideId;
+					data.requestId = requestQ.requestId;
+					PendingSeat.addPending(data, function(err, pendingS){
+						if (err){
+							console.log(err);
+							cb(err, null);
+						} else{
+							cb(null, offerQ);
+						}
+					});
+				} else{
 					cb(null, offerQ);
-				});
+				}
 			}
 		});
 	}

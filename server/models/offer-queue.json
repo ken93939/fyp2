@@ -5,7 +5,12 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "is_full": {
+      "type": "boolean",
+      "default": false
+    }
+  },
   "validations": [],
   "relations": {
     "ride": {
