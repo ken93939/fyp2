@@ -43,8 +43,62 @@ module.exports = function(PendingSeat) {
 		});
 	}
 
+	PendingSeat.removePending = function(data, cb){
+		PendingSeat.findOne({"where": {"requestId": data.requestId}}, function(err, pendingS){
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				if (pendingS != null){
+					var OfferQueue = app.models.OfferQueue;
+					OfferQueue.findOne({"where": {"rideId": pendingS.rideId}}, function(err, offerQ){
+						if (err){
+							console.log(err);
+							cb(err, null);
+						} else{
+							pendingS.destroy(function(err){
+								if (err){
+									console.log(err);
+									cb(err, null);
+								} else{
+									offerQ.updateAttributes({"is_full": false}, function(err, offer){
+										if (err){
+											console.log(err);
+											cb(err, null);
+										} else{
+											console.log("PendingSeat removed: ", pendingS.id);
+											cb(null, pendingS);
+										}
+									});
+								}
+							});
+						}
+					});
+				} else{
+					cb(null, pendingS);
+				}
+			}
+		});
+	}
+
+	PendingSeat.toMatchedSeat = function(data, cb){
+
+	}
+
 	PendingSeat.remoteMethod('addPending', {
 		http: {path: '/addPending', verb: 'post'},
+		accepts: {arg: 'data', type: 'object', http: {source:'body'}},
+		returns: {arg: 'pendingS', type: 'object'}
+	});
+
+	PendingSeat.remoteMethod('removePending', {
+		http: {path: '/removePending', verb: 'post'},
+		accepts: {arg: 'data', type: 'object', http: {source:'body'}},
+		returns: {arg: 'pendingS', type: 'object'}
+	});
+
+	PendingSeat.remoteMethod('toMatchedSeat', {
+		http: {path: '/toMatchedSeat', verb: 'post'},
 		accepts: {arg: 'data', type: 'object', http: {source:'body'}},
 		returns: {arg: 'pendingS', type: 'object'}
 	});

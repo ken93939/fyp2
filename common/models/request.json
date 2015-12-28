@@ -9,6 +9,10 @@
     "time": {
       "type": "date",
       "required": true
+    },
+    "status": {
+      "type": "string",
+      "default": "active"
     }
   },
   "validations": [],

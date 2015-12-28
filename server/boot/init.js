@@ -1,6 +1,6 @@
 module.exports = function(server){
 	// Load requests from db to RequestQueue
-	server.models.request.find({}, function(err, requests) {
+	server.models.request.find({"where": {"status": "active"}}, function(err, requests) {
 		if (err) return console.log(err);
 		requests.forEach(function(request, index, array){
 			request.requestId = request.id;
@@ -22,4 +22,6 @@ module.exports = function(server){
 			});
 		});
 	});
+
+	// TODO: Load PendingQueue & MatchedQueue
 };

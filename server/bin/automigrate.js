@@ -107,11 +107,13 @@ var vehicle_array=[
 var request_array=[
 {
   "id": 1,
-  "time": new Date("December 1, 2015 11:13:00")
+  "time": new Date("December 1, 2015 11:13:00"),
+  "status": "inactive"
 },
 {
   "id": 2,
-  "time": new Date()
+  "time": new Date(),
+  "status": "inactive"
 }
 ]
 var icon_array=[

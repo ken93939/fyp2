@@ -38,14 +38,12 @@ module.exports = function(Request) {
 								Request.push(offer, request, function(err, instance){
 									if (err) console.log(err);
 									console.log(offer);
-									cb(null, "Pushed Possible Offer");
 								});
 							})
-						} else{
-							cb(null, "No Possible Offer");
 						}
 					});
 				});
+				cb(null, request.id);
 			});
 		}
 		catch(error){
@@ -95,7 +93,7 @@ module.exports = function(Request) {
 										"matchicon": "FUCKUPKHIN",
 										"ridetime": ride.time,
 										"destination": ride.destination_name,
-										"license_number": vehicleIns.license_number	//debt solved?
+										"license_number": vehicleIns.license_number	//debt solved?,
 									}
 								}
 							};
@@ -137,12 +135,44 @@ module.exports = function(Request) {
 	}
 
 	Request.confirmMatch=function(idk,cb){
-
+		// TODO: setTimeout, check request/requestqueue exist, confirm(add join, pendingSeat to matchedSeat, delete requestqueue?)
 	}
 
 	Request.cancelMatch=function(idk,cb){
-
+		console.log("Cancelling Match...", idk);
+		// set requestqueue status to inactive
+		var RequestQueue = app.models.RequestQueue;
+		RequestQueue.setInactive(idk, function(err, requestQ){
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				if (requestQ != null){
+					// set request status to inactive
+					requestQ.request(function(err, request){
+						if (err){
+							console.log(err);
+							cb(err, null);
+						} else{
+							request.updateAttributes({"status": "inactive"}, function(err, req){
+								if (err){
+									console.log(err);
+									cb(err, null);
+								} else{
+									console.log("Cancelled");
+									cb(null, "Cancelled");
+								}
+							});
+						}
+					});
+				} else{
+					console.log("No such requestId");
+					cb(null, "No such requestId");
+				}
+			}
+		});
 	}
+
 	Request.remoteMethod(
 		'confirmMatch',
 		{
@@ -166,7 +196,7 @@ module.exports = function(Request) {
 		{
 			http: {path: '/addRequest', verb: 'post'},
 			accepts: {arg: 'ride', type: 'object', http:{source:'body'}},
-			returns: {arg: 'status', type: 'string'}
+			returns: {arg: 'requestId', type: 'number'}
 		}
 	);
 
