@@ -10,6 +10,7 @@ module.exports = function(Member) {
 	Member.validationandregister=function(idk,cb){
 		try{
 			var veh=app.models.Vehicle;
+			//check conflict of email, phone number and car
 			Member.findOne({where: {email:idk.email}},function(err,memIns){
 				console.log(memIns);
 				if(err){

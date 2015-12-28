@@ -136,6 +136,31 @@ module.exports = function(Request) {
 		}
 	}
 
+	Request.confirmMatch=function(idk,cb){
+
+	}
+
+	Request.cancelMatch=function(idk,cb){
+
+	}
+	Request.remoteMethod(
+		'confirmMatch',
+		{
+			http: {path: '/confirmMatch', verb: 'post'},
+			accepts: {arg: 'ride', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}
+		}
+	);
+
+	Request.remoteMethod(
+		'cancelMatch',
+		{
+			http: {path: '/cancelMatch', verb: 'post'},
+			accepts: {arg: 'ride', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}
+		}
+	);
+
 	Request.remoteMethod(
 		'addRequest',
 		{
