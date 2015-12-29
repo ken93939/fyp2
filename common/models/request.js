@@ -33,13 +33,25 @@ module.exports = function(Request) {
 					var OfferQueue = app.models.OfferQueue;
 					OfferQueue.possibleOffer(requestQ, function(err, offerQ){
 						if (offerQ != null){
-							offerQ.ride(function(err, offer){
+							// check if the request is already cancelled
+							Request.findById(request.id, function (err, req){
 								if (err) console.log(err);
-								Request.push(offer, request, function(err, instance){
-									if (err) console.log(err);
-									console.log(offer);
-								});
-							})
+								if (req != null && req.status != "inactive"){
+									offerQ.ride(function(err, offer){
+										if (err) console.log(err);
+										Request.push(offer, request, function(err, instance){
+											if (err) console.log(err);
+											console.log(offer);
+										});
+									});
+								} else{
+									var reqIdObj = {};
+									reqIdObj.requestId = request.id;
+									Request.cancelMatch(reqIdObj, function(err, reqObj){
+										if (err) console.log(err);
+									});
+								}
+							});
 						}
 					});
 				});
@@ -140,35 +152,46 @@ module.exports = function(Request) {
 
 	Request.cancelMatch=function(idk,cb){
 		console.log("Cancelling Match...", idk);
-		// set requestqueue status to inactive
-		var RequestQueue = app.models.RequestQueue;
-		RequestQueue.setInactive(idk, function(err, requestQ){
+		// remove PendingSeat record
+		var PendingSeat = app.models.PendingSeat;
+		PendingSeat.removePending(idk, function(err, pendingS){
 			if (err){
 				console.log(err);
 				cb(err, null);
 			} else{
-				if (requestQ != null){
-					// set request status to inactive
-					requestQ.request(function(err, request){
-						if (err){
-							console.log(err);
-							cb(err, null);
-						} else{
-							request.updateAttributes({"status": "inactive"}, function(err, req){
+				var RequestQueue = app.models.RequestQueue;
+				// OLD: set requestqueue status to inactive
+				// OLD: RequestQueue.setInactive(idk, function(err, requestQ){
+				// remove RequestQueue record
+				RequestQueue.removeRequest(idk, function(err, requestQ){
+					if (err){
+						console.log(err);
+						cb(err, null);
+					} else{
+						if (requestQ != null){
+							// set request status to inactive
+							requestQ.request(function(err, request){
 								if (err){
 									console.log(err);
 									cb(err, null);
 								} else{
-									console.log("Cancelled");
-									cb(null, "Cancelled");
+									request.updateAttributes({"status": "inactive"}, function(err, req){
+										if (err){
+											console.log(err);
+											cb(err, null);
+										} else{
+											console.log("Cancelled");
+											cb(null, "Cancelled");
+										}
+									});
 								}
 							});
+						} else{
+							console.log("No such requestId");
+							cb(null, "No such requestId");
 						}
-					});
-				} else{
-					console.log("No such requestId");
-					cb(null, "No such requestId");
-				}
+					}
+				});
 			}
 		});
 	}

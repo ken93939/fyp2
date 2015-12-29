@@ -8,7 +8,8 @@ module.exports = function(OfferQueue) {
 		var offerQFilter = {
 			"where": {
 				"destination_name": requestQ.destination_name,
-				"is_full": false
+				"is_full": false,
+				"time": {"gt": Date.now()}
 			}, 
 			"order": "time ASC"
 		};

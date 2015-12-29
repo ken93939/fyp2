@@ -44,7 +44,26 @@ module.exports = function(Ride) {
 								var OfferQueue = app.models.OfferQueue;
 								idk.rideId = ride.id;
 								OfferQueue.create(idk, function(err, offerQ){
-									cb(null, offerQ);
+									if(err){
+										console.log(err);
+										cb(err, null);
+									} else{
+										var RequestQueue = app.models.RequestQueue;
+										RequestQueue.possibleRequest(idk, function(err, requestQ){
+											if (requestQ != null){
+												requestQ.request(function(err, request){
+													if (err) console.log(err);
+													Ride.push(ride, request, function(err, instance){
+														if (err) console.log(err);
+														console.log(ride);
+														cb(null, offerQ);
+													});
+												});
+											} else{
+												cb(null, offerQ);
+											}
+										});
+									}
 								});
 							});
 						}
@@ -75,8 +94,13 @@ module.exports = function(Ride) {
 		}
 
 	}
-	Ride.push=function(idk,cb){
-
+	Ride.push = function(ride, request, cb){
+		var Request = app.models.Request;
+		Request.push(ride, request, function(err, instance){
+			if (err) console.log(err);
+			console.log(ride);
+			cb(null, instance);
+		});
 	}
 
 	Ride.remoteMethod(
