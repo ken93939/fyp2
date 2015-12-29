@@ -97,9 +97,12 @@ module.exports = function(Ride) {
 	Ride.push = function(ride, request, cb){
 		var Request = app.models.Request;
 		Request.push(ride, request, function(err, instance){
-			if (err) console.log(err);
-			console.log(ride);
-			cb(null, instance);
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				cb(null, instance);
+			}
 		});
 	}
 
