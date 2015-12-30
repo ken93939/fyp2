@@ -10,48 +10,57 @@ module.exports = function(PendingSeat) {
 				console.log(err);
 				cb(err, null);
 			} else{
-				PendingSeat.count({"rideId": pendingS.rideId}, function(err, occupied_seat_num){
+				PendingSeat.count({"rideId": pendingS.rideId}, function(err, pendingS_num){
 					if (err){
 						console.log(err);
 						cb(err, null);
 					} else{
-						var RequestQueue = app.models.RequestQueue;
-						RequestQueue.findOne({"where": {"requestId": pendingS.requestId}}, function(err, requestQ){
+						var MatchedSeat = app.models.MatchedSeat;
+						MatchedSeat.count({"rideId": pendingS.rideId}, function(err, matchedS_num){
 							if (err){
 								console.log(err);
 								cb(err, null);
 							} else{
-								requestQ.updateAttributes({"status": "pending"}, function(err, reqQ){
+								var RequestQueue = app.models.RequestQueue;
+								RequestQueue.findOne({"where": {"requestId": pendingS.requestId}}, function(err, requestQ){
 									if (err){
 										console.log(err);
 										cb(err, null);
 									} else{
-										var OfferQueue = app.models.OfferQueue;
-										OfferQueue.findOne({"where": {"rideId": pendingS.rideId}}, function(err, offerQ){
+										requestQ.updateAttributes({"status": "pending"}, function(err, reqQ){
 											if (err){
 												console.log(err);
 												cb(err, null);
 											} else{
-												console.log(pendingS.rideId+": {occupied_seat_num: "+occupied_seat_num+", offerQ.seat_number: "+offerQ.seat_number+"}");
-												if (occupied_seat_num >= offerQ.seat_number){
-													offerQ.updateAttributes({"is_full": true}, function(err, offer){
-														if (err){
-															console.log(err);
-															cb(err, null);
+												var OfferQueue = app.models.OfferQueue;
+												OfferQueue.findOne({"where": {"rideId": pendingS.rideId}}, function(err, offerQ){
+													if (err){
+														console.log(err);
+														cb(err, null);
+													} else{
+														var occupied_seat_num = pendingS_num + matchedS_num;
+														console.log(pendingS.rideId+": {occupied_seat_num: "+occupied_seat_num+", offerQ.seat_number: "+offerQ.seat_number+"}");
+														if (occupied_seat_num >= offerQ.seat_number){
+															offerQ.updateAttributes({"is_full": true}, function(err, offer){
+																if (err){
+																	console.log(err);
+																	cb(err, null);
+																} else{
+																	console.log("Full now!");
+																	cb(null, pendingS);
+																}
+															});
 														} else{
-															console.log("Full now!");
 															cb(null, pendingS);
 														}
-													});
-												} else{
-													cb(null, pendingS);
-												}
+													}
+												});
 											}
 										});
 									}
 								});
 							}
-						});
+						});	
 					}
 				});	
 			}

@@ -9,7 +9,7 @@ module.exports = function(OfferQueue) {
 			"where": {
 				"destination_name": requestQ.destination_name,
 				"is_full": false,
-				"time": {"gt": Date.now()}
+				"time": {"gt": Date.now() + 60*1000}
 			}, 
 			"order": "time ASC"
 		};

@@ -77,7 +77,7 @@ module.exports = function(RequestQueue) {
 
 	RequestQueue.remoteMethod('possibleRequest', {
 		http: {path: '/possibleRequest', verb: 'post'},
-		accepts: {arg: 'data', type: 'object', http: {source:'body'}},
+		accepts: {arg: 'offerQ', type: 'object', http: {source:'body'}},
 		returns: {arg: 'requestQ', type: 'object'}
 	});
 

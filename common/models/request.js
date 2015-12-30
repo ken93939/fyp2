@@ -15,48 +15,68 @@ module.exports = function(Request) {
 
 			idk["memberId"]=currentUser.id;
 			idk["time"]=new Date();
-			if(idk.destination_name=="Hang Hau"){
-				idk["pickup_name"]="North Gate";
-			}
-			else{
-				idk["pickup_name"]="South Gate";
-			}
 
-			Request.create(idk,function(err,request){
-				if(err)
-					console.log(err);
-				// Algorithm 
-				var RequestQueue = app.models.RequestQueue;
-				idk.requestId = request.id;
-				RequestQueue.create(idk, function(err, requestQ){
-					if (err) console.log(err);
-					var OfferQueue = app.models.OfferQueue;
-					OfferQueue.possibleOffer(requestQ, function(err, offerQ){
-						if (offerQ != null){
-							// check if the request is already cancelled
-							Request.findById(request.id, function (err, req){
-								if (err) console.log(err);
-								if (req != null && req.status != "inactive"){
-									offerQ.ride(function(err, offer){
-										if (err) console.log(err);
-										Request.push(offer, request, function(err, instance){
+			var Destination = app.models.Destination;
+			Destination.getDestination(idk.destination_name, function(err, newDesName){
+				if (err) console.log(err);
+				idk.destination_name = newDesName;
+				
+				if(idk.destination_name=="Hang Hau"){
+					idk["pickup_name"]="North Gate";
+				}
+				else{
+					idk["pickup_name"]="South Gate";
+				}
+
+				Request.create(idk,function(err,request){
+					if(err)
+						console.log(err);
+					// Algorithm 
+					var RequestQueue = app.models.RequestQueue;
+					idk.requestId = request.id;
+					RequestQueue.create(idk, function(err, requestQ){
+						if (err) console.log(err);
+						var OfferQueue = app.models.OfferQueue;
+						OfferQueue.possibleOffer(requestQ, function(err, offerQ){
+							if (offerQ != null){
+								// check if the request is already cancelled
+								Request.findById(request.id, function (err, req){
+									if (err) console.log(err);
+									if (req != null && req.status != "inactive"){
+										offerQ.ride(function(err, offer){
 											if (err) console.log(err);
-											console.log(offer);
-											// TODO: check whether request exist in MatchedSeat after 20 seconds. If not, cancel.
+											Request.push(offer, request, function(err, instance){
+												if (err) console.log(err);
+												console.log(offer);
+												// check if the request exist in RequestQueue after 20+5 seconds. If so, cancel.
+												setTimeout(function(){
+													RequestQueue.findOne({"where": {"requestId": request.id}}, function(err, reqQ){
+														if (err) console.log(err);
+														if (reqQ != null){
+															var reqIdObj = {};
+															reqIdObj.requestId = request.id;
+															Request.cancelMatch(reqIdObj, function(err, reqObj){
+																if (err) console.log(err);
+																console.log("(Cancelled by server)");
+															});
+														}
+													});
+												}, (20+5)*1000);
+											});
 										});
-									});
-								} else{
-									var reqIdObj = {};
-									reqIdObj.requestId = request.id;
-									Request.cancelMatch(reqIdObj, function(err, reqObj){
-										if (err) console.log(err);
-									});
-								}
-							});
-						}
+									} else{
+										var reqIdObj = {};
+										reqIdObj.requestId = request.id;
+										Request.cancelMatch(reqIdObj, function(err, reqObj){
+											if (err) console.log(err);
+										});
+									}
+								});
+							}
+						});
 					});
+					cb(null, request.id);
 				});
-				cb(null, request.id);
 			});
 		}
 		catch(error){
@@ -148,42 +168,57 @@ module.exports = function(Request) {
 	}
 
 	Request.confirmMatch=function(idk,cb){
-		// move PendingSeat record to MatchedSeat
-		var PendingSeat = app.models.PendingSeat;
-		PendingSeat.toMatchedSeat(idk, function(err, matchedS){
+		// check if the request is still valid
+		var RequestQueue = app.models.RequestQueue;
+		RequestQueue.findOne({"where": {"requestId": idk.requestId}}, function(err, reqQ){
 			if (err){
 				console.log(err);
 				cb(err, null);
 			} else{
-				if (matchedS != null){
-					// create new join record
-					var Join = app.models.Join;
-					var joinObj = {};
-					joinObj.rideId = matchedS.rideId;
-					joinObj.requestId = matchedS.requestId;
-					joinObj.iconId = 1; // TODO
-					Join.create(joinObj, function(err, join){
+				if (reqQ != null){
+					// move PendingSeat record to MatchedSeat
+					var PendingSeat = app.models.PendingSeat;
+					PendingSeat.toMatchedSeat(idk, function(err, matchedS){
 						if (err){
 							console.log(err);
 							cb(err, null);
 						} else{
-							console.log("Join created: ", join);
-							// remove RequestQueue record
-							var RequestQueue = app.models.RequestQueue;
-							RequestQueue.removeRequest(idk, function(err, requestQ){
-								if (err){
-									console.log(err);
-									cb(err, null);
-								} else{
-									if (requestQ != null){
-										console.log("Joined");
-										cb(null, "Joined");
+							if (matchedS != null){
+								// create new join record
+								var Join = app.models.Join;
+								var joinObj = {};
+								joinObj.rideId = matchedS.rideId;
+								joinObj.requestId = matchedS.requestId;
+								joinObj.iconId = 1; // TODO
+								Join.create(joinObj, function(err, join){
+									if (err){
+										console.log(err);
+										cb(err, null);
 									} else{
-										console.log("No such requestId");
-										cb(null, "No such requestId");
+										console.log("Join created: ", join);
+										// remove RequestQueue record
+										RequestQueue.removeRequest(idk, function(err, requestQ){
+											if (err){
+												console.log(err);
+												cb(err, null);
+											} else{
+												if (requestQ != null){
+													console.log("Joined");
+													cb(null, "Joined");
+													// TODO: check if OfferQueue record is full after 20+5 seconds. If so, remove Offer.
+
+												} else{
+													console.log("No such requestId");
+													cb(null, "No such requestId");
+												}
+											}
+										});
 									}
-								}
-							});
+								});
+							} else{
+								console.log("No such requestId");
+								cb(null, "No such requestId");
+							}
 						}
 					});
 				} else{
@@ -191,8 +226,7 @@ module.exports = function(Request) {
 					cb(null, "No such requestId");
 				}
 			}
-		});
-
+		})
 	}
 
 	Request.cancelMatch=function(idk,cb){
