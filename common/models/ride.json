@@ -17,6 +17,10 @@
     "beforeArrive": {
       "type": "number",
       "required": true
+    },
+    "status": {
+      "type": "string",
+      "default": "active"
     }
   },
   "validations": [],

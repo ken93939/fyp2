@@ -12,7 +12,7 @@ module.exports = function(server){
 	});
 
 	// Load Rides from db to OfferQueue
-	server.models.Ride.find({}, function(err, rides) {
+	server.models.Ride.find({"where": {"status": "active"}}, function(err, rides) {
 		if (err) return console.log(err);
 		rides.forEach(function(ride, index, array){
 			ride.rideId = ride.id;

@@ -83,13 +83,15 @@ var ride_array=[
   "id": 1,
   "time": new Date("December 1, 2015 11:13:00"),
   "seat_number": 3,
-  "beforeArrive": 15
+  "beforeArrive": 15,
+  "status": "inactive"
 },
 {
   "id": 2,
   "time": new Date(),
   "seat_number": 2,
-  "beforeArrive": 10
+  "beforeArrive": 10,
+  "status": "inactive"
 }
 ]
 

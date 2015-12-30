@@ -213,7 +213,26 @@ module.exports = function(Request) {
 															console.log("Joined");
 															cb(null, "Joined");
 															// TODO: check if OfferQueue record is full after 20+5 seconds. If so, remove Offer.
-
+															setTimeout(function(){
+																var OfferQueue = app.models.OfferQueue;
+																OfferQueue.findOne({"where": {"rideId": join.rideId, "is_full": true}}, function(err, offerQ){
+																	if (err) console.log(err);
+																	if (offerQ != null){
+																		offerQ.ride(function(err, ride){
+																			if (err) console.log(err);
+																			if (ride != null){
+																				ride.updateAttributes({"status": "inactive"}, function(err, rid){
+																					if (err) console.log(err);
+																					offerQ.destroy(function(err){
+																						if (err) console.log(err);
+																						console.log("Removed from OfferQueue: ", offerQ);
+																					});
+																				});
+																			}
+																		});
+																	}
+																});
+															}, (20+5)*1000);
 														} else{
 															console.log("No such requestId");
 															cb(null, "No such requestId");
