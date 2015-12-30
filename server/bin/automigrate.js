@@ -47,10 +47,12 @@ var member_array=[
 
 var join_array=[
 {
-  "id": 1
+  "id": 1,
+  "status": null
 },
 {
-  "id": 2
+  "id": 2,
+  "status": null
 }
 ];
 

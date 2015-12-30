@@ -10034,7 +10034,7 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.Request#addRequest
+         * @name lbServices.Request#cancelConfirmMatch
          * @methodOf lbServices.Request
          *
          * @description
@@ -10065,6 +10065,45 @@ module.factory(
          * Data properties:
          *
          *  - `status` – `{string=}` - 
+         */
+        "cancelConfirmMatch": {
+          url: urlBase + "/requests/cancelConfirmMatch",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request#addRequest
+         * @methodOf lbServices.Request
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `requestId` – `{number=}` - 
          */
         "addRequest": {
           url: urlBase + "/requests/addRequest",
@@ -18348,6 +18387,84 @@ module.factory(
           method: "POST"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue#possibleRequest
+         * @methodOf lbServices.RequestQueue
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `requestQ` – `{object=}` - 
+         */
+        "possibleRequest": {
+          url: urlBase + "/RequestQueues/possibleRequest",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue#removeRequest
+         * @methodOf lbServices.RequestQueue
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `requestQ` – `{object=}` - 
+         */
+        "removeRequest": {
+          url: urlBase + "/RequestQueues/removeRequest",
+          method: "POST"
+        },
+
         // INTERNAL. Use Request.requestQueue.findById() instead.
         "::findById::request::requestQueue": {
           params: {
@@ -20312,6 +20429,45 @@ module.factory(
           method: "POST"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeat#removeMatched
+         * @methodOf lbServices.MatchedSeat
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `matchedS` – `{object=}` - 
+         */
+        "removeMatched": {
+          url: urlBase + "/MatchedSeats/removeMatched",
+          method: "POST"
+        },
+
         // INTERNAL. Use Ride.matchedSeat.findById() instead.
         "::findById::Ride::matchedSeat": {
           params: {
@@ -21221,6 +21377,123 @@ module.factory(
          */
         "createChangeStream": {
           url: urlBase + "/PendingSeats/change-stream",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeat#addPending
+         * @methodOf lbServices.PendingSeat
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `pendingS` – `{object=}` - 
+         */
+        "addPending": {
+          url: urlBase + "/PendingSeats/addPending",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeat#removePending
+         * @methodOf lbServices.PendingSeat
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `pendingS` – `{object=}` - 
+         */
+        "removePending": {
+          url: urlBase + "/PendingSeats/removePending",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeat#toMatchedSeat
+         * @methodOf lbServices.PendingSeat
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `pendingS` – `{object=}` - 
+         */
+        "toMatchedSeat": {
+          url: urlBase + "/PendingSeats/toMatchedSeat",
           method: "POST"
         },
 

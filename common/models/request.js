@@ -42,6 +42,7 @@ module.exports = function(Request) {
 										Request.push(offer, request, function(err, instance){
 											if (err) console.log(err);
 											console.log(offer);
+											// TODO: check whether request exist in MatchedSeat after 20 seconds. If not, cancel.
 										});
 									});
 								} else{
@@ -99,7 +100,7 @@ module.exports = function(Request) {
 							obj["tokens"]=array;
 
 							obj["notification"]={
-								"alert":"FUCKU",
+								"alert":"Found a match!",
 								"android":{
 									"payload":{
 										"matchicon": "FUCKUPKHIN",
@@ -147,7 +148,51 @@ module.exports = function(Request) {
 	}
 
 	Request.confirmMatch=function(idk,cb){
-		// TODO: setTimeout, check request/requestqueue exist, confirm(add join, pendingSeat to matchedSeat, delete requestqueue?)
+		// move PendingSeat record to MatchedSeat
+		var PendingSeat = app.models.PendingSeat;
+		PendingSeat.toMatchedSeat(idk, function(err, matchedS){
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				if (matchedS != null){
+					// create new join record
+					var Join = app.models.Join;
+					var joinObj = {};
+					joinObj.rideId = matchedS.rideId;
+					joinObj.requestId = matchedS.requestId;
+					joinObj.iconId = 1; // TODO
+					Join.create(joinObj, function(err, join){
+						if (err){
+							console.log(err);
+							cb(err, null);
+						} else{
+							console.log("Join created: ", join);
+							// remove RequestQueue record
+							var RequestQueue = app.models.RequestQueue;
+							RequestQueue.removeRequest(idk, function(err, requestQ){
+								if (err){
+									console.log(err);
+									cb(err, null);
+								} else{
+									if (requestQ != null){
+										console.log("Joined");
+										cb(null, "Joined");
+									} else{
+										console.log("No such requestId");
+										cb(null, "No such requestId");
+									}
+								}
+							});
+						}
+					});
+				} else{
+					console.log("No such requestId");
+					cb(null, "No such requestId");
+				}
+			}
+		});
+
 	}
 
 	Request.cancelMatch=function(idk,cb){
@@ -159,39 +204,58 @@ module.exports = function(Request) {
 				console.log(err);
 				cb(err, null);
 			} else{
-				var RequestQueue = app.models.RequestQueue;
-				// OLD: set requestqueue status to inactive
-				// OLD: RequestQueue.setInactive(idk, function(err, requestQ){
 				// remove RequestQueue record
+				var RequestQueue = app.models.RequestQueue;
 				RequestQueue.removeRequest(idk, function(err, requestQ){
 					if (err){
 						console.log(err);
 						cb(err, null);
 					} else{
 						if (requestQ != null){
-							// set request status to inactive
-							requestQ.request(function(err, request){
-								if (err){
-									console.log(err);
-									cb(err, null);
-								} else{
-									request.updateAttributes({"status": "inactive"}, function(err, req){
-										if (err){
-											console.log(err);
-											cb(err, null);
-										} else{
-											console.log("Cancelled");
-											cb(null, "Cancelled");
-										}
-									});
-								}
-							});
+							console.log("Cancelled");
+							cb(null, "Cancelled");
 						} else{
 							console.log("No such requestId");
 							cb(null, "No such requestId");
 						}
 					}
 				});
+			}
+		});
+	}
+
+	Request.cancelConfirmMatch = function(idk, cb){
+		console.log("Cancelling confirmed match...", idk);
+		// remove join record
+		var Join = app.models.Join;
+		Join.findOne({"where": {"requestId": idk.requestId}}, function(err, join){
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				if (join != null){
+					join.updateAttributes({"status": "cancelled"}, function(err, joinC){
+						if (err){
+							console.log(err);
+							cb(err, null);
+						} else{
+							// remove MatchedSeat Record
+							var MatchedSeat = app.models.MatchedSeat;
+							MatchedSeat.removeMatched(idk, function(err, matchedS){
+								if (err){
+									console.log(err);
+									cb(err, null);
+								} else{
+									console.log("Cancelled");
+									cb(null, "Cancelled");									
+								}
+							});
+						}
+					});
+				} else{
+					console.log("No such requestId");
+					cb(null, "No such requestId");
+				}
 			}
 		});
 	}
@@ -209,6 +273,15 @@ module.exports = function(Request) {
 		'cancelMatch',
 		{
 			http: {path: '/cancelMatch', verb: 'post'},
+			accepts: {arg: 'ride', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}
+		}
+	);
+
+	Request.remoteMethod(
+		'cancelConfirmMatch',
+		{
+			http: {path: '/cancelConfirmMatch', verb: 'post'},
 			accepts: {arg: 'ride', type: 'object', http:{source:'body'}},
 			returns: {arg: 'status', type: 'string'}
 		}

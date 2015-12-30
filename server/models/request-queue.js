@@ -38,29 +38,6 @@ module.exports = function(RequestQueue) {
 		});
 	}
 
-	// OLD: may not be needed anymore
-	RequestQueue.setInactive = function(data, cb){
-		RequestQueue.findOne({"where": {"requestId": data.requestId}}, function(err, requestQ){
-			if (err){
-				console.log(err);
-				cb(err, null);
-			} else{
-				if (requestQ != null){
-					requestQ.updateAttributes({"status": "inactive"}, function(err, reqQ){
-						if (err){
-							console.log(err);
-							cb(err, null);
-						} else{
-							cb(null, requestQ);
-						}
-					});
-				} else{
-					cb(null, requestQ);
-				}
-			}
-		});
-	}
-
 	RequestQueue.removeRequest = function(data, cb){
 		RequestQueue.findOne({"where": {"requestId": data.requestId}}, function(err, requestQ){
 			if (err){
@@ -68,12 +45,27 @@ module.exports = function(RequestQueue) {
 				cb(err, null);
 			} else{
 				if (requestQ != null){
-					requestQ.destroy(function(err, reqQ){
+					requestQ.destroy(function(err){
 						if (err){
 							console.log(err);
 							cb(err, null);
 						} else{
-							cb(null, requestQ);
+							// set request status to inactive
+							requestQ.request(function(err, request){
+								if (err){
+									console.log(err);
+									cb(err, null);
+								} else{
+									request.updateAttributes({"status": "inactive"}, function(err, req){
+										if (err){
+											console.log(err);
+											cb(err, null);
+										} else{
+											cb(null, requestQ);
+										}
+									});
+								}
+							});
 						}
 					});
 				} else{
@@ -85,13 +77,6 @@ module.exports = function(RequestQueue) {
 
 	RequestQueue.remoteMethod('possibleRequest', {
 		http: {path: '/possibleRequest', verb: 'post'},
-		accepts: {arg: 'data', type: 'object', http: {source:'body'}},
-		returns: {arg: 'requestQ', type: 'object'}
-	});
-
-	// OLD: may not be needed anymore
-	RequestQueue.remoteMethod('setInactive', {
-		http: {path: '/setInactive', verb: 'post'},
 		accepts: {arg: 'data', type: 'object', http: {source:'body'}},
 		returns: {arg: 'requestQ', type: 'object'}
 	});

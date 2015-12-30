@@ -97,6 +97,37 @@ module.exports = function(PendingSeat) {
 	}
 
 	PendingSeat.toMatchedSeat = function(data, cb){
+		PendingSeat.findOne({"where": {"requestId": data.requestId}}, function(err, pendingS){
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				if (pendingS != null){
+					pendingS.destroy(function(err){
+						if (err){
+							console.log(err);
+							cb(err, null);
+						} else{
+							var MatchedSeat = app.models.MatchedSeat;
+							var matchedSObj = {};
+							matchedSObj.requestId = pendingS.requestId;
+							matchedSObj.rideId = pendingS.rideId;
+							MatchedSeat.create(matchedSObj, function(err, matchedS){
+								if (err){
+									console.log(err);
+									cb(err, null);
+								} else{
+									console.log("Moved PendingSeat to MatchedSeat ", matchedS);
+									cb(null, matchedS);
+								}
+							});
+						}
+					});
+				} else{
+					cb(null, matchedS);
+				}
+			}
+		});
 
 	}
 

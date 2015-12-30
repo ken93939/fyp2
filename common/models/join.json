@@ -5,7 +5,12 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "status": {
+      "type": "string",
+      "default": "inProgress"
+    }
+  },
   "validations": [],
   "relations": {
     "requests": {
