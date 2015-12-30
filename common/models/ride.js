@@ -48,6 +48,8 @@ module.exports = function(Ride) {
 										console.log(err);
 										cb(err, null);
 									} else{
+										// TODO: push to first k possible matched passengers 
+										// For now: only one push
 										var RequestQueue = app.models.RequestQueue;
 										RequestQueue.possibleRequest(idk, function(err, requestQ){
 											if (requestQ != null){

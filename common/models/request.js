@@ -212,24 +212,47 @@ module.exports = function(Request) {
 														if (requestQ != null){
 															console.log("Joined");
 															cb(null, "Joined");
-															// TODO: check if OfferQueue record is full after 20+5 seconds. If so, remove Offer.
+															// TODO: do nothing
+															// For now: push offer to another possible matched passenger if not full
+															var OfferQueue = app.models.OfferQueue;
+															OfferQueue.findOne({"where": {"rideId": join.rideId, "is_full": false}}, function(err, offerQ){	
+																if (offerQ != null){
+																	RequestQueue.possibleRequest(offerQ, function(err, reqQ){
+																		if (err) console.log(err);
+																		if (reqQ != null){
+																			reqQ.request(function(err, req){
+																				if (err) console.log(err);
+																				offerQ.ride(function(err, rid){
+																					if (err) console.log(err);
+																					Request.push(rid, req, function(err, instance){
+																						if (err) console.log(err);
+																						console.log(rid);
+																					});
+																				});
+																			});
+																		}
+																	});
+																}
+															});
+															// check if OfferQueue record is full after 20+5 seconds. If so, remove Offer.
 															setTimeout(function(){
-																var OfferQueue = app.models.OfferQueue;
 																OfferQueue.findOne({"where": {"rideId": join.rideId, "is_full": true}}, function(err, offerQ){
 																	if (err) console.log(err);
 																	if (offerQ != null){
-																		offerQ.ride(function(err, ride){
-																			if (err) console.log(err);
-																			if (ride != null){
-																				ride.updateAttributes({"status": "inactive"}, function(err, rid){
-																					if (err) console.log(err);
-																					offerQ.destroy(function(err){
+																		if (offerQ.is_full){
+																			offerQ.ride(function(err, ride){
+																				if (err) console.log(err);
+																				if (ride != null){
+																					ride.updateAttributes({"status": "inactive"}, function(err, rid){
 																						if (err) console.log(err);
-																						console.log("Removed from OfferQueue: ", offerQ);
+																						offerQ.destroy(function(err){
+																							if (err) console.log(err);
+																							console.log("Removed from OfferQueue: ", offerQ);
+																						});
 																					});
-																				});
-																			}
-																		});
+																				}
+																			});
+																		}
 																	}
 																});
 															}, (20+5)*1000);
@@ -276,6 +299,29 @@ module.exports = function(Request) {
 						if (requestQ != null){
 							console.log("Cancelled");
 							cb(null, "Cancelled");
+							// push offer to another possible matched passenger
+							if (pendingS != null){
+								var OfferQueue = app.models.OfferQueue;
+								OfferQueue.findOne({"where": {"rideId": pendingS.rideId}}, function(err, offQ){
+									if (err) console.log(err);
+									if (offQ != null){
+										RequestQueue.possibleRequest(offQ, function(err, reqQ){
+											if (reqQ != null){
+												reqQ.request(function(err, req){
+													if (err) console.log(err);
+													offQ.ride(function(err, rid){
+														if (err) console.log(err);
+														Request.push(rid, req, function(err, instance){
+															if (err) console.log(err);
+															console.log(rid);
+														});
+													});
+												});
+											}
+										});
+									}
+								});
+							}
 						} else{
 							console.log("No such requestId");
 							cb(null, "No such requestId");
@@ -309,7 +355,31 @@ module.exports = function(Request) {
 									cb(err, null);
 								} else{
 									console.log("Cancelled");
-									cb(null, "Cancelled");									
+									cb(null, "Cancelled");
+									// push offer to another possible matched passenger
+									if (matchedS != null){
+										var OfferQueue = app.models.OfferQueue;
+										OfferQueue.findOne({"where": {"rideId": matchedS.rideId}}, function(err, offQ){
+											if (err) console.log(err);
+											if (offQ != null){
+												var RequestQueue = app.models.RequestQueue;
+												RequestQueue.possibleRequest(offQ, function(err, reqQ){
+													if (reqQ != null){
+														reqQ.request(function(err, req){
+															if (err) console.log(err);
+															offQ.ride(function(err, rid){
+																if (err) console.log(err);
+																Request.push(rid, req, function(err, instance){
+																	if (err) console.log(err);
+																	console.log(rid);
+																});
+															});
+														});
+													}
+												});
+											}
+										});
+									}
 								}
 							});
 						}
