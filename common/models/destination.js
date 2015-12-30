@@ -6,6 +6,7 @@ module.exports = function(Destination) {
 
 	Destination.getDestination = function(oriDesName, cb){
 		if (oriDesName == "Hang Hau" || oriDesName == "Choi Hung"){
+			console.log(oriDesName);
 			cb(null, oriDesName);
 		} else{
 			var OfferQueue = app.models.OfferQueue;

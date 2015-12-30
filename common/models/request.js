@@ -20,7 +20,7 @@ module.exports = function(Request) {
 			Destination.getDestination(idk.destination_name, function(err, newDesName){
 				if (err) console.log(err);
 				idk.destination_name = newDesName;
-				
+
 				if(idk.destination_name=="Hang Hau"){
 					idk["pickup_name"]="North Gate";
 				}
@@ -189,28 +189,37 @@ module.exports = function(Request) {
 								var joinObj = {};
 								joinObj.rideId = matchedS.rideId;
 								joinObj.requestId = matchedS.requestId;
-								joinObj.iconId = 1; // TODO
-								Join.create(joinObj, function(err, join){
+								var Icon = app.models.Icon;
+								Icon.find({}, function(err, icon){
 									if (err){
 										console.log(err);
 										cb(err, null);
 									} else{
-										console.log("Join created: ", join);
-										// remove RequestQueue record
-										RequestQueue.removeRequest(idk, function(err, requestQ){
+										console.log(icon[joinObj.rideId % icon.length]);
+										joinObj.iconId = icon[joinObj.rideId % icon.length].id;
+										Join.create(joinObj, function(err, join){
 											if (err){
 												console.log(err);
 												cb(err, null);
 											} else{
-												if (requestQ != null){
-													console.log("Joined");
-													cb(null, "Joined");
-													// TODO: check if OfferQueue record is full after 20+5 seconds. If so, remove Offer.
+												console.log("Join created: ", join);
+												// remove RequestQueue record
+												RequestQueue.removeRequest(idk, function(err, requestQ){
+													if (err){
+														console.log(err);
+														cb(err, null);
+													} else{
+														if (requestQ != null){
+															console.log("Joined");
+															cb(null, "Joined");
+															// TODO: check if OfferQueue record is full after 20+5 seconds. If so, remove Offer.
 
-												} else{
-													console.log("No such requestId");
-													cb(null, "No such requestId");
-												}
+														} else{
+															console.log("No such requestId");
+															cb(null, "No such requestId");
+														}
+													}
+												});
 											}
 										});
 									}
