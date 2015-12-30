@@ -15,26 +15,41 @@ module.exports = function(PendingSeat) {
 						console.log(err);
 						cb(err, null);
 					} else{
-						var OfferQueue = app.models.OfferQueue;
-						OfferQueue.findOne({"where": {"rideId": pendingS.rideId}}, function(err, offerQ){
+						var RequestQueue = app.models.RequestQueue;
+						RequestQueue.findOne({"where": {"requestId": pendingS.requestId}}, function(err, requestQ){
 							if (err){
 								console.log(err);
 								cb(err, null);
 							} else{
-								console.log(pendingS.rideId+": {occupied_seat_num: "+occupied_seat_num+", offerQ.seat_number: "+offerQ.seat_number+"}");
-								if (occupied_seat_num >= offerQ.seat_number){
-									offerQ.updateAttributes({"is_full": true}, function(err, offer){
-										if (err){
-											console.log(err);
-											cb(err, null);
-										} else{
-											console.log("Full now!");
-											cb(null, pendingS);
-										}
-									});
-								} else{
-									cb(null, pendingS);
-								}
+								requestQ.updateAttributes({"status": "pending"}, function(err, reqQ){
+									if (err){
+										console.log(err);
+										cb(err, null);
+									} else{
+										var OfferQueue = app.models.OfferQueue;
+										OfferQueue.findOne({"where": {"rideId": pendingS.rideId}}, function(err, offerQ){
+											if (err){
+												console.log(err);
+												cb(err, null);
+											} else{
+												console.log(pendingS.rideId+": {occupied_seat_num: "+occupied_seat_num+", offerQ.seat_number: "+offerQ.seat_number+"}");
+												if (occupied_seat_num >= offerQ.seat_number){
+													offerQ.updateAttributes({"is_full": true}, function(err, offer){
+														if (err){
+															console.log(err);
+															cb(err, null);
+														} else{
+															console.log("Full now!");
+															cb(null, pendingS);
+														}
+													});
+												} else{
+													cb(null, pendingS);
+												}
+											}
+										});
+									}
+								});
 							}
 						});
 					}

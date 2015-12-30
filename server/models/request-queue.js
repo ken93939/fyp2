@@ -5,9 +5,11 @@ var loopback = require('loopback');
 module.exports = function(RequestQueue) {
 
 	RequestQueue.possibleRequest = function(offerQ, cb){
+		// TODO: include !pending status in filter
 		var requestQFilter = {
 			"where": {
 				"destination_name": offerQ.destination_name,
+				"status": "active"
 			}, 
 			"order": "time ASC"
 		};
