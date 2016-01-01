@@ -16,10 +16,13 @@ module.exports = function(Request) {
 			idk["memberId"]=currentUser.id;
 			idk["time"]=new Date();
 
+			var returnObj = {};
+
 			var Destination = app.models.Destination;
 			Destination.getDestination(idk.destination_name, function(err, newDesName){
 				if (err) console.log(err);
 				idk.destination_name = newDesName;
+				returnObj.newDesName = newDesName;
 
 				if(idk.destination_name=="Hang Hau"){
 					idk["pickup_name"]="North Gate";
@@ -34,6 +37,7 @@ module.exports = function(Request) {
 					// Algorithm 
 					var RequestQueue = app.models.RequestQueue;
 					idk.requestId = request.id;
+					returnObj.requestId = request.id;
 					RequestQueue.create(idk, function(err, requestQ){
 						if (err) console.log(err);
 						var OfferQueue = app.models.OfferQueue;
@@ -75,7 +79,7 @@ module.exports = function(Request) {
 							}
 						});
 					});
-					cb(null, request.id);
+					cb(null, returnObj);
 				});
 			});
 		}
@@ -424,7 +428,7 @@ module.exports = function(Request) {
 		{
 			http: {path: '/addRequest', verb: 'post'},
 			accepts: {arg: 'ride', type: 'object', http:{source:'body'}},
-			returns: {arg: 'requestId', type: 'number'}
+			returns: {arg: 'req', type: 'obj'}
 		}
 	);
 
