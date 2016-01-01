@@ -36,7 +36,7 @@ module.exports = function(Member) {
 									else if(vehIns==null){
 										counter++;
 										if(counter==array.length){
-											Member.register(idk,cb);
+											Member.register(idk);
 											cb(null,"success");
 										}
 									}
