@@ -36,12 +36,14 @@ module.exports = function(Member) {
 									else if(vehIns==null){
 										counter++;
 										if(counter==array.length){
-											//TODO:call register
+											Member.register(idk,cb);
 											cb(null,"success");
 										}
 									}
 									else{
-										cb(null,"fail");
+										if(counter==array.length){
+											cb(null,"fail");
+										}
 									}
 								});
 							});
