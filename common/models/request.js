@@ -127,7 +127,6 @@ module.exports = function(Request) {
 								"alert":"Found a match!",
 								"android":{
 									"payload":{
-										"matchicon": "FUCKUPKHIN",
 										"ridetime": ride.time,
 										"destination": ride.destination_name,
 										"license_number": vehicleIns.license_number	//debt solved?,
@@ -194,76 +193,60 @@ module.exports = function(Request) {
 								joinObj.rideId = matchedS.rideId;
 								joinObj.requestId = matchedS.requestId;
 								var Icon = app.models.Icon;
-								Icon.find({}, function(err, icon){
+								Icon.count({}, function(err, iconCount){
 									if (err){
 										console.log(err);
 										cb(err, null);
 									} else{
-										console.log(icon[joinObj.rideId % icon.length]);
-										joinObj.iconId = icon[joinObj.rideId % icon.length].id;
-										Join.create(joinObj, function(err, join){
+										Icon.find({"limit": 1, "skip": joinObj.rideId % iconCount}, function(err, icon){
 											if (err){
 												console.log(err);
 												cb(err, null);
 											} else{
-												console.log("Join created: ", join);
-												// remove RequestQueue record
-												RequestQueue.removeRequest(idk, function(err, requestQ){
+												console.log(icon[0]);
+												joinObj.iconId = icon[0].id;
+												Join.addJoin(joinObj, function(err, join){
 													if (err){
 														console.log(err);
 														cb(err, null);
 													} else{
-														if (requestQ != null){
-															console.log("Joined");
-															cb(null, "Joined");
-															// TODO: do nothing
-															// For now: push offer to another possible matched passenger if not full
-															var OfferQueue = app.models.OfferQueue;
-															OfferQueue.findOne({"where": {"rideId": join.rideId, "is_full": false}}, function(err, offerQ){	
-																if (offerQ != null){
-																	RequestQueue.possibleRequest(offerQ, function(err, reqQ){
-																		if (err) console.log(err);
-																		if (reqQ != null){
-																			reqQ.request(function(err, req){
+														// remove RequestQueue record
+														RequestQueue.removeRequest(idk, function(err, requestQ){
+															if (err){
+																console.log(err);
+																cb(err, null);
+															} else{
+																if (requestQ != null){
+																	console.log("Joined");
+																	cb(null, icon[0].match_icon);
+																	// TODO: do nothing
+																	// For now: push offer to another possible matched passenger if not full
+																	var OfferQueue = app.models.OfferQueue;
+																	OfferQueue.findOne({"where": {"rideId": join.rideId, "is_full": false}}, function(err, offerQ){	
+																		if (offerQ != null){
+																			RequestQueue.possibleRequest(offerQ, function(err, reqQ){
 																				if (err) console.log(err);
-																				offerQ.ride(function(err, rid){
-																					if (err) console.log(err);
-																					Request.push(rid, req, function(err, instance){
+																				if (reqQ != null){
+																					reqQ.request(function(err, req){
 																						if (err) console.log(err);
-																						console.log(rid);
-																					});
-																				});
-																			});
-																		}
-																	});
-																}
-															});
-															// check if OfferQueue record is full after 20+5 seconds. If so, remove Offer.
-															setTimeout(function(){
-																OfferQueue.findOne({"where": {"rideId": join.rideId, "is_full": true}}, function(err, offerQ){
-																	if (err) console.log(err);
-																	if (offerQ != null){
-																		if (offerQ.is_full){
-																			offerQ.ride(function(err, ride){
-																				if (err) console.log(err);
-																				if (ride != null){
-																					ride.updateAttributes({"status": "inactive"}, function(err, rid){
-																						if (err) console.log(err);
-																						offerQ.destroy(function(err){
+																						offerQ.ride(function(err, rid){
 																							if (err) console.log(err);
-																							console.log("Removed from OfferQueue: ", offerQ);
+																							Request.push(rid, req, function(err, instance){
+																								if (err) console.log(err);
+																								console.log(rid);
+																							});
 																						});
 																					});
 																				}
 																			});
 																		}
-																	}
-																});
-															}, (20+5)*1000);
-														} else{
-															console.log("No such requestId");
-															cb(null, "No such requestId");
-														}
+																	});
+																} else{
+																	console.log("No such requestId");
+																	cb(null, null);
+																}
+															}
+														});
 													}
 												});
 											}
@@ -272,13 +255,13 @@ module.exports = function(Request) {
 								});
 							} else{
 								console.log("No such requestId");
-								cb(null, "No such requestId");
+								cb(null, null);
 							}
 						}
 					});
 				} else{
 					console.log("No such requestId");
-					cb(null, "No such requestId");
+					cb(null, null);
 				}
 			}
 		})
@@ -396,12 +379,47 @@ module.exports = function(Request) {
 		});
 	}
 
+	Request.checkAutoCancel = function(data, cb){
+		// check if OfferQueue record is full after 20+5 seconds. If so, remove Offer.
+		setTimeout(function(){
+			var PendingSeat = app.models.PendingSeat;
+			PendingSeat.find({"requestId": data.requestId}, function(err, pendingS){
+				if (err) console.log(err);
+				if (pendingS != null){
+					pendingS.ride(function(err, rid){
+						if (err) console.log(err);
+						OfferQueue.findOne({"where": {"rideId": rid.id, "is_full": true}}, function(err, offerQ){
+							if (err) console.log(err);
+							if (offerQ != null){
+								if (offerQ.is_full){
+									offerQ.ride(function(err, ride){
+										if (err) console.log(err);
+										if (ride != null){
+											ride.updateAttributes({"status": "inactive"}, function(err, rid){
+												if (err) console.log(err);
+												offerQ.destroy(function(err){
+													if (err) console.log(err);
+													console.log("Removed from OfferQueue: ", offerQ);
+												});
+											});
+										}
+									});
+								}
+							}
+						});
+					});
+				}
+			});
+		}, (5+5)*1000);
+		cb(null, "working");
+	}
+
 	Request.remoteMethod(
 		'confirmMatch',
 		{
 			http: {path: '/confirmMatch', verb: 'post'},
 			accepts: {arg: 'ride', type: 'object', http:{source:'body'}},
-			returns: {arg: 'status', type: 'string'}
+			returns: {arg: 'matchicon', type: 'number'}
 		}
 	);
 
@@ -438,6 +456,15 @@ module.exports = function(Request) {
 			http: {path: '/push', verb: 'post'},
 			accepts: {arg: 'idk', type: 'object', http:{source:'body'}},
 			accepts:{arg: 'request', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}
+		}
+	);
+
+	Request.remoteMethod(
+		'checkAutoCancel',
+		{
+			http: {path: '/checkAutoCancel', verb: 'get'},
+			accepts: {arg: 'data', type: 'object', http:{source:'body'}},
 			returns: {arg: 'status', type: 'string'}
 		}
 	);

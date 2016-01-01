@@ -22,7 +22,7 @@
       "model": "Member",
       "foreignKey": "memberId"
     },
-    "joins": {
+    "join": {
       "type": "hasOne",
       "model": "Join",
       "foreignKey": "requestId"

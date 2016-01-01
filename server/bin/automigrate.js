@@ -42,6 +42,32 @@ var member_array=[
   "email": "sam@sam.com",
   "deviceToken": "fuckyeah",
   "emailVerified": 1
+},
+{
+  "first_name": "9",
+  "last_name": "g",
+  "phone_number": 999123,
+  "gender": "male",
+  "gender_preference": "yes",
+  "authorized": "yes",
+  "isDriver": "yes",
+  "password": "123456",
+  "email": "9g@9g.com",
+  "deviceToken": "fuckyeah",
+  "emailVerified": 1
+},
+{
+  "first_name": "d",
+  "last_name": "d",
+  "phone_number": 999123,
+  "gender": "male",
+  "gender_preference": "yes",
+  "authorized": "yes",
+  "isDriver": "yes",
+  "password": "123456",
+  "email": "dd@dd.com",
+  "deviceToken": "fuckyeah",
+  "emailVerified": 1
 }
 ];
 
@@ -126,6 +152,12 @@ var icon_array=[
 },
 {
   "match_icon": 2
+},
+{
+  "match_icon": 3
+},
+{
+  "match_icon": 4
 }
 ]
 

@@ -14,8 +14,8 @@ module.exports = function(Ride) {
 			var currentUser = ctx && ctx.get('currentUser');
 			// console.log('currentUser.username: ', currentUser);
 
-			var d=new Date();
-			idk["time"]=new Date(d.getTime()+idk.beforeArrive*60000);
+			// var d=new Date();
+			// idk["time"]=new Date(d.getTime()+idk.beforeArrive*60000);
 
 			idk["memberId"]=currentUser.id;
 			if(idk.destination_name=="Hang Hau"){

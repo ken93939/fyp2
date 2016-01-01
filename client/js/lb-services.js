@@ -8206,27 +8206,27 @@ module.factory(
           method: "GET"
         },
 
-        // INTERNAL. Use Join.requests() instead.
-        "prototype$__get__requests": {
-          url: urlBase + "/Joins/:id/requests",
+        // INTERNAL. Use Join.request() instead.
+        "prototype$__get__request": {
+          url: urlBase + "/Joins/:id/request",
           method: "GET"
         },
 
-        // INTERNAL. Use Join.requests.create() instead.
-        "prototype$__create__requests": {
-          url: urlBase + "/Joins/:id/requests",
+        // INTERNAL. Use Join.request.create() instead.
+        "prototype$__create__request": {
+          url: urlBase + "/Joins/:id/request",
           method: "POST"
         },
 
-        // INTERNAL. Use Join.requests.update() instead.
-        "prototype$__update__requests": {
-          url: urlBase + "/Joins/:id/requests",
+        // INTERNAL. Use Join.request.update() instead.
+        "prototype$__update__request": {
+          url: urlBase + "/Joins/:id/request",
           method: "PUT"
         },
 
-        // INTERNAL. Use Join.requests.destroy() instead.
-        "prototype$__destroy__requests": {
-          url: urlBase + "/Joins/:id/requests",
+        // INTERNAL. Use Join.request.destroy() instead.
+        "prototype$__destroy__request": {
+          url: urlBase + "/Joins/:id/request",
           method: "DELETE"
         },
 
@@ -8658,6 +8658,45 @@ module.factory(
           method: "POST"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Join#addJoin
+         * @methodOf lbServices.Join
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `join` – `{object=}` - 
+         */
+        "addJoin": {
+          url: urlBase + "/Joins/addJoin",
+          method: "POST"
+        },
+
         // INTERNAL. Use Ride.joins.findById() instead.
         "::findById::Ride::joins": {
           params: {
@@ -8717,34 +8756,34 @@ module.factory(
           method: "GET"
         },
 
-        // INTERNAL. Use Request.joins() instead.
-        "::get::request::joins": {
-          url: urlBase + "/requests/:id/joins",
+        // INTERNAL. Use Request.join() instead.
+        "::get::request::join": {
+          url: urlBase + "/requests/:id/join",
           method: "GET"
         },
 
-        // INTERNAL. Use Request.joins.create() instead.
-        "::create::request::joins": {
-          url: urlBase + "/requests/:id/joins",
+        // INTERNAL. Use Request.join.create() instead.
+        "::create::request::join": {
+          url: urlBase + "/requests/:id/join",
           method: "POST"
         },
 
-        // INTERNAL. Use Request.joins.createMany() instead.
-        "::createMany::request::joins": {
+        // INTERNAL. Use Request.join.createMany() instead.
+        "::createMany::request::join": {
           isArray: true,
-          url: urlBase + "/requests/:id/joins",
+          url: urlBase + "/requests/:id/join",
           method: "POST"
         },
 
-        // INTERNAL. Use Request.joins.update() instead.
-        "::update::request::joins": {
-          url: urlBase + "/requests/:id/joins",
+        // INTERNAL. Use Request.join.update() instead.
+        "::update::request::join": {
+          url: urlBase + "/requests/:id/join",
           method: "PUT"
         },
 
-        // INTERNAL. Use Request.joins.destroy() instead.
-        "::destroy::request::joins": {
-          url: urlBase + "/requests/:id/joins",
+        // INTERNAL. Use Request.join.destroy() instead.
+        "::destroy::request::join": {
+          url: urlBase + "/requests/:id/join",
           method: "DELETE"
         },
 
@@ -8866,34 +8905,34 @@ module.factory(
           method: "GET"
         },
 
-        // INTERNAL. Use RequestQueue.joins() instead.
-        "::get::RequestQueue::joins": {
-          url: urlBase + "/RequestQueues/:id/joins",
+        // INTERNAL. Use RequestQueue.join() instead.
+        "::get::RequestQueue::join": {
+          url: urlBase + "/RequestQueues/:id/join",
           method: "GET"
         },
 
-        // INTERNAL. Use RequestQueue.joins.create() instead.
-        "::create::RequestQueue::joins": {
-          url: urlBase + "/RequestQueues/:id/joins",
+        // INTERNAL. Use RequestQueue.join.create() instead.
+        "::create::RequestQueue::join": {
+          url: urlBase + "/RequestQueues/:id/join",
           method: "POST"
         },
 
-        // INTERNAL. Use RequestQueue.joins.createMany() instead.
-        "::createMany::RequestQueue::joins": {
+        // INTERNAL. Use RequestQueue.join.createMany() instead.
+        "::createMany::RequestQueue::join": {
           isArray: true,
-          url: urlBase + "/RequestQueues/:id/joins",
+          url: urlBase + "/RequestQueues/:id/join",
           method: "POST"
         },
 
-        // INTERNAL. Use RequestQueue.joins.update() instead.
-        "::update::RequestQueue::joins": {
-          url: urlBase + "/RequestQueues/:id/joins",
+        // INTERNAL. Use RequestQueue.join.update() instead.
+        "::update::RequestQueue::join": {
+          url: urlBase + "/RequestQueues/:id/join",
           method: "PUT"
         },
 
-        // INTERNAL. Use RequestQueue.joins.destroy() instead.
-        "::destroy::RequestQueue::joins": {
-          url: urlBase + "/RequestQueues/:id/joins",
+        // INTERNAL. Use RequestQueue.join.destroy() instead.
+        "::destroy::RequestQueue::join": {
+          url: urlBase + "/RequestQueues/:id/join",
           method: "DELETE"
         },
       }
@@ -9076,27 +9115,27 @@ module.factory(
         };
     /**
      * @ngdoc object
-     * @name lbServices.Join.requests
-     * @header lbServices.Join.requests
+     * @name lbServices.Join.request
+     * @header lbServices.Join.request
      * @object
      * @description
      *
-     * The object `Join.requests` groups methods
+     * The object `Join.request` groups methods
      * manipulating `Request` instances related to `Join`.
      *
-     * Call {@link lbServices.Join#requests Join.requests()}
+     * Call {@link lbServices.Join#request Join.request()}
      * to query all related instances.
      */
 
 
         /**
          * @ngdoc method
-         * @name lbServices.Join#requests
+         * @name lbServices.Join#request
          * @methodOf lbServices.Join
          *
          * @description
          *
-         * Fetches hasOne relation requests.
+         * Fetches hasOne relation request.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -9119,20 +9158,20 @@ module.factory(
          * This usually means the response is a `Request` object.)
          * </em>
          */
-        R.requests = function() {
+        R.request = function() {
           var TargetResource = $injector.get("Request");
-          var action = TargetResource["::get::Join::requests"];
+          var action = TargetResource["::get::Join::request"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.Join.requests#create
-         * @methodOf lbServices.Join.requests
+         * @name lbServices.Join.request#create
+         * @methodOf lbServices.Join.request
          *
          * @description
          *
-         * Creates a new instance in requests of this model.
+         * Creates a new instance in request of this model.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -9157,20 +9196,20 @@ module.factory(
          * This usually means the response is a `Request` object.)
          * </em>
          */
-        R.requests.create = function() {
+        R.request.create = function() {
           var TargetResource = $injector.get("Request");
-          var action = TargetResource["::create::Join::requests"];
+          var action = TargetResource["::create::Join::request"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.Join.requests#createMany
-         * @methodOf lbServices.Join.requests
+         * @name lbServices.Join.request#createMany
+         * @methodOf lbServices.Join.request
          *
          * @description
          *
-         * Creates a new instance in requests of this model.
+         * Creates a new instance in request of this model.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -9195,20 +9234,20 @@ module.factory(
          * This usually means the response is a `Request` object.)
          * </em>
          */
-        R.requests.createMany = function() {
+        R.request.createMany = function() {
           var TargetResource = $injector.get("Request");
-          var action = TargetResource["::createMany::Join::requests"];
+          var action = TargetResource["::createMany::Join::request"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.Join.requests#destroy
-         * @methodOf lbServices.Join.requests
+         * @name lbServices.Join.request#destroy
+         * @methodOf lbServices.Join.request
          *
          * @description
          *
-         * Deletes requests of this model.
+         * Deletes request of this model.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -9226,20 +9265,20 @@ module.factory(
          *
          * This method returns no data.
          */
-        R.requests.destroy = function() {
+        R.request.destroy = function() {
           var TargetResource = $injector.get("Request");
-          var action = TargetResource["::destroy::Join::requests"];
+          var action = TargetResource["::destroy::Join::request"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.Join.requests#update
-         * @methodOf lbServices.Join.requests
+         * @name lbServices.Join.request#update
+         * @methodOf lbServices.Join.request
          *
          * @description
          *
-         * Update requests of this model.
+         * Update request of this model.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -9264,9 +9303,9 @@ module.factory(
          * This usually means the response is a `Request` object.)
          * </em>
          */
-        R.requests.update = function() {
+        R.request.update = function() {
           var TargetResource = $injector.get("Request");
-          var action = TargetResource["::update::Join::requests"];
+          var action = TargetResource["::update::Join::request"];
           return action.apply(R, arguments);
         };
 
@@ -9340,27 +9379,27 @@ module.factory(
           method: "GET"
         },
 
-        // INTERNAL. Use Request.joins() instead.
-        "prototype$__get__joins": {
-          url: urlBase + "/requests/:id/joins",
+        // INTERNAL. Use Request.join() instead.
+        "prototype$__get__join": {
+          url: urlBase + "/requests/:id/join",
           method: "GET"
         },
 
-        // INTERNAL. Use Request.joins.create() instead.
-        "prototype$__create__joins": {
-          url: urlBase + "/requests/:id/joins",
+        // INTERNAL. Use Request.join.create() instead.
+        "prototype$__create__join": {
+          url: urlBase + "/requests/:id/join",
           method: "POST"
         },
 
-        // INTERNAL. Use Request.joins.update() instead.
-        "prototype$__update__joins": {
-          url: urlBase + "/requests/:id/joins",
+        // INTERNAL. Use Request.join.update() instead.
+        "prototype$__update__join": {
+          url: urlBase + "/requests/:id/join",
           method: "PUT"
         },
 
-        // INTERNAL. Use Request.joins.destroy() instead.
-        "prototype$__destroy__joins": {
-          url: urlBase + "/requests/:id/joins",
+        // INTERNAL. Use Request.join.destroy() instead.
+        "prototype$__destroy__join": {
+          url: urlBase + "/requests/:id/join",
           method: "DELETE"
         },
 
@@ -9986,7 +10025,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `status` – `{string=}` - 
+         *  - `matchicon` – `{number=}` - 
          */
         "confirmMatch": {
           url: urlBase + "/requests/confirmMatch",
@@ -10149,6 +10188,40 @@ module.factory(
           method: "POST"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Request#checkAutoCancel
+         * @methodOf lbServices.Request
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `data` – `{object=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `status` – `{string=}` - 
+         */
+        "checkAutoCancel": {
+          url: urlBase + "/requests/checkAutoCancel",
+          method: "GET"
+        },
+
         // INTERNAL. Use Member.requests.findById() instead.
         "::findById::Member::requests": {
           params: {
@@ -10208,34 +10281,34 @@ module.factory(
           method: "GET"
         },
 
-        // INTERNAL. Use Join.requests() instead.
-        "::get::Join::requests": {
-          url: urlBase + "/Joins/:id/requests",
+        // INTERNAL. Use Join.request() instead.
+        "::get::Join::request": {
+          url: urlBase + "/Joins/:id/request",
           method: "GET"
         },
 
-        // INTERNAL. Use Join.requests.create() instead.
-        "::create::Join::requests": {
-          url: urlBase + "/Joins/:id/requests",
+        // INTERNAL. Use Join.request.create() instead.
+        "::create::Join::request": {
+          url: urlBase + "/Joins/:id/request",
           method: "POST"
         },
 
-        // INTERNAL. Use Join.requests.createMany() instead.
-        "::createMany::Join::requests": {
+        // INTERNAL. Use Join.request.createMany() instead.
+        "::createMany::Join::request": {
           isArray: true,
-          url: urlBase + "/Joins/:id/requests",
+          url: urlBase + "/Joins/:id/request",
           method: "POST"
         },
 
-        // INTERNAL. Use Join.requests.update() instead.
-        "::update::Join::requests": {
-          url: urlBase + "/Joins/:id/requests",
+        // INTERNAL. Use Join.request.update() instead.
+        "::update::Join::request": {
+          url: urlBase + "/Joins/:id/request",
           method: "PUT"
         },
 
-        // INTERNAL. Use Join.requests.destroy() instead.
-        "::destroy::Join::requests": {
-          url: urlBase + "/Joins/:id/requests",
+        // INTERNAL. Use Join.request.destroy() instead.
+        "::destroy::Join::request": {
+          url: urlBase + "/Joins/:id/request",
           method: "DELETE"
         },
 
@@ -10554,27 +10627,27 @@ module.factory(
         };
     /**
      * @ngdoc object
-     * @name lbServices.Request.joins
-     * @header lbServices.Request.joins
+     * @name lbServices.Request.join
+     * @header lbServices.Request.join
      * @object
      * @description
      *
-     * The object `Request.joins` groups methods
+     * The object `Request.join` groups methods
      * manipulating `Join` instances related to `Request`.
      *
-     * Call {@link lbServices.Request#joins Request.joins()}
+     * Call {@link lbServices.Request#join Request.join()}
      * to query all related instances.
      */
 
 
         /**
          * @ngdoc method
-         * @name lbServices.Request#joins
+         * @name lbServices.Request#join
          * @methodOf lbServices.Request
          *
          * @description
          *
-         * Fetches hasOne relation joins.
+         * Fetches hasOne relation join.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -10597,20 +10670,20 @@ module.factory(
          * This usually means the response is a `Join` object.)
          * </em>
          */
-        R.joins = function() {
+        R.join = function() {
           var TargetResource = $injector.get("Join");
-          var action = TargetResource["::get::request::joins"];
+          var action = TargetResource["::get::request::join"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.Request.joins#create
-         * @methodOf lbServices.Request.joins
+         * @name lbServices.Request.join#create
+         * @methodOf lbServices.Request.join
          *
          * @description
          *
-         * Creates a new instance in joins of this model.
+         * Creates a new instance in join of this model.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -10635,20 +10708,20 @@ module.factory(
          * This usually means the response is a `Join` object.)
          * </em>
          */
-        R.joins.create = function() {
+        R.join.create = function() {
           var TargetResource = $injector.get("Join");
-          var action = TargetResource["::create::request::joins"];
+          var action = TargetResource["::create::request::join"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.Request.joins#createMany
-         * @methodOf lbServices.Request.joins
+         * @name lbServices.Request.join#createMany
+         * @methodOf lbServices.Request.join
          *
          * @description
          *
-         * Creates a new instance in joins of this model.
+         * Creates a new instance in join of this model.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -10673,20 +10746,20 @@ module.factory(
          * This usually means the response is a `Join` object.)
          * </em>
          */
-        R.joins.createMany = function() {
+        R.join.createMany = function() {
           var TargetResource = $injector.get("Join");
-          var action = TargetResource["::createMany::request::joins"];
+          var action = TargetResource["::createMany::request::join"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.Request.joins#destroy
-         * @methodOf lbServices.Request.joins
+         * @name lbServices.Request.join#destroy
+         * @methodOf lbServices.Request.join
          *
          * @description
          *
-         * Deletes joins of this model.
+         * Deletes join of this model.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -10704,20 +10777,20 @@ module.factory(
          *
          * This method returns no data.
          */
-        R.joins.destroy = function() {
+        R.join.destroy = function() {
           var TargetResource = $injector.get("Join");
-          var action = TargetResource["::destroy::request::joins"];
+          var action = TargetResource["::destroy::request::join"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.Request.joins#update
-         * @methodOf lbServices.Request.joins
+         * @name lbServices.Request.join#update
+         * @methodOf lbServices.Request.join
          *
          * @description
          *
-         * Update joins of this model.
+         * Update join of this model.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -10742,9 +10815,9 @@ module.factory(
          * This usually means the response is a `Join` object.)
          * </em>
          */
-        R.joins.update = function() {
+        R.join.update = function() {
           var TargetResource = $injector.get("Join");
-          var action = TargetResource["::update::request::joins"];
+          var action = TargetResource["::update::request::join"];
           return action.apply(R, arguments);
         };
 
@@ -17806,27 +17879,27 @@ module.factory(
           method: "GET"
         },
 
-        // INTERNAL. Use RequestQueue.joins() instead.
-        "prototype$__get__joins": {
-          url: urlBase + "/RequestQueues/:id/joins",
+        // INTERNAL. Use RequestQueue.join() instead.
+        "prototype$__get__join": {
+          url: urlBase + "/RequestQueues/:id/join",
           method: "GET"
         },
 
-        // INTERNAL. Use RequestQueue.joins.create() instead.
-        "prototype$__create__joins": {
-          url: urlBase + "/RequestQueues/:id/joins",
+        // INTERNAL. Use RequestQueue.join.create() instead.
+        "prototype$__create__join": {
+          url: urlBase + "/RequestQueues/:id/join",
           method: "POST"
         },
 
-        // INTERNAL. Use RequestQueue.joins.update() instead.
-        "prototype$__update__joins": {
-          url: urlBase + "/RequestQueues/:id/joins",
+        // INTERNAL. Use RequestQueue.join.update() instead.
+        "prototype$__update__join": {
+          url: urlBase + "/RequestQueues/:id/join",
           method: "PUT"
         },
 
-        // INTERNAL. Use RequestQueue.joins.destroy() instead.
-        "prototype$__destroy__joins": {
-          url: urlBase + "/RequestQueues/:id/joins",
+        // INTERNAL. Use RequestQueue.join.destroy() instead.
+        "prototype$__destroy__join": {
+          url: urlBase + "/RequestQueues/:id/join",
           method: "DELETE"
         },
 
@@ -18801,27 +18874,27 @@ module.factory(
         };
     /**
      * @ngdoc object
-     * @name lbServices.RequestQueue.joins
-     * @header lbServices.RequestQueue.joins
+     * @name lbServices.RequestQueue.join
+     * @header lbServices.RequestQueue.join
      * @object
      * @description
      *
-     * The object `RequestQueue.joins` groups methods
+     * The object `RequestQueue.join` groups methods
      * manipulating `Join` instances related to `RequestQueue`.
      *
-     * Call {@link lbServices.RequestQueue#joins RequestQueue.joins()}
+     * Call {@link lbServices.RequestQueue#join RequestQueue.join()}
      * to query all related instances.
      */
 
 
         /**
          * @ngdoc method
-         * @name lbServices.RequestQueue#joins
+         * @name lbServices.RequestQueue#join
          * @methodOf lbServices.RequestQueue
          *
          * @description
          *
-         * Fetches hasOne relation joins.
+         * Fetches hasOne relation join.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -18844,20 +18917,20 @@ module.factory(
          * This usually means the response is a `Join` object.)
          * </em>
          */
-        R.joins = function() {
+        R.join = function() {
           var TargetResource = $injector.get("Join");
-          var action = TargetResource["::get::RequestQueue::joins"];
+          var action = TargetResource["::get::RequestQueue::join"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.RequestQueue.joins#create
-         * @methodOf lbServices.RequestQueue.joins
+         * @name lbServices.RequestQueue.join#create
+         * @methodOf lbServices.RequestQueue.join
          *
          * @description
          *
-         * Creates a new instance in joins of this model.
+         * Creates a new instance in join of this model.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -18882,20 +18955,20 @@ module.factory(
          * This usually means the response is a `Join` object.)
          * </em>
          */
-        R.joins.create = function() {
+        R.join.create = function() {
           var TargetResource = $injector.get("Join");
-          var action = TargetResource["::create::RequestQueue::joins"];
+          var action = TargetResource["::create::RequestQueue::join"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.RequestQueue.joins#createMany
-         * @methodOf lbServices.RequestQueue.joins
+         * @name lbServices.RequestQueue.join#createMany
+         * @methodOf lbServices.RequestQueue.join
          *
          * @description
          *
-         * Creates a new instance in joins of this model.
+         * Creates a new instance in join of this model.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -18920,20 +18993,20 @@ module.factory(
          * This usually means the response is a `Join` object.)
          * </em>
          */
-        R.joins.createMany = function() {
+        R.join.createMany = function() {
           var TargetResource = $injector.get("Join");
-          var action = TargetResource["::createMany::RequestQueue::joins"];
+          var action = TargetResource["::createMany::RequestQueue::join"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.RequestQueue.joins#destroy
-         * @methodOf lbServices.RequestQueue.joins
+         * @name lbServices.RequestQueue.join#destroy
+         * @methodOf lbServices.RequestQueue.join
          *
          * @description
          *
-         * Deletes joins of this model.
+         * Deletes join of this model.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -18951,20 +19024,20 @@ module.factory(
          *
          * This method returns no data.
          */
-        R.joins.destroy = function() {
+        R.join.destroy = function() {
           var TargetResource = $injector.get("Join");
-          var action = TargetResource["::destroy::RequestQueue::joins"];
+          var action = TargetResource["::destroy::RequestQueue::join"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.RequestQueue.joins#update
-         * @methodOf lbServices.RequestQueue.joins
+         * @name lbServices.RequestQueue.join#update
+         * @methodOf lbServices.RequestQueue.join
          *
          * @description
          *
-         * Update joins of this model.
+         * Update join of this model.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -18989,9 +19062,9 @@ module.factory(
          * This usually means the response is a `Join` object.)
          * </em>
          */
-        R.joins.update = function() {
+        R.join.update = function() {
           var TargetResource = $injector.get("Join");
-          var action = TargetResource["::update::RequestQueue::joins"];
+          var action = TargetResource["::update::RequestQueue::join"];
           return action.apply(R, arguments);
         };
 
