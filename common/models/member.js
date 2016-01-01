@@ -26,6 +26,7 @@ module.exports = function(Member) {
 						}
 						else if(mmIns==null){
 							var counter=0;
+							var wrong=false;
 							idk.car.forEach(function(ka,index,array){
 								veh.findOne({where: {license_number: ka.license_number}},function(err,vehIns){
 									console.log(vehIns);
@@ -35,12 +36,17 @@ module.exports = function(Member) {
 									}
 									else if(vehIns==null){
 										counter++;
-										if(counter==array.length){
+										if(counter==array.length && !wrong){
 											Member.register(idk);
 											cb(null,"success");
 										}
+										else if(counter==array.length && wrong){
+											cb(null,"fail");
+										}
 									}
 									else{
+										wrong=true;
+										counter++;
 										if(counter==array.length){
 											cb(null,"fail");
 										}
@@ -260,6 +266,127 @@ module.exports = function(Member) {
 		}
 	};
 
+	Member.adminDisplay=function(cb){
+		var array=[];
+		Member.find({},function(err,models){
+			if(err){
+				console.log(err);
+				cb(err,null);
+			}
+			else{
+				var counter=0;
+				var object={};
+				models.forEach(function(mem,index,arr){
+					object.id=mem.id;
+					object.first_name=mem.first_name;
+					object.last_name=mem.last_name;
+					object.phone_number=mem.phone_number;
+					object.gender=mem.gender;
+					object.gender_preference=mem.gender_preference;
+					object.isDriver=mem.isDriver;
+					object.authroized=mem.authroized;
+					object.email=mem.email;
+					object.emailVerified=mem.emailVerified;
+					array.push(object);
+					if(index==arr.length){
+						cb(null,array);
+					}
+				});
+			}
+		});
+	}
+
+	Member.adminChange=function(idk,cb){
+		Member.findById(idk.id,{},function(err,instance){
+			if(err){
+				console.log(err);
+				cb(err,null);
+			}
+			else if(instance==null){
+				console.log("missing instance");
+				cb("missing");
+			}
+			else{
+				instance.updateAttributes(instance,function(err,updated){
+					if(err){
+						console.log(err);
+						cb(err,null);
+					}
+					else{
+						console.log(updated);
+						cb(null,"ok");
+					}
+				});
+			}
+		});
+	}
+
+	//provide member id, vehicle
+	/*	{
+		"memberId":_,
+		"car":{
+			[0]:{
+	
+			}
+		}
+	}
+	*/
+	Member.adminAddVehicle=function(idk,cb){
+		var veh=app.models.Vehicle;
+		var counter=0;
+		var wrong=false;
+		idk.car.forEach(function(kaka,index,array){
+			veh.findOne({where: {license_number: kaka.license_number}},function(err,vehIns){
+				if(err){
+					console.log(err);
+					cb(err,null);
+				}
+				else{
+					counter++;
+					if(vehIns==null){
+						if(counter==array.length){
+							if(!wrong){
+								Member.findById(idk.memberId,{},function(err,Ins){
+								});
+							}
+							else{
+								console.log("fail");
+								cb(null,"fail");
+							}
+						}
+					}
+					else{
+						wrong=true;
+						if(counter==array.length){
+							console.log("fail");
+							cb(null,"fail");
+						}
+					}
+				}
+			});
+		});
+	}
+
+	/*
+	[
+	{
+		"phone"......
+		"car":[
+			{
+				license_number:____
+				.......
+			}
+		]
+	},
+	{
+	
+	}
+	]
+	*/
+	Member.adminMassImport=function(idk,cb){
+
+	}
+
 	Member.remoteMethod(
 		'validationandregister',
 		{
@@ -301,6 +428,41 @@ module.exports = function(Member) {
 		'resetPw',
 		{
 			http: {path: '/resetPw', verb: 'post'},
+			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}			
+		}
+	);
+
+	Member.remoteMethod(
+		'adminDisplay',
+		{
+			http: {path: '/adminDisplay', verb: 'get'},
+			returns: {arg: 'status', type: 'object'}			
+		}
+	);
+
+	Member.remoteMethod(
+		'adminChange',
+		{
+			http: {path: '/adminDisplay', verb: 'post'},
+			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}			
+		}
+	);
+
+	Member.remoteMethod(
+		'adminAddVehicle',
+		{
+			http: {path: '/adminAddVehicle', verb: 'post'},
+			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}			
+		}
+	);
+
+	Member.remoteMethod(
+		'adminMassImport',
+		{
+			http: {path: '/adminMassImport', verb: 'post'},
 			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
 			returns: {arg: 'status', type: 'string'}			
 		}
