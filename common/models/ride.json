@@ -21,6 +21,10 @@
     "status": {
       "type": "string",
       "default": "active"
+    },
+    "gender_preference": {
+      "type": "boolean",
+      "required": true
     }
   },
   "validations": [],

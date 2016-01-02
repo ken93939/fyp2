@@ -5,7 +5,12 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "member_gender": {
+      "type": "string",
+      "required": true
+    }
+  },
   "validations": [],
   "relations": {
       "request": {

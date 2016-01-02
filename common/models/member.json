@@ -23,7 +23,7 @@
       "required": true
     },
     "gender_preference": {
-      "type": "string",
+      "type": "boolean",
       "required": true
     },
     "authorized": {

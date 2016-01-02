@@ -22,52 +22,52 @@ var member_array=[
   "last_name": "kwok",
   "phone_number": 51191726,
   "gender": "male",
-  "gender_preference": "yes",
   "authorized": "yes",
   "isDriver": "yes",
   "password": "123456",
   "email": "ken@ken.com",
   "deviceToken": "fucku",
-  "emailVerified": 1
+  "emailVerified": 1,
+  "gender_preference": true
 },
 {
   "first_name": "sam",
   "last_name": "wong",
   "phone_number": 999123,
   "gender": "male",
-  "gender_preference": "yes",
   "authorized": "yes",
   "isDriver": "yes",
   "password": "123456",
   "email": "sam@sam.com",
   "deviceToken": "fuckyeah",
-  "emailVerified": 1
+  "emailVerified": 1,
+  "gender_preference": false
 },
 {
   "first_name": "9",
   "last_name": "g",
-  "phone_number": 999123,
+  "phone_number": 98989898,
   "gender": "male",
-  "gender_preference": "yes",
   "authorized": "yes",
   "isDriver": "yes",
   "password": "123456",
   "email": "9g@9g.com",
-  "deviceToken": "fuckyeah",
-  "emailVerified": 1
+  "deviceToken": "fuckyeahyeah",
+  "emailVerified": 1,
+  "gender_preference": true
 },
 {
   "first_name": "d",
   "last_name": "d",
-  "phone_number": 999123,
-  "gender": "male",
-  "gender_preference": "yes",
+  "phone_number": 89898989,
+  "gender": "female",
   "authorized": "yes",
   "isDriver": "yes",
   "password": "123456",
   "email": "dd@dd.com",
-  "deviceToken": "fuckyeah",
-  "emailVerified": 1
+  "deviceToken": "fuckuyeah",
+  "emailVerified": 1,
+  "gender_preference": false
 }
 ];
 
@@ -110,14 +110,16 @@ var ride_array=[
   "time": new Date("December 1, 2015 11:13:00"),
   "seat_number": 3,
   "beforeArrive": 15,
-  "status": "inactive"
+  "status": "inactive",
+  "gender_preference": true
 },
 {
   "id": 2,
   "time": new Date(),
   "seat_number": 2,
   "beforeArrive": 10,
-  "status": "inactive"
+  "status": "inactive",
+  "gender_preference": false
 }
 ]
 
@@ -138,12 +140,14 @@ var request_array=[
 {
   "id": 1,
   "time": new Date("December 1, 2015 11:13:00"),
-  "status": "inactive"
+  "status": "inactive",
+  "gender_preference": true
 },
 {
   "id": 2,
   "time": new Date(),
-  "status": "inactive"
+  "status": "inactive",
+  "gender_preference": false
 }
 ]
 var icon_array=[

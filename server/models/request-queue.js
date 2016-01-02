@@ -5,35 +5,53 @@ var loopback = require('loopback');
 module.exports = function(RequestQueue) {
 
 	RequestQueue.possibleRequest = function(offerQ, cb){
-		// TODO: include !pending status in filter
-		var requestQFilter = {
-			"where": {
-				"destination_name": offerQ.destination_name,
-				"status": "active"
-			}, 
-			"order": "time ASC"
-		};
-		RequestQueue.findOne(requestQFilter, function(err, requestQ){
+		offerQ.member(function(err, mem){
 			if (err){
 				console.log(err);
 				cb(err, null);
 			} else{
-				if (requestQ != null){
-					var PendingSeat = app.models.PendingSeat;
-					var data = {};
-					data.rideId = offerQ.rideId;
-					data.requestId = requestQ.requestId;
-					PendingSeat.addPending(data, function(err, pendingS){
-						if (err){
-							console.log(err);
-							cb(err, null);
+				var requestQFilter = {
+					"where": {
+						"and": [
+							{"destination_name": offerQ.destination_name},
+							{"status": "active"},
+							{"or": [
+								{"and": [
+									{"gender_preference": true}, 
+									{"member_gender": mem.gender}
+								]},
+								{"gender_preference": false}
+							]}
+						]
+					}, 
+					"order": "time ASC"
+				};
+				if (offerQ.gender_preference == true){
+					requestQFilter.where.and.push({"member_gender": mem.gender});
+				}
+				RequestQueue.findOne(requestQFilter, function(err, requestQ){
+					if (err){
+						console.log(err);
+						cb(err, null);
+					} else{
+						if (requestQ != null){
+							var PendingSeat = app.models.PendingSeat;
+							var data = {};
+							data.rideId = offerQ.rideId;
+							data.requestId = requestQ.requestId;
+							PendingSeat.addPending(data, function(err, pendingS){
+								if (err){
+									console.log(err);
+									cb(err, null);
+								} else{
+									cb(null, requestQ);
+								}
+							});
 						} else{
 							cb(null, requestQ);
 						}
-					});
-				} else{
-					cb(null, requestQ);
-				}
+					}
+				});
 			}
 		});
 	}

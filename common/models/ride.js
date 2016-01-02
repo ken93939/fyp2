@@ -40,9 +40,11 @@ module.exports = function(Ride) {
 									console.log(err);
 									cb(err,null);						
 								}
+								console.log(ride);
 								// Algorithm 
 								var OfferQueue = app.models.OfferQueue;
 								idk.rideId = ride.id;
+								idk.member_gender = currentUser.gender;
 								OfferQueue.create(idk, function(err, offerQ){
 									if(err){
 										console.log(err);
