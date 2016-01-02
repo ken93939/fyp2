@@ -525,9 +525,10 @@ module.exports = function(Member) {
 		var ctx=loopback.getCurrentContext();
 		var currentUser = ctx && ctx.get('currentUser');
 		currentUser.updateAttribute("gender_preference",idk.gender_preference,function(err,updatedIns){
-			if(err)
-				console.log(err)
-			else{
+			if(err){
+				console.log(err);
+				cb(err, null);
+			} else{
 				cb(null,"ok");
 			}
 		});	
