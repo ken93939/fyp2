@@ -29,8 +29,8 @@ module.exports = function(Own) {
 					eachown.vehicle(function(err,veh){
 						if(err)
 							console.log(err);
-						console.log(veh.license_number);
-						veh_array.push(veh.license_number);
+						console.log(veh);
+						veh_array.push(veh);
 						// if(index==array.length-1){
 						// 	cb(null,veh_array);
 						// }

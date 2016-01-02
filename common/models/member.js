@@ -216,19 +216,136 @@ module.exports = function(Member) {
 			cb(err,null);
 		}
 	}
+
 	//updateVehicle is a big problem
 	//try to do it later
-	Member.updateVehicle=function(idk,cb){
+	/*
+	[
+	{
+		"id": 123 , 0 means new car
+		"license_number": 123,
+		"": 3213
+	},
+	{
+	
+	}
+	]
+
+	*/
+
+	Member.updateVehicle=function(carArr,cb){
 		try{
 			var ctx=loopback.getCurrentContext();
 			var currentUser = ctx && ctx.get('currentUser');
-			currentUser.updateAttribute("deviceToken",idk.deviceToken,function(err,user){
+			var veh=app.models.Vehicle;
+			Member.ValidateVehicle(carArr,function(err,string){
 				if(err){
-					console.log(err);
 					cb(err,null);
 				}
-				// console.log(user);
-				cb(null,user);
+				else{
+					if(string=="ok"){
+						var counter=0;
+						currentUser.owns({},function(err,ownIns){
+							ownIns.forEach(function(ownObj,index,ownArr){
+								ownObj.vehicle(function(err,ownVeh){
+									var equal=false;
+									var count=0;	//counter for carArr
+									if(err){
+										console.log(err);
+										//cb(err,null);
+									}
+									else{
+										//+ - change
+										//- = ownIns yes carArr no
+										//change
+										carArr.forEach(function(ka,index,carArray){
+											count++;
+											if(ka.id==ownVeh.id){
+												ownVeh.updateAttributes(ka,function(err,updatedIns){
+													counter++;
+													equal=true;
+													if(counter==carArr.length){
+														cb(null,"ok");
+													}
+												});
+											}//cant find the instance =>delete
+											// make the ownid associated with that vehicle of the ride null
+											else if(count==carArr.length && !equal){
+												var counterForRide=0;
+												veh.findById(ka.id,function(err,foundVeh){
+													if(err){
+														console.log(err);														
+													}
+
+													else{
+														foundVeh.owns(function(err,allOwns){
+															if(err)
+																console.log(err)
+															else{
+																allOwns.rides({},function(err,rideIns){
+																	rideIns.forEach(function(rideObj,index,rideArray){
+																		counterForRide++;
+																		rideObj.updateAttribute("ownId",null,function(err,updatedRide){
+																			if(err)
+																				console.log(err)
+																			else{
+																				if(counterForRide==rideArray.length){
+																					counter++;
+																					if(counter==carArr.length){
+																						cb(null,"ok");
+																					}
+																				}
+																			}
+																		});
+																	});
+																})
+															}
+														})														
+													}
+
+												});
+											}
+										});
+									}
+								});
+							});
+							//+
+							carArr.forEach(function(kakaka, index,car_array){
+								if(kakaka.id==null){
+									veh.create(kakaka,function(err,vehIns){
+										if(err){
+											console.log(err)
+										}
+										else{
+											vehIns.owns.create({},function(err,vehOwnIns){
+												if(err)
+													console.log(err)
+												else{
+													vehOwnIns.updateAttribute(memberId,currentUser.id,function(err,updatedVehOwnIns){
+														if(err)
+															console.log(err)
+														else{
+															counter++;
+															if(counter==carArr.length){
+																cb(null,"ok");
+															}
+														}
+													});
+												}
+
+											});
+										}
+									})
+								}
+							});
+						});
+
+
+					}
+					else{
+						cb(null,"fail");
+					}
+				}
 			});
 		}
 		catch(err){
@@ -331,11 +448,12 @@ module.exports = function(Member) {
 		}
 	}
 	*/
-	Member.adminAddVehicle=function(idk,cb){
+
+	Member.ValidateVehicle=function(idk,cb){
 		var veh=app.models.Vehicle;
 		var counter=0;
 		var wrong=false;
-		idk.car.forEach(function(kaka,index,array){
+		idk.forEach(function(kaka,index,array){
 			veh.findOne({where: {license_number: kaka.license_number}},function(err,vehIns){
 				if(err){
 					console.log(err);
@@ -346,8 +464,9 @@ module.exports = function(Member) {
 					if(vehIns==null){
 						if(counter==array.length){
 							if(!wrong){
-								Member.findById(idk.memberId,{},function(err,Ins){
-								});
+								// Member.findById(idk.memberId,{},function(err,Ins){
+								// });
+								cb(null,"ok");
 							}
 							else{
 								console.log("fail");
@@ -367,6 +486,21 @@ module.exports = function(Member) {
 		});
 	}
 
+
+	//TODO: call validate and create
+	//provide member id, vehicle
+	/*	{
+		"memberId":_,
+		"car":{
+			[0]:{
+	
+			}
+		}
+	}
+	*/
+	Member.adminAddVehicle=function(idk,cb){
+
+	}
 	/*
 	[
 	{
@@ -385,6 +519,24 @@ module.exports = function(Member) {
 	*/
 	Member.adminMassImport=function(idk,cb){
 
+	}
+
+	Member.setGenderPreference=function(idk,cb){
+		var ctx=loopback.getCurrentContext();
+		var currentUser = ctx && ctx.get('currentUser');
+		currentUser.updateAttribute("gender_preference",idk.gender_preference,function(err,updatedIns){
+			if(err)
+				console.log(err)
+			else{
+				cb(null,"ok");
+			}
+		});	
+	}
+
+	Member.getGenderPreference=function(idk,cb){
+		var ctx=loopback.getCurrentContext();
+		var currentUser = ctx && ctx.get('currentUser');
+		cb(null,currentUser.gender_preference);
 	}
 
 	Member.remoteMethod(
@@ -459,10 +611,36 @@ module.exports = function(Member) {
 		}
 	);
 
+	// Member.remoteMethod(
+	// 	'ValidateVehicle',
+	// 	{
+	// 		http: {path: '/ValidateVehicle', verb: 'post'},
+	// 		accepts: {arg: 'well', type: 'object', http:{source:'body'}},
+	// 		returns: {arg: 'status', type: 'string'}			
+	// 	}
+	// );
+
 	Member.remoteMethod(
 		'adminMassImport',
 		{
 			http: {path: '/adminMassImport', verb: 'post'},
+			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}			
+		}
+	);
+
+	Member.remoteMethod(
+		'getGenderPreference',
+		{
+			http: {path: '/getGenderPreference', verb: 'get'},
+			returns: {arg: 'status', type: 'boolean'}			
+		}
+	);
+
+	Member.remoteMethod(
+		'setGenderPreference',
+		{
+			http: {path: '/getGenderPreference', verb: 'post'},
 			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
 			returns: {arg: 'status', type: 'string'}			
 		}

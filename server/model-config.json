@@ -74,6 +74,42 @@
         "principalId": "$everyone",
         "permission": "ALLOW",
         "property": "validationandregister"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW",
+        "property": "adminChange"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW",
+        "property": "adminDisplay"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW",
+        "property": "adminAddVehicle"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW",
+        "property": "adminMassImport"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW",
+        "property": "setGenderPreference"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW",
+        "property": "getGenderPreference"
       }
     ]
   },
