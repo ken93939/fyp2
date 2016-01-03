@@ -53,18 +53,27 @@ module.exports = function(Ride) {
 										// TODO: push to first k possible matched passengers 
 										// For now: only one push
 										var RequestQueue = app.models.RequestQueue;
-										RequestQueue.possibleRequest(idk, function(err, requestQ){
-											if (requestQ != null){
-												requestQ.request(function(err, request){
-													if (err) console.log(err);
-													Ride.push(ride, request, function(err, instance){
-														if (err) console.log(err);
-														console.log(ride);
-														cb(null, offerQ);
-													});
-												});
+										RequestQueue.possibleRequest(offerQ, function(err, requestQ){
+											if (err){
+												console.log(err);
+												cb(err, null);
 											} else{
-												cb(null, offerQ);
+												if (requestQ != null){
+													requestQ.request(function(err, request){
+														if (err){
+															console.log(err);
+															cb(err, null);
+														} else{
+															Ride.push(ride, request, function(err, instance){
+																if (err) console.log(err);
+																console.log(ride);
+																cb(null, offerQ);
+															});
+														}
+													});
+												} else{
+													cb(null, offerQ);
+												}
 											}
 										});
 									}

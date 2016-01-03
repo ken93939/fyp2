@@ -393,19 +393,19 @@ module.exports = function(Request) {
 	Request.checkAutoCancel = function(data, cb){
 		// check if the request exist in RequestQueue after 20+5 seconds. If so, cancel.
 		setTimeout(function(){
-			var Request = app.models.RequestQueue;
+			var RequestQueue = app.models.RequestQueue;
 			RequestQueue.findOne({"where": {"requestId": data.requestId}}, function(err, reqQ){
 				if (err) console.log(err);
 				if (reqQ != null){
 					var reqIdObj = {};
-					reqIdObj.requestId = request.id;
+					reqIdObj.requestId = reqQ.requestId;
 					Request.cancelMatch(reqIdObj, function(err, reqObj){
 						if (err) console.log(err);
 						console.log("(Cancelled by server)");
 					});
 				}
 			});
-		}, (5+5)*1000);
+		}, (20+5)*1000);
 		cb(null, "working");
 	}
 

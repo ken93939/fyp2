@@ -534,7 +534,7 @@ module.exports = function(Member) {
 		});	
 	}
 
-	Member.getGenderPreference=function(idk,cb){
+	Member.getGenderPreference=function(cb){
 		var ctx=loopback.getCurrentContext();
 		var currentUser = ctx && ctx.get('currentUser');
 		cb(null,currentUser.gender_preference);
@@ -641,7 +641,7 @@ module.exports = function(Member) {
 	Member.remoteMethod(
 		'setGenderPreference',
 		{
-			http: {path: '/getGenderPreference', verb: 'post'},
+			http: {path: '/setGenderPreference', verb: 'post'},
 			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
 			returns: {arg: 'status', type: 'string'}			
 		}

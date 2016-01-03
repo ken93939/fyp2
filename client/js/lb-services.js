@@ -2545,7 +2545,7 @@ module.factory(
          *  - `status` – `{string=}` - 
          */
         "setGenderPreference": {
-          url: urlBase + "/Members/getGenderPreference",
+          url: urlBase + "/Members/setGenderPreference",
           method: "POST"
         },
 
