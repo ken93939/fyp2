@@ -222,7 +222,7 @@ module.exports = function(Member) {
 	/*
 	[
 	{
-		"id": 123 , 0 means new car
+		"id": 123 , null means new car
 		"license_number": 123,
 		"": 3213
 	},
@@ -238,7 +238,7 @@ module.exports = function(Member) {
 			var ctx=loopback.getCurrentContext();
 			var currentUser = ctx && ctx.get('currentUser');
 			var veh=app.models.Vehicle;
-			Member.ValidateVehicle(carArr,function(err,string){
+			Member.clientValidateVehicle(carArr,function(err,string){
 				if(err){
 					cb(err,null);
 				}
@@ -438,6 +438,67 @@ module.exports = function(Member) {
 		});
 	}
 
+
+	Member.clientValidateVehicle=function(idk,cb){
+		var veh=app.models.vehicle;
+		var counter=0;
+		var wrong=false;
+		//validate if new car=> same license number
+		//if old car => same license number diff id
+		idk.forEach(function(kaka,index,array){
+			if(kaka.id!=null){
+				veh.findOne({where: {and: [{id: {inq: kaka.id}},{license_number: kaka.license_number}]}},function(err,returnedIns){
+					counter++;
+					if(err){
+						console.log(err);
+						cb(err,null);
+					}
+					else if(returnedIns==null){
+						if(counter==array.length){
+							if(!wrong){
+								cb(null,"ok");
+							}
+							else{
+								cb(null,"fail");
+							}
+						}
+					}
+					else {
+						wrong=true;
+						if(counter==array.length){
+							cb(null,"fail");
+						}
+					}
+				})
+			}
+			else{
+				veh.findOne({where: {license_number: kaka.license_number}},function(err,returnedIns){
+					counter++;
+					if(err){
+						console.log(err);
+						cb(err,null);
+					}
+					else if(returnedIns==null){
+						if(counter==array.length){
+							if(!wrong){
+								cb(null,"ok");
+							}
+							else{
+								cb(null,"fail");
+							}
+						}
+					}
+					else{
+						wrong=true;
+						if(counter==array.length){
+							cb(null,"fail");
+						}
+					}
+				});
+			}
+		});
+	}
+
 	//provide member id, vehicle
 	/*	{
 		"memberId":_,
@@ -447,8 +508,7 @@ module.exports = function(Member) {
 			}
 		}
 	}
-	*/
-
+	*/	
 	Member.ValidateVehicle=function(idk,cb){
 		var veh=app.models.Vehicle;
 		var counter=0;
