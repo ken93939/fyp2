@@ -241,6 +241,7 @@ module.exports = function(Member) {
 			var ownModel=app.models.Own;
 			var okay="ok";
 			console.log(carArr);
+			console.log(carArr.length);
 			Member.clientValidateVehicle(carArr,function(err,string){
 				if(err){
 					cb(err,null);
@@ -261,75 +262,130 @@ module.exports = function(Member) {
 										//+ - change
 										//- = ownIns yes carArr no
 										//change
-										carArr.forEach(function(ka){
-											count++;
-											// console.log(ka.id);
-											if(ka.id==ownVeh.id){
-												equal=true;												
-												ownVeh.updateAttributes(ka,function(err,updatedIns){
-													counter++;
-													if(counter==carArr.length){
-														cb(null,okay);
-													}
-												});
-											}
-											//cant find the instance =>delete
-											// make the ownid associated with that vehicle of the ride null
-											else if(count==carArr.length && !equal){
-												if(ka.id!=null){
-													var counterForRide=0;
-													console.log(ka.id);
-													veh.findById(Number(ownVeh.id),{},function(err,foundVeh){
-														if(err){
-															console.log(err);														
-														}
+										//must be delete
+										if(carArr.length==0){
 
+											veh.findById(Number(ownVeh.id),{},function(err,foundVeh){
+												console.log(foundVeh);
+												var counterForRide=0;
+												if(err){
+													console.log(err);														
+												}
+												else{
+													foundVeh.owns(function(err,allOwns){
+														if(err)
+															console.log(err)
 														else{
-															foundVeh.owns(function(err,allOwns){
-																if(err)
-																	console.log(err)
-																else{
-																	allOwns.forEach(function(idkOwns){
-																		idkOwns.rides({},function(err,rideIns){
-																			rideIns.forEach(function(rideObj,index,rideArray){
-																				counterForRide++;
-																				rideObj.updateAttribute("ownId",null,function(err,updatedRide){
-																					if(err)
-																						console.log(err)
-																					else{
-																						if(counterForRide==rideArray.length){
-																							counter++;
-																							if(counter==carArr.length){
-																								cb(null,okay);
-																							}
-																						}
+															allOwns.forEach(function(idkOwns){
+																idkOwns.rides({},function(err,rideIns){
+																	rideIns.forEach(function(rideObj,index,rideArray){
+																		counterForRide++;
+																		rideObj.updateAttribute("ownId",null,function(err,updatedRide){
+																			if(err)
+																				console.log(err)
+																			else{
+																				if(counterForRide==rideArray.length){
+																					counter++;
+																					if(counter==carArr.length){
+																						cb(null,okay);
 																					}
-																				});
-																			});
-
-																			ownModel.destroyById(idkOwns.id,function(err){
-																				if(err){
-																					console.log(err);
-																					cb(err,null);
 																				}
-																			});
-
-																			veh.destroyById(foundVeh.id,function(err){
-																				if(err){
-																					console.log(err);
-																					cb(err,null);
-																				}
-																			})
+																			}
 																		});
 																	});
-																}
-															});													
-														}
 
+																	ownModel.destroyById(idkOwns.id,function(err){
+																		if(err){
+																			console.log(err);
+																			cb(err,null);
+																		}
+																	});
+
+																	veh.destroyById(foundVeh.id,function(err){
+																		if(err){
+																			console.log(err);
+																			cb(err,null);
+																		}
+																	})
+																});
+															});
+														}
 													});													
 												}
-											}
-										});
+
+											});	
+										}
+										else{
+											carArr.forEach(function(ka){
+												count++;
+												// console.log(ka.id);
+												if(ka.id==ownVeh.id){
+													equal=true;												
+													ownVeh.updateAttributes(ka,function(err,updatedIns){
+														counter++;
+														if(counter==carArr.length){
+															cb(null,okay);
+														}
+													});
+												}
+												//cant find the instance =>delete
+												// make the ownid associated with that vehicle of the ride null
+												else if(count==carArr.length && !equal){
+													if(ka.id!=null){
+														var counterForRide=0;
+														console.log(ka.id);
+														veh.findById(Number(ownVeh.id),{},function(err,foundVeh){
+															if(err){
+																console.log(err);														
+															}
+
+															else{
+																foundVeh.owns(function(err,allOwns){
+																	if(err)
+																		console.log(err)
+																	else{
+																		allOwns.forEach(function(idkOwns){
+																			idkOwns.rides({},function(err,rideIns){
+																				rideIns.forEach(function(rideObj,index,rideArray){
+																					counterForRide++;
+																					rideObj.updateAttribute("ownId",null,function(err,updatedRide){
+																						if(err)
+																							console.log(err)
+																						else{
+																							if(counterForRide==rideArray.length){
+																								counter++;
+																								if(counter==carArr.length){
+																									cb(null,okay);
+																								}
+																							}
+																						}
+																					});
+																				});
+
+																				ownModel.destroyById(idkOwns.id,function(err){
+																					if(err){
+																						console.log(err);
+																						cb(err,null);
+																					}
+																				});
+
+																				veh.destroyById(foundVeh.id,function(err){
+																					if(err){
+																						console.log(err);
+																						cb(err,null);
+																					}
+																				})
+																			});
+																		});
+																	}
+																});													
+															}
+
+														});													
+													}
+												}
+											});	
+										}
 									}
 								});
 							});
@@ -470,67 +526,72 @@ module.exports = function(Member) {
 		var wrong=false;
 		//find the car if yes=>ok
 		//if no fail (?)
-		idk.forEach(function(kaka,index,array){
-			// console.log(kaka.id);
-			if(kaka.id!=null){
-				veh.findOne({where: {license_number: kaka.license_number}},function(err,returnedIns){
-					if(err){
-						console.log(err);
-						cb(err,null);
-					}
-					else if(returnedIns!=null){
-						// console.log(returnedIns);
-						counter++;
-						if(counter==array.length){
-							if(!wrong){
-								console.log("validateok");
-								cb(null,"ok");
+		if(idk.length!=0){
+			idk.forEach(function(kaka,index,array){
+				// console.log(kaka.id);
+				if(kaka.id!=null){
+					veh.findOne({where: {license_number: kaka.license_number}},function(err,returnedIns){
+						if(err){
+							console.log(err);
+							cb(err,null);
+						}
+						else if(returnedIns!=null){
+							// console.log(returnedIns);
+							counter++;
+							if(counter==array.length){
+								if(!wrong){
+									console.log("validateok");
+									cb(null,"ok");
+								}
+								else{
+									cb(null,"fail");
+								}
 							}
-							else{
+						}
+						else {
+							console.log("wrong");
+							wrong=true;
+							counter++;
+							if(counter==array.length){
 								cb(null,"fail");
 							}
 						}
-					}
-					else {
-						console.log("wrong");
-						wrong=true;
-						counter++;
-						if(counter==array.length){
-							cb(null,"fail");
+					});
+				}
+				else{
+					veh.findOne({where: {license_number: kaka.license_number}},function(err,returnedIns){
+						if(err){
+							console.log(err);
+							cb(err,null);
 						}
-					}
-				});
-			}
-			else{
-				veh.findOne({where: {license_number: kaka.license_number}},function(err,returnedIns){
-					if(err){
-						console.log(err);
-						cb(err,null);
-					}
-					else if(returnedIns==null){
-						counter++;
-						if(counter==array.length){
-							if(!wrong){
-								console.log("ok");
-								cb(null,"ok");
+						else if(returnedIns==null){
+							counter++;
+							if(counter==array.length){
+								if(!wrong){
+									console.log("ok");
+									cb(null,"ok");
+								}
+								else{
+									cb(null,"fail");
+								}
 							}
-							else{
+						}
+						else{
+							wrong=true;
+							counter++;
+							console.log("exisitng instance");
+							// console.log(returnedIns);
+							if(counter==array.length){
 								cb(null,"fail");
 							}
 						}
-					}
-					else{
-						wrong=true;
-						counter++;
-						console.log("exisitng instance");
-						// console.log(returnedIns);
-						if(counter==array.length){
-							cb(null,"fail");
-						}
-					}
-				});
-			}
-		});
+					});
+				}
+			});
+		}
+		else{
+			cb(null,"ok");
+		}
 	}
 
 	//provide member id, vehicle
