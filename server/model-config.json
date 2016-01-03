@@ -110,6 +110,12 @@
         "principalId": "$everyone",
         "permission": "ALLOW",
         "property": "getGenderPreference"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW",
+        "property": "clientValidateVehicle"
       }
     ]
   },

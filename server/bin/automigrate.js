@@ -111,7 +111,8 @@ var ride_array=[
   "seat_number": 3,
   "beforeArrive": 15,
   "status": "inactive",
-  "gender_preference": true
+  "gender_preference": true,
+  "ownId": 1
 },
 {
   "id": 2,
@@ -119,7 +120,8 @@ var ride_array=[
   "seat_number": 2,
   "beforeArrive": 10,
   "status": "inactive",
-  "gender_preference": false
+  "gender_preference": false,
+  "ownId": 2
 }
 ]
 

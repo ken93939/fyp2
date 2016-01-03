@@ -238,6 +238,9 @@ module.exports = function(Member) {
 			var ctx=loopback.getCurrentContext();
 			var currentUser = ctx && ctx.get('currentUser');
 			var veh=app.models.Vehicle;
+			var ownModel=app.models.Own;
+			var okay="ok";
+			console.log(carArr);
 			Member.clientValidateVehicle(carArr,function(err,string){
 				if(err){
 					cb(err,null);
@@ -258,52 +261,73 @@ module.exports = function(Member) {
 										//+ - change
 										//- = ownIns yes carArr no
 										//change
-										carArr.forEach(function(ka,index,carArray){
+										carArr.forEach(function(ka){
 											count++;
+											// console.log(ka.id);
 											if(ka.id==ownVeh.id){
+												equal=true;												
 												ownVeh.updateAttributes(ka,function(err,updatedIns){
 													counter++;
-													equal=true;
 													if(counter==carArr.length){
-														cb(null,"ok");
+														cb(null,okay);
 													}
 												});
-											}//cant find the instance =>delete
+											}
+											//cant find the instance =>delete
 											// make the ownid associated with that vehicle of the ride null
 											else if(count==carArr.length && !equal){
-												var counterForRide=0;
-												veh.findById(ka.id,function(err,foundVeh){
-													if(err){
-														console.log(err);														
-													}
+												if(ka.id!=null){
+													var counterForRide=0;
+													console.log(ka.id);
+													veh.findById(Number(ownVeh.id),{},function(err,foundVeh){
+														if(err){
+															console.log(err);														
+														}
 
-													else{
-														foundVeh.owns(function(err,allOwns){
-															if(err)
-																console.log(err)
-															else{
-																allOwns.rides({},function(err,rideIns){
-																	rideIns.forEach(function(rideObj,index,rideArray){
-																		counterForRide++;
-																		rideObj.updateAttribute("ownId",null,function(err,updatedRide){
-																			if(err)
-																				console.log(err)
-																			else{
-																				if(counterForRide==rideArray.length){
-																					counter++;
-																					if(counter==carArr.length){
-																						cb(null,"ok");
+														else{
+															foundVeh.owns(function(err,allOwns){
+																if(err)
+																	console.log(err)
+																else{
+																	allOwns.forEach(function(idkOwns){
+																		idkOwns.rides({},function(err,rideIns){
+																			rideIns.forEach(function(rideObj,index,rideArray){
+																				counterForRide++;
+																				rideObj.updateAttribute("ownId",null,function(err,updatedRide){
+																					if(err)
+																						console.log(err)
+																					else{
+																						if(counterForRide==rideArray.length){
+																							counter++;
+																							if(counter==carArr.length){
+																								cb(null,okay);
+																							}
+																						}
 																					}
+																				});
+																			});
+
+																			ownModel.destroyById(idkOwns.id,function(err){
+																				if(err){
+																					console.log(err);
+																					cb(err,null);
 																				}
-																			}
+																			});
+
+																			veh.destroyById(foundVeh.id,function(err){
+																				if(err){
+																					console.log(err);
+																					cb(err,null);
+																				}
+																			})
 																		});
 																	});
-																})
-															}
-														})														
-													}
+																}
+															});													
+														}
 
-												});
+													});													
+												}
 											}
 										});
 									}
@@ -321,13 +345,14 @@ module.exports = function(Member) {
 												if(err)
 													console.log(err)
 												else{
-													vehOwnIns.updateAttribute(memberId,currentUser.id,function(err,updatedVehOwnIns){
+													vehOwnIns.updateAttribute("memberId",currentUser.id,function(err,updatedVehOwnIns){
 														if(err)
 															console.log(err)
 														else{
 															counter++;
+															okay=vehIns.id;
 															if(counter==carArr.length){
-																cb(null,"ok");
+																cb(null,okay);
 															}
 														}
 													});
@@ -335,7 +360,7 @@ module.exports = function(Member) {
 
 											});
 										}
-									})
+									});
 								}
 							});
 						});
@@ -440,22 +465,25 @@ module.exports = function(Member) {
 
 
 	Member.clientValidateVehicle=function(idk,cb){
-		var veh=app.models.vehicle;
+		var veh=app.models.Vehicle;
 		var counter=0;
 		var wrong=false;
-		//validate if new car=> same license number
-		//if old car => same license number diff id
+		//find the car if yes=>ok
+		//if no fail (?)
 		idk.forEach(function(kaka,index,array){
+			// console.log(kaka.id);
 			if(kaka.id!=null){
-				veh.findOne({where: {and: [{id: {inq: kaka.id}},{license_number: kaka.license_number}]}},function(err,returnedIns){
-					counter++;
+				veh.findOne({where: {license_number: kaka.license_number}},function(err,returnedIns){
 					if(err){
 						console.log(err);
 						cb(err,null);
 					}
-					else if(returnedIns==null){
+					else if(returnedIns!=null){
+						// console.log(returnedIns);
+						counter++;
 						if(counter==array.length){
 							if(!wrong){
+								console.log("validateok");
 								cb(null,"ok");
 							}
 							else{
@@ -464,23 +492,26 @@ module.exports = function(Member) {
 						}
 					}
 					else {
+						console.log("wrong");
 						wrong=true;
+						counter++;
 						if(counter==array.length){
 							cb(null,"fail");
 						}
 					}
-				})
+				});
 			}
 			else{
 				veh.findOne({where: {license_number: kaka.license_number}},function(err,returnedIns){
-					counter++;
 					if(err){
 						console.log(err);
 						cb(err,null);
 					}
 					else if(returnedIns==null){
+						counter++;
 						if(counter==array.length){
 							if(!wrong){
+								console.log("ok");
 								cb(null,"ok");
 							}
 							else{
@@ -490,6 +521,9 @@ module.exports = function(Member) {
 					}
 					else{
 						wrong=true;
+						counter++;
+						console.log("exisitng instance");
+						// console.log(returnedIns);
 						if(counter==array.length){
 							cb(null,"fail");
 						}
@@ -641,6 +675,15 @@ module.exports = function(Member) {
 		'resetPw',
 		{
 			http: {path: '/resetPw', verb: 'post'},
+			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}			
+		}
+	);
+
+	Member.remoteMethod(
+		'clientValidateVehicle',
+		{
+			http: {path: '/clientValidateVehicle', verb: 'post'},
 			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
 			returns: {arg: 'status', type: 'string'}			
 		}
