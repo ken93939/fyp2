@@ -210,26 +210,26 @@ module.exports = function(Request) {
 																	cb(null, icon[0].match_icon);
 																	// TODO: do nothing
 																	// For now: push offer to another possible matched passenger if not full
-																	var OfferQueue = app.models.OfferQueue;
-																	OfferQueue.findOne({"where": {"rideId": join.rideId, "is_full": false}}, function(err, offerQ){	
-																		if (offerQ != null){
-																			RequestQueue.possibleRequest(offerQ, function(err, reqQ){
-																				if (err) console.log(err);
-																				if (reqQ != null){
-																					reqQ.request(function(err, req){
-																						if (err) console.log(err);
-																						offerQ.ride(function(err, rid){
-																							if (err) console.log(err);
-																							Request.push(rid, req, function(err, instance){
-																								if (err) console.log(err);
-																								console.log(rid);
-																							});
-																						});
-																					});
-																				}
-																			});
-																		}
-																	});
+																	// var OfferQueue = app.models.OfferQueue;
+																	// OfferQueue.findOne({"where": {"rideId": join.rideId, "is_full": false}}, function(err, offerQ){	
+																	// 	if (offerQ != null){
+																	// 		RequestQueue.possibleRequest(offerQ, function(err, reqQ){
+																	// 			if (err) console.log(err);
+																	// 			if (reqQ != null){
+																	// 				reqQ.request(function(err, req){
+																	// 					if (err) console.log(err);
+																	// 					offerQ.ride(function(err, rid){
+																	// 						if (err) console.log(err);
+																	// 						Request.push(rid, req, function(err, instance){
+																	// 							if (err) console.log(err);
+																	// 							console.log(rid);
+																	// 						});
+																	// 					});
+																	// 				});
+																	// 			}
+																	// 		});
+																	// 	}
+																	// });
 																	// check if OfferQueue record is full after 20+5 seconds. If so, remove Offer.
 																	setTimeout(function(){
 																		OfferQueue.findOne({"where": {"rideId": join.rideId, "is_full": true}}, function(err, offerQ){

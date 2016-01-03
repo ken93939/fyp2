@@ -50,31 +50,10 @@ module.exports = function(Ride) {
 										console.log(err);
 										cb(err, null);
 									} else{
-										// TODO: push to first k possible matched passengers 
-										// For now: only one push
-										var RequestQueue = app.models.RequestQueue;
-										RequestQueue.possibleRequest(offerQ, function(err, requestQ){
-											if (err){
-												console.log(err);
-												cb(err, null);
-											} else{
-												if (requestQ != null){
-													requestQ.request(function(err, request){
-														if (err){
-															console.log(err);
-															cb(err, null);
-														} else{
-															Ride.push(ride, request, function(err, instance){
-																if (err) console.log(err);
-																console.log(ride);
-																cb(null, offerQ);
-															});
-														}
-													});
-												} else{
-													cb(null, offerQ);
-												}
-											}
+										// push to first k possible matched passengers 
+										Ride.checkAndPush(offerQ, offerQ.seat_number, false, function(msg){
+											console.log(msg);
+											cb(null, msg);
 										});
 									}
 								});
@@ -117,6 +96,41 @@ module.exports = function(Ride) {
 				cb(null, instance);
 			}
 		});
+	}
+
+	Ride.checkAndPush = function(offerQ, remaining, err, cb){
+		if (remaining > 0){
+			var RequestQueue = app.models.RequestQueue;
+			RequestQueue.possibleRequest(offerQ, function(err, requestQ){
+				if (err){
+					console.log(err);
+					Ride.checkAndPush(offerQ, remaining-1, true, cb);
+				} else{
+					if (requestQ != null){
+						requestQ.request(function(err, request){
+							if (err){
+								console.log(err);
+								Ride.checkAndPush(offerQ, remaining-1, true, cb);
+							} else{
+								Ride.push(ride, request, function(err, instance){
+									if (err) console.log(err);
+									console.log(ride);
+									Ride.checkAndPush(offerQ, remaining-1, err, cb);
+								});
+							}
+						});
+					} else{
+						Ride.checkAndPush(offerQ, remaining-1, true, cb);
+					}
+				}
+			});
+		} else{
+			if (err){
+				cb("All pushed with err");
+			} else{
+				cb("All pushed");
+			}
+		}
 	}
 
 	Ride.remoteMethod(
