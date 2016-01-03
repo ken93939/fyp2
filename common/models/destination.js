@@ -10,12 +10,13 @@ module.exports = function(Destination) {
 			cb(null, oriDesName);
 		} else{
 			var OfferQueue = app.models.OfferQueue;
-			OfferQueue.count({"destination_name": "Choi Hung", "is_full": false}, function(err, ch_count){
+			var currTime = Date.now();
+			OfferQueue.count({"destination_name": "Choi Hung", "is_full": false, "time": {"gt": currTime}}, function(err, ch_count){
 				if (err){
 					console.log(err);
 					cb(err, null);
 				} else{
-					OfferQueue.count({"destination_name": "Hang Hau", "is_full": false}, function(err, hh_count){
+					OfferQueue.count({"destination_name": "Hang Hau", "is_full": false, "time": {"gt": currTime}}, function(err, hh_count){
 						if (err){
 							console.log(err);
 							cb(err, null);
@@ -28,7 +29,7 @@ module.exports = function(Destination) {
 								cb(null, "Hang Hau");
 							} else{
 								var newDesName = (new Date() % 2 == 0)? "Choi Hung": "Hang Hau";
-								console.log(newDesName);
+								console.log("Random: "+newDesName);
 								cb(null, newDesName);
 							}
 						}

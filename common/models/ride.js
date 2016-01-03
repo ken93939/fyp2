@@ -50,10 +50,26 @@ module.exports = function(Ride) {
 										console.log(err);
 										cb(err, null);
 									} else{
+										var Icon = app.models.Icon;
+										Icon.count({}, function(err, iconCount){
+											if (err){
+												console.log(err);
+												cb(err, null);
+											} else{
+												Icon.find({"limit": 1, "skip": ride.id % iconCount}, function(err, icon){
+													if (err){
+														console.log(err);
+														cb(err, null);
+													} else{
+														console.log("match_icon for driver: ", icon[0]);
+														cb(null, {"matchicon": icon[0].match_icon});
+													}
+												});
+											}
+										});
 										// push to first k possible matched passengers 
-										Ride.checkAndPush(offerQ, offerQ.seat_number, false, function(msg){
+										Ride.checkAndPush(offerQ, ride, ride.seat_number, false, function(msg){
 											console.log(msg);
-											cb(null, msg);
 										});
 									}
 								});
@@ -98,37 +114,43 @@ module.exports = function(Ride) {
 		});
 	}
 
-	Ride.checkAndPush = function(offerQ, remaining, err, cb){
+	Ride.checkAndPush = function(offerQ, ride, remaining, err, cb){
 		if (remaining > 0){
 			var RequestQueue = app.models.RequestQueue;
 			RequestQueue.possibleRequest(offerQ, function(err, requestQ){
 				if (err){
 					console.log(err);
-					Ride.checkAndPush(offerQ, remaining-1, true, cb);
+					Ride.checkAndPush(offerQ, ride, remaining-1, true, cb);
 				} else{
 					if (requestQ != null){
-						requestQ.request(function(err, request){
+						requestQ.request(function(err, req){
 							if (err){
 								console.log(err);
-								Ride.checkAndPush(offerQ, remaining-1, true, cb);
+								Ride.checkAndPush(offerQ, ride, remaining-1, true, cb);
 							} else{
-								Ride.push(ride, request, function(err, instance){
-									if (err) console.log(err);
-									console.log(ride);
-									Ride.checkAndPush(offerQ, remaining-1, err, cb);
+								Ride.push(ride, req, function(err, instance){
+									if (err){
+										console.log(err);
+										Ride.checkAndPush(offerQ, ride, remaining-1, true, cb);
+									} else{
+										console.log("Request: ", req);
+										console.log("Ride: ", ride);
+										Ride.checkAndPush(offerQ, ride, remaining-1, err, cb);
+									}
 								});
 							}
 						});
 					} else{
-						Ride.checkAndPush(offerQ, remaining-1, true, cb);
+						console.log("No requestQ");
+						Ride.checkAndPush(offerQ, ride, remaining-1, err, cb);
 					}
 				}
 			});
 		} else{
 			if (err){
-				cb("All pushed with err");
+				cb("Done with err");
 			} else{
-				cb("All pushed");
+				cb("Done");
 			}
 		}
 	}

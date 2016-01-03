@@ -322,15 +322,21 @@ dataSource.automigrate('Icon', function(err) {
   console.log("Icon!");
   var icon=app.models.Icon;
   var count=request_array.length;
+  icon_array = [];
+  for (var i=0; i<50; i++){
+    icon_array.push({"match_icon": i+1});
+  }
   icon_array.forEach(function(Icon){
     icon.create(Icon,function(err,record){
       if(err)
         return console.log(err);
-      console.log("ICON_done",record);
-      count--;
-      if(count==0){
-        console.log("ICON_ko");
-      }
+      record.updateAttribute("match_icon", record.id, function(err, rec){
+        console.log("ICON_done",record);
+        count--;
+        if(count==0){
+          console.log("ICON_ko");
+        }
+      });
     });
   });
 });

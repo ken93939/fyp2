@@ -142,10 +142,11 @@ module.exports = function(Request) {
 									if(err){
 										console.log("req error:",err);
 										cb(err,null);
+									} else{
+										// console.log(res);
+										console.log(res.statusCode);
+										cb(null,"OK");
 									}
-									// console.log(res);
-									console.log(res.statusCode);
-									cb(null,"OK");
 							});
 						});
 					});
@@ -208,30 +209,11 @@ module.exports = function(Request) {
 																if (requestQ != null){
 																	console.log("Joined");
 																	cb(null, icon[0].match_icon);
-																	// TODO: do nothing
-																	// For now: push offer to another possible matched passenger if not full
-																	// var OfferQueue = app.models.OfferQueue;
-																	// OfferQueue.findOne({"where": {"rideId": join.rideId, "is_full": false}}, function(err, offerQ){	
-																	// 	if (offerQ != null){
-																	// 		RequestQueue.possibleRequest(offerQ, function(err, reqQ){
-																	// 			if (err) console.log(err);
-																	// 			if (reqQ != null){
-																	// 				reqQ.request(function(err, req){
-																	// 					if (err) console.log(err);
-																	// 					offerQ.ride(function(err, rid){
-																	// 						if (err) console.log(err);
-																	// 						Request.push(rid, req, function(err, instance){
-																	// 							if (err) console.log(err);
-																	// 							console.log(rid);
-																	// 						});
-																	// 					});
-																	// 				});
-																	// 			}
-																	// 		});
-																	// 	}
-																	// });
-																	// check if OfferQueue record is full after 20+5 seconds. If so, remove Offer.
+																	// check if OfferQueue record is full after 20+60 seconds. If so, remove Offer.
+																	console.log("server starts counting... (OfferQueue Auto Dequeue?)");
 																	setTimeout(function(){
+																		console.log("server stops counting (OfferQueue Auto Dequeue?)");
+																		var OfferQueue = app.models.OfferQueue;
 																		OfferQueue.findOne({"where": {"rideId": join.rideId, "is_full": true}}, function(err, offerQ){
 																			if (err) console.log(err);
 																			if (offerQ != null){
@@ -251,7 +233,7 @@ module.exports = function(Request) {
 																				}
 																			}
 																		});
-																	}, (20+5)*1000);
+																	}, (20+60)*1000);
 																} else{
 																	console.log("No such requestId");
 																	cb(null, null);
@@ -391,8 +373,10 @@ module.exports = function(Request) {
 	}
 
 	Request.checkAutoCancel = function(data, cb){
-		// check if the request exist in RequestQueue after 20+5 seconds. If so, cancel.
+		// check if the request exist in RequestQueue after 20+60 seconds. If so, cancel.
+		console.log("server starts counting... (Auto Cancel?)");
 		setTimeout(function(){
+			console.log("server stops counting (Auto Cancel?)");
 			var RequestQueue = app.models.RequestQueue;
 			RequestQueue.findOne({"where": {"requestId": data.requestId}}, function(err, reqQ){
 				if (err) console.log(err);
@@ -405,30 +389,36 @@ module.exports = function(Request) {
 					});
 				}
 			});
-		}, (20+5)*1000);
+		}, (20+60)*1000);
 		cb(null, "working");
 	}
 
 	Request.addRequestAgain = function(data, cb){
+		console.log(data);
 		Request.findById(data.requestId, function(err, req){
 			if (err){
 				console.log(err);
 				cb(err, null);
 			} else{
-				var newReqObj = {};
-				newReqObj.destination_name = req.destination_name;
-				newReqObj.pickup_name = req.pickup_name;
-				newReqObj.gender_preference = req.gender_preference;
-				newReqObj.time = req.time;
-				Request.addRequest(newReqObj, function(err, newReq){
-					if (err){
-						console.log(err);
-						cb(err, null);
-					} else{
-						console.log("Request added again ", newReq);
-						cb(null, newReq);
-					}
-				});
+				if (req != null){
+					var newReqObj = {};
+					newReqObj.destination_name = req.destination_name;
+					newReqObj.pickup_name = req.pickup_name;
+					newReqObj.gender_preference = req.gender_preference;
+					newReqObj.time = req.time;
+					Request.addRequest(newReqObj, function(err, newReq){
+						if (err){
+							console.log(err);
+							cb(err, null);
+						} else{
+							console.log("Request added again ", newReq);
+							cb(null, newReq);
+						}
+					});
+				} else{
+					console.log("No such requestId");
+					cb(null, null);
+				}
 			}
 		});
 	}
@@ -491,7 +481,7 @@ module.exports = function(Request) {
 	Request.remoteMethod(
 		'addRequestAgain',
 		{
-			http: {path: '/addRequestAgain', verb: 'get'},
+			http: {path: '/addRequestAgain', verb: 'post'},
 			accepts: {arg: 'data', type: 'object', http:{source:'body'}},
 			returns: {arg: 'req', type: 'obj'}
 		}
