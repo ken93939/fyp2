@@ -26,7 +26,7 @@ var member_array=[
   "isDriver": "yes",
   "password": "123456",
   "email": "ken@ken.com",
-  "deviceToken": "fucku",
+  "deviceToken": "hkustfyp",
   "emailVerified": 1,
   "gender_preference": true
 },
@@ -39,33 +39,33 @@ var member_array=[
   "isDriver": "yes",
   "password": "123456",
   "email": "sam@sam.com",
-  "deviceToken": "fuckyeah",
+  "deviceToken": "fypyeah",
   "emailVerified": 1,
   "gender_preference": false
 },
 {
-  "first_name": "9",
-  "last_name": "g",
+  "first_name": "hin",
+  "last_name": "kwok",
   "phone_number": 98989898,
   "gender": "male",
   "authorized": "yes",
   "isDriver": "yes",
   "password": "123456",
   "email": "9g@9g.com",
-  "deviceToken": "fuckyeahyeah",
+  "deviceToken": "chingwinglok",
   "emailVerified": 1,
   "gender_preference": true
 },
 {
-  "first_name": "d",
-  "last_name": "d",
+  "first_name": "nicole",
+  "last_name": "ho",
   "phone_number": 89898989,
   "gender": "female",
   "authorized": "yes",
   "isDriver": "yes",
   "password": "123456",
   "email": "dd@dd.com",
-  "deviceToken": "fuckuyeah",
+  "deviceToken": "kong",
   "emailVerified": 1,
   "gender_preference": false
 }
@@ -127,12 +127,12 @@ var ride_array=[
 
 var vehicle_array=[
 {
-  "license_number": "D7689",
+  "license_number": "SAM 9",
   "color": "black",
   "maker": "audi"
 },
 {
-  "license_number": "FUCK FYP",
+  "license_number": "HKUST",
   "color": "blue",
   "maker": "tesla"
 }
