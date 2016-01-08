@@ -27,32 +27,39 @@ module.exports = function(Member) {
 						else if(mmIns==null){
 							var counter=0;
 							var wrong=false;
-							idk.car.forEach(function(ka,index,array){
-								veh.findOne({where: {license_number: ka.license_number}},function(err,vehIns){
-									console.log(vehIns);
-									if(err){
-										console.log(err);
-										cb(err,null);
-									}
-									else if(vehIns==null){
-										counter++;
-										if(counter==array.length && !wrong){
-											Member.register(idk);
-											cb(null,"success");
+							if(idk.car.length==0){
+								// Member.register(idk);
+								cb(null,"success");
+							}
+							else{
+								idk.car.forEach(function(ka,index,array){
+									veh.findOne({where: {license_number: ka.license_number}},function(err,vehIns){
+										console.log(vehIns);
+										if(err){
+											console.log(err);
+											cb(err,null);
 										}
-										else if(counter==array.length && wrong){
-											cb(null,"fail");
+										else if(vehIns==null){
+											counter++;
+											if(counter==array.length && !wrong){
+												// Member.register(idk);
+												cb(null,"success");
+											}
+											else if(counter==array.length && wrong){
+												cb(null,"fail");
+											}
 										}
-									}
-									else{
-										wrong=true;
-										counter++;
-										if(counter==array.length){
-											cb(null,"fail");
+										else{
+											wrong=true;
+											counter++;
+											if(counter==array.length){
+												cb(null,"fail");
+											}
 										}
-									}
+									});
 								});
-							});
+							}
+
 						}
 						else{
 							cb(null,"fail");
@@ -83,6 +90,7 @@ module.exports = function(Member) {
 					//TODO: error handling
 					if(err)
 						console.log(err);
+					console.log(idk.car);
 					idk.car.forEach(function(ka,index,array){
 						// user.owns.create(data, function(err,own){
 						// 	if(err)
@@ -92,6 +100,7 @@ module.exports = function(Member) {
 						// 			console.log(err);
 						// 	});
 						// });
+						console.log(ka);
 						veh.create(ka,function(err,vehicle){
 							if(err)
 								console.log(err);
