@@ -170,5 +170,9 @@
   "PendingSeat": {
     "dataSource": "db",
     "public": true
+  },
+  "container": {
+    "dataSource": "fileUpload",
+    "public": true
   }
 }
