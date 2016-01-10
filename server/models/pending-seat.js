@@ -85,15 +85,20 @@ module.exports = function(PendingSeat) {
 									console.log(err);
 									cb(err, null);
 								} else{
-									offerQ.updateAttributes({"is_full": false}, function(err, offer){
-										if (err){
-											console.log(err);
-											cb(err, null);
-										} else{
-											console.log("PendingSeat removed: ", pendingS.id);
-											cb(null, pendingS);
-										}
-									});
+									if (offerQ != null){
+										offerQ.updateAttributes({"is_full": false}, function(err, offer){
+											if (err){
+												console.log(err);
+												cb(err, null);
+											} else{
+												console.log("PendingSeat removed: ", pendingS.id);
+												cb(null, pendingS);
+											}
+										});
+									} else{
+										console.log("PendingSeat removed: ", pendingS.id);
+										cb(null, pendingS);
+									}
 								}
 							});
 						}

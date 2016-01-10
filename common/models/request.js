@@ -12,8 +12,9 @@ module.exports = function(Request) {
 			// console.log(accessToken);
 			var currentUser = ctx && ctx.get('currentUser');
 			console.log('currentUser.username: ', currentUser);
-
-			idk["memberId"]=currentUser.id;
+			if (idk["memberId"] == null){
+				idk["memberId"]=currentUser.id;
+			}
 			if (idk["time"] == null){
 				idk["time"]=new Date();
 			}
@@ -89,9 +90,9 @@ module.exports = function(Request) {
 			var Ride=app.models.Ride;
 			var Member=app.models.Member;
 			
-			console.log(ride);
-			console.log("123");
-			console.log(idk);
+			// console.log(ride);
+			// console.log("123");
+			// console.log(idk);
 			console.log(idk.memberId);
 
 			Member.findById(idk.memberId,function(err,Mem){	
@@ -108,7 +109,7 @@ module.exports = function(Request) {
 					rideIns.own(function(err,ownIns){
 						ownIns.vehicle(function(err,vehicleIns){
 							var array=[];
-							console.log(Mem.deviceToken);
+							// console.log(Mem.deviceToken);
 							array.push(Mem.deviceToken+"");
 							obj["tokens"]=array;
 
@@ -116,6 +117,7 @@ module.exports = function(Request) {
 								"alert":"Found a match!",
 								"android":{
 									"payload":{
+										"status": "match",
 										"ridetime": ride.time,
 										"destination": ride.destination_name,
 										"license_number": vehicleIns.license_number	//debt solved?,
@@ -127,7 +129,7 @@ module.exports = function(Request) {
 							//var auth="basic "+Base64.encode("83203dab26c5e0e1904d2d822f6eef3efb4eebc0b16bea7d"+":");
 							var auth="basic "+Base64.encode("766e0edd8c6e41a81da5b8d141b4181b5b7d4f93d4c4a6ab"+":");
 
-							console.log(obj.notification.android.payload);
+							// console.log(obj.notification.android.payload);
 
 							req.post({
 								url: "https://push.ionic.io/api/v1/push",
@@ -394,7 +396,6 @@ module.exports = function(Request) {
 	}
 
 	Request.addRequestAgain = function(data, cb){
-		console.log(data);
 		Request.findById(data.requestId, function(err, req){
 			if (err){
 				console.log(err);
@@ -406,6 +407,7 @@ module.exports = function(Request) {
 					newReqObj.pickup_name = req.pickup_name;
 					newReqObj.gender_preference = req.gender_preference;
 					newReqObj.time = req.time;
+					newReqObj.memberId = req.memberId;
 					Request.addRequest(newReqObj, function(err, newReq){
 						if (err){
 							console.log(err);

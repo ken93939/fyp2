@@ -5493,6 +5493,41 @@ module.factory(
           method: "POST"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride#cancelRide
+         * @methodOf lbServices.Ride
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `status` – `{string=}` - 
+         */
+        "cancelRide": {
+          url: urlBase + "/Rides/cancelRide",
+          method: "GET"
+        },
+
         // INTERNAL. Use Member.rides.findById() instead.
         "::findById::Member::rides": {
           params: {
@@ -10450,6 +10485,45 @@ module.factory(
          */
         "push": {
           url: urlBase + "/requests/push",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request#pushNewRequest
+         * @methodOf lbServices.Request
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `status` – `{string=}` - 
+         */
+        "pushNewRequest": {
+          url: urlBase + "/requests/pushNewRequest",
           method: "POST"
         },
 
@@ -16503,10 +16577,49 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `offer` – `{object=}` - 
+         *  - `offerQ` – `{object=}` - 
          */
         "possibleOffer": {
           url: urlBase + "/OfferQueues/possibleOffer",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue#removeOffer
+         * @methodOf lbServices.OfferQueue
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `offerQ` – `{object=}` - 
+         */
+        "removeOffer": {
+          url: urlBase + "/OfferQueues/removeOffer",
           method: "POST"
         },
 

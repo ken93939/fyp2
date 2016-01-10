@@ -22,15 +22,20 @@ module.exports = function(MatchedSeat) {
 									console.log(err);
 									cb(err, null);
 								} else{
-									offerQ.updateAttributes({"is_full": false}, function(err, offer){
-										if (err){
-											console.log(err);
-											cb(err, null);
-										} else{
-											console.log("MatchedSeat removed: ", matchedS.id);
-											cb(null, matchedS);
-										}
-									});
+									if (offerQ != null){
+										offerQ.updateAttributes({"is_full": false}, function(err, offer){
+											if (err){
+												console.log(err);
+												cb(err, null);
+											} else{
+												console.log("MatchedSeat removed: ", matchedS.id);
+												cb(null, matchedS);
+											}
+										});
+									} else{
+										console.log("MatchedSeat removed: ", matchedS.id);
+										cb(null, matchedS);
+									}
 								}
 							});
 						}

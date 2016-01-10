@@ -64,10 +64,54 @@ module.exports = function(OfferQueue) {
 		});
 	}
 
+	OfferQueue.removeOffer = function(data, cb){
+		OfferQueue.findOne({"where": {"rideId": data.rideId}}, function(err, offerQ){
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				console.log(offerQ);
+				if (offerQ != null){
+					offerQ.destroy(function(err){
+						if (err){
+							console.log(err);
+							cb(err, null);
+						} else{
+							// set ride status to inactive
+							offerQ.ride(function(err, ride){
+								if (err){
+									console.log(err);
+									cb(err, null);
+								} else{
+									ride.updateAttributes({"status": "inactive"}, function(err, req){
+										if (err){
+											console.log(err);
+											cb(err, null);
+										} else{
+											cb(null, offerQ);
+										}
+									});
+								}
+							});
+						}
+					});
+				} else{
+					cb(null, offerQ);
+				}
+			}
+		});
+	}
+
 	OfferQueue.remoteMethod('possibleOffer', {
 		http: {path: '/possibleOffer', verb: 'post'},
 		accepts: {arg: 'request', type: 'object', http: {source:'body'}},
-		returns: {arg: 'offer', type: 'object'}
+		returns: {arg: 'offerQ', type: 'object'}
+	});
+
+	OfferQueue.remoteMethod('removeOffer', {
+		http: {path: '/removeOffer', verb: 'post'},
+		accepts: {arg: 'data', type: 'object', http: {source:'body'}},
+		returns: {arg: 'offerQ', type: 'object'}
 	});
 
 };
