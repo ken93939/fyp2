@@ -26,7 +26,7 @@ module.exports = function(Own) {
 					console.log(currentUser.id);
 					console.log(eachown);
 
-					eachown.vehicle(function(err,veh){
+					eachown.vehicle({},function(err,veh){
 						if(err)
 							console.log(err);
 						console.log(veh);

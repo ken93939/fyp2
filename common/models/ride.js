@@ -26,75 +26,88 @@ module.exports = function(Ride) {
 	    	}
 	    	//TODO: fix the ownid done?
 			var ownModel=app.models.Own;
-			ownModel.find({where: {memberId: currentUser.id}},function(err,ownIns){
-				ownIns.forEach(function(oIns){
-					oIns.vehicle(function(err,veh){
-						if(err){
-							console.log(err);
-							cb(err,null);					
-						}
-						if(idk.license_number==veh.license_number){
-							idk["ownId"]=oIns.id;
-							Ride.create(idk,function(err,ride){
+			var veh=app.models.Vehicle;
+			veh.findOne({where: {license_number: Ride.license_number}},function(err,vehModel){
+				if(err){
+					console.log(err);
+					cb(err,null);
+				}
+				else if(vehModel.using){
+					console.log("car is occupied");
+					cb(null,{"using": true});
+				}
+				else{
+					ownModel.find({where: {memberId: currentUser.id}},function(err,ownIns){
+						ownIns.forEach(function(oIns){
+							oIns.vehicle(function(err,veh){
 								if(err){
 									console.log(err);
-									cb(err,null);						
+									cb(err,null);					
 								}
-								console.log(ride);
-								// Algorithm 
-								var OfferQueue = app.models.OfferQueue;
-								idk.rideId = ride.id;
-								idk.member_gender = currentUser.gender;
-								OfferQueue.create(idk, function(err, offerQ){
-									if(err){
-										console.log(err);
-										cb(err, null);
-									} else{
-										var Icon = app.models.Icon;
-										Icon.count({}, function(err, iconCount){
-											if (err){
+								if(idk.license_number==veh.license_number){
+									idk["ownId"]=oIns.id;
+									Ride.create(idk,function(err,ride){
+										if(err){
+											console.log(err);
+											cb(err,null);						
+										}
+										console.log(ride);
+										// Algorithm 
+										var OfferQueue = app.models.OfferQueue;
+										idk.rideId = ride.id;
+										idk.member_gender = currentUser.gender;
+										OfferQueue.create(idk, function(err, offerQ){
+											if(err){
 												console.log(err);
 												cb(err, null);
 											} else{
-												Icon.find({"limit": 1, "skip": ride.id % iconCount}, function(err, icon){
+												var Icon = app.models.Icon;
+												Icon.count({}, function(err, iconCount){
 													if (err){
 														console.log(err);
 														cb(err, null);
 													} else{
-														console.log("match_icon for driver: ", icon[0]);
-														cb(null, {"matchicon": icon[0].match_icon});
+														Icon.find({"limit": 1, "skip": ride.id % iconCount}, function(err, icon){
+															if (err){
+																console.log(err);
+																cb(err, null);
+															} else{
+																console.log("match_icon for driver: ", icon[0]);
+																cb(null, {"matchicon": icon[0].match_icon});
+															}
+														});
 													}
+												});
+												// push to first k possible matched passengers 
+												Ride.checkAndPush(offerQ, ride, ride.seat_number, false, function(msg){
+													console.log(msg);
 												});
 											}
 										});
-										// push to first k possible matched passengers 
-										Ride.checkAndPush(offerQ, ride, ride.seat_number, false, function(msg){
-											console.log(msg);
-										});
-									}
-								});
+									});
+								}
 							});
-						}
+						});
+						// if(err){
+						// 	console.log(err);
+						// 	cb(err,null);					
+						// }
+						
+						// idk["ownId"]=ownIns.id;
+						// Ride.create(idk,function(err,ride){
+						// 	if(err){
+						// 		console.log(err);
+						// 		cb(err,null);						
+						// 	}
+						// 	// Algorithm 
+						// 	var OfferQueue = app.models.OfferQueue;
+						// 	idk.rideId = ride.id;
+						// 	OfferQueue.create(idk, function(err, offerQ){
+						// 		cb(null, offerQ);
+						// 	});
+						// });
 					});
-				});
-				// if(err){
-				// 	console.log(err);
-				// 	cb(err,null);					
-				// }
-				
-				// idk["ownId"]=ownIns.id;
-				// Ride.create(idk,function(err,ride){
-				// 	if(err){
-				// 		console.log(err);
-				// 		cb(err,null);						
-				// 	}
-				// 	// Algorithm 
-				// 	var OfferQueue = app.models.OfferQueue;
-				// 	idk.rideId = ride.id;
-				// 	OfferQueue.create(idk, function(err, offerQ){
-				// 		cb(null, offerQ);
-				// 	});
-				// });
+				}
 			});
 		}
 		catch(err){

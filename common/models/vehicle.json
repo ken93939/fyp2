@@ -15,6 +15,10 @@
     },
     "maker": {
       "type": "string"
+    },
+    "using": {
+      "type": "boolean",
+      "default": false
     }
   },
   "validations": [],
