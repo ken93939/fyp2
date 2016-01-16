@@ -112,7 +112,8 @@ var ride_array=[
   "beforeArrive": 15,
   "status": "inactive",
   "gender_preference": true,
-  "ownId": 1
+  "ownId": 1,
+  "memberId": 1
 },
 {
   "id": 2,
@@ -121,7 +122,8 @@ var ride_array=[
   "beforeArrive": 10,
   "status": "inactive",
   "gender_preference": false,
-  "ownId": 2
+  "ownId": 1,
+  "memberId": 1
 }
 ]
 
