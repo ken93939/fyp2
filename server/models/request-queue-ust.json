@@ -1,0 +1,24 @@
+{
+  "name": "RequestQueueUST",
+  "base": "request",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "member_gender": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "request": {
+      "type": "belongsTo",
+      "model": "request",
+      "foreignKey": "requestId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

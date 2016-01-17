@@ -19,12 +19,16 @@ module.exports = function(Ride) {
 			// idk["time"]=new Date(d.getTime()+idk.beforeArrive*60000);
 
 			idk["memberId"]=currentUser.id;
-			if(idk.destination_name=="Hang Hau"){
-	    		idk["pickup_name"]="North Gate";
-	    	}
-	    	else{
-	    		idk["pickup_name"]="South Gate";
-	    	}
+			if (idk.leaveUst){
+				if (idk.destination_name == "Hang Hau"){
+					idk["pickup_name"] = "North Gate";
+				} else if (idk.destination_name == "Choi Hung"){
+					idk["pickup_name"] = "South Gate";
+				}
+			} else{
+				idk["pickup_name"] = idk.destination_name;
+				idk["destination_name"] = "HKUST";
+			}
 	    	//TODO: fix the ownid done?
 			var ownModel=app.models.Own;
 			var veh=app.models.Vehicle;
@@ -54,7 +58,7 @@ module.exports = function(Ride) {
 										}
 										console.log(ride);
 										// Algorithm 
-										var OfferQueue = app.models.OfferQueue;
+										var OfferQueue = idk.leaveUst? app.models.OfferQueue: app.models.OfferQueueUST;
 										idk.rideId = ride.id;
 										idk.member_gender = currentUser.gender;
 										OfferQueue.create(idk, function(err, offerQ){
@@ -80,7 +84,7 @@ module.exports = function(Ride) {
 													}
 												});
 												// push to first k possible matched passengers 
-												Ride.checkAndPush(offerQ, ride, ride.seat_number, false, function(msg){
+												Ride.checkAndPush(idk.leaveUst, offerQ, ride, ride.seat_number, false, function(msg){
 													console.log(msg);
 												});
 											}
@@ -89,24 +93,6 @@ module.exports = function(Ride) {
 								}
 							});
 						});
-						// if(err){
-						// 	console.log(err);
-						// 	cb(err,null);					
-						// }
-						
-						// idk["ownId"]=ownIns.id;
-						// Ride.create(idk,function(err,ride){
-						// 	if(err){
-						// 		console.log(err);
-						// 		cb(err,null);						
-						// 	}
-						// 	// Algorithm 
-						// 	var OfferQueue = app.models.OfferQueue;
-						// 	idk.rideId = ride.id;
-						// 	OfferQueue.create(idk, function(err, offerQ){
-						// 		cb(null, offerQ);
-						// 	});
-						// });
 					});
 				}
 			});
@@ -128,35 +114,35 @@ module.exports = function(Ride) {
 		});
 	}
 
-	Ride.checkAndPush = function(offerQ, ride, remaining, err, cb){
+	Ride.checkAndPush = function(leaveUst, offerQ, ride, remaining, err, cb){
 		if (remaining > 0){
-			var RequestQueue = app.models.RequestQueue;
+			var RequestQueue = leaveUst? app.models.RequestQueue: app.models.RequestQueueUST;
 			RequestQueue.possibleRequest(offerQ, function(err, requestQ){
 				if (err){
 					console.log(err);
-					Ride.checkAndPush(offerQ, ride, remaining-1, true, cb);
+					Ride.checkAndPush(leaveUst, offerQ, ride, remaining-1, true, cb);
 				} else{
 					if (requestQ != null){
 						requestQ.request(function(err, req){
 							if (err){
 								console.log(err);
-								Ride.checkAndPush(offerQ, ride, remaining-1, true, cb);
+								Ride.checkAndPush(leaveUst, offerQ, ride, remaining-1, true, cb);
 							} else{
 								Ride.push(ride, req, function(err, instance){
 									if (err){
 										console.log(err);
-										Ride.checkAndPush(offerQ, ride, remaining-1, true, cb);
+										Ride.checkAndPush(leaveUst, offerQ, ride, remaining-1, true, cb);
 									} else{
 										console.log("Request: ", req);
 										console.log("Ride: ", ride);
-										Ride.checkAndPush(offerQ, ride, remaining-1, err, cb);
+										Ride.checkAndPush(leaveUst, offerQ, ride, remaining-1, err, cb);
 									}
 								});
 							}
 						});
 					} else{
 						console.log("No requestQ");
-						Ride.checkAndPush(offerQ, ride, remaining-1, err, cb);
+						Ride.checkAndPush(leaveUst, offerQ, ride, remaining-1, err, cb);
 					}
 				}
 			});
@@ -169,12 +155,12 @@ module.exports = function(Ride) {
 		}
 	}
 
-	Ride.cancelRide = function(cb){
+	Ride.cancelRide = function(idk, cb){
 		var ctx=loopback.getCurrentContext();
 		var accessToken=ctx.get('accessToken');
 		var currentUser = ctx && ctx.get('currentUser');
 		if (currentUser != null){
-			var OfferQueue = app.models.OfferQueue;
+			var OfferQueue = idk.leaveUst? app.models.OfferQueue: app.models.OfferQueueUST;
 			OfferQueue.findOne({"where": {"memberId": currentUser.id}}, function(err, offerQ){
 				if (err){
 					console.log(err);
@@ -182,7 +168,6 @@ module.exports = function(Ride) {
 				} else{
 					if (offerQ != null){
 						// remove from Ride & OfferQueue
-						var OfferQueue = app.models.OfferQueue;
 						var data = {};
 						data.rideId = offerQ.rideId;
 						OfferQueue.removeOffer(data, function(err, offerQIns){
@@ -199,7 +184,7 @@ module.exports = function(Ride) {
 										cb(err, null);
 									} else{
 										// remove pending passenger
-										var PendingSeat = app.models.PendingSeat;
+										var PendingSeat = idk.leaveUst? app.models.PendingSeat: app.models.PendingSeatUST;
 										PendingSeat.find({"where": {"rideId": offerQ.rideId}}, function(err, pendingS){
 											if (err){
 												console.log(err);
@@ -209,20 +194,29 @@ module.exports = function(Ride) {
 												pendingS.forEach(function(item, index, array){
 													var data = {};
 													data.requestId = item.requestId;
+													data.leaveUst = idk.leaveUst;
 													PendingSeat.removePending(data, function(err, pendS){
 														if (err){
 															console.log(err);
 														} else{
-															// create new requests(with original time)
-															var Request = app.models.Request;
-															Request.addRequestAgain(data, function(err, req){
+															// remove RequestQueue(if exist)
+															var RequestQueue = idk.leaveUst? app.models.RequestQueue: app.models.RequestQueueUST;
+															RequestQueue.removeRequest(data, function(err, requestQ){
 																if (err){
 																	console.log(err);
 																} else{
-																	// push to passenger
-																	Ride.pushNewRequest(req, function(err, msg){
+																	// create new requests(with original time)
+																	var Request = app.models.Request;
+																	Request.addRequestAgain(data, function(err, req){
 																		if (err){
 																			console.log(err);
+																		} else{
+																			// push to passenger
+																			Ride.pushNewRequest(req, function(err, msg){
+																				if (err){
+																					console.log(err);
+																				}
+																			});
 																		}
 																	});
 																}
@@ -231,7 +225,7 @@ module.exports = function(Ride) {
 													});
 												});
 												// remove matched passenger
-												var MatchedSeat = app.models.MatchedSeat;
+												var MatchedSeat = idk.leaveUst? app.models.MatchedSeat: app.models.MatchedSeatUST;
 												MatchedSeat.find({"where": {"rideId": offerQ.rideId}}, function(err, matchedS){
 													if (err){
 														console.log(err);
@@ -241,6 +235,7 @@ module.exports = function(Ride) {
 														matchedS.forEach(function(item, index, array){
 															var data = {};
 															data.requestId = item.requestId;
+															data.leaveUst = idk.leaveUst;
 															MatchedSeat.removeMatched(data, function(err, matchS){
 																if (err){
 																	console.log(err);
@@ -373,7 +368,8 @@ module.exports = function(Ride) {
 	Ride.remoteMethod(
 		'cancelRide',
 		{
-			http: {path: '/cancelRide', verb: 'get'},
+			http: {path: '/cancelRide', verb: 'post'},
+			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
 			returns: {arg: 'status', type: 'string'}
 		}
 	);
