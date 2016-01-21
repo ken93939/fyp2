@@ -174,5 +174,9 @@
   "container": {
     "dataSource": "fileUpload",
     "public": true
+  },
+  "admin": {
+    "dataSource": "mySQL",
+    "public": true
   }
 }

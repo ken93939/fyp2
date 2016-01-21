@@ -16,6 +16,23 @@ var destination_array=[
 }
 ];
 
+var admin_array=[
+{
+  "password": "123456",
+  "username": "admin",
+  "email": "hkustfyp2016@gmail.com",
+  "emailVerified": 1,
+  "id": 1
+},
+{
+  "password": "123456",
+  "username": "admin2",
+  "email": "admin@hkust.com",
+  "emailVerified": 1,
+  "id": 2
+}
+];
+
 var member_array=[
 {
   "first_name": "ken",
@@ -341,6 +358,24 @@ dataSource.automigrate('Icon', function(err) {
           console.log("ICON_ko");
         }
       });
+    });
+  });
+});
+
+dataSource.automigrate('admin', function(err) {
+  if(err) throw err;
+  console.log("Admin!");
+  var admin=app.models.admin;
+  var count=admin_array.length;
+  admin_array.forEach(function(Admin){
+    admin.create(Admin,function(err,record){
+      if(err)
+        return console.log(err);
+      console.log("Admin_done",record);
+      count--;
+      if(count==0){
+        console.log("admin_ko");
+      }
     });
   });
 });
