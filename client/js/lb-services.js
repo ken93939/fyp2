@@ -2696,6 +2696,18 @@ module.factory(
           method: "GET"
         },
 
+        // INTERNAL. Use OfferQueueUST.member() instead.
+        "::get::OfferQueueUST::member": {
+          url: urlBase + "/OfferQueueUSTs/:id/member",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.member() instead.
+        "::get::RequestQueueUST::member": {
+          url: urlBase + "/RequestQueueUSTs/:id/member",
+          method: "GET"
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.Member#getCurrent
@@ -4932,6 +4944,87 @@ module.factory(
           method: "PUT"
         },
 
+        // INTERNAL. Use Ride.offerQueueUST.findById() instead.
+        "prototype$__findById__offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/offerQueueUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.offerQueueUST.destroyById() instead.
+        "prototype$__destroyById__offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/offerQueueUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Ride.offerQueueUST.updateById() instead.
+        "prototype$__updateById__offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/offerQueueUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST.findById() instead.
+        "prototype$__findById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/pendingSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST.destroyById() instead.
+        "prototype$__destroyById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/pendingSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST.updateById() instead.
+        "prototype$__updateById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/pendingSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST.findById() instead.
+        "prototype$__findById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/matchedSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST.destroyById() instead.
+        "prototype$__destroyById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/matchedSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST.updateById() instead.
+        "prototype$__updateById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/matchedSeatUST/:fk",
+          method: "PUT"
+        },
+
         // INTERNAL. Use Ride.joins() instead.
         "prototype$__get__joins": {
           isArray: true,
@@ -5029,6 +5122,81 @@ module.factory(
         // INTERNAL. Use Ride.pendingSeat.count() instead.
         "prototype$__count__pendingSeat": {
           url: urlBase + "/Rides/:id/pendingSeat/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.offerQueueUST() instead.
+        "prototype$__get__offerQueueUST": {
+          isArray: true,
+          url: urlBase + "/Rides/:id/offerQueueUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.offerQueueUST.create() instead.
+        "prototype$__create__offerQueueUST": {
+          url: urlBase + "/Rides/:id/offerQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Ride.offerQueueUST.destroyAll() instead.
+        "prototype$__delete__offerQueueUST": {
+          url: urlBase + "/Rides/:id/offerQueueUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Ride.offerQueueUST.count() instead.
+        "prototype$__count__offerQueueUST": {
+          url: urlBase + "/Rides/:id/offerQueueUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST() instead.
+        "prototype$__get__pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/Rides/:id/pendingSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST.create() instead.
+        "prototype$__create__pendingSeatUST": {
+          url: urlBase + "/Rides/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST.destroyAll() instead.
+        "prototype$__delete__pendingSeatUST": {
+          url: urlBase + "/Rides/:id/pendingSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST.count() instead.
+        "prototype$__count__pendingSeatUST": {
+          url: urlBase + "/Rides/:id/pendingSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST() instead.
+        "prototype$__get__matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/Rides/:id/matchedSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST.create() instead.
+        "prototype$__create__matchedSeatUST": {
+          url: urlBase + "/Rides/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST.destroyAll() instead.
+        "prototype$__delete__matchedSeatUST": {
+          url: urlBase + "/Rides/:id/matchedSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST.count() instead.
+        "prototype$__count__matchedSeatUST": {
+          url: urlBase + "/Rides/:id/matchedSeatUST/count",
           method: "GET"
         },
 
@@ -5548,6 +5716,10 @@ module.factory(
          *   This method does not accept any parameters.
          *   Supply an empty object or omit this argument altogether.
          *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
          *
@@ -5564,7 +5736,7 @@ module.factory(
          */
         "cancelRide": {
           url: urlBase + "/Rides/cancelRide",
-          method: "GET"
+          method: "POST"
         },
 
         /**
@@ -5863,6 +6035,24 @@ module.factory(
         // INTERNAL. Use PendingSeat.ride() instead.
         "::get::PendingSeat::ride": {
           url: urlBase + "/PendingSeats/:id/ride",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.ride() instead.
+        "::get::OfferQueueUST::ride": {
+          url: urlBase + "/OfferQueueUSTs/:id/ride",
+          method: "GET"
+        },
+
+        // INTERNAL. Use PendingSeatUST.ride() instead.
+        "::get::PendingSeatUST::ride": {
+          url: urlBase + "/PendingSeatUSTs/:id/ride",
+          method: "GET"
+        },
+
+        // INTERNAL. Use MatchedSeatUST.ride() instead.
+        "::get::MatchedSeatUST::ride": {
+          url: urlBase + "/MatchedSeatUSTs/:id/ride",
           method: "GET"
         },
       }
@@ -7355,6 +7545,909 @@ module.factory(
           var action = TargetResource["::updateById::Ride::pendingSeat"];
           return action.apply(R, arguments);
         };
+    /**
+     * @ngdoc object
+     * @name lbServices.Ride.offerQueueUST
+     * @header lbServices.Ride.offerQueueUST
+     * @object
+     * @description
+     *
+     * The object `Ride.offerQueueUST` groups methods
+     * manipulating `OfferQueueUST` instances related to `Ride`.
+     *
+     * Call {@link lbServices.Ride#offerQueueUST Ride.offerQueueUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride#offerQueueUST
+         * @methodOf lbServices.Ride
+         *
+         * @description
+         *
+         * Queries offerQueueUST of Ride.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::get::Ride::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.offerQueueUST#count
+         * @methodOf lbServices.Ride.offerQueueUST
+         *
+         * @description
+         *
+         * Counts offerQueueUST of Ride.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.offerQueueUST.count = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::count::Ride::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.offerQueueUST#create
+         * @methodOf lbServices.Ride.offerQueueUST
+         *
+         * @description
+         *
+         * Creates a new instance in offerQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST.create = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::create::Ride::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.offerQueueUST#createMany
+         * @methodOf lbServices.Ride.offerQueueUST
+         *
+         * @description
+         *
+         * Creates a new instance in offerQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST.createMany = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::createMany::Ride::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.offerQueueUST#destroyAll
+         * @methodOf lbServices.Ride.offerQueueUST
+         *
+         * @description
+         *
+         * Deletes all offerQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.offerQueueUST.destroyAll = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::delete::Ride::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.offerQueueUST#destroyById
+         * @methodOf lbServices.Ride.offerQueueUST
+         *
+         * @description
+         *
+         * Delete a related item by id for offerQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for offerQueueUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.offerQueueUST.destroyById = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::destroyById::Ride::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.offerQueueUST#findById
+         * @methodOf lbServices.Ride.offerQueueUST
+         *
+         * @description
+         *
+         * Find a related item by id for offerQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for offerQueueUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST.findById = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::findById::Ride::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.offerQueueUST#updateById
+         * @methodOf lbServices.Ride.offerQueueUST
+         *
+         * @description
+         *
+         * Update a related item by id for offerQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for offerQueueUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST.updateById = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::updateById::Ride::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Ride.pendingSeatUST
+     * @header lbServices.Ride.pendingSeatUST
+     * @object
+     * @description
+     *
+     * The object `Ride.pendingSeatUST` groups methods
+     * manipulating `PendingSeatUST` instances related to `Ride`.
+     *
+     * Call {@link lbServices.Ride#pendingSeatUST Ride.pendingSeatUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride#pendingSeatUST
+         * @methodOf lbServices.Ride
+         *
+         * @description
+         *
+         * Queries pendingSeatUST of Ride.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::get::Ride::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.pendingSeatUST#count
+         * @methodOf lbServices.Ride.pendingSeatUST
+         *
+         * @description
+         *
+         * Counts pendingSeatUST of Ride.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.pendingSeatUST.count = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::count::Ride::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.pendingSeatUST#create
+         * @methodOf lbServices.Ride.pendingSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.create = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::create::Ride::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.pendingSeatUST#createMany
+         * @methodOf lbServices.Ride.pendingSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.createMany = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::createMany::Ride::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.pendingSeatUST#destroyAll
+         * @methodOf lbServices.Ride.pendingSeatUST
+         *
+         * @description
+         *
+         * Deletes all pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeatUST.destroyAll = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::delete::Ride::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.pendingSeatUST#destroyById
+         * @methodOf lbServices.Ride.pendingSeatUST
+         *
+         * @description
+         *
+         * Delete a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeatUST.destroyById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::destroyById::Ride::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.pendingSeatUST#findById
+         * @methodOf lbServices.Ride.pendingSeatUST
+         *
+         * @description
+         *
+         * Find a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.findById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::findById::Ride::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.pendingSeatUST#updateById
+         * @methodOf lbServices.Ride.pendingSeatUST
+         *
+         * @description
+         *
+         * Update a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.updateById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::updateById::Ride::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Ride.matchedSeatUST
+     * @header lbServices.Ride.matchedSeatUST
+     * @object
+     * @description
+     *
+     * The object `Ride.matchedSeatUST` groups methods
+     * manipulating `MatchedSeatUST` instances related to `Ride`.
+     *
+     * Call {@link lbServices.Ride#matchedSeatUST Ride.matchedSeatUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride#matchedSeatUST
+         * @methodOf lbServices.Ride
+         *
+         * @description
+         *
+         * Queries matchedSeatUST of Ride.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::get::Ride::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.matchedSeatUST#count
+         * @methodOf lbServices.Ride.matchedSeatUST
+         *
+         * @description
+         *
+         * Counts matchedSeatUST of Ride.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.matchedSeatUST.count = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::count::Ride::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.matchedSeatUST#create
+         * @methodOf lbServices.Ride.matchedSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.create = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::create::Ride::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.matchedSeatUST#createMany
+         * @methodOf lbServices.Ride.matchedSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.createMany = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::createMany::Ride::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.matchedSeatUST#destroyAll
+         * @methodOf lbServices.Ride.matchedSeatUST
+         *
+         * @description
+         *
+         * Deletes all matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeatUST.destroyAll = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::delete::Ride::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.matchedSeatUST#destroyById
+         * @methodOf lbServices.Ride.matchedSeatUST
+         *
+         * @description
+         *
+         * Delete a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeatUST.destroyById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::destroyById::Ride::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.matchedSeatUST#findById
+         * @methodOf lbServices.Ride.matchedSeatUST
+         *
+         * @description
+         *
+         * Find a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.findById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::findById::Ride::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Ride.matchedSeatUST#updateById
+         * @methodOf lbServices.Ride.matchedSeatUST
+         *
+         * @description
+         *
+         * Update a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.updateById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::updateById::Ride::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);
@@ -8032,6 +9125,12 @@ module.factory(
         // INTERNAL. Use OfferQueue.own() instead.
         "::get::OfferQueue::own": {
           url: urlBase + "/OfferQueues/:id/own",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.own() instead.
+        "::get::OfferQueueUST::own": {
+          url: urlBase + "/OfferQueueUSTs/:id/own",
           method: "GET"
         },
       }
@@ -9313,6 +10412,96 @@ module.factory(
           url: urlBase + "/RequestQueues/:id/join",
           method: "DELETE"
         },
+
+        // INTERNAL. Use OfferQueueUST.joins.findById() instead.
+        "::findById::OfferQueueUST::joins": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/joins/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.joins.destroyById() instead.
+        "::destroyById::OfferQueueUST::joins": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/joins/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.joins.updateById() instead.
+        "::updateById::OfferQueueUST::joins": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/joins/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueueUST.joins() instead.
+        "::get::OfferQueueUST::joins": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/joins",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.joins.create() instead.
+        "::create::OfferQueueUST::joins": {
+          url: urlBase + "/OfferQueueUSTs/:id/joins",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.joins.createMany() instead.
+        "::createMany::OfferQueueUST::joins": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/joins",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.joins.destroyAll() instead.
+        "::delete::OfferQueueUST::joins": {
+          url: urlBase + "/OfferQueueUSTs/:id/joins",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.joins.count() instead.
+        "::count::OfferQueueUST::joins": {
+          url: urlBase + "/OfferQueueUSTs/:id/joins/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.join() instead.
+        "::get::RequestQueueUST::join": {
+          url: urlBase + "/RequestQueueUSTs/:id/join",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.join.create() instead.
+        "::create::RequestQueueUST::join": {
+          url: urlBase + "/RequestQueueUSTs/:id/join",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.join.createMany() instead.
+        "::createMany::RequestQueueUST::join": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/join",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.join.update() instead.
+        "::update::RequestQueueUST::join": {
+          url: urlBase + "/RequestQueueUSTs/:id/join",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueueUST.join.destroy() instead.
+        "::destroy::RequestQueueUST::join": {
+          url: urlBase + "/RequestQueueUSTs/:id/join",
+          method: "DELETE"
+        },
       }
     );
 
@@ -9874,6 +11063,87 @@ module.factory(
           method: "PUT"
         },
 
+        // INTERNAL. Use Request.requestQueueUST.findById() instead.
+        "prototype$__findById__requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/requestQueueUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.requestQueueUST.destroyById() instead.
+        "prototype$__destroyById__requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/requestQueueUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Request.requestQueueUST.updateById() instead.
+        "prototype$__updateById__requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/requestQueueUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST.findById() instead.
+        "prototype$__findById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/pendingSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST.destroyById() instead.
+        "prototype$__destroyById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/pendingSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST.updateById() instead.
+        "prototype$__updateById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/pendingSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST.findById() instead.
+        "prototype$__findById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/matchedSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST.destroyById() instead.
+        "prototype$__destroyById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/matchedSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST.updateById() instead.
+        "prototype$__updateById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/matchedSeatUST/:fk",
+          method: "PUT"
+        },
+
         // INTERNAL. Use Request.requestQueue() instead.
         "prototype$__get__requestQueue": {
           isArray: true,
@@ -9946,6 +11216,81 @@ module.factory(
         // INTERNAL. Use Request.pendingSeat.count() instead.
         "prototype$__count__pendingSeat": {
           url: urlBase + "/requests/:id/pendingSeat/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.requestQueueUST() instead.
+        "prototype$__get__requestQueueUST": {
+          isArray: true,
+          url: urlBase + "/requests/:id/requestQueueUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.requestQueueUST.create() instead.
+        "prototype$__create__requestQueueUST": {
+          url: urlBase + "/requests/:id/requestQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Request.requestQueueUST.destroyAll() instead.
+        "prototype$__delete__requestQueueUST": {
+          url: urlBase + "/requests/:id/requestQueueUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Request.requestQueueUST.count() instead.
+        "prototype$__count__requestQueueUST": {
+          url: urlBase + "/requests/:id/requestQueueUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST() instead.
+        "prototype$__get__pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/requests/:id/pendingSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST.create() instead.
+        "prototype$__create__pendingSeatUST": {
+          url: urlBase + "/requests/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST.destroyAll() instead.
+        "prototype$__delete__pendingSeatUST": {
+          url: urlBase + "/requests/:id/pendingSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST.count() instead.
+        "prototype$__count__pendingSeatUST": {
+          url: urlBase + "/requests/:id/pendingSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST() instead.
+        "prototype$__get__matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/requests/:id/matchedSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST.create() instead.
+        "prototype$__create__matchedSeatUST": {
+          url: urlBase + "/requests/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST.destroyAll() instead.
+        "prototype$__delete__matchedSeatUST": {
+          url: urlBase + "/requests/:id/matchedSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST.count() instead.
+        "prototype$__count__matchedSeatUST": {
+          url: urlBase + "/requests/:id/matchedSeatUST/count",
           method: "GET"
         },
 
@@ -10644,6 +11989,45 @@ module.factory(
           method: "POST"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Request#getQueueSeatNumber
+         * @methodOf lbServices.Request
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `num` – `{obj=}` - 
+         */
+        "getQueueSeatNumber": {
+          url: urlBase + "/requests/getQueueSeatNumber",
+          method: "POST"
+        },
+
         // INTERNAL. Use Member.requests.findById() instead.
         "::findById::Member::requests": {
           params: {
@@ -10867,6 +12251,24 @@ module.factory(
         // INTERNAL. Use PendingSeat.request() instead.
         "::get::PendingSeat::request": {
           url: urlBase + "/PendingSeats/:id/request",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.request() instead.
+        "::get::RequestQueueUST::request": {
+          url: urlBase + "/RequestQueueUSTs/:id/request",
+          method: "GET"
+        },
+
+        // INTERNAL. Use PendingSeatUST.request() instead.
+        "::get::PendingSeatUST::request": {
+          url: urlBase + "/PendingSeatUSTs/:id/request",
+          method: "GET"
+        },
+
+        // INTERNAL. Use MatchedSeatUST.request() instead.
+        "::get::MatchedSeatUST::request": {
+          url: urlBase + "/MatchedSeatUSTs/:id/request",
           method: "GET"
         },
       }
@@ -12217,6 +13619,909 @@ module.factory(
           var action = TargetResource["::updateById::request::pendingSeat"];
           return action.apply(R, arguments);
         };
+    /**
+     * @ngdoc object
+     * @name lbServices.Request.requestQueueUST
+     * @header lbServices.Request.requestQueueUST
+     * @object
+     * @description
+     *
+     * The object `Request.requestQueueUST` groups methods
+     * manipulating `RequestQueueUST` instances related to `Request`.
+     *
+     * Call {@link lbServices.Request#requestQueueUST Request.requestQueueUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request#requestQueueUST
+         * @methodOf lbServices.Request
+         *
+         * @description
+         *
+         * Queries requestQueueUST of request.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::get::request::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.requestQueueUST#count
+         * @methodOf lbServices.Request.requestQueueUST
+         *
+         * @description
+         *
+         * Counts requestQueueUST of request.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.requestQueueUST.count = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::count::request::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.requestQueueUST#create
+         * @methodOf lbServices.Request.requestQueueUST
+         *
+         * @description
+         *
+         * Creates a new instance in requestQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST.create = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::create::request::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.requestQueueUST#createMany
+         * @methodOf lbServices.Request.requestQueueUST
+         *
+         * @description
+         *
+         * Creates a new instance in requestQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST.createMany = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::createMany::request::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.requestQueueUST#destroyAll
+         * @methodOf lbServices.Request.requestQueueUST
+         *
+         * @description
+         *
+         * Deletes all requestQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.requestQueueUST.destroyAll = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::delete::request::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.requestQueueUST#destroyById
+         * @methodOf lbServices.Request.requestQueueUST
+         *
+         * @description
+         *
+         * Delete a related item by id for requestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for requestQueueUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.requestQueueUST.destroyById = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::destroyById::request::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.requestQueueUST#findById
+         * @methodOf lbServices.Request.requestQueueUST
+         *
+         * @description
+         *
+         * Find a related item by id for requestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for requestQueueUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST.findById = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::findById::request::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.requestQueueUST#updateById
+         * @methodOf lbServices.Request.requestQueueUST
+         *
+         * @description
+         *
+         * Update a related item by id for requestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for requestQueueUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST.updateById = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::updateById::request::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Request.pendingSeatUST
+     * @header lbServices.Request.pendingSeatUST
+     * @object
+     * @description
+     *
+     * The object `Request.pendingSeatUST` groups methods
+     * manipulating `PendingSeatUST` instances related to `Request`.
+     *
+     * Call {@link lbServices.Request#pendingSeatUST Request.pendingSeatUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request#pendingSeatUST
+         * @methodOf lbServices.Request
+         *
+         * @description
+         *
+         * Queries pendingSeatUST of request.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::get::request::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.pendingSeatUST#count
+         * @methodOf lbServices.Request.pendingSeatUST
+         *
+         * @description
+         *
+         * Counts pendingSeatUST of request.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.pendingSeatUST.count = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::count::request::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.pendingSeatUST#create
+         * @methodOf lbServices.Request.pendingSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.create = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::create::request::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.pendingSeatUST#createMany
+         * @methodOf lbServices.Request.pendingSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.createMany = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::createMany::request::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.pendingSeatUST#destroyAll
+         * @methodOf lbServices.Request.pendingSeatUST
+         *
+         * @description
+         *
+         * Deletes all pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeatUST.destroyAll = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::delete::request::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.pendingSeatUST#destroyById
+         * @methodOf lbServices.Request.pendingSeatUST
+         *
+         * @description
+         *
+         * Delete a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeatUST.destroyById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::destroyById::request::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.pendingSeatUST#findById
+         * @methodOf lbServices.Request.pendingSeatUST
+         *
+         * @description
+         *
+         * Find a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.findById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::findById::request::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.pendingSeatUST#updateById
+         * @methodOf lbServices.Request.pendingSeatUST
+         *
+         * @description
+         *
+         * Update a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.updateById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::updateById::request::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Request.matchedSeatUST
+     * @header lbServices.Request.matchedSeatUST
+     * @object
+     * @description
+     *
+     * The object `Request.matchedSeatUST` groups methods
+     * manipulating `MatchedSeatUST` instances related to `Request`.
+     *
+     * Call {@link lbServices.Request#matchedSeatUST Request.matchedSeatUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request#matchedSeatUST
+         * @methodOf lbServices.Request
+         *
+         * @description
+         *
+         * Queries matchedSeatUST of request.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::get::request::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.matchedSeatUST#count
+         * @methodOf lbServices.Request.matchedSeatUST
+         *
+         * @description
+         *
+         * Counts matchedSeatUST of request.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.matchedSeatUST.count = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::count::request::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.matchedSeatUST#create
+         * @methodOf lbServices.Request.matchedSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.create = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::create::request::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.matchedSeatUST#createMany
+         * @methodOf lbServices.Request.matchedSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.createMany = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::createMany::request::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.matchedSeatUST#destroyAll
+         * @methodOf lbServices.Request.matchedSeatUST
+         *
+         * @description
+         *
+         * Deletes all matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeatUST.destroyAll = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::delete::request::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.matchedSeatUST#destroyById
+         * @methodOf lbServices.Request.matchedSeatUST
+         *
+         * @description
+         *
+         * Delete a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeatUST.destroyById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::destroyById::request::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.matchedSeatUST#findById
+         * @methodOf lbServices.Request.matchedSeatUST
+         *
+         * @description
+         *
+         * Find a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.findById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::findById::request::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request.matchedSeatUST#updateById
+         * @methodOf lbServices.Request.matchedSeatUST
+         *
+         * @description
+         *
+         * Update a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.updateById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::updateById::request::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);
@@ -12793,6 +15098,18 @@ module.factory(
         // INTERNAL. Use RequestQueue.pickup() instead.
         "::get::RequestQueue::pickup": {
           url: urlBase + "/RequestQueues/:id/pickup",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pickup() instead.
+        "::get::OfferQueueUST::pickup": {
+          url: urlBase + "/OfferQueueUSTs/:id/pickup",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pickup() instead.
+        "::get::RequestQueueUST::pickup": {
+          url: urlBase + "/RequestQueueUSTs/:id/pickup",
           method: "GET"
         },
       }
@@ -14154,6 +16471,18 @@ module.factory(
         // INTERNAL. Use RequestQueue.destination() instead.
         "::get::RequestQueue::destination": {
           url: urlBase + "/RequestQueues/:id/destination",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.destination() instead.
+        "::get::OfferQueueUST::destination": {
+          url: urlBase + "/OfferQueueUSTs/:id/destination",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.destination() instead.
+        "::get::RequestQueueUST::destination": {
+          url: urlBase + "/RequestQueueUSTs/:id/destination",
           method: "GET"
         },
       }
@@ -16062,6 +18391,87 @@ module.factory(
           method: "PUT"
         },
 
+        // INTERNAL. Use OfferQueue.offerQueueUST.findById() instead.
+        "prototype$__findById__offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/offerQueueUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.offerQueueUST.destroyById() instead.
+        "prototype$__destroyById__offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/offerQueueUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueue.offerQueueUST.updateById() instead.
+        "prototype$__updateById__offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/offerQueueUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST.findById() instead.
+        "prototype$__findById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST.destroyById() instead.
+        "prototype$__destroyById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST.updateById() instead.
+        "prototype$__updateById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST.findById() instead.
+        "prototype$__findById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST.destroyById() instead.
+        "prototype$__destroyById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST.updateById() instead.
+        "prototype$__updateById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST/:fk",
+          method: "PUT"
+        },
+
         // INTERNAL. Use OfferQueue.joins() instead.
         "prototype$__get__joins": {
           isArray: true,
@@ -16159,6 +18569,81 @@ module.factory(
         // INTERNAL. Use OfferQueue.pendingSeat.count() instead.
         "prototype$__count__pendingSeat": {
           url: urlBase + "/OfferQueues/:id/pendingSeat/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.offerQueueUST() instead.
+        "prototype$__get__offerQueueUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueues/:id/offerQueueUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.offerQueueUST.create() instead.
+        "prototype$__create__offerQueueUST": {
+          url: urlBase + "/OfferQueues/:id/offerQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueue.offerQueueUST.destroyAll() instead.
+        "prototype$__delete__offerQueueUST": {
+          url: urlBase + "/OfferQueues/:id/offerQueueUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueue.offerQueueUST.count() instead.
+        "prototype$__count__offerQueueUST": {
+          url: urlBase + "/OfferQueues/:id/offerQueueUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST() instead.
+        "prototype$__get__pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST.create() instead.
+        "prototype$__create__pendingSeatUST": {
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST.destroyAll() instead.
+        "prototype$__delete__pendingSeatUST": {
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST.count() instead.
+        "prototype$__count__pendingSeatUST": {
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST() instead.
+        "prototype$__get__matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST.create() instead.
+        "prototype$__create__matchedSeatUST": {
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST.destroyAll() instead.
+        "prototype$__delete__matchedSeatUST": {
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST.count() instead.
+        "prototype$__count__matchedSeatUST": {
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST/count",
           method: "GET"
         },
 
@@ -16662,6 +19147,45 @@ module.factory(
           method: "POST"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue#getAvalSeatNumber
+         * @methodOf lbServices.OfferQueue
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `seatNum` – `{number=}` - 
+         */
+        "getAvalSeatNumber": {
+          url: urlBase + "/OfferQueues/getAvalSeatNumber",
+          method: "POST"
+        },
+
         // INTERNAL. Use Ride.offerQueue.findById() instead.
         "::findById::Ride::offerQueue": {
           params: {
@@ -16777,6 +19301,65 @@ module.factory(
         // INTERNAL. Use OfferQueue.offerQueue.count() instead.
         "::count::OfferQueue::offerQueue": {
           url: urlBase + "/OfferQueues/:id/offerQueue/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue.findById() instead.
+        "::findById::OfferQueueUST::offerQueue": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue.destroyById() instead.
+        "::destroyById::OfferQueueUST::offerQueue": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue.updateById() instead.
+        "::updateById::OfferQueueUST::offerQueue": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue() instead.
+        "::get::OfferQueueUST::offerQueue": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue.create() instead.
+        "::create::OfferQueueUST::offerQueue": {
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue.createMany() instead.
+        "::createMany::OfferQueueUST::offerQueue": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue.destroyAll() instead.
+        "::delete::OfferQueueUST::offerQueue": {
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue.count() instead.
+        "::count::OfferQueueUST::offerQueue": {
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue/count",
           method: "GET"
         },
       }
@@ -18305,6 +20888,909 @@ module.factory(
           var action = TargetResource["::updateById::OfferQueue::pendingSeat"];
           return action.apply(R, arguments);
         };
+    /**
+     * @ngdoc object
+     * @name lbServices.OfferQueue.offerQueueUST
+     * @header lbServices.OfferQueue.offerQueueUST
+     * @object
+     * @description
+     *
+     * The object `OfferQueue.offerQueueUST` groups methods
+     * manipulating `OfferQueueUST` instances related to `OfferQueue`.
+     *
+     * Call {@link lbServices.OfferQueue#offerQueueUST OfferQueue.offerQueueUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue#offerQueueUST
+         * @methodOf lbServices.OfferQueue
+         *
+         * @description
+         *
+         * Queries offerQueueUST of OfferQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::get::OfferQueue::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.offerQueueUST#count
+         * @methodOf lbServices.OfferQueue.offerQueueUST
+         *
+         * @description
+         *
+         * Counts offerQueueUST of OfferQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.offerQueueUST.count = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::count::OfferQueue::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.offerQueueUST#create
+         * @methodOf lbServices.OfferQueue.offerQueueUST
+         *
+         * @description
+         *
+         * Creates a new instance in offerQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST.create = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::create::OfferQueue::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.offerQueueUST#createMany
+         * @methodOf lbServices.OfferQueue.offerQueueUST
+         *
+         * @description
+         *
+         * Creates a new instance in offerQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST.createMany = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::createMany::OfferQueue::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.offerQueueUST#destroyAll
+         * @methodOf lbServices.OfferQueue.offerQueueUST
+         *
+         * @description
+         *
+         * Deletes all offerQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.offerQueueUST.destroyAll = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::delete::OfferQueue::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.offerQueueUST#destroyById
+         * @methodOf lbServices.OfferQueue.offerQueueUST
+         *
+         * @description
+         *
+         * Delete a related item by id for offerQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for offerQueueUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.offerQueueUST.destroyById = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::destroyById::OfferQueue::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.offerQueueUST#findById
+         * @methodOf lbServices.OfferQueue.offerQueueUST
+         *
+         * @description
+         *
+         * Find a related item by id for offerQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for offerQueueUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST.findById = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::findById::OfferQueue::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.offerQueueUST#updateById
+         * @methodOf lbServices.OfferQueue.offerQueueUST
+         *
+         * @description
+         *
+         * Update a related item by id for offerQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for offerQueueUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST.updateById = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::updateById::OfferQueue::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.OfferQueue.pendingSeatUST
+     * @header lbServices.OfferQueue.pendingSeatUST
+     * @object
+     * @description
+     *
+     * The object `OfferQueue.pendingSeatUST` groups methods
+     * manipulating `PendingSeatUST` instances related to `OfferQueue`.
+     *
+     * Call {@link lbServices.OfferQueue#pendingSeatUST OfferQueue.pendingSeatUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue#pendingSeatUST
+         * @methodOf lbServices.OfferQueue
+         *
+         * @description
+         *
+         * Queries pendingSeatUST of OfferQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::get::OfferQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.pendingSeatUST#count
+         * @methodOf lbServices.OfferQueue.pendingSeatUST
+         *
+         * @description
+         *
+         * Counts pendingSeatUST of OfferQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.pendingSeatUST.count = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::count::OfferQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.pendingSeatUST#create
+         * @methodOf lbServices.OfferQueue.pendingSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.create = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::create::OfferQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.pendingSeatUST#createMany
+         * @methodOf lbServices.OfferQueue.pendingSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.createMany = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::createMany::OfferQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.pendingSeatUST#destroyAll
+         * @methodOf lbServices.OfferQueue.pendingSeatUST
+         *
+         * @description
+         *
+         * Deletes all pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeatUST.destroyAll = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::delete::OfferQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.pendingSeatUST#destroyById
+         * @methodOf lbServices.OfferQueue.pendingSeatUST
+         *
+         * @description
+         *
+         * Delete a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeatUST.destroyById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::destroyById::OfferQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.pendingSeatUST#findById
+         * @methodOf lbServices.OfferQueue.pendingSeatUST
+         *
+         * @description
+         *
+         * Find a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.findById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::findById::OfferQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.pendingSeatUST#updateById
+         * @methodOf lbServices.OfferQueue.pendingSeatUST
+         *
+         * @description
+         *
+         * Update a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.updateById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::updateById::OfferQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.OfferQueue.matchedSeatUST
+     * @header lbServices.OfferQueue.matchedSeatUST
+     * @object
+     * @description
+     *
+     * The object `OfferQueue.matchedSeatUST` groups methods
+     * manipulating `MatchedSeatUST` instances related to `OfferQueue`.
+     *
+     * Call {@link lbServices.OfferQueue#matchedSeatUST OfferQueue.matchedSeatUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue#matchedSeatUST
+         * @methodOf lbServices.OfferQueue
+         *
+         * @description
+         *
+         * Queries matchedSeatUST of OfferQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::get::OfferQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.matchedSeatUST#count
+         * @methodOf lbServices.OfferQueue.matchedSeatUST
+         *
+         * @description
+         *
+         * Counts matchedSeatUST of OfferQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.matchedSeatUST.count = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::count::OfferQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.matchedSeatUST#create
+         * @methodOf lbServices.OfferQueue.matchedSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.create = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::create::OfferQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.matchedSeatUST#createMany
+         * @methodOf lbServices.OfferQueue.matchedSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.createMany = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::createMany::OfferQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.matchedSeatUST#destroyAll
+         * @methodOf lbServices.OfferQueue.matchedSeatUST
+         *
+         * @description
+         *
+         * Deletes all matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeatUST.destroyAll = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::delete::OfferQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.matchedSeatUST#destroyById
+         * @methodOf lbServices.OfferQueue.matchedSeatUST
+         *
+         * @description
+         *
+         * Delete a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeatUST.destroyById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::destroyById::OfferQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.matchedSeatUST#findById
+         * @methodOf lbServices.OfferQueue.matchedSeatUST
+         *
+         * @description
+         *
+         * Find a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.findById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::findById::OfferQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue.matchedSeatUST#updateById
+         * @methodOf lbServices.OfferQueue.matchedSeatUST
+         *
+         * @description
+         *
+         * Update a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.updateById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::updateById::OfferQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);
@@ -18463,6 +21949,87 @@ module.factory(
           method: "PUT"
         },
 
+        // INTERNAL. Use RequestQueue.requestQueueUST.findById() instead.
+        "prototype$__findById__requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/requestQueueUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.requestQueueUST.destroyById() instead.
+        "prototype$__destroyById__requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/requestQueueUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueue.requestQueueUST.updateById() instead.
+        "prototype$__updateById__requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/requestQueueUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST.findById() instead.
+        "prototype$__findById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST.destroyById() instead.
+        "prototype$__destroyById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST.updateById() instead.
+        "prototype$__updateById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST.findById() instead.
+        "prototype$__findById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST.destroyById() instead.
+        "prototype$__destroyById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST.updateById() instead.
+        "prototype$__updateById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST/:fk",
+          method: "PUT"
+        },
+
         // INTERNAL. Use RequestQueue.requestQueue() instead.
         "prototype$__get__requestQueue": {
           isArray: true,
@@ -18535,6 +22102,81 @@ module.factory(
         // INTERNAL. Use RequestQueue.pendingSeat.count() instead.
         "prototype$__count__pendingSeat": {
           url: urlBase + "/RequestQueues/:id/pendingSeat/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.requestQueueUST() instead.
+        "prototype$__get__requestQueueUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueues/:id/requestQueueUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.requestQueueUST.create() instead.
+        "prototype$__create__requestQueueUST": {
+          url: urlBase + "/RequestQueues/:id/requestQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueue.requestQueueUST.destroyAll() instead.
+        "prototype$__delete__requestQueueUST": {
+          url: urlBase + "/RequestQueues/:id/requestQueueUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueue.requestQueueUST.count() instead.
+        "prototype$__count__requestQueueUST": {
+          url: urlBase + "/RequestQueues/:id/requestQueueUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST() instead.
+        "prototype$__get__pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST.create() instead.
+        "prototype$__create__pendingSeatUST": {
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST.destroyAll() instead.
+        "prototype$__delete__pendingSeatUST": {
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST.count() instead.
+        "prototype$__count__pendingSeatUST": {
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST() instead.
+        "prototype$__get__matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST.create() instead.
+        "prototype$__create__matchedSeatUST": {
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST.destroyAll() instead.
+        "prototype$__delete__matchedSeatUST": {
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST.count() instead.
+        "prototype$__count__matchedSeatUST": {
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST/count",
           method: "GET"
         },
 
@@ -19153,6 +22795,65 @@ module.factory(
         // INTERNAL. Use RequestQueue.requestQueue.count() instead.
         "::count::RequestQueue::requestQueue": {
           url: urlBase + "/RequestQueues/:id/requestQueue/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue.findById() instead.
+        "::findById::RequestQueueUST::requestQueue": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue.destroyById() instead.
+        "::destroyById::RequestQueueUST::requestQueue": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue.updateById() instead.
+        "::updateById::RequestQueueUST::requestQueue": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue() instead.
+        "::get::RequestQueueUST::requestQueue": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue.create() instead.
+        "::create::RequestQueueUST::requestQueue": {
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue.createMany() instead.
+        "::createMany::RequestQueueUST::requestQueue": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue.destroyAll() instead.
+        "::delete::RequestQueueUST::requestQueue": {
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue.count() instead.
+        "::count::RequestQueueUST::requestQueue": {
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue/count",
           method: "GET"
         },
       }
@@ -20539,6 +24240,909 @@ module.factory(
           var action = TargetResource["::updateById::RequestQueue::pendingSeat"];
           return action.apply(R, arguments);
         };
+    /**
+     * @ngdoc object
+     * @name lbServices.RequestQueue.requestQueueUST
+     * @header lbServices.RequestQueue.requestQueueUST
+     * @object
+     * @description
+     *
+     * The object `RequestQueue.requestQueueUST` groups methods
+     * manipulating `RequestQueueUST` instances related to `RequestQueue`.
+     *
+     * Call {@link lbServices.RequestQueue#requestQueueUST RequestQueue.requestQueueUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue#requestQueueUST
+         * @methodOf lbServices.RequestQueue
+         *
+         * @description
+         *
+         * Queries requestQueueUST of RequestQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::get::RequestQueue::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.requestQueueUST#count
+         * @methodOf lbServices.RequestQueue.requestQueueUST
+         *
+         * @description
+         *
+         * Counts requestQueueUST of RequestQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.requestQueueUST.count = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::count::RequestQueue::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.requestQueueUST#create
+         * @methodOf lbServices.RequestQueue.requestQueueUST
+         *
+         * @description
+         *
+         * Creates a new instance in requestQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST.create = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::create::RequestQueue::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.requestQueueUST#createMany
+         * @methodOf lbServices.RequestQueue.requestQueueUST
+         *
+         * @description
+         *
+         * Creates a new instance in requestQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST.createMany = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::createMany::RequestQueue::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.requestQueueUST#destroyAll
+         * @methodOf lbServices.RequestQueue.requestQueueUST
+         *
+         * @description
+         *
+         * Deletes all requestQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.requestQueueUST.destroyAll = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::delete::RequestQueue::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.requestQueueUST#destroyById
+         * @methodOf lbServices.RequestQueue.requestQueueUST
+         *
+         * @description
+         *
+         * Delete a related item by id for requestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for requestQueueUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.requestQueueUST.destroyById = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::destroyById::RequestQueue::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.requestQueueUST#findById
+         * @methodOf lbServices.RequestQueue.requestQueueUST
+         *
+         * @description
+         *
+         * Find a related item by id for requestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for requestQueueUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST.findById = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::findById::RequestQueue::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.requestQueueUST#updateById
+         * @methodOf lbServices.RequestQueue.requestQueueUST
+         *
+         * @description
+         *
+         * Update a related item by id for requestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for requestQueueUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST.updateById = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::updateById::RequestQueue::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.RequestQueue.pendingSeatUST
+     * @header lbServices.RequestQueue.pendingSeatUST
+     * @object
+     * @description
+     *
+     * The object `RequestQueue.pendingSeatUST` groups methods
+     * manipulating `PendingSeatUST` instances related to `RequestQueue`.
+     *
+     * Call {@link lbServices.RequestQueue#pendingSeatUST RequestQueue.pendingSeatUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue#pendingSeatUST
+         * @methodOf lbServices.RequestQueue
+         *
+         * @description
+         *
+         * Queries pendingSeatUST of RequestQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::get::RequestQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.pendingSeatUST#count
+         * @methodOf lbServices.RequestQueue.pendingSeatUST
+         *
+         * @description
+         *
+         * Counts pendingSeatUST of RequestQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.pendingSeatUST.count = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::count::RequestQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.pendingSeatUST#create
+         * @methodOf lbServices.RequestQueue.pendingSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.create = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::create::RequestQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.pendingSeatUST#createMany
+         * @methodOf lbServices.RequestQueue.pendingSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.createMany = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::createMany::RequestQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.pendingSeatUST#destroyAll
+         * @methodOf lbServices.RequestQueue.pendingSeatUST
+         *
+         * @description
+         *
+         * Deletes all pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeatUST.destroyAll = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::delete::RequestQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.pendingSeatUST#destroyById
+         * @methodOf lbServices.RequestQueue.pendingSeatUST
+         *
+         * @description
+         *
+         * Delete a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeatUST.destroyById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::destroyById::RequestQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.pendingSeatUST#findById
+         * @methodOf lbServices.RequestQueue.pendingSeatUST
+         *
+         * @description
+         *
+         * Find a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.findById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::findById::RequestQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.pendingSeatUST#updateById
+         * @methodOf lbServices.RequestQueue.pendingSeatUST
+         *
+         * @description
+         *
+         * Update a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.updateById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::updateById::RequestQueue::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.RequestQueue.matchedSeatUST
+     * @header lbServices.RequestQueue.matchedSeatUST
+     * @object
+     * @description
+     *
+     * The object `RequestQueue.matchedSeatUST` groups methods
+     * manipulating `MatchedSeatUST` instances related to `RequestQueue`.
+     *
+     * Call {@link lbServices.RequestQueue#matchedSeatUST RequestQueue.matchedSeatUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue#matchedSeatUST
+         * @methodOf lbServices.RequestQueue
+         *
+         * @description
+         *
+         * Queries matchedSeatUST of RequestQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::get::RequestQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.matchedSeatUST#count
+         * @methodOf lbServices.RequestQueue.matchedSeatUST
+         *
+         * @description
+         *
+         * Counts matchedSeatUST of RequestQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.matchedSeatUST.count = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::count::RequestQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.matchedSeatUST#create
+         * @methodOf lbServices.RequestQueue.matchedSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.create = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::create::RequestQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.matchedSeatUST#createMany
+         * @methodOf lbServices.RequestQueue.matchedSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.createMany = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::createMany::RequestQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.matchedSeatUST#destroyAll
+         * @methodOf lbServices.RequestQueue.matchedSeatUST
+         *
+         * @description
+         *
+         * Deletes all matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeatUST.destroyAll = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::delete::RequestQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.matchedSeatUST#destroyById
+         * @methodOf lbServices.RequestQueue.matchedSeatUST
+         *
+         * @description
+         *
+         * Delete a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeatUST.destroyById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::destroyById::RequestQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.matchedSeatUST#findById
+         * @methodOf lbServices.RequestQueue.matchedSeatUST
+         *
+         * @description
+         *
+         * Find a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.findById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::findById::RequestQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueue.matchedSeatUST#updateById
+         * @methodOf lbServices.RequestQueue.matchedSeatUST
+         *
+         * @description
+         *
+         * Update a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.updateById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::updateById::RequestQueue::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);
@@ -21274,6 +25878,124 @@ module.factory(
         // INTERNAL. Use RequestQueue.matchedSeat.count() instead.
         "::count::RequestQueue::matchedSeat": {
           url: urlBase + "/RequestQueues/:id/matchedSeat/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat.findById() instead.
+        "::findById::OfferQueueUST::matchedSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat.destroyById() instead.
+        "::destroyById::OfferQueueUST::matchedSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat.updateById() instead.
+        "::updateById::OfferQueueUST::matchedSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat() instead.
+        "::get::OfferQueueUST::matchedSeat": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat.create() instead.
+        "::create::OfferQueueUST::matchedSeat": {
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat.createMany() instead.
+        "::createMany::OfferQueueUST::matchedSeat": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat.destroyAll() instead.
+        "::delete::OfferQueueUST::matchedSeat": {
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat.count() instead.
+        "::count::OfferQueueUST::matchedSeat": {
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat.findById() instead.
+        "::findById::RequestQueueUST::matchedSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat.destroyById() instead.
+        "::destroyById::RequestQueueUST::matchedSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat.updateById() instead.
+        "::updateById::RequestQueueUST::matchedSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat() instead.
+        "::get::RequestQueueUST::matchedSeat": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat.create() instead.
+        "::create::RequestQueueUST::matchedSeat": {
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat.createMany() instead.
+        "::createMany::RequestQueueUST::matchedSeat": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat.destroyAll() instead.
+        "::delete::RequestQueueUST::matchedSeat": {
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat.count() instead.
+        "::count::RequestQueueUST::matchedSeat": {
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat/count",
           method: "GET"
         },
       }
@@ -22305,6 +27027,124 @@ module.factory(
           url: urlBase + "/RequestQueues/:id/pendingSeat/count",
           method: "GET"
         },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat.findById() instead.
+        "::findById::OfferQueueUST::pendingSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat.destroyById() instead.
+        "::destroyById::OfferQueueUST::pendingSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat.updateById() instead.
+        "::updateById::OfferQueueUST::pendingSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat() instead.
+        "::get::OfferQueueUST::pendingSeat": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat.create() instead.
+        "::create::OfferQueueUST::pendingSeat": {
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat.createMany() instead.
+        "::createMany::OfferQueueUST::pendingSeat": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat.destroyAll() instead.
+        "::delete::OfferQueueUST::pendingSeat": {
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat.count() instead.
+        "::count::OfferQueueUST::pendingSeat": {
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat.findById() instead.
+        "::findById::RequestQueueUST::pendingSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat.destroyById() instead.
+        "::destroyById::RequestQueueUST::pendingSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat.updateById() instead.
+        "::updateById::RequestQueueUST::pendingSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat() instead.
+        "::get::RequestQueueUST::pendingSeat": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat.create() instead.
+        "::create::RequestQueueUST::pendingSeat": {
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat.createMany() instead.
+        "::createMany::RequestQueueUST::pendingSeat": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat.destroyAll() instead.
+        "::delete::RequestQueueUST::pendingSeat": {
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat.count() instead.
+        "::count::RequestQueueUST::pendingSeat": {
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat/count",
+          method: "GET"
+        },
       }
     );
 
@@ -22897,6 +27737,9141 @@ module.factory(
     */
     R.modelName = "Container";
 
+
+    return R;
+  }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.OfferQueueUST
+ * @header lbServices.OfferQueueUST
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `OfferQueueUST` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+module.factory(
+  "OfferQueueUST",
+  ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
+    var R = Resource(
+      urlBase + "/OfferQueueUSTs/:id",
+      { 'id': '@id' },
+      {
+
+        // INTERNAL. Use OfferQueueUST.member() instead.
+        "prototype$__get__member": {
+          url: urlBase + "/OfferQueueUSTs/:id/member",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.joins.findById() instead.
+        "prototype$__findById__joins": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/joins/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.joins.destroyById() instead.
+        "prototype$__destroyById__joins": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/joins/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.joins.updateById() instead.
+        "prototype$__updateById__joins": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/joins/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pickup() instead.
+        "prototype$__get__pickup": {
+          url: urlBase + "/OfferQueueUSTs/:id/pickup",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.destination() instead.
+        "prototype$__get__destination": {
+          url: urlBase + "/OfferQueueUSTs/:id/destination",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.own() instead.
+        "prototype$__get__own": {
+          url: urlBase + "/OfferQueueUSTs/:id/own",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat.findById() instead.
+        "prototype$__findById__matchedSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat.destroyById() instead.
+        "prototype$__destroyById__matchedSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat.updateById() instead.
+        "prototype$__updateById__matchedSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat.findById() instead.
+        "prototype$__findById__pendingSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat.destroyById() instead.
+        "prototype$__destroyById__pendingSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat.updateById() instead.
+        "prototype$__updateById__pendingSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue.findById() instead.
+        "prototype$__findById__offerQueue": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue.destroyById() instead.
+        "prototype$__destroyById__offerQueue": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue.updateById() instead.
+        "prototype$__updateById__offerQueue": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST.findById() instead.
+        "prototype$__findById__offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST.destroyById() instead.
+        "prototype$__destroyById__offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST.updateById() instead.
+        "prototype$__updateById__offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueueUST.ride() instead.
+        "prototype$__get__ride": {
+          url: urlBase + "/OfferQueueUSTs/:id/ride",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST.findById() instead.
+        "prototype$__findById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST.destroyById() instead.
+        "prototype$__destroyById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST.updateById() instead.
+        "prototype$__updateById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST.findById() instead.
+        "prototype$__findById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST.destroyById() instead.
+        "prototype$__destroyById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST.updateById() instead.
+        "prototype$__updateById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueueUST.joins() instead.
+        "prototype$__get__joins": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/joins",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.joins.create() instead.
+        "prototype$__create__joins": {
+          url: urlBase + "/OfferQueueUSTs/:id/joins",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.joins.destroyAll() instead.
+        "prototype$__delete__joins": {
+          url: urlBase + "/OfferQueueUSTs/:id/joins",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.joins.count() instead.
+        "prototype$__count__joins": {
+          url: urlBase + "/OfferQueueUSTs/:id/joins/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat() instead.
+        "prototype$__get__matchedSeat": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat.create() instead.
+        "prototype$__create__matchedSeat": {
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat.destroyAll() instead.
+        "prototype$__delete__matchedSeat": {
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeat.count() instead.
+        "prototype$__count__matchedSeat": {
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeat/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat() instead.
+        "prototype$__get__pendingSeat": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat.create() instead.
+        "prototype$__create__pendingSeat": {
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat.destroyAll() instead.
+        "prototype$__delete__pendingSeat": {
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeat.count() instead.
+        "prototype$__count__pendingSeat": {
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeat/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue() instead.
+        "prototype$__get__offerQueue": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue.create() instead.
+        "prototype$__create__offerQueue": {
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue.destroyAll() instead.
+        "prototype$__delete__offerQueue": {
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueue.count() instead.
+        "prototype$__count__offerQueue": {
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueue/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST() instead.
+        "prototype$__get__offerQueueUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST.create() instead.
+        "prototype$__create__offerQueueUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST.destroyAll() instead.
+        "prototype$__delete__offerQueueUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST.count() instead.
+        "prototype$__count__offerQueueUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST() instead.
+        "prototype$__get__pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST.create() instead.
+        "prototype$__create__pendingSeatUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST.destroyAll() instead.
+        "prototype$__delete__pendingSeatUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST.count() instead.
+        "prototype$__count__pendingSeatUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST() instead.
+        "prototype$__get__matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST.create() instead.
+        "prototype$__create__matchedSeatUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST.destroyAll() instead.
+        "prototype$__delete__matchedSeatUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST.count() instead.
+        "prototype$__count__matchedSeatUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST/count",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#create
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        "create": {
+          url: urlBase + "/OfferQueueUSTs",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#createMany
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        "createMany": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#upsert
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        "upsert": {
+          url: urlBase + "/OfferQueueUSTs",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#exists
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Check whether a model instance exists in the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `exists` – `{boolean=}` - 
+         */
+        "exists": {
+          url: urlBase + "/OfferQueueUSTs/:id/exists",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#findById
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Find a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         *  - `filter` – `{object=}` - Filter defining fields and include
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        "findById": {
+          url: urlBase + "/OfferQueueUSTs/:id",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#find
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Find all instances of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        "find": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#findOne
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Find first instance of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        "findOne": {
+          url: urlBase + "/OfferQueueUSTs/findOne",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#updateAll
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        "updateAll": {
+          url: urlBase + "/OfferQueueUSTs/update",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#deleteById
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        "deleteById": {
+          url: urlBase + "/OfferQueueUSTs/:id",
+          method: "DELETE"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#count
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Count instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        "count": {
+          url: urlBase + "/OfferQueueUSTs/count",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#prototype$updateAttributes
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Update attributes for a model instance and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        "prototype$updateAttributes": {
+          url: urlBase + "/OfferQueueUSTs/:id",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#createChangeStream
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Create a change stream.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         *  - `options` – `{object=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `changes` – `{ReadableStream=}` - 
+         */
+        "createChangeStream": {
+          url: urlBase + "/OfferQueueUSTs/change-stream",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#possibleOffer
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `offerQ` – `{object=}` - 
+         */
+        "possibleOffer": {
+          url: urlBase + "/OfferQueueUSTs/possibleOffer",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#removeOffer
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `offerQ` – `{object=}` - 
+         */
+        "removeOffer": {
+          url: urlBase + "/OfferQueueUSTs/removeOffer",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#getAvalSeatNumber
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `seatNum` – `{number=}` - 
+         */
+        "getAvalSeatNumber": {
+          url: urlBase + "/OfferQueueUSTs/getAvalSeatNumber",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Ride.offerQueueUST.findById() instead.
+        "::findById::Ride::offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/offerQueueUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.offerQueueUST.destroyById() instead.
+        "::destroyById::Ride::offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/offerQueueUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Ride.offerQueueUST.updateById() instead.
+        "::updateById::Ride::offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/offerQueueUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Ride.offerQueueUST() instead.
+        "::get::Ride::offerQueueUST": {
+          isArray: true,
+          url: urlBase + "/Rides/:id/offerQueueUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.offerQueueUST.create() instead.
+        "::create::Ride::offerQueueUST": {
+          url: urlBase + "/Rides/:id/offerQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Ride.offerQueueUST.createMany() instead.
+        "::createMany::Ride::offerQueueUST": {
+          isArray: true,
+          url: urlBase + "/Rides/:id/offerQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Ride.offerQueueUST.destroyAll() instead.
+        "::delete::Ride::offerQueueUST": {
+          url: urlBase + "/Rides/:id/offerQueueUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Ride.offerQueueUST.count() instead.
+        "::count::Ride::offerQueueUST": {
+          url: urlBase + "/Rides/:id/offerQueueUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.offerQueueUST.findById() instead.
+        "::findById::OfferQueue::offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/offerQueueUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.offerQueueUST.destroyById() instead.
+        "::destroyById::OfferQueue::offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/offerQueueUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueue.offerQueueUST.updateById() instead.
+        "::updateById::OfferQueue::offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/offerQueueUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueue.offerQueueUST() instead.
+        "::get::OfferQueue::offerQueueUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueues/:id/offerQueueUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.offerQueueUST.create() instead.
+        "::create::OfferQueue::offerQueueUST": {
+          url: urlBase + "/OfferQueues/:id/offerQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueue.offerQueueUST.createMany() instead.
+        "::createMany::OfferQueue::offerQueueUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueues/:id/offerQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueue.offerQueueUST.destroyAll() instead.
+        "::delete::OfferQueue::offerQueueUST": {
+          url: urlBase + "/OfferQueues/:id/offerQueueUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueue.offerQueueUST.count() instead.
+        "::count::OfferQueue::offerQueueUST": {
+          url: urlBase + "/OfferQueues/:id/offerQueueUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST.findById() instead.
+        "::findById::OfferQueueUST::offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST.destroyById() instead.
+        "::destroyById::OfferQueueUST::offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST.updateById() instead.
+        "::updateById::OfferQueueUST::offerQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST() instead.
+        "::get::OfferQueueUST::offerQueueUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST.create() instead.
+        "::create::OfferQueueUST::offerQueueUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST.createMany() instead.
+        "::createMany::OfferQueueUST::offerQueueUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST.destroyAll() instead.
+        "::delete::OfferQueueUST::offerQueueUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.offerQueueUST.count() instead.
+        "::count::OfferQueueUST::offerQueueUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/offerQueueUST/count",
+          method: "GET"
+        },
+      }
+    );
+
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#updateOrCreate
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R["updateOrCreate"] = R["upsert"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#update
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        R["update"] = R["updateAll"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#destroyById
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R["destroyById"] = R["deleteById"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#removeById
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R["removeById"] = R["deleteById"];
+
+
+    /**
+    * @ngdoc property
+    * @name lbServices.OfferQueueUST#modelName
+    * @propertyOf lbServices.OfferQueueUST
+    * @description
+    * The name of the model represented by this $resource,
+    * i.e. `OfferQueueUST`.
+    */
+    R.modelName = "OfferQueueUST";
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#member
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Fetches belongsTo relation member.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Member` object.)
+         * </em>
+         */
+        R.member = function() {
+          var TargetResource = $injector.get("Member");
+          var action = TargetResource["::get::OfferQueueUST::member"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.OfferQueueUST.joins
+     * @header lbServices.OfferQueueUST.joins
+     * @object
+     * @description
+     *
+     * The object `OfferQueueUST.joins` groups methods
+     * manipulating `Join` instances related to `OfferQueueUST`.
+     *
+     * Call {@link lbServices.OfferQueueUST#joins OfferQueueUST.joins()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#joins
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Queries joins of OfferQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Join` object.)
+         * </em>
+         */
+        R.joins = function() {
+          var TargetResource = $injector.get("Join");
+          var action = TargetResource["::get::OfferQueueUST::joins"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.joins#count
+         * @methodOf lbServices.OfferQueueUST.joins
+         *
+         * @description
+         *
+         * Counts joins of OfferQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.joins.count = function() {
+          var TargetResource = $injector.get("Join");
+          var action = TargetResource["::count::OfferQueueUST::joins"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.joins#create
+         * @methodOf lbServices.OfferQueueUST.joins
+         *
+         * @description
+         *
+         * Creates a new instance in joins of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Join` object.)
+         * </em>
+         */
+        R.joins.create = function() {
+          var TargetResource = $injector.get("Join");
+          var action = TargetResource["::create::OfferQueueUST::joins"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.joins#createMany
+         * @methodOf lbServices.OfferQueueUST.joins
+         *
+         * @description
+         *
+         * Creates a new instance in joins of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Join` object.)
+         * </em>
+         */
+        R.joins.createMany = function() {
+          var TargetResource = $injector.get("Join");
+          var action = TargetResource["::createMany::OfferQueueUST::joins"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.joins#destroyAll
+         * @methodOf lbServices.OfferQueueUST.joins
+         *
+         * @description
+         *
+         * Deletes all joins of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.joins.destroyAll = function() {
+          var TargetResource = $injector.get("Join");
+          var action = TargetResource["::delete::OfferQueueUST::joins"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.joins#destroyById
+         * @methodOf lbServices.OfferQueueUST.joins
+         *
+         * @description
+         *
+         * Delete a related item by id for joins.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for joins
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.joins.destroyById = function() {
+          var TargetResource = $injector.get("Join");
+          var action = TargetResource["::destroyById::OfferQueueUST::joins"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.joins#findById
+         * @methodOf lbServices.OfferQueueUST.joins
+         *
+         * @description
+         *
+         * Find a related item by id for joins.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for joins
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Join` object.)
+         * </em>
+         */
+        R.joins.findById = function() {
+          var TargetResource = $injector.get("Join");
+          var action = TargetResource["::findById::OfferQueueUST::joins"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.joins#updateById
+         * @methodOf lbServices.OfferQueueUST.joins
+         *
+         * @description
+         *
+         * Update a related item by id for joins.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for joins
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Join` object.)
+         * </em>
+         */
+        R.joins.updateById = function() {
+          var TargetResource = $injector.get("Join");
+          var action = TargetResource["::updateById::OfferQueueUST::joins"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#pickup
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Fetches belongsTo relation pickup.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Pickup` object.)
+         * </em>
+         */
+        R.pickup = function() {
+          var TargetResource = $injector.get("Pickup");
+          var action = TargetResource["::get::OfferQueueUST::pickup"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#destination
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Fetches belongsTo relation destination.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Destination` object.)
+         * </em>
+         */
+        R.destination = function() {
+          var TargetResource = $injector.get("Destination");
+          var action = TargetResource["::get::OfferQueueUST::destination"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#own
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Fetches belongsTo relation own.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Own` object.)
+         * </em>
+         */
+        R.own = function() {
+          var TargetResource = $injector.get("Own");
+          var action = TargetResource["::get::OfferQueueUST::own"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.OfferQueueUST.matchedSeat
+     * @header lbServices.OfferQueueUST.matchedSeat
+     * @object
+     * @description
+     *
+     * The object `OfferQueueUST.matchedSeat` groups methods
+     * manipulating `MatchedSeat` instances related to `OfferQueueUST`.
+     *
+     * Call {@link lbServices.OfferQueueUST#matchedSeat OfferQueueUST.matchedSeat()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#matchedSeat
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Queries matchedSeat of OfferQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeat` object.)
+         * </em>
+         */
+        R.matchedSeat = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::get::OfferQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.matchedSeat#count
+         * @methodOf lbServices.OfferQueueUST.matchedSeat
+         *
+         * @description
+         *
+         * Counts matchedSeat of OfferQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.matchedSeat.count = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::count::OfferQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.matchedSeat#create
+         * @methodOf lbServices.OfferQueueUST.matchedSeat
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeat of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeat` object.)
+         * </em>
+         */
+        R.matchedSeat.create = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::create::OfferQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.matchedSeat#createMany
+         * @methodOf lbServices.OfferQueueUST.matchedSeat
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeat of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeat` object.)
+         * </em>
+         */
+        R.matchedSeat.createMany = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::createMany::OfferQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.matchedSeat#destroyAll
+         * @methodOf lbServices.OfferQueueUST.matchedSeat
+         *
+         * @description
+         *
+         * Deletes all matchedSeat of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeat.destroyAll = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::delete::OfferQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.matchedSeat#destroyById
+         * @methodOf lbServices.OfferQueueUST.matchedSeat
+         *
+         * @description
+         *
+         * Delete a related item by id for matchedSeat.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeat
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeat.destroyById = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::destroyById::OfferQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.matchedSeat#findById
+         * @methodOf lbServices.OfferQueueUST.matchedSeat
+         *
+         * @description
+         *
+         * Find a related item by id for matchedSeat.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeat
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeat` object.)
+         * </em>
+         */
+        R.matchedSeat.findById = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::findById::OfferQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.matchedSeat#updateById
+         * @methodOf lbServices.OfferQueueUST.matchedSeat
+         *
+         * @description
+         *
+         * Update a related item by id for matchedSeat.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeat
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeat` object.)
+         * </em>
+         */
+        R.matchedSeat.updateById = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::updateById::OfferQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.OfferQueueUST.pendingSeat
+     * @header lbServices.OfferQueueUST.pendingSeat
+     * @object
+     * @description
+     *
+     * The object `OfferQueueUST.pendingSeat` groups methods
+     * manipulating `PendingSeat` instances related to `OfferQueueUST`.
+     *
+     * Call {@link lbServices.OfferQueueUST#pendingSeat OfferQueueUST.pendingSeat()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#pendingSeat
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Queries pendingSeat of OfferQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeat` object.)
+         * </em>
+         */
+        R.pendingSeat = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::get::OfferQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.pendingSeat#count
+         * @methodOf lbServices.OfferQueueUST.pendingSeat
+         *
+         * @description
+         *
+         * Counts pendingSeat of OfferQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.pendingSeat.count = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::count::OfferQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.pendingSeat#create
+         * @methodOf lbServices.OfferQueueUST.pendingSeat
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeat of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeat` object.)
+         * </em>
+         */
+        R.pendingSeat.create = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::create::OfferQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.pendingSeat#createMany
+         * @methodOf lbServices.OfferQueueUST.pendingSeat
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeat of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeat` object.)
+         * </em>
+         */
+        R.pendingSeat.createMany = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::createMany::OfferQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.pendingSeat#destroyAll
+         * @methodOf lbServices.OfferQueueUST.pendingSeat
+         *
+         * @description
+         *
+         * Deletes all pendingSeat of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeat.destroyAll = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::delete::OfferQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.pendingSeat#destroyById
+         * @methodOf lbServices.OfferQueueUST.pendingSeat
+         *
+         * @description
+         *
+         * Delete a related item by id for pendingSeat.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeat
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeat.destroyById = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::destroyById::OfferQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.pendingSeat#findById
+         * @methodOf lbServices.OfferQueueUST.pendingSeat
+         *
+         * @description
+         *
+         * Find a related item by id for pendingSeat.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeat
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeat` object.)
+         * </em>
+         */
+        R.pendingSeat.findById = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::findById::OfferQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.pendingSeat#updateById
+         * @methodOf lbServices.OfferQueueUST.pendingSeat
+         *
+         * @description
+         *
+         * Update a related item by id for pendingSeat.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeat
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeat` object.)
+         * </em>
+         */
+        R.pendingSeat.updateById = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::updateById::OfferQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.OfferQueueUST.offerQueue
+     * @header lbServices.OfferQueueUST.offerQueue
+     * @object
+     * @description
+     *
+     * The object `OfferQueueUST.offerQueue` groups methods
+     * manipulating `OfferQueue` instances related to `OfferQueueUST`.
+     *
+     * Call {@link lbServices.OfferQueueUST#offerQueue OfferQueueUST.offerQueue()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#offerQueue
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Queries offerQueue of OfferQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueue` object.)
+         * </em>
+         */
+        R.offerQueue = function() {
+          var TargetResource = $injector.get("OfferQueue");
+          var action = TargetResource["::get::OfferQueueUST::offerQueue"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.offerQueue#count
+         * @methodOf lbServices.OfferQueueUST.offerQueue
+         *
+         * @description
+         *
+         * Counts offerQueue of OfferQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.offerQueue.count = function() {
+          var TargetResource = $injector.get("OfferQueue");
+          var action = TargetResource["::count::OfferQueueUST::offerQueue"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.offerQueue#create
+         * @methodOf lbServices.OfferQueueUST.offerQueue
+         *
+         * @description
+         *
+         * Creates a new instance in offerQueue of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueue` object.)
+         * </em>
+         */
+        R.offerQueue.create = function() {
+          var TargetResource = $injector.get("OfferQueue");
+          var action = TargetResource["::create::OfferQueueUST::offerQueue"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.offerQueue#createMany
+         * @methodOf lbServices.OfferQueueUST.offerQueue
+         *
+         * @description
+         *
+         * Creates a new instance in offerQueue of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueue` object.)
+         * </em>
+         */
+        R.offerQueue.createMany = function() {
+          var TargetResource = $injector.get("OfferQueue");
+          var action = TargetResource["::createMany::OfferQueueUST::offerQueue"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.offerQueue#destroyAll
+         * @methodOf lbServices.OfferQueueUST.offerQueue
+         *
+         * @description
+         *
+         * Deletes all offerQueue of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.offerQueue.destroyAll = function() {
+          var TargetResource = $injector.get("OfferQueue");
+          var action = TargetResource["::delete::OfferQueueUST::offerQueue"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.offerQueue#destroyById
+         * @methodOf lbServices.OfferQueueUST.offerQueue
+         *
+         * @description
+         *
+         * Delete a related item by id for offerQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for offerQueue
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.offerQueue.destroyById = function() {
+          var TargetResource = $injector.get("OfferQueue");
+          var action = TargetResource["::destroyById::OfferQueueUST::offerQueue"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.offerQueue#findById
+         * @methodOf lbServices.OfferQueueUST.offerQueue
+         *
+         * @description
+         *
+         * Find a related item by id for offerQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for offerQueue
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueue` object.)
+         * </em>
+         */
+        R.offerQueue.findById = function() {
+          var TargetResource = $injector.get("OfferQueue");
+          var action = TargetResource["::findById::OfferQueueUST::offerQueue"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.offerQueue#updateById
+         * @methodOf lbServices.OfferQueueUST.offerQueue
+         *
+         * @description
+         *
+         * Update a related item by id for offerQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for offerQueue
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueue` object.)
+         * </em>
+         */
+        R.offerQueue.updateById = function() {
+          var TargetResource = $injector.get("OfferQueue");
+          var action = TargetResource["::updateById::OfferQueueUST::offerQueue"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.OfferQueueUST.offerQueueUST
+     * @header lbServices.OfferQueueUST.offerQueueUST
+     * @object
+     * @description
+     *
+     * The object `OfferQueueUST.offerQueueUST` groups methods
+     * manipulating `OfferQueueUST` instances related to `OfferQueueUST`.
+     *
+     * Call {@link lbServices.OfferQueueUST#offerQueueUST OfferQueueUST.offerQueueUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#offerQueueUST
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Queries offerQueueUST of OfferQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::get::OfferQueueUST::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.offerQueueUST#count
+         * @methodOf lbServices.OfferQueueUST.offerQueueUST
+         *
+         * @description
+         *
+         * Counts offerQueueUST of OfferQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.offerQueueUST.count = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::count::OfferQueueUST::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.offerQueueUST#create
+         * @methodOf lbServices.OfferQueueUST.offerQueueUST
+         *
+         * @description
+         *
+         * Creates a new instance in offerQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST.create = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::create::OfferQueueUST::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.offerQueueUST#createMany
+         * @methodOf lbServices.OfferQueueUST.offerQueueUST
+         *
+         * @description
+         *
+         * Creates a new instance in offerQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST.createMany = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::createMany::OfferQueueUST::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.offerQueueUST#destroyAll
+         * @methodOf lbServices.OfferQueueUST.offerQueueUST
+         *
+         * @description
+         *
+         * Deletes all offerQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.offerQueueUST.destroyAll = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::delete::OfferQueueUST::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.offerQueueUST#destroyById
+         * @methodOf lbServices.OfferQueueUST.offerQueueUST
+         *
+         * @description
+         *
+         * Delete a related item by id for offerQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for offerQueueUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.offerQueueUST.destroyById = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::destroyById::OfferQueueUST::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.offerQueueUST#findById
+         * @methodOf lbServices.OfferQueueUST.offerQueueUST
+         *
+         * @description
+         *
+         * Find a related item by id for offerQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for offerQueueUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST.findById = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::findById::OfferQueueUST::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.offerQueueUST#updateById
+         * @methodOf lbServices.OfferQueueUST.offerQueueUST
+         *
+         * @description
+         *
+         * Update a related item by id for offerQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for offerQueueUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `OfferQueueUST` object.)
+         * </em>
+         */
+        R.offerQueueUST.updateById = function() {
+          var TargetResource = $injector.get("OfferQueueUST");
+          var action = TargetResource["::updateById::OfferQueueUST::offerQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#ride
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Fetches belongsTo relation ride.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Ride` object.)
+         * </em>
+         */
+        R.ride = function() {
+          var TargetResource = $injector.get("Ride");
+          var action = TargetResource["::get::OfferQueueUST::ride"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.OfferQueueUST.pendingSeatUST
+     * @header lbServices.OfferQueueUST.pendingSeatUST
+     * @object
+     * @description
+     *
+     * The object `OfferQueueUST.pendingSeatUST` groups methods
+     * manipulating `PendingSeatUST` instances related to `OfferQueueUST`.
+     *
+     * Call {@link lbServices.OfferQueueUST#pendingSeatUST OfferQueueUST.pendingSeatUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#pendingSeatUST
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Queries pendingSeatUST of OfferQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::get::OfferQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.pendingSeatUST#count
+         * @methodOf lbServices.OfferQueueUST.pendingSeatUST
+         *
+         * @description
+         *
+         * Counts pendingSeatUST of OfferQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.pendingSeatUST.count = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::count::OfferQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.pendingSeatUST#create
+         * @methodOf lbServices.OfferQueueUST.pendingSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.create = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::create::OfferQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.pendingSeatUST#createMany
+         * @methodOf lbServices.OfferQueueUST.pendingSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.createMany = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::createMany::OfferQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.pendingSeatUST#destroyAll
+         * @methodOf lbServices.OfferQueueUST.pendingSeatUST
+         *
+         * @description
+         *
+         * Deletes all pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeatUST.destroyAll = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::delete::OfferQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.pendingSeatUST#destroyById
+         * @methodOf lbServices.OfferQueueUST.pendingSeatUST
+         *
+         * @description
+         *
+         * Delete a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeatUST.destroyById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::destroyById::OfferQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.pendingSeatUST#findById
+         * @methodOf lbServices.OfferQueueUST.pendingSeatUST
+         *
+         * @description
+         *
+         * Find a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.findById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::findById::OfferQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.pendingSeatUST#updateById
+         * @methodOf lbServices.OfferQueueUST.pendingSeatUST
+         *
+         * @description
+         *
+         * Update a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.updateById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::updateById::OfferQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.OfferQueueUST.matchedSeatUST
+     * @header lbServices.OfferQueueUST.matchedSeatUST
+     * @object
+     * @description
+     *
+     * The object `OfferQueueUST.matchedSeatUST` groups methods
+     * manipulating `MatchedSeatUST` instances related to `OfferQueueUST`.
+     *
+     * Call {@link lbServices.OfferQueueUST#matchedSeatUST OfferQueueUST.matchedSeatUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#matchedSeatUST
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * Queries matchedSeatUST of OfferQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::get::OfferQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.matchedSeatUST#count
+         * @methodOf lbServices.OfferQueueUST.matchedSeatUST
+         *
+         * @description
+         *
+         * Counts matchedSeatUST of OfferQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.matchedSeatUST.count = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::count::OfferQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.matchedSeatUST#create
+         * @methodOf lbServices.OfferQueueUST.matchedSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.create = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::create::OfferQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.matchedSeatUST#createMany
+         * @methodOf lbServices.OfferQueueUST.matchedSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.createMany = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::createMany::OfferQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.matchedSeatUST#destroyAll
+         * @methodOf lbServices.OfferQueueUST.matchedSeatUST
+         *
+         * @description
+         *
+         * Deletes all matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeatUST.destroyAll = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::delete::OfferQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.matchedSeatUST#destroyById
+         * @methodOf lbServices.OfferQueueUST.matchedSeatUST
+         *
+         * @description
+         *
+         * Delete a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeatUST.destroyById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::destroyById::OfferQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.matchedSeatUST#findById
+         * @methodOf lbServices.OfferQueueUST.matchedSeatUST
+         *
+         * @description
+         *
+         * Find a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.findById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::findById::OfferQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST.matchedSeatUST#updateById
+         * @methodOf lbServices.OfferQueueUST.matchedSeatUST
+         *
+         * @description
+         *
+         * Update a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Ride id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.updateById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::updateById::OfferQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+    return R;
+  }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.RequestQueueUST
+ * @header lbServices.RequestQueueUST
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `RequestQueueUST` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+module.factory(
+  "RequestQueueUST",
+  ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
+    var R = Resource(
+      urlBase + "/RequestQueueUSTs/:id",
+      { 'id': '@id' },
+      {
+
+        // INTERNAL. Use RequestQueueUST.member() instead.
+        "prototype$__get__member": {
+          url: urlBase + "/RequestQueueUSTs/:id/member",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.join() instead.
+        "prototype$__get__join": {
+          url: urlBase + "/RequestQueueUSTs/:id/join",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.join.create() instead.
+        "prototype$__create__join": {
+          url: urlBase + "/RequestQueueUSTs/:id/join",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.join.update() instead.
+        "prototype$__update__join": {
+          url: urlBase + "/RequestQueueUSTs/:id/join",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueueUST.join.destroy() instead.
+        "prototype$__destroy__join": {
+          url: urlBase + "/RequestQueueUSTs/:id/join",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.destination() instead.
+        "prototype$__get__destination": {
+          url: urlBase + "/RequestQueueUSTs/:id/destination",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pickup() instead.
+        "prototype$__get__pickup": {
+          url: urlBase + "/RequestQueueUSTs/:id/pickup",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat.findById() instead.
+        "prototype$__findById__matchedSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat.destroyById() instead.
+        "prototype$__destroyById__matchedSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat.updateById() instead.
+        "prototype$__updateById__matchedSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat.findById() instead.
+        "prototype$__findById__pendingSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat.destroyById() instead.
+        "prototype$__destroyById__pendingSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat.updateById() instead.
+        "prototype$__updateById__pendingSeat": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue.findById() instead.
+        "prototype$__findById__requestQueue": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue.destroyById() instead.
+        "prototype$__destroyById__requestQueue": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue.updateById() instead.
+        "prototype$__updateById__requestQueue": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST.findById() instead.
+        "prototype$__findById__requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST.destroyById() instead.
+        "prototype$__destroyById__requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST.updateById() instead.
+        "prototype$__updateById__requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueueUST.request() instead.
+        "prototype$__get__request": {
+          url: urlBase + "/RequestQueueUSTs/:id/request",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST.findById() instead.
+        "prototype$__findById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST.destroyById() instead.
+        "prototype$__destroyById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST.updateById() instead.
+        "prototype$__updateById__pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST.findById() instead.
+        "prototype$__findById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST.destroyById() instead.
+        "prototype$__destroyById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST.updateById() instead.
+        "prototype$__updateById__matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat() instead.
+        "prototype$__get__matchedSeat": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat.create() instead.
+        "prototype$__create__matchedSeat": {
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat.destroyAll() instead.
+        "prototype$__delete__matchedSeat": {
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeat.count() instead.
+        "prototype$__count__matchedSeat": {
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeat/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat() instead.
+        "prototype$__get__pendingSeat": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat.create() instead.
+        "prototype$__create__pendingSeat": {
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat.destroyAll() instead.
+        "prototype$__delete__pendingSeat": {
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeat.count() instead.
+        "prototype$__count__pendingSeat": {
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeat/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue() instead.
+        "prototype$__get__requestQueue": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue.create() instead.
+        "prototype$__create__requestQueue": {
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue.destroyAll() instead.
+        "prototype$__delete__requestQueue": {
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueue.count() instead.
+        "prototype$__count__requestQueue": {
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueue/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST() instead.
+        "prototype$__get__requestQueueUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST.create() instead.
+        "prototype$__create__requestQueueUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST.destroyAll() instead.
+        "prototype$__delete__requestQueueUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST.count() instead.
+        "prototype$__count__requestQueueUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST() instead.
+        "prototype$__get__pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST.create() instead.
+        "prototype$__create__pendingSeatUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST.destroyAll() instead.
+        "prototype$__delete__pendingSeatUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST.count() instead.
+        "prototype$__count__pendingSeatUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST() instead.
+        "prototype$__get__matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST.create() instead.
+        "prototype$__create__matchedSeatUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST.destroyAll() instead.
+        "prototype$__delete__matchedSeatUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST.count() instead.
+        "prototype$__count__matchedSeatUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST/count",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#create
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        "create": {
+          url: urlBase + "/RequestQueueUSTs",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#createMany
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        "createMany": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#upsert
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        "upsert": {
+          url: urlBase + "/RequestQueueUSTs",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#exists
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Check whether a model instance exists in the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `exists` – `{boolean=}` - 
+         */
+        "exists": {
+          url: urlBase + "/RequestQueueUSTs/:id/exists",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#findById
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Find a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         *  - `filter` – `{object=}` - Filter defining fields and include
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        "findById": {
+          url: urlBase + "/RequestQueueUSTs/:id",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#find
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Find all instances of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        "find": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#findOne
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Find first instance of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        "findOne": {
+          url: urlBase + "/RequestQueueUSTs/findOne",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#updateAll
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        "updateAll": {
+          url: urlBase + "/RequestQueueUSTs/update",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#deleteById
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        "deleteById": {
+          url: urlBase + "/RequestQueueUSTs/:id",
+          method: "DELETE"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#count
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Count instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        "count": {
+          url: urlBase + "/RequestQueueUSTs/count",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#prototype$updateAttributes
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Update attributes for a model instance and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        "prototype$updateAttributes": {
+          url: urlBase + "/RequestQueueUSTs/:id",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#createChangeStream
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Create a change stream.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         *  - `options` – `{object=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `changes` – `{ReadableStream=}` - 
+         */
+        "createChangeStream": {
+          url: urlBase + "/RequestQueueUSTs/change-stream",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#possibleRequest
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `requestQ` – `{object=}` - 
+         */
+        "possibleRequest": {
+          url: urlBase + "/RequestQueueUSTs/possibleRequest",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#removeRequest
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `requestQ` – `{object=}` - 
+         */
+        "removeRequest": {
+          url: urlBase + "/RequestQueueUSTs/removeRequest",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Request.requestQueueUST.findById() instead.
+        "::findById::request::requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/requestQueueUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.requestQueueUST.destroyById() instead.
+        "::destroyById::request::requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/requestQueueUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Request.requestQueueUST.updateById() instead.
+        "::updateById::request::requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/requestQueueUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Request.requestQueueUST() instead.
+        "::get::request::requestQueueUST": {
+          isArray: true,
+          url: urlBase + "/requests/:id/requestQueueUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.requestQueueUST.create() instead.
+        "::create::request::requestQueueUST": {
+          url: urlBase + "/requests/:id/requestQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Request.requestQueueUST.createMany() instead.
+        "::createMany::request::requestQueueUST": {
+          isArray: true,
+          url: urlBase + "/requests/:id/requestQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Request.requestQueueUST.destroyAll() instead.
+        "::delete::request::requestQueueUST": {
+          url: urlBase + "/requests/:id/requestQueueUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Request.requestQueueUST.count() instead.
+        "::count::request::requestQueueUST": {
+          url: urlBase + "/requests/:id/requestQueueUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.requestQueueUST.findById() instead.
+        "::findById::RequestQueue::requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/requestQueueUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.requestQueueUST.destroyById() instead.
+        "::destroyById::RequestQueue::requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/requestQueueUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueue.requestQueueUST.updateById() instead.
+        "::updateById::RequestQueue::requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/requestQueueUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueue.requestQueueUST() instead.
+        "::get::RequestQueue::requestQueueUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueues/:id/requestQueueUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.requestQueueUST.create() instead.
+        "::create::RequestQueue::requestQueueUST": {
+          url: urlBase + "/RequestQueues/:id/requestQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueue.requestQueueUST.createMany() instead.
+        "::createMany::RequestQueue::requestQueueUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueues/:id/requestQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueue.requestQueueUST.destroyAll() instead.
+        "::delete::RequestQueue::requestQueueUST": {
+          url: urlBase + "/RequestQueues/:id/requestQueueUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueue.requestQueueUST.count() instead.
+        "::count::RequestQueue::requestQueueUST": {
+          url: urlBase + "/RequestQueues/:id/requestQueueUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST.findById() instead.
+        "::findById::RequestQueueUST::requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST.destroyById() instead.
+        "::destroyById::RequestQueueUST::requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST.updateById() instead.
+        "::updateById::RequestQueueUST::requestQueueUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST() instead.
+        "::get::RequestQueueUST::requestQueueUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST.create() instead.
+        "::create::RequestQueueUST::requestQueueUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST.createMany() instead.
+        "::createMany::RequestQueueUST::requestQueueUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST.destroyAll() instead.
+        "::delete::RequestQueueUST::requestQueueUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.requestQueueUST.count() instead.
+        "::count::RequestQueueUST::requestQueueUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/requestQueueUST/count",
+          method: "GET"
+        },
+      }
+    );
+
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#updateOrCreate
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R["updateOrCreate"] = R["upsert"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#update
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        R["update"] = R["updateAll"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#destroyById
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R["destroyById"] = R["deleteById"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#removeById
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R["removeById"] = R["deleteById"];
+
+
+    /**
+    * @ngdoc property
+    * @name lbServices.RequestQueueUST#modelName
+    * @propertyOf lbServices.RequestQueueUST
+    * @description
+    * The name of the model represented by this $resource,
+    * i.e. `RequestQueueUST`.
+    */
+    R.modelName = "RequestQueueUST";
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#member
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Fetches belongsTo relation member.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Member` object.)
+         * </em>
+         */
+        R.member = function() {
+          var TargetResource = $injector.get("Member");
+          var action = TargetResource["::get::RequestQueueUST::member"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.RequestQueueUST.join
+     * @header lbServices.RequestQueueUST.join
+     * @object
+     * @description
+     *
+     * The object `RequestQueueUST.join` groups methods
+     * manipulating `Join` instances related to `RequestQueueUST`.
+     *
+     * Call {@link lbServices.RequestQueueUST#join RequestQueueUST.join()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#join
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Fetches hasOne relation join.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Join` object.)
+         * </em>
+         */
+        R.join = function() {
+          var TargetResource = $injector.get("Join");
+          var action = TargetResource["::get::RequestQueueUST::join"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.join#create
+         * @methodOf lbServices.RequestQueueUST.join
+         *
+         * @description
+         *
+         * Creates a new instance in join of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Join` object.)
+         * </em>
+         */
+        R.join.create = function() {
+          var TargetResource = $injector.get("Join");
+          var action = TargetResource["::create::RequestQueueUST::join"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.join#createMany
+         * @methodOf lbServices.RequestQueueUST.join
+         *
+         * @description
+         *
+         * Creates a new instance in join of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Join` object.)
+         * </em>
+         */
+        R.join.createMany = function() {
+          var TargetResource = $injector.get("Join");
+          var action = TargetResource["::createMany::RequestQueueUST::join"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.join#destroy
+         * @methodOf lbServices.RequestQueueUST.join
+         *
+         * @description
+         *
+         * Deletes join of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.join.destroy = function() {
+          var TargetResource = $injector.get("Join");
+          var action = TargetResource["::destroy::RequestQueueUST::join"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.join#update
+         * @methodOf lbServices.RequestQueueUST.join
+         *
+         * @description
+         *
+         * Update join of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Join` object.)
+         * </em>
+         */
+        R.join.update = function() {
+          var TargetResource = $injector.get("Join");
+          var action = TargetResource["::update::RequestQueueUST::join"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#destination
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Fetches belongsTo relation destination.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Destination` object.)
+         * </em>
+         */
+        R.destination = function() {
+          var TargetResource = $injector.get("Destination");
+          var action = TargetResource["::get::RequestQueueUST::destination"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#pickup
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Fetches belongsTo relation pickup.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Pickup` object.)
+         * </em>
+         */
+        R.pickup = function() {
+          var TargetResource = $injector.get("Pickup");
+          var action = TargetResource["::get::RequestQueueUST::pickup"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.RequestQueueUST.matchedSeat
+     * @header lbServices.RequestQueueUST.matchedSeat
+     * @object
+     * @description
+     *
+     * The object `RequestQueueUST.matchedSeat` groups methods
+     * manipulating `MatchedSeat` instances related to `RequestQueueUST`.
+     *
+     * Call {@link lbServices.RequestQueueUST#matchedSeat RequestQueueUST.matchedSeat()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#matchedSeat
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Queries matchedSeat of RequestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeat` object.)
+         * </em>
+         */
+        R.matchedSeat = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::get::RequestQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.matchedSeat#count
+         * @methodOf lbServices.RequestQueueUST.matchedSeat
+         *
+         * @description
+         *
+         * Counts matchedSeat of RequestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.matchedSeat.count = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::count::RequestQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.matchedSeat#create
+         * @methodOf lbServices.RequestQueueUST.matchedSeat
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeat of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeat` object.)
+         * </em>
+         */
+        R.matchedSeat.create = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::create::RequestQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.matchedSeat#createMany
+         * @methodOf lbServices.RequestQueueUST.matchedSeat
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeat of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeat` object.)
+         * </em>
+         */
+        R.matchedSeat.createMany = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::createMany::RequestQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.matchedSeat#destroyAll
+         * @methodOf lbServices.RequestQueueUST.matchedSeat
+         *
+         * @description
+         *
+         * Deletes all matchedSeat of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeat.destroyAll = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::delete::RequestQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.matchedSeat#destroyById
+         * @methodOf lbServices.RequestQueueUST.matchedSeat
+         *
+         * @description
+         *
+         * Delete a related item by id for matchedSeat.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeat
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeat.destroyById = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::destroyById::RequestQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.matchedSeat#findById
+         * @methodOf lbServices.RequestQueueUST.matchedSeat
+         *
+         * @description
+         *
+         * Find a related item by id for matchedSeat.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeat
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeat` object.)
+         * </em>
+         */
+        R.matchedSeat.findById = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::findById::RequestQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.matchedSeat#updateById
+         * @methodOf lbServices.RequestQueueUST.matchedSeat
+         *
+         * @description
+         *
+         * Update a related item by id for matchedSeat.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeat
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeat` object.)
+         * </em>
+         */
+        R.matchedSeat.updateById = function() {
+          var TargetResource = $injector.get("MatchedSeat");
+          var action = TargetResource["::updateById::RequestQueueUST::matchedSeat"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.RequestQueueUST.pendingSeat
+     * @header lbServices.RequestQueueUST.pendingSeat
+     * @object
+     * @description
+     *
+     * The object `RequestQueueUST.pendingSeat` groups methods
+     * manipulating `PendingSeat` instances related to `RequestQueueUST`.
+     *
+     * Call {@link lbServices.RequestQueueUST#pendingSeat RequestQueueUST.pendingSeat()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#pendingSeat
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Queries pendingSeat of RequestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeat` object.)
+         * </em>
+         */
+        R.pendingSeat = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::get::RequestQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.pendingSeat#count
+         * @methodOf lbServices.RequestQueueUST.pendingSeat
+         *
+         * @description
+         *
+         * Counts pendingSeat of RequestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.pendingSeat.count = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::count::RequestQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.pendingSeat#create
+         * @methodOf lbServices.RequestQueueUST.pendingSeat
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeat of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeat` object.)
+         * </em>
+         */
+        R.pendingSeat.create = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::create::RequestQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.pendingSeat#createMany
+         * @methodOf lbServices.RequestQueueUST.pendingSeat
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeat of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeat` object.)
+         * </em>
+         */
+        R.pendingSeat.createMany = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::createMany::RequestQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.pendingSeat#destroyAll
+         * @methodOf lbServices.RequestQueueUST.pendingSeat
+         *
+         * @description
+         *
+         * Deletes all pendingSeat of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeat.destroyAll = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::delete::RequestQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.pendingSeat#destroyById
+         * @methodOf lbServices.RequestQueueUST.pendingSeat
+         *
+         * @description
+         *
+         * Delete a related item by id for pendingSeat.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeat
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeat.destroyById = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::destroyById::RequestQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.pendingSeat#findById
+         * @methodOf lbServices.RequestQueueUST.pendingSeat
+         *
+         * @description
+         *
+         * Find a related item by id for pendingSeat.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeat
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeat` object.)
+         * </em>
+         */
+        R.pendingSeat.findById = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::findById::RequestQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.pendingSeat#updateById
+         * @methodOf lbServices.RequestQueueUST.pendingSeat
+         *
+         * @description
+         *
+         * Update a related item by id for pendingSeat.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeat
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeat` object.)
+         * </em>
+         */
+        R.pendingSeat.updateById = function() {
+          var TargetResource = $injector.get("PendingSeat");
+          var action = TargetResource["::updateById::RequestQueueUST::pendingSeat"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.RequestQueueUST.requestQueue
+     * @header lbServices.RequestQueueUST.requestQueue
+     * @object
+     * @description
+     *
+     * The object `RequestQueueUST.requestQueue` groups methods
+     * manipulating `RequestQueue` instances related to `RequestQueueUST`.
+     *
+     * Call {@link lbServices.RequestQueueUST#requestQueue RequestQueueUST.requestQueue()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#requestQueue
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Queries requestQueue of RequestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueue` object.)
+         * </em>
+         */
+        R.requestQueue = function() {
+          var TargetResource = $injector.get("RequestQueue");
+          var action = TargetResource["::get::RequestQueueUST::requestQueue"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.requestQueue#count
+         * @methodOf lbServices.RequestQueueUST.requestQueue
+         *
+         * @description
+         *
+         * Counts requestQueue of RequestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.requestQueue.count = function() {
+          var TargetResource = $injector.get("RequestQueue");
+          var action = TargetResource["::count::RequestQueueUST::requestQueue"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.requestQueue#create
+         * @methodOf lbServices.RequestQueueUST.requestQueue
+         *
+         * @description
+         *
+         * Creates a new instance in requestQueue of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueue` object.)
+         * </em>
+         */
+        R.requestQueue.create = function() {
+          var TargetResource = $injector.get("RequestQueue");
+          var action = TargetResource["::create::RequestQueueUST::requestQueue"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.requestQueue#createMany
+         * @methodOf lbServices.RequestQueueUST.requestQueue
+         *
+         * @description
+         *
+         * Creates a new instance in requestQueue of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueue` object.)
+         * </em>
+         */
+        R.requestQueue.createMany = function() {
+          var TargetResource = $injector.get("RequestQueue");
+          var action = TargetResource["::createMany::RequestQueueUST::requestQueue"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.requestQueue#destroyAll
+         * @methodOf lbServices.RequestQueueUST.requestQueue
+         *
+         * @description
+         *
+         * Deletes all requestQueue of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.requestQueue.destroyAll = function() {
+          var TargetResource = $injector.get("RequestQueue");
+          var action = TargetResource["::delete::RequestQueueUST::requestQueue"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.requestQueue#destroyById
+         * @methodOf lbServices.RequestQueueUST.requestQueue
+         *
+         * @description
+         *
+         * Delete a related item by id for requestQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for requestQueue
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.requestQueue.destroyById = function() {
+          var TargetResource = $injector.get("RequestQueue");
+          var action = TargetResource["::destroyById::RequestQueueUST::requestQueue"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.requestQueue#findById
+         * @methodOf lbServices.RequestQueueUST.requestQueue
+         *
+         * @description
+         *
+         * Find a related item by id for requestQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for requestQueue
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueue` object.)
+         * </em>
+         */
+        R.requestQueue.findById = function() {
+          var TargetResource = $injector.get("RequestQueue");
+          var action = TargetResource["::findById::RequestQueueUST::requestQueue"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.requestQueue#updateById
+         * @methodOf lbServices.RequestQueueUST.requestQueue
+         *
+         * @description
+         *
+         * Update a related item by id for requestQueue.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for requestQueue
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueue` object.)
+         * </em>
+         */
+        R.requestQueue.updateById = function() {
+          var TargetResource = $injector.get("RequestQueue");
+          var action = TargetResource["::updateById::RequestQueueUST::requestQueue"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.RequestQueueUST.requestQueueUST
+     * @header lbServices.RequestQueueUST.requestQueueUST
+     * @object
+     * @description
+     *
+     * The object `RequestQueueUST.requestQueueUST` groups methods
+     * manipulating `RequestQueueUST` instances related to `RequestQueueUST`.
+     *
+     * Call {@link lbServices.RequestQueueUST#requestQueueUST RequestQueueUST.requestQueueUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#requestQueueUST
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Queries requestQueueUST of RequestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::get::RequestQueueUST::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.requestQueueUST#count
+         * @methodOf lbServices.RequestQueueUST.requestQueueUST
+         *
+         * @description
+         *
+         * Counts requestQueueUST of RequestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.requestQueueUST.count = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::count::RequestQueueUST::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.requestQueueUST#create
+         * @methodOf lbServices.RequestQueueUST.requestQueueUST
+         *
+         * @description
+         *
+         * Creates a new instance in requestQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST.create = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::create::RequestQueueUST::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.requestQueueUST#createMany
+         * @methodOf lbServices.RequestQueueUST.requestQueueUST
+         *
+         * @description
+         *
+         * Creates a new instance in requestQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST.createMany = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::createMany::RequestQueueUST::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.requestQueueUST#destroyAll
+         * @methodOf lbServices.RequestQueueUST.requestQueueUST
+         *
+         * @description
+         *
+         * Deletes all requestQueueUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.requestQueueUST.destroyAll = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::delete::RequestQueueUST::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.requestQueueUST#destroyById
+         * @methodOf lbServices.RequestQueueUST.requestQueueUST
+         *
+         * @description
+         *
+         * Delete a related item by id for requestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for requestQueueUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.requestQueueUST.destroyById = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::destroyById::RequestQueueUST::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.requestQueueUST#findById
+         * @methodOf lbServices.RequestQueueUST.requestQueueUST
+         *
+         * @description
+         *
+         * Find a related item by id for requestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for requestQueueUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST.findById = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::findById::RequestQueueUST::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.requestQueueUST#updateById
+         * @methodOf lbServices.RequestQueueUST.requestQueueUST
+         *
+         * @description
+         *
+         * Update a related item by id for requestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for requestQueueUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `RequestQueueUST` object.)
+         * </em>
+         */
+        R.requestQueueUST.updateById = function() {
+          var TargetResource = $injector.get("RequestQueueUST");
+          var action = TargetResource["::updateById::RequestQueueUST::requestQueueUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#request
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Fetches belongsTo relation request.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Request` object.)
+         * </em>
+         */
+        R.request = function() {
+          var TargetResource = $injector.get("Request");
+          var action = TargetResource["::get::RequestQueueUST::request"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.RequestQueueUST.pendingSeatUST
+     * @header lbServices.RequestQueueUST.pendingSeatUST
+     * @object
+     * @description
+     *
+     * The object `RequestQueueUST.pendingSeatUST` groups methods
+     * manipulating `PendingSeatUST` instances related to `RequestQueueUST`.
+     *
+     * Call {@link lbServices.RequestQueueUST#pendingSeatUST RequestQueueUST.pendingSeatUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#pendingSeatUST
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Queries pendingSeatUST of RequestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::get::RequestQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.pendingSeatUST#count
+         * @methodOf lbServices.RequestQueueUST.pendingSeatUST
+         *
+         * @description
+         *
+         * Counts pendingSeatUST of RequestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.pendingSeatUST.count = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::count::RequestQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.pendingSeatUST#create
+         * @methodOf lbServices.RequestQueueUST.pendingSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.create = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::create::RequestQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.pendingSeatUST#createMany
+         * @methodOf lbServices.RequestQueueUST.pendingSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.createMany = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::createMany::RequestQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.pendingSeatUST#destroyAll
+         * @methodOf lbServices.RequestQueueUST.pendingSeatUST
+         *
+         * @description
+         *
+         * Deletes all pendingSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeatUST.destroyAll = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::delete::RequestQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.pendingSeatUST#destroyById
+         * @methodOf lbServices.RequestQueueUST.pendingSeatUST
+         *
+         * @description
+         *
+         * Delete a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.pendingSeatUST.destroyById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::destroyById::RequestQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.pendingSeatUST#findById
+         * @methodOf lbServices.RequestQueueUST.pendingSeatUST
+         *
+         * @description
+         *
+         * Find a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.findById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::findById::RequestQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.pendingSeatUST#updateById
+         * @methodOf lbServices.RequestQueueUST.pendingSeatUST
+         *
+         * @description
+         *
+         * Update a related item by id for pendingSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for pendingSeatUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R.pendingSeatUST.updateById = function() {
+          var TargetResource = $injector.get("PendingSeatUST");
+          var action = TargetResource["::updateById::RequestQueueUST::pendingSeatUST"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.RequestQueueUST.matchedSeatUST
+     * @header lbServices.RequestQueueUST.matchedSeatUST
+     * @object
+     * @description
+     *
+     * The object `RequestQueueUST.matchedSeatUST` groups methods
+     * manipulating `MatchedSeatUST` instances related to `RequestQueueUST`.
+     *
+     * Call {@link lbServices.RequestQueueUST#matchedSeatUST RequestQueueUST.matchedSeatUST()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST#matchedSeatUST
+         * @methodOf lbServices.RequestQueueUST
+         *
+         * @description
+         *
+         * Queries matchedSeatUST of RequestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::get::RequestQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.matchedSeatUST#count
+         * @methodOf lbServices.RequestQueueUST.matchedSeatUST
+         *
+         * @description
+         *
+         * Counts matchedSeatUST of RequestQueueUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.matchedSeatUST.count = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::count::RequestQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.matchedSeatUST#create
+         * @methodOf lbServices.RequestQueueUST.matchedSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.create = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::create::RequestQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.matchedSeatUST#createMany
+         * @methodOf lbServices.RequestQueueUST.matchedSeatUST
+         *
+         * @description
+         *
+         * Creates a new instance in matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.createMany = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::createMany::RequestQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.matchedSeatUST#destroyAll
+         * @methodOf lbServices.RequestQueueUST.matchedSeatUST
+         *
+         * @description
+         *
+         * Deletes all matchedSeatUST of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeatUST.destroyAll = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::delete::RequestQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.matchedSeatUST#destroyById
+         * @methodOf lbServices.RequestQueueUST.matchedSeatUST
+         *
+         * @description
+         *
+         * Delete a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.matchedSeatUST.destroyById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::destroyById::RequestQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.matchedSeatUST#findById
+         * @methodOf lbServices.RequestQueueUST.matchedSeatUST
+         *
+         * @description
+         *
+         * Find a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.findById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::findById::RequestQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.RequestQueueUST.matchedSeatUST#updateById
+         * @methodOf lbServices.RequestQueueUST.matchedSeatUST
+         *
+         * @description
+         *
+         * Update a related item by id for matchedSeatUST.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - request id
+         *
+         *  - `fk` – `{*}` - Foreign key for matchedSeatUST
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R.matchedSeatUST.updateById = function() {
+          var TargetResource = $injector.get("MatchedSeatUST");
+          var action = TargetResource["::updateById::RequestQueueUST::matchedSeatUST"];
+          return action.apply(R, arguments);
+        };
+
+    return R;
+  }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.PendingSeatUST
+ * @header lbServices.PendingSeatUST
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `PendingSeatUST` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+module.factory(
+  "PendingSeatUST",
+  ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
+    var R = Resource(
+      urlBase + "/PendingSeatUSTs/:id",
+      { 'id': '@id' },
+      {
+
+        // INTERNAL. Use PendingSeatUST.request() instead.
+        "prototype$__get__request": {
+          url: urlBase + "/PendingSeatUSTs/:id/request",
+          method: "GET"
+        },
+
+        // INTERNAL. Use PendingSeatUST.ride() instead.
+        "prototype$__get__ride": {
+          url: urlBase + "/PendingSeatUSTs/:id/ride",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#create
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        "create": {
+          url: urlBase + "/PendingSeatUSTs",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#createMany
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        "createMany": {
+          isArray: true,
+          url: urlBase + "/PendingSeatUSTs",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#upsert
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        "upsert": {
+          url: urlBase + "/PendingSeatUSTs",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#exists
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Check whether a model instance exists in the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `exists` – `{boolean=}` - 
+         */
+        "exists": {
+          url: urlBase + "/PendingSeatUSTs/:id/exists",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#findById
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Find a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         *  - `filter` – `{object=}` - Filter defining fields and include
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        "findById": {
+          url: urlBase + "/PendingSeatUSTs/:id",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#find
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Find all instances of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        "find": {
+          isArray: true,
+          url: urlBase + "/PendingSeatUSTs",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#findOne
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Find first instance of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        "findOne": {
+          url: urlBase + "/PendingSeatUSTs/findOne",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#updateAll
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        "updateAll": {
+          url: urlBase + "/PendingSeatUSTs/update",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#deleteById
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        "deleteById": {
+          url: urlBase + "/PendingSeatUSTs/:id",
+          method: "DELETE"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#count
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Count instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        "count": {
+          url: urlBase + "/PendingSeatUSTs/count",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#prototype$updateAttributes
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Update attributes for a model instance and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        "prototype$updateAttributes": {
+          url: urlBase + "/PendingSeatUSTs/:id",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#createChangeStream
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Create a change stream.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         *  - `options` – `{object=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `changes` – `{ReadableStream=}` - 
+         */
+        "createChangeStream": {
+          url: urlBase + "/PendingSeatUSTs/change-stream",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#addPending
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `pendingS` – `{object=}` - 
+         */
+        "addPending": {
+          url: urlBase + "/PendingSeatUSTs/addPending",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#removePending
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `pendingS` – `{object=}` - 
+         */
+        "removePending": {
+          url: urlBase + "/PendingSeatUSTs/removePending",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#toMatchedSeat
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `pendingS` – `{object=}` - 
+         */
+        "toMatchedSeat": {
+          url: urlBase + "/PendingSeatUSTs/toMatchedSeat",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST.findById() instead.
+        "::findById::Ride::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/pendingSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST.destroyById() instead.
+        "::destroyById::Ride::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/pendingSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST.updateById() instead.
+        "::updateById::Ride::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/pendingSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST() instead.
+        "::get::Ride::pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/Rides/:id/pendingSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST.create() instead.
+        "::create::Ride::pendingSeatUST": {
+          url: urlBase + "/Rides/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST.createMany() instead.
+        "::createMany::Ride::pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/Rides/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST.destroyAll() instead.
+        "::delete::Ride::pendingSeatUST": {
+          url: urlBase + "/Rides/:id/pendingSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Ride.pendingSeatUST.count() instead.
+        "::count::Ride::pendingSeatUST": {
+          url: urlBase + "/Rides/:id/pendingSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST.findById() instead.
+        "::findById::request::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/pendingSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST.destroyById() instead.
+        "::destroyById::request::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/pendingSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST.updateById() instead.
+        "::updateById::request::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/pendingSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST() instead.
+        "::get::request::pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/requests/:id/pendingSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST.create() instead.
+        "::create::request::pendingSeatUST": {
+          url: urlBase + "/requests/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST.createMany() instead.
+        "::createMany::request::pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/requests/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST.destroyAll() instead.
+        "::delete::request::pendingSeatUST": {
+          url: urlBase + "/requests/:id/pendingSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Request.pendingSeatUST.count() instead.
+        "::count::request::pendingSeatUST": {
+          url: urlBase + "/requests/:id/pendingSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST.findById() instead.
+        "::findById::OfferQueue::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST.destroyById() instead.
+        "::destroyById::OfferQueue::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST.updateById() instead.
+        "::updateById::OfferQueue::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST() instead.
+        "::get::OfferQueue::pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST.create() instead.
+        "::create::OfferQueue::pendingSeatUST": {
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST.createMany() instead.
+        "::createMany::OfferQueue::pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST.destroyAll() instead.
+        "::delete::OfferQueue::pendingSeatUST": {
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueue.pendingSeatUST.count() instead.
+        "::count::OfferQueue::pendingSeatUST": {
+          url: urlBase + "/OfferQueues/:id/pendingSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST.findById() instead.
+        "::findById::RequestQueue::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST.destroyById() instead.
+        "::destroyById::RequestQueue::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST.updateById() instead.
+        "::updateById::RequestQueue::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST() instead.
+        "::get::RequestQueue::pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST.create() instead.
+        "::create::RequestQueue::pendingSeatUST": {
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST.createMany() instead.
+        "::createMany::RequestQueue::pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST.destroyAll() instead.
+        "::delete::RequestQueue::pendingSeatUST": {
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueue.pendingSeatUST.count() instead.
+        "::count::RequestQueue::pendingSeatUST": {
+          url: urlBase + "/RequestQueues/:id/pendingSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST.findById() instead.
+        "::findById::OfferQueueUST::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST.destroyById() instead.
+        "::destroyById::OfferQueueUST::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST.updateById() instead.
+        "::updateById::OfferQueueUST::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST() instead.
+        "::get::OfferQueueUST::pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST.create() instead.
+        "::create::OfferQueueUST::pendingSeatUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST.createMany() instead.
+        "::createMany::OfferQueueUST::pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST.destroyAll() instead.
+        "::delete::OfferQueueUST::pendingSeatUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.pendingSeatUST.count() instead.
+        "::count::OfferQueueUST::pendingSeatUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/pendingSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST.findById() instead.
+        "::findById::RequestQueueUST::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST.destroyById() instead.
+        "::destroyById::RequestQueueUST::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST.updateById() instead.
+        "::updateById::RequestQueueUST::pendingSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST() instead.
+        "::get::RequestQueueUST::pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST.create() instead.
+        "::create::RequestQueueUST::pendingSeatUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST.createMany() instead.
+        "::createMany::RequestQueueUST::pendingSeatUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST.destroyAll() instead.
+        "::delete::RequestQueueUST::pendingSeatUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.pendingSeatUST.count() instead.
+        "::count::RequestQueueUST::pendingSeatUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/pendingSeatUST/count",
+          method: "GET"
+        },
+      }
+    );
+
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#updateOrCreate
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R["updateOrCreate"] = R["upsert"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#update
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        R["update"] = R["updateAll"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#destroyById
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R["destroyById"] = R["deleteById"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#removeById
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `PendingSeatUST` object.)
+         * </em>
+         */
+        R["removeById"] = R["deleteById"];
+
+
+    /**
+    * @ngdoc property
+    * @name lbServices.PendingSeatUST#modelName
+    * @propertyOf lbServices.PendingSeatUST
+    * @description
+    * The name of the model represented by this $resource,
+    * i.e. `PendingSeatUST`.
+    */
+    R.modelName = "PendingSeatUST";
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#request
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Fetches belongsTo relation request.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Request` object.)
+         * </em>
+         */
+        R.request = function() {
+          var TargetResource = $injector.get("Request");
+          var action = TargetResource["::get::PendingSeatUST::request"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.PendingSeatUST#ride
+         * @methodOf lbServices.PendingSeatUST
+         *
+         * @description
+         *
+         * Fetches belongsTo relation ride.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Ride` object.)
+         * </em>
+         */
+        R.ride = function() {
+          var TargetResource = $injector.get("Ride");
+          var action = TargetResource["::get::PendingSeatUST::ride"];
+          return action.apply(R, arguments);
+        };
+
+    return R;
+  }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.MatchedSeatUST
+ * @header lbServices.MatchedSeatUST
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `MatchedSeatUST` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+module.factory(
+  "MatchedSeatUST",
+  ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
+    var R = Resource(
+      urlBase + "/MatchedSeatUSTs/:id",
+      { 'id': '@id' },
+      {
+
+        // INTERNAL. Use MatchedSeatUST.request() instead.
+        "prototype$__get__request": {
+          url: urlBase + "/MatchedSeatUSTs/:id/request",
+          method: "GET"
+        },
+
+        // INTERNAL. Use MatchedSeatUST.ride() instead.
+        "prototype$__get__ride": {
+          url: urlBase + "/MatchedSeatUSTs/:id/ride",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#create
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        "create": {
+          url: urlBase + "/MatchedSeatUSTs",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#createMany
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        "createMany": {
+          isArray: true,
+          url: urlBase + "/MatchedSeatUSTs",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#upsert
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        "upsert": {
+          url: urlBase + "/MatchedSeatUSTs",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#exists
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Check whether a model instance exists in the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `exists` – `{boolean=}` - 
+         */
+        "exists": {
+          url: urlBase + "/MatchedSeatUSTs/:id/exists",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#findById
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Find a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         *  - `filter` – `{object=}` - Filter defining fields and include
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        "findById": {
+          url: urlBase + "/MatchedSeatUSTs/:id",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#find
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Find all instances of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        "find": {
+          isArray: true,
+          url: urlBase + "/MatchedSeatUSTs",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#findOne
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Find first instance of the model matched by filter from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        "findOne": {
+          url: urlBase + "/MatchedSeatUSTs/findOne",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#updateAll
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        "updateAll": {
+          url: urlBase + "/MatchedSeatUSTs/update",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#deleteById
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        "deleteById": {
+          url: urlBase + "/MatchedSeatUSTs/:id",
+          method: "DELETE"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#count
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Count instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        "count": {
+          url: urlBase + "/MatchedSeatUSTs/count",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#prototype$updateAttributes
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Update attributes for a model instance and persist it into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        "prototype$updateAttributes": {
+          url: urlBase + "/MatchedSeatUSTs/:id",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#createChangeStream
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Create a change stream.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         *  - `options` – `{object=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `changes` – `{ReadableStream=}` - 
+         */
+        "createChangeStream": {
+          url: urlBase + "/MatchedSeatUSTs/change-stream",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#removeMatched
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `matchedS` – `{object=}` - 
+         */
+        "removeMatched": {
+          url: urlBase + "/MatchedSeatUSTs/removeMatched",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST.findById() instead.
+        "::findById::Ride::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/matchedSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST.destroyById() instead.
+        "::destroyById::Ride::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/matchedSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST.updateById() instead.
+        "::updateById::Ride::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Rides/:id/matchedSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST() instead.
+        "::get::Ride::matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/Rides/:id/matchedSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST.create() instead.
+        "::create::Ride::matchedSeatUST": {
+          url: urlBase + "/Rides/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST.createMany() instead.
+        "::createMany::Ride::matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/Rides/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST.destroyAll() instead.
+        "::delete::Ride::matchedSeatUST": {
+          url: urlBase + "/Rides/:id/matchedSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Ride.matchedSeatUST.count() instead.
+        "::count::Ride::matchedSeatUST": {
+          url: urlBase + "/Rides/:id/matchedSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST.findById() instead.
+        "::findById::request::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/matchedSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST.destroyById() instead.
+        "::destroyById::request::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/matchedSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST.updateById() instead.
+        "::updateById::request::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/requests/:id/matchedSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST() instead.
+        "::get::request::matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/requests/:id/matchedSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST.create() instead.
+        "::create::request::matchedSeatUST": {
+          url: urlBase + "/requests/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST.createMany() instead.
+        "::createMany::request::matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/requests/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST.destroyAll() instead.
+        "::delete::request::matchedSeatUST": {
+          url: urlBase + "/requests/:id/matchedSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Request.matchedSeatUST.count() instead.
+        "::count::request::matchedSeatUST": {
+          url: urlBase + "/requests/:id/matchedSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST.findById() instead.
+        "::findById::OfferQueue::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST.destroyById() instead.
+        "::destroyById::OfferQueue::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST.updateById() instead.
+        "::updateById::OfferQueue::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST() instead.
+        "::get::OfferQueue::matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST.create() instead.
+        "::create::OfferQueue::matchedSeatUST": {
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST.createMany() instead.
+        "::createMany::OfferQueue::matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST.destroyAll() instead.
+        "::delete::OfferQueue::matchedSeatUST": {
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueue.matchedSeatUST.count() instead.
+        "::count::OfferQueue::matchedSeatUST": {
+          url: urlBase + "/OfferQueues/:id/matchedSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST.findById() instead.
+        "::findById::RequestQueue::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST.destroyById() instead.
+        "::destroyById::RequestQueue::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST.updateById() instead.
+        "::updateById::RequestQueue::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST() instead.
+        "::get::RequestQueue::matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST.create() instead.
+        "::create::RequestQueue::matchedSeatUST": {
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST.createMany() instead.
+        "::createMany::RequestQueue::matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST.destroyAll() instead.
+        "::delete::RequestQueue::matchedSeatUST": {
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueue.matchedSeatUST.count() instead.
+        "::count::RequestQueue::matchedSeatUST": {
+          url: urlBase + "/RequestQueues/:id/matchedSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST.findById() instead.
+        "::findById::OfferQueueUST::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST.destroyById() instead.
+        "::destroyById::OfferQueueUST::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST.updateById() instead.
+        "::updateById::OfferQueueUST::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST() instead.
+        "::get::OfferQueueUST::matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST.create() instead.
+        "::create::OfferQueueUST::matchedSeatUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST.createMany() instead.
+        "::createMany::OfferQueueUST::matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST.destroyAll() instead.
+        "::delete::OfferQueueUST::matchedSeatUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use OfferQueueUST.matchedSeatUST.count() instead.
+        "::count::OfferQueueUST::matchedSeatUST": {
+          url: urlBase + "/OfferQueueUSTs/:id/matchedSeatUST/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST.findById() instead.
+        "::findById::RequestQueueUST::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST.destroyById() instead.
+        "::destroyById::RequestQueueUST::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST.updateById() instead.
+        "::updateById::RequestQueueUST::matchedSeatUST": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST() instead.
+        "::get::RequestQueueUST::matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST",
+          method: "GET"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST.create() instead.
+        "::create::RequestQueueUST::matchedSeatUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST.createMany() instead.
+        "::createMany::RequestQueueUST::matchedSeatUST": {
+          isArray: true,
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST",
+          method: "POST"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST.destroyAll() instead.
+        "::delete::RequestQueueUST::matchedSeatUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use RequestQueueUST.matchedSeatUST.count() instead.
+        "::count::RequestQueueUST::matchedSeatUST": {
+          url: urlBase + "/RequestQueueUSTs/:id/matchedSeatUST/count",
+          method: "GET"
+        },
+      }
+    );
+
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#updateOrCreate
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R["updateOrCreate"] = R["upsert"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#update
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * The number of instances updated
+         */
+        R["update"] = R["updateAll"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#destroyById
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R["destroyById"] = R["deleteById"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#removeById
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `MatchedSeatUST` object.)
+         * </em>
+         */
+        R["removeById"] = R["deleteById"];
+
+
+    /**
+    * @ngdoc property
+    * @name lbServices.MatchedSeatUST#modelName
+    * @propertyOf lbServices.MatchedSeatUST
+    * @description
+    * The name of the model represented by this $resource,
+    * i.e. `MatchedSeatUST`.
+    */
+    R.modelName = "MatchedSeatUST";
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#request
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Fetches belongsTo relation request.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Request` object.)
+         * </em>
+         */
+        R.request = function() {
+          var TargetResource = $injector.get("Request");
+          var action = TargetResource["::get::MatchedSeatUST::request"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.MatchedSeatUST#ride
+         * @methodOf lbServices.MatchedSeatUST
+         *
+         * @description
+         *
+         * Fetches belongsTo relation ride.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Ride` object.)
+         * </em>
+         */
+        R.ride = function() {
+          var TargetResource = $injector.get("Ride");
+          var action = TargetResource["::get::MatchedSeatUST::ride"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);

@@ -55,6 +55,21 @@
       "type": "hasMany",
       "model": "RequestQueue",
       "foreignKey": "requestId"
+    },
+    "matchedSeatUST": {
+      "type": "hasMany",
+      "model": "MatchedSeatUST",
+      "foreignKey": "requestId"
+    },
+    "pendingSeatUST": {
+      "type": "hasMany",
+      "model": "PendingSeatUST",
+      "foreignKey": "requestId"
+    },
+    "requestQueueUST": {
+      "type": "hasMany",
+      "model": "RequestQueueUST",
+      "foreignKey": "requestId"
     }
   },
   "acls": [],

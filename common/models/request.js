@@ -11,12 +11,12 @@ module.exports = function(Request) {
 			var accessToken=ctx.get('accessToken');
 			// console.log(accessToken);
 			var currentUser = ctx && ctx.get('currentUser');
-			console.log('currentUser.username: ', currentUser);
+			console.log('currentUser.email: ', currentUser.email);
 			if (idk["memberId"] == null){
-				idk["memberId"]=currentUser.id;
+				idk["memberId"] = currentUser.id;
 			}
 			if (idk["time"] == null){
-				idk["time"]=new Date();
+				idk["time"] = new Date();
 			}
 
 			var returnObj = {};
@@ -26,25 +26,28 @@ module.exports = function(Request) {
 				if (err) console.log(err);
 				idk.destination_name = newDesName;
 				returnObj.newDesName = newDesName;
-
-				if(idk.destination_name=="Hang Hau"){
-					idk["pickup_name"]="North Gate";
-				}
-				else{
-					idk["pickup_name"]="South Gate";
+				if (idk.leaveUst){
+					if (idk.destination_name == "Hang Hau"){
+						idk["pickup_name"] = "North Gate";
+					} else if (idk.destination_name == "Choi Hung"){
+						idk["pickup_name"] = "South Gate";
+					}
+				} else{
+					idk["pickup_name"] = idk.destination_name;
+					idk["destination_name"] = "HKUST";
 				}
 
 				Request.create(idk,function(err,request){
 					if(err)
 						console.log(err);
 					// Algorithm 
-					var RequestQueue = app.models.RequestQueue;
+					var RequestQueue = idk.leaveUst? app.models.RequestQueue: app.models.RequestQueueUST;
 					idk.requestId = request.id;
 					idk.member_gender = currentUser.gender;
 					returnObj.requestId = request.id;
 					RequestQueue.create(idk, function(err, requestQ){
 						if (err) console.log(err);
-						var OfferQueue = app.models.OfferQueue;
+						var OfferQueue = idk.leaveUst? app.models.OfferQueue: app.models.OfferQueueUST;
 						OfferQueue.possibleOffer(requestQ, function(err, offerQ){
 							if (offerQ != null){
 								// check if the request is already cancelled
@@ -61,6 +64,7 @@ module.exports = function(Request) {
 									} else{
 										var reqIdObj = {};
 										reqIdObj.requestId = request.id;
+										reqIdObj.leaveUst = idk.leaveUst;
 										Request.cancelMatch(reqIdObj, function(err, reqObj){
 											if (err) console.log(err);
 										});
@@ -129,7 +133,7 @@ module.exports = function(Request) {
 							//var auth="basic "+Base64.encode("83203dab26c5e0e1904d2d822f6eef3efb4eebc0b16bea7d"+":");
 							var auth="basic "+Base64.encode("766e0edd8c6e41a81da5b8d141b4181b5b7d4f93d4c4a6ab"+":");
 
-							// console.log(obj.notification.android.payload);
+							console.log(obj.notification.android.payload);
 
 							req.post({
 								url: "https://push.ionic.io/api/v1/push",
@@ -164,7 +168,7 @@ module.exports = function(Request) {
 
 	Request.confirmMatch=function(idk,cb){
 		// check if the request is still valid
-		var RequestQueue = app.models.RequestQueue;
+		var RequestQueue = idk.leaveUst? app.models.RequestQueue: app.models.RequestQueueUST;
 		RequestQueue.findOne({"where": {"requestId": idk.requestId}}, function(err, reqQ){
 			if (err){
 				console.log(err);
@@ -172,7 +176,7 @@ module.exports = function(Request) {
 			} else{
 				if (reqQ != null){
 					// move PendingSeat record to MatchedSeat
-					var PendingSeat = app.models.PendingSeat;
+					var PendingSeat = idk.leaveUst? app.models.PendingSeat: app.models.PendingSeatUST;
 					PendingSeat.toMatchedSeat(idk, function(err, matchedS){
 						if (err){
 							console.log(err);
@@ -215,7 +219,7 @@ module.exports = function(Request) {
 																	console.log("server starts counting... (OfferQueue Auto Dequeue?)");
 																	setTimeout(function(){
 																		console.log("server stops counting (OfferQueue Auto Dequeue?)");
-																		var OfferQueue = app.models.OfferQueue;
+																		var OfferQueue = idk.leaveUst? app.models.OfferQueue: app.models.OfferQueueUST;
 																		OfferQueue.findOne({"where": {"rideId": join.rideId, "is_full": true}}, function(err, offerQ){
 																			if (err) console.log(err);
 																			if (offerQ != null){
@@ -265,14 +269,14 @@ module.exports = function(Request) {
 	Request.cancelMatch=function(idk,cb){
 		console.log("Cancelling Match...", idk);
 		// remove PendingSeat record
-		var PendingSeat = app.models.PendingSeat;
+		var PendingSeat = idk.leaveUst? app.models.PendingSeat: app.models.PendingSeatUST;
 		PendingSeat.removePending(idk, function(err, pendingS){
 			if (err){
 				console.log(err);
 				cb(err, null);
 			} else{
 				// remove RequestQueue record
-				var RequestQueue = app.models.RequestQueue;
+				var RequestQueue = idk.leaveUst? app.models.RequestQueue: app.models.RequestQueueUST;
 				RequestQueue.removeRequest(idk, function(err, requestQ){
 					if (err){
 						console.log(err);
@@ -283,7 +287,7 @@ module.exports = function(Request) {
 							cb(null, "Cancelled");
 							// push offer to another possible matched passenger
 							if (pendingS != null){
-								var OfferQueue = app.models.OfferQueue;
+								var OfferQueue = idk.leaveUst? app.models.OfferQueue: app.models.OfferQueueUST;
 								OfferQueue.findOne({"where": {"rideId": pendingS.rideId}}, function(err, offQ){
 									if (err) console.log(err);
 									if (offQ != null){
@@ -330,7 +334,7 @@ module.exports = function(Request) {
 							cb(err, null);
 						} else{
 							// remove MatchedSeat Record
-							var MatchedSeat = app.models.MatchedSeat;
+							var MatchedSeat = idk.leaveUst? app.models.MatchedSeat: app.models.MatchedSeatUST;
 							MatchedSeat.removeMatched(idk, function(err, matchedS){
 								if (err){
 									console.log(err);
@@ -340,11 +344,11 @@ module.exports = function(Request) {
 									cb(null, "Cancelled");
 									// push offer to another possible matched passenger
 									if (matchedS != null){
-										var OfferQueue = app.models.OfferQueue;
+										var OfferQueue = idk.leaveUst? app.models.OfferQueue: app.models.OfferQueueUST;
 										OfferQueue.findOne({"where": {"rideId": matchedS.rideId}}, function(err, offQ){
 											if (err) console.log(err);
 											if (offQ != null){
-												var RequestQueue = app.models.RequestQueue;
+												var RequestQueue = idk.leaveUst? app.models.RequestQueue: app.models.RequestQueueUST;
 												RequestQueue.possibleRequest(offQ, function(err, reqQ){
 													if (reqQ != null){
 														reqQ.request(function(err, req){
@@ -379,12 +383,13 @@ module.exports = function(Request) {
 		console.log("server starts counting... (Auto Cancel?)");
 		setTimeout(function(){
 			console.log("server stops counting (Auto Cancel?)");
-			var RequestQueue = app.models.RequestQueue;
+			var RequestQueue = data.leaveUst? app.models.RequestQueue: app.models.RequestQueueUST;
 			RequestQueue.findOne({"where": {"requestId": data.requestId}}, function(err, reqQ){
 				if (err) console.log(err);
 				if (reqQ != null){
 					var reqIdObj = {};
 					reqIdObj.requestId = reqQ.requestId;
+					reqIdObj.leaveUst = data.leaveUst;
 					Request.cancelMatch(reqIdObj, function(err, reqObj){
 						if (err) console.log(err);
 						console.log("(Cancelled by server)");
@@ -408,6 +413,7 @@ module.exports = function(Request) {
 					newReqObj.gender_preference = req.gender_preference;
 					newReqObj.time = req.time;
 					newReqObj.memberId = req.memberId;
+					newReqObj.leaveUst = data.leaveUst;
 					Request.addRequest(newReqObj, function(err, newReq){
 						if (err){
 							console.log(err);
@@ -423,6 +429,162 @@ module.exports = function(Request) {
 				}
 			}
 		});
+	}
+
+	Request.getQueueSeatNumber = function(data, cb){
+		var ctx = loopback.getCurrentContext();
+		var accessToken = ctx.get('accessToken');
+		var currentUser = ctx && ctx.get('currentUser');
+		var returnObj = {};
+	
+	// var Member = app.models.Member;
+	// Member.findById(3, function(err, mem){
+	// currentUser = mem;
+
+		if (currentUser != null){
+			var i = 0;
+			var r = 4;
+			var anyErr = false;
+			var bDebug = true;
+			if (bDebug) console.log("Testing memberId: ", currentUser.id);
+			var RequestQueue = data.leaveUst? app.models.RequestQueue: app.models.RequestQueueUST;
+			var requestQFilter = {
+				"and": [
+					{"status": "active"}
+				]
+			};
+			var hhRFilter = JSON.parse(JSON.stringify(requestQFilter));
+			hhRFilter.and.push(data.leaveUst? {"destination_name": "Hang Hau"}: {"pickup_name": "Hang Hau"});
+			RequestQueue.count(hhRFilter, function(err, hhCount){
+				if (err){
+					console.log(err);
+					anyErr = true;
+					cb(err, null);
+				} else{
+					returnObj.hhCount = hhCount;
+					if (bDebug) console.log("hhCount: ", hhCount);
+					if (++i == r && !anyErr){
+						cb(null, returnObj);
+					}
+				}
+			});
+			var chRFilter = JSON.parse(JSON.stringify(requestQFilter));
+			chRFilter.and.push(data.leaveUst? {"destination_name": "Choi Hung"}: {"pickup_name": "Choi Hung"});
+			RequestQueue.count(chRFilter , function(err, chCount){
+				if (err){
+					console.log(err);
+					anyErr = true;
+					cb(err, null);
+				} else{
+					returnObj.chCount = chCount;
+					if (bDebug) console.log("chCount: ", chCount);
+					if (++i == r && !anyErr){
+						cb(null, returnObj);
+					}
+				}
+			});
+			var OfferQueue = data.leaveUst? app.models.OfferQueue: app.models.OfferQueueUST;
+			var currTime = Date.now();
+			var offerQFilter = {
+				"where": {
+					"and": [
+						{"or": [
+							{"and": [
+								{"gender_preference": true}, 
+								{"member_gender": currentUser.gender}
+							]},
+							{"gender_preference": false}
+						]},
+						{"is_full": false},
+						{"time": {"gt": currTime}}
+					]
+				}
+			};
+			if (currentUser.gender_preference == true){
+				offerQFilter.where.and.push({"member_gender": currentUser.gender});
+			}
+			var hhOFilter = JSON.parse(JSON.stringify(offerQFilter));
+			hhOFilter.where.and.push(data.leaveUst? {"destination_name": "Hang Hau"}: {"pickup_name": "Hang Hau"});
+			var hhSeatNum = 0;
+			var j = 0;
+			OfferQueue.find(hhOFilter, function(err, offerQs){
+				if (err){
+					console.log(err);
+					anyErr = true;
+					cb(err, null);
+				} else{
+					if (offerQs.length == 0){
+						returnObj.hhSeatNum = hhSeatNum;
+						if (bDebug) console.log("hhSeatNum: ", hhSeatNum);
+						if (++i == r && !anyErr){
+							cb(null, returnObj);
+						}
+					} else{
+						offerQs.forEach(function(offerQ, index, array){
+							OfferQueue.getAvalSeatNumber(offerQ, function(err, seatNum){
+								if (err){
+									console.log(err);
+									anyErr = true;
+								} else{
+									hhSeatNum += seatNum;
+									if (++j == array.length){
+										returnObj.hhSeatNum = hhSeatNum;
+										if (bDebug) console.log("hhSeatNum: ", hhSeatNum);
+										if (++i == r && !anyErr){
+											cb(null, returnObj);
+										}
+									}
+								}
+							});
+						});
+					}
+				}
+			});
+			var chOFilter = JSON.parse(JSON.stringify(offerQFilter));
+			chOFilter.where.and.push(data.leaveUst? {"destination_name": "Choi Hung"}: {"pickup_name": "Choi Hung"});
+			var chSeatNum = 0;
+			var j = 0;
+			OfferQueue.find(chOFilter, function(err, offerQs){
+				if (err){
+					console.log(err);
+					anyErr = true;
+					cb(err, null);
+				} else{
+					if (offerQs.length == 0){
+						returnObj.chSeatNum = chSeatNum;
+						if (bDebug) console.log("chSeatNum: ", chSeatNum);
+						if (++i == r && !anyErr){
+							cb(null, returnObj);
+						}
+					} else{
+						offerQs.forEach(function(offerQ, index, array){
+							OfferQueue.getAvalSeatNumber(offerQ, function(err, seatNum){
+								if (err){
+									console.log(err);
+									anyErr = true;
+								} else{
+									chSeatNum += seatNum;
+									if (++j == array.length){
+										returnObj.chSeatNum = chSeatNum;
+										if (bDebug) console.log("chSeatNum: ", chSeatNum);
+										if (++i == r && !anyErr){
+											cb(null, returnObj);
+										}
+									}
+								}
+							});
+						});
+					}
+				}
+			});
+
+		} else{
+			cb("Invalid Current User", null);
+		}
+
+	// });
+		
+
 	}
 
 	Request.remoteMethod(
@@ -486,6 +648,15 @@ module.exports = function(Request) {
 			http: {path: '/addRequestAgain', verb: 'post'},
 			accepts: {arg: 'data', type: 'object', http:{source:'body'}},
 			returns: {arg: 'req', type: 'obj'}
+		}
+	);
+
+	Request.remoteMethod(
+		'getQueueSeatNumber',
+		{
+			http: {path: '/getQueueSeatNumber', verb: 'post'},
+			accepts: {arg: 'data', type: 'object', http:{source:'body'}},
+			returns: {arg: 'num', type: 'obj'}
 		}
 	);
 }

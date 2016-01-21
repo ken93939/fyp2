@@ -178,5 +178,21 @@
   "admin": {
     "dataSource": "mySQL",
     "public": true
+  },
+  "OfferQueueUST": {
+    "dataSource": "db",
+    "public": true
+  },
+  "RequestQueueUST": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PendingSeatUST": {
+    "dataSource": "db",
+    "public": true
+  },
+  "MatchedSeatUST": {
+    "dataSource": "db",
+    "public": true
   }
 }

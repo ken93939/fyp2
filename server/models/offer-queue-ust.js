@@ -2,9 +2,9 @@ var path = require('path');
 var app = require(path.resolve(__dirname, '../../server/server'));
 var loopback = require('loopback');
 
-module.exports = function(OfferQueue) {
+module.exports = function(OfferQueueUST) {
 
-	OfferQueue.possibleOffer = function(requestQ, cb){
+	OfferQueueUST.possibleOffer = function(requestQ, cb){
 		requestQ.member(function(err, mem){
 			if (err){
 				console.log(err);
@@ -13,7 +13,7 @@ module.exports = function(OfferQueue) {
 				var offerQFilter = {
 					"where": {
 						"and": [
-							{"destination_name": requestQ.destination_name},
+							{"pickup_name": requestQ.pickup_name},
 							{"is_full": false},
 							{"time": {"gt": Date.now() + 60*1000}},
 							{"or": [
@@ -35,17 +35,17 @@ module.exports = function(OfferQueue) {
 						if (requestQ.gender_preference == true){
 							offerQFilter.where.and.push({"member_gender": mem.gender});
 						}
-						OfferQueue.findOne(offerQFilter, function(err, offerQ){
+						OfferQueueUST.findOne(offerQFilter, function(err, offerQ){
 							if (err){
 								console.log(err);
 								cb(err, null);
 							} else{
 								if (offerQ != null){
-									var PendingSeat = app.models.PendingSeat;
+									var PendingSeatUST = app.models.PendingSeatUST;
 									var data = {};
 									data.rideId = offerQ.rideId;
 									data.requestId = requestQ.requestId;
-									PendingSeat.addPending(data, function(err, pendingS){
+									PendingSeatUST.addPending(data, function(err, pendingS){
 										if (err){
 											console.log(err);
 											cb(err, null);
@@ -64,8 +64,8 @@ module.exports = function(OfferQueue) {
 		});
 	}
 
-	OfferQueue.removeOffer = function(data, cb){
-		OfferQueue.findOne({"where": {"rideId": data.rideId}}, function(err, offerQ){
+	OfferQueueUST.removeOffer = function(data, cb){
+		OfferQueueUST.findOne({"where": {"rideId": data.rideId}}, function(err, offerQ){
 			if (err){
 				console.log(err);
 				cb(err, null);
@@ -102,16 +102,16 @@ module.exports = function(OfferQueue) {
 		});
 	}
 
-	OfferQueue.getAvalSeatNumber = function(offerQ, cb){
+	OfferQueueUST.getAvalSeatNumber = function(offerQ, cb){
 		if (offerQ != null){
-			var PendingSeat = app.models.PendingSeat;
-			PendingSeat.count({"rideId": offerQ.rideId}, function(err, pendingS_num){
+			var PendingSeatUST = app.models.PendingSeatUST;
+			PendingSeatUST.count({"rideId": offerQ.rideId}, function(err, pendingS_num){
 				if (err){
 					console.log(err);
 					cb(err, null);
 				} else{
-					var MatchedSeat = app.models.MatchedSeat;
-					MatchedSeat.count({"rideId": offerQ.rideId}, function(err, matchedS_num){
+					var MatchedSeatUST = app.models.MatchedSeatUST;
+					MatchedSeatUST.count({"rideId": offerQ.rideId}, function(err, matchedS_num){
 						if (err){
 							console.log(err);
 							cb(err, null);
@@ -127,21 +127,21 @@ module.exports = function(OfferQueue) {
 		}
 	}
 
-	OfferQueue.remoteMethod('possibleOffer', {
+	OfferQueueUST.remoteMethod('possibleOffer', {
 		http: {path: '/possibleOffer', verb: 'post'},
 		accepts: {arg: 'request', type: 'object', http: {source:'body'}},
 		returns: {arg: 'offerQ', type: 'object'}
 	});
 
-	OfferQueue.remoteMethod('removeOffer', {
+	OfferQueueUST.remoteMethod('removeOffer', {
 		http: {path: '/removeOffer', verb: 'post'},
 		accepts: {arg: 'data', type: 'object', http: {source:'body'}},
 		returns: {arg: 'offerQ', type: 'object'}
 	});
 
-	OfferQueue.remoteMethod('getAvalSeatNumber', {
+	OfferQueueUST.remoteMethod('getAvalSeatNumber', {
 		http: {path: '/getAvalSeatNumber', verb: 'post'},
-		accepts: {arg: 'offerQ', type: 'object', http: {source:'body'}},
+		accepts: {arg: 'data', type: 'object', http: {source:'body'}},
 		returns: {arg: 'seatNum', type: 'number'}
 	});
 

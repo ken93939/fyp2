@@ -1,0 +1,28 @@
+{
+  "name": "OfferQueueUST",
+  "base": "Ride",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "is_full": {
+      "type": "boolean",
+      "default": false
+    },
+    "member_gender": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "ride": {
+      "type": "belongsTo",
+      "model": "Ride",
+      "foreignKey": "rideId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -68,6 +68,21 @@
       "type": "hasMany",
       "model": "OfferQueue",
       "foreignKey": "rideId"
+    },
+    "matchedSeatUST": {
+      "type": "hasMany",
+      "model": "MatchedSeatUST",
+      "foreignKey": "rideId"
+    },
+    "pendingSeatUST": {
+      "type": "hasMany",
+      "model": "PendingSeatUST",
+      "foreignKey": "rideId"
+    },
+    "offerQueueUST": {
+      "type": "hasMany",
+      "model": "OfferQueueUST",
+      "foreignKey": "rideId"
     }
   },
   "acls": [],

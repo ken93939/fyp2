@@ -22,14 +22,14 @@ module.exports = function(Destination) {
 							cb(err, null);
 						} else{
 							if (ch_count > hh_count){
-								console.log("Choi Hung");
+								console.log("Choi Hung [H:"+hh_count+"] [C:"+ch_count+"]");
 								cb(null, "Choi Hung");
 							} else if (hh_count > ch_count){
-								console.log("Hang Hau");
+								console.log("Hang Hau [H:"+hh_count+"] [C:"+ch_count+"]");
 								cb(null, "Hang Hau");
 							} else{
 								var newDesName = (new Date() % 2 == 0)? "Choi Hung": "Hang Hau";
-								console.log("Random: "+newDesName);
+								console.log("Random: "+newDesName+" [H:"+hh_count+"] [C:"+ch_count+"]");
 								cb(null, newDesName);
 							}
 						}
