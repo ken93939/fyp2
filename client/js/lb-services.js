@@ -11989,6 +11989,45 @@ module.factory(
           method: "POST"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Request#getQueueSeatNumber
+         * @methodOf lbServices.Request
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `num` – `{obj=}` - 
+         */
+        "getQueueSeatNumber": {
+          url: urlBase + "/requests/getQueueSeatNumber",
+          method: "POST"
+        },
+
         // INTERNAL. Use Member.requests.findById() instead.
         "::findById::Member::requests": {
           params: {
@@ -19105,6 +19144,45 @@ module.factory(
          */
         "removeOffer": {
           url: urlBase + "/OfferQueues/removeOffer",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueue#getAvalSeatNumber
+         * @methodOf lbServices.OfferQueue
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `seatNum` – `{number=}` - 
+         */
+        "getAvalSeatNumber": {
+          url: urlBase + "/OfferQueues/getAvalSeatNumber",
           method: "POST"
         },
 
@@ -28579,6 +28657,45 @@ module.factory(
          */
         "removeOffer": {
           url: urlBase + "/OfferQueueUSTs/removeOffer",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.OfferQueueUST#getAvalSeatNumber
+         * @methodOf lbServices.OfferQueueUST
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `seatNum` – `{number=}` - 
+         */
+        "getAvalSeatNumber": {
+          url: urlBase + "/OfferQueueUSTs/getAvalSeatNumber",
           method: "POST"
         },
 

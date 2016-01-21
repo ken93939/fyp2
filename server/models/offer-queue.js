@@ -102,6 +102,31 @@ module.exports = function(OfferQueue) {
 		});
 	}
 
+	OfferQueue.getAvalSeatNumber = function(offerQ, cb){
+		if (offerQ != null){
+			var PendingSeat = app.models.PendingSeat;
+			PendingSeat.count({"rideId": offerQ.rideId}, function(err, pendingS_num){
+				if (err){
+					console.log(err);
+					cb(err, null);
+				} else{
+					var MatchedSeat = app.models.MatchedSeat;
+					MatchedSeat.count({"rideId": offerQ.rideId}, function(err, matchedS_num){
+						if (err){
+							console.log(err);
+							cb(err, null);
+						} else{
+							cb(null, offerQ.seat_number-pendingS_num-matchedS_num);
+						}
+					});
+				}
+			});
+		} else{
+			console.log("No such offerQ: ", offerQ);
+			cb(null, 0);
+		}
+	}
+
 	OfferQueue.remoteMethod('possibleOffer', {
 		http: {path: '/possibleOffer', verb: 'post'},
 		accepts: {arg: 'request', type: 'object', http: {source:'body'}},
@@ -112,6 +137,12 @@ module.exports = function(OfferQueue) {
 		http: {path: '/removeOffer', verb: 'post'},
 		accepts: {arg: 'data', type: 'object', http: {source:'body'}},
 		returns: {arg: 'offerQ', type: 'object'}
+	});
+
+	OfferQueue.remoteMethod('getAvalSeatNumber', {
+		http: {path: '/getAvalSeatNumber', verb: 'post'},
+		accepts: {arg: 'offerQ', type: 'object', http: {source:'body'}},
+		returns: {arg: 'seatNum', type: 'number'}
 	});
 
 };

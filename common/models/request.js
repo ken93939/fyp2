@@ -11,7 +11,7 @@ module.exports = function(Request) {
 			var accessToken=ctx.get('accessToken');
 			// console.log(accessToken);
 			var currentUser = ctx && ctx.get('currentUser');
-			console.log('currentUser.username: ', currentUser);
+			console.log('currentUser.email: ', currentUser.email);
 			if (idk["memberId"] == null){
 				idk["memberId"] = currentUser.id;
 			}
@@ -431,6 +431,162 @@ module.exports = function(Request) {
 		});
 	}
 
+	Request.getQueueSeatNumber = function(data, cb){
+		var ctx = loopback.getCurrentContext();
+		var accessToken = ctx.get('accessToken');
+		var currentUser = ctx && ctx.get('currentUser');
+		var returnObj = {};
+	
+	// var Member = app.models.Member;
+	// Member.findById(3, function(err, mem){
+	// currentUser = mem;
+
+		if (currentUser != null){
+			var i = 0;
+			var r = 4;
+			var anyErr = false;
+			var bDebug = true;
+			if (bDebug) console.log("Testing memberId: ", currentUser.id);
+			var RequestQueue = data.leaveUst? app.models.RequestQueue: app.models.RequestQueueUST;
+			var requestQFilter = {
+				"and": [
+					{"status": "active"}
+				]
+			};
+			var hhRFilter = JSON.parse(JSON.stringify(requestQFilter));
+			hhRFilter.and.push(data.leaveUst? {"destination_name": "Hang Hau"}: {"pickup_name": "Hang Hau"});
+			RequestQueue.count(hhRFilter, function(err, hhCount){
+				if (err){
+					console.log(err);
+					anyErr = true;
+					cb(err, null);
+				} else{
+					returnObj.hhCount = hhCount;
+					if (bDebug) console.log("hhCount: ", hhCount);
+					if (++i == r && !anyErr){
+						cb(null, returnObj);
+					}
+				}
+			});
+			var chRFilter = JSON.parse(JSON.stringify(requestQFilter));
+			chRFilter.and.push(data.leaveUst? {"destination_name": "Choi Hung"}: {"pickup_name": "Choi Hung"});
+			RequestQueue.count(chRFilter , function(err, chCount){
+				if (err){
+					console.log(err);
+					anyErr = true;
+					cb(err, null);
+				} else{
+					returnObj.chCount = chCount;
+					if (bDebug) console.log("chCount: ", chCount);
+					if (++i == r && !anyErr){
+						cb(null, returnObj);
+					}
+				}
+			});
+			var OfferQueue = data.leaveUst? app.models.OfferQueue: app.models.OfferQueueUST;
+			var currTime = Date.now();
+			var offerQFilter = {
+				"where": {
+					"and": [
+						{"or": [
+							{"and": [
+								{"gender_preference": true}, 
+								{"member_gender": currentUser.gender}
+							]},
+							{"gender_preference": false}
+						]},
+						{"is_full": false},
+						{"time": {"gt": currTime}}
+					]
+				}
+			};
+			if (currentUser.gender_preference == true){
+				offerQFilter.where.and.push({"member_gender": currentUser.gender});
+			}
+			var hhOFilter = JSON.parse(JSON.stringify(offerQFilter));
+			hhOFilter.where.and.push(data.leaveUst? {"destination_name": "Hang Hau"}: {"pickup_name": "Hang Hau"});
+			var hhSeatNum = 0;
+			var j = 0;
+			OfferQueue.find(hhOFilter, function(err, offerQs){
+				if (err){
+					console.log(err);
+					anyErr = true;
+					cb(err, null);
+				} else{
+					if (offerQs.length == 0){
+						returnObj.hhSeatNum = hhSeatNum;
+						if (bDebug) console.log("hhSeatNum: ", hhSeatNum);
+						if (++i == r && !anyErr){
+							cb(null, returnObj);
+						}
+					} else{
+						offerQs.forEach(function(offerQ, index, array){
+							OfferQueue.getAvalSeatNumber(offerQ, function(err, seatNum){
+								if (err){
+									console.log(err);
+									anyErr = true;
+								} else{
+									hhSeatNum += seatNum;
+									if (++j == array.length){
+										returnObj.hhSeatNum = hhSeatNum;
+										if (bDebug) console.log("hhSeatNum: ", hhSeatNum);
+										if (++i == r && !anyErr){
+											cb(null, returnObj);
+										}
+									}
+								}
+							});
+						});
+					}
+				}
+			});
+			var chOFilter = JSON.parse(JSON.stringify(offerQFilter));
+			chOFilter.where.and.push(data.leaveUst? {"destination_name": "Choi Hung"}: {"pickup_name": "Choi Hung"});
+			var chSeatNum = 0;
+			var j = 0;
+			OfferQueue.find(chOFilter, function(err, offerQs){
+				if (err){
+					console.log(err);
+					anyErr = true;
+					cb(err, null);
+				} else{
+					if (offerQs.length == 0){
+						returnObj.chSeatNum = chSeatNum;
+						if (bDebug) console.log("chSeatNum: ", chSeatNum);
+						if (++i == r && !anyErr){
+							cb(null, returnObj);
+						}
+					} else{
+						offerQs.forEach(function(offerQ, index, array){
+							OfferQueue.getAvalSeatNumber(offerQ, function(err, seatNum){
+								if (err){
+									console.log(err);
+									anyErr = true;
+								} else{
+									chSeatNum += seatNum;
+									if (++j == array.length){
+										returnObj.chSeatNum = chSeatNum;
+										if (bDebug) console.log("chSeatNum: ", chSeatNum);
+										if (++i == r && !anyErr){
+											cb(null, returnObj);
+										}
+									}
+								}
+							});
+						});
+					}
+				}
+			});
+
+		} else{
+			cb("Invalid Current User", null);
+		}
+
+	// });
+		
+
+	}
+
 	Request.remoteMethod(
 		'confirmMatch',
 		{
@@ -492,6 +648,15 @@ module.exports = function(Request) {
 			http: {path: '/addRequestAgain', verb: 'post'},
 			accepts: {arg: 'data', type: 'object', http:{source:'body'}},
 			returns: {arg: 'req', type: 'obj'}
+		}
+	);
+
+	Request.remoteMethod(
+		'getQueueSeatNumber',
+		{
+			http: {path: '/getQueueSeatNumber', verb: 'post'},
+			accepts: {arg: 'data', type: 'object', http:{source:'body'}},
+			returns: {arg: 'num', type: 'obj'}
 		}
 	);
 }
