@@ -4,88 +4,147 @@ var loopback=require('loopback');
 var config = require('../../server/config.json');
 var bcrypt=require('bcryptjs');
 
+
 module.exports = function(Admin) {
 
 	Admin.adminDisplay=function(cb){
 		var Member=app.models.Member;
 		var array=[];
-		Member.find({},function(err,models){
+		checkValidAdmin(function(err,adminId){
 			if(err){
 				console.log(err);
 				cb(err,null);
 			}
+			else if(adminId==0){
+				console.log("admin not exist");
+				cb(null,null);
+			}
 			else{
-				var counter=0;
-				var object={};
-				models.forEach(function(mem,index,arr){
-					object.id=mem.id;
-					object.first_name=mem.first_name;
-					object.last_name=mem.last_name;
-					object.phone_number=mem.phone_number;
-					object.gender=mem.gender;
-					object.gender_preference=mem.gender_preference;
-					object.isDriver=mem.isDriver;
-					object.authroized=mem.authroized;
-					object.email=mem.email;
-					object.emailVerified=mem.emailVerified;
-					array.push(object);
-					if(index==arr.length){
-						cb(null,array);
+				Member.find({},function(err,models){
+					if(err){
+						console.log(err);
+						cb(err,null);
+					}
+					else{
+						var counter=0;
+						var object={};
+						models.forEach(function(mem,index,arr){
+							object.id=mem.id;
+							object.first_name=mem.first_name;
+							object.last_name=mem.last_name;
+							object.phone_number=mem.phone_number;
+							object.gender=mem.gender;
+							object.gender_preference=mem.gender_preference;
+							object.isDriver=mem.isDriver;
+							object.authroized=mem.authroized;
+							object.email=mem.email;
+							object.emailVerified=mem.emailVerified;
+							array.push(object);
+							if(index==arr.length){
+								cb(null,array);
+							}
+						});
 					}
 				});
 			}
 		});
 	}
 
-	Admin.adminChange=function(idk,cb){
+	Admin.adminChange=function(dataPoint,cb){
 		var Member=app.models.Member;
-		Member.findById(idk.id,{},function(err,instance){
+		checkValidAdmin(function(err,adminId){
 			if(err){
 				console.log(err);
 				cb(err,null);
 			}
-			else if(instance==null){
-				console.log("missing instance");
-				cb("missing");
+			else if(adminId==0){
+				console.log("admin not exist");
+				cb(null,null);
 			}
 			else{
-				instance.updateAttributes(instance,function(err,updated){
+				Member.findById(dataPoint.id,{},function(err,instance){
 					if(err){
 						console.log(err);
 						cb(err,null);
+					}
+					else if(instance==null){
+						console.log("missing instance");
+						cb("missing");
 					}
 					else{
-						console.log(updated);
-						cb(null,"ok");
-					}
-				});
-			}
-		});
-	}
-	Admin.adminAddVehicle=function(idk,cb){
-		var Member=app.models.Member;
-		var veh=app.models.Vehicle;
-		var okay="ok";
-		Member.findById(idk.memberId,function(err,memIns){
-			if(err){
-				console.log(err);
-				cb(err,null);
-			}
-			else{
-				veh.findOne({where: {license_number: idk.car.license_number}},function(err,vehIns){
-					if(err){
-						console.log(err);
-						cb(err,null);
-					}
-					//create a new car
-					else if(vehIns==null){
-						veh.create(idk.car,function(err,createdVeh){
+						instance.updateAttributes(instance,function(err,updated){
 							if(err){
 								console.log(err);
 								cb(err,null);
 							}
 							else{
-								createdVeh.owns.create({},function(err,createdOwn){
+								console.log(updated);
+								cb(null,"ok");
+							}
+						});
+					}
+				});
+			}
+		});
+	}
+
+	Admin.adminAddVehicle=function(dataPoint,cb){
+		var Member=app.models.Member;
+		var veh=app.models.Vehicle;
+		var okay="ok";
+		checkValidAdmin(function(err,adminId){
+			if(err){
+				console.log(err);
+				cb(err,null);
+			}
+			else if(adminId==0){
+				console.log("admin not exist");
+				cb(null,null);
+			}
+			else{
+				Member.findById(dataPoint.memberId,function(err,memIns){
+					if(err){
+						console.log(err);
+						cb(err,null);
+					}
+					else{
+						veh.findOne({where: {license_number: dataPoint.car.license_number}},function(err,vehIns){
+							if(err){
+								console.log(err);
+								cb(err,null);
+							}
+							//create a new car
+							else if(vehIns==null){
+								veh.create(dataPoint.car,function(err,createdVeh){
+									if(err){
+										console.log(err);
+										cb(err,null);
+									}
+									else{
+										createdVeh.owns.create({},function(err,createdOwn){
+											if(err){
+												console.log(err);
+												cb(err,null);
+											}
+											else{
+												createdOwn.updateAttribute("memberId",memIns.id,function(err,updatedOwn){
+													if(err){
+														console.log(err);
+														cb(err,null);
+													}
+													else{
+														okay=createdVeh.id;
+														cb(null,okay);
+													}
+												});
+											}
+										});
+									}
+								});
+							}
+							//add a new owner
+							else{
+								vehIns.owns.create({},function(err,createdOwn){
 									if(err){
 										console.log(err);
 										cb(err,null);
@@ -97,7 +156,6 @@ module.exports = function(Admin) {
 												cb(err,null);
 											}
 											else{
-												okay=createdVeh.id;
 												cb(null,okay);
 											}
 										});
@@ -106,29 +164,9 @@ module.exports = function(Admin) {
 							}
 						});
 					}
-					//add a new owner
-					else{
-						vehIns.owns.create({},function(err,createdOwn){
-							if(err){
-								console.log(err);
-								cb(err,null);
-							}
-							else{
-								createdOwn.updateAttribute("memberId",memIns.id,function(err,updatedOwn){
-									if(err){
-										console.log(err);
-										cb(err,null);
-									}
-									else{
-										cb(null,okay);
-									}
-								});
-							}
-						});
-					}
 				});
 			}
-		});
+		})
 	}
 
 	/*
@@ -137,34 +175,46 @@ module.exports = function(Admin) {
 	}
 	*/
 
-	Admin.adminViewVehicle=function(idk,cb){
+	Admin.adminViewVehicle=function(dataPoint,cb){
 		var Member=app.models.Member;
 		var array=[];
-		Member.findById(idk.id,function(err,memIns){
+		checkValidAdmin(function(err,adminId){
 			if(err){
 				console.log(err);
 				cb(err,null);
 			}
+			else if(adminId==0){
+				console.log("admin not exist");
+				cb(null,null);
+			}
 			else{
-				var counter=0;
-				memIns.owns({},function(err,allOwns){
-					allOwns.forEach(function(ownIns){
-						ownIns.vehicle(function(err,vehIns){
-							if(err){
-								console.log(err);
-								cb(err,null);
-							}
-							else{
-								array.push(vehIns);
-								if(counter==allOwns.length){
-									cb(null,array);
-								}
-							}
+				Member.findById(dataPoint.id,function(err,memIns){
+					if(err){
+						console.log(err);
+						cb(err,null);
+					}
+					else{
+						var counter=0;
+						memIns.owns({},function(err,allOwns){
+							allOwns.forEach(function(ownIns){
+								ownIns.vehicle(function(err,vehIns){
+									if(err){
+										console.log(err);
+										cb(err,null);
+									}
+									else{
+										array.push(vehIns);
+										if(counter==allOwns.length){
+											cb(null,array);
+										}
+									}
+								});
+							});
 						});
-					});
+					}
 				});
 			}
-		});
+		})
 	}
 
 
@@ -184,10 +234,236 @@ module.exports = function(Admin) {
 	}
 	]
 	*/
-	Admin.adminMassImport=function(idk,cb){
+	Admin.adminMassImport=function(dataPoint,cb){
 		var Member=app.models.Member;
 
 	}
+
+	Admin.adminDashBoard=function(dataPoint,cb){
+		var Member=app.models.Member;
+		var request=app.models.request;
+		var Ride=app.models.Ride;
+		var Join=app.models.Join;
+		var object={};
+
+		checkValidAdmin(function(err,adminId){
+			if(err){
+				console.log(err);
+				cb(err,null);
+			}
+			else if(adminId==0){
+				console.log("admin not exist");
+				cb(null,null);
+			}
+			else{
+				var curTime=new Date();
+				var today=new Date(curTime.getFullYear(),curTime.getMonth()+1,curTime.getDate());
+				Member.count({created: {gt: today}},function(err,mem_count){
+					if(err){
+						console.log(err);
+						cb(err,null);
+					}
+					else{
+						object.memCount=mem_count;
+						Ride.count({time: {gt:today}},function(err,ride_count){
+							if(err){
+								console.log(err);
+								cb(err,null);
+							}
+							else{
+								object.rideCount=ride_count;
+								request.count({time: {gt: today}},function(err,request_count){
+									if(err){
+										console.log(err);
+										cb(err,null);
+									}
+									else{
+										object.reqeustCount=request_count;
+										Join.count({status: "inProgress"},function(err,join_count){
+											if(err){
+												console.log(err);
+												cb(err,null);
+											}
+											else{
+												object.joinCount=join_count;
+												//7-day stat
+												var counter=0;
+												for(var i=1;i<8;i++){
+													var date=new Date(curTime.getFullYear(),curTime.getMonth()+1,curTime.getDate()-i);
+													var upperDate=new Date(curTime.getFullYear(),curTime.getMonth()+1,curTime.getDate()-i+1);
+													Ride.count({time: {between: [date,upperDate]}},function(err,betweenRideCount){
+														if(err){
+															console.log(err);
+															cb(err,null);
+														}
+														else{
+															object[i+"rideCount"]=betweenRideCount;
+															request.count({time: {between: [date,upperDate]}},function(err,betweenReqCount){
+																if(err){
+																	console.log(err);
+																	cb(err,null);
+																}
+																else{
+																	object[i+"requestCount"]=betweenReqCount;
+																	counter++;
+																	if(counter==7){
+																		Member.count({gender: "male"},function(err,men_count){
+																			if(err){
+																				console.log(err);
+																				cb(err,null);
+																			}
+																			else{
+																				object.maleCount=men_count;
+																				Member.count({gender: "female"},function(err,women_count){
+																					if(err){
+																						console.log(err);
+																						cb(err,null);
+																					}
+																					else{
+																						object.femaleCount=women_count;
+																						Member.count({isDriver: "yes"},function(err,driver_count){
+																							if(err){
+																								console.log(err);
+																								cb(err,null);
+																							}
+																							else{
+																								object.driverCount=driver_count;
+																								Member.count({isDriver: "no"}, function(err,nondriver_count){
+																									if(err){
+																										console.log(err);
+																										cb(err,null);
+																									}
+																									else{
+																										object.passengerCount=nondriver_count;
+																										cb(null,object);
+																									}
+																								});
+																							}
+																						});
+																					}
+																				});
+																			}
+																		});
+																	}
+																}
+															})
+														}
+													});
+												}
+											}
+										});
+									}
+								})
+							}
+						})
+					}
+				});
+			}
+		})
+	}
+
+	Admin.checkValidAdmin=function(cb){
+		var ctx=loopback.getCurrentContext();
+		var accessToken=ctx.get("accessToken");
+		console.log(accessToken);
+		Admin.findById(accessToken.userId,function(err,adminIns){
+			if(err){
+				console.log(err);
+				cb(err,null);
+			}
+			else if(adminIns==null){
+				cb(null,0);
+			}
+			else{
+				cb(null,adminIns.id);
+			}
+		});
+	}
+
+	Admin.addMember=function(dataPoint,cb){
+		var Member=app.models.Member;
+		checkValidAdmin(function(err,adminId){
+			if(err){
+				console.log(err);
+				cb(err,null);
+			}
+			else if(adminId==0){
+				cb(null,null);
+			}
+			else{
+				validateMember(dataPoint,function(err,status){
+					if(err){
+						console.log(err);
+						cb(err,null);
+					}
+					else if(status=="fail"){
+						console.log("verification failed");
+						cb(null,"fail");
+					}
+					else{
+						Member.create(dataPoint,function(err,createMem){
+							if(err){
+								console.log(err);
+								cb(err,null);
+							}
+							else{
+								cb(null,"okay");
+							}
+						})
+					}
+				});
+			}
+		});
+	}
+
+
+	Admin.validateMember=function(dataPoint,cb){
+		var Member=app.models.Member;
+		Member.findOne({where: {email: dataPoint.email}},function(err,memIns){
+			if(err){
+				console.log(err);
+				cb(err,null);
+			}
+			else if(memIns!=null){
+				console.log("member already exists");
+				cb(null,"fail");
+			}
+			else{
+				Member.findOne({where: {phone_number: dataPoint.phone_number}},function(err,memIns2){
+					if(err){
+						console.log(err);
+						cb(err,null);
+					}
+					else if(memIns2!=null){
+						console.log("member already exists");
+						cb(null,"fail");
+					}
+					else{
+						cb(null,"okay");
+					}
+				})
+			}
+		});
+
+
+	}
+
+	Admin.remoteMethod(
+		'addMember',
+		{
+			http: {path: '/addMember', verb: 'post'},
+			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}			
+		}
+	);
+
+	Admin.remoteMethod(
+		'adminDashBoard',
+		{
+			http: {path: '/adminDashBoard', verb: 'get'},
+			returns: {arg: 'status', type: 'object'}			
+		}
+	);
 
 	Admin.remoteMethod(
 		'adminDisplay',

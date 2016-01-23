@@ -7,18 +7,18 @@ var bcrypt=require('bcryptjs');
 module.exports = function(Member) {
 	//firstname,last_name,phoneno,gender,genderpreference,authroized,isDriver,email,pw
 	//email,phone,car.license_number
-	Member.validationandregister=function(idk,cb){
+	Member.validationandregister=function(dataPoint,cb){
 		try{
 			var veh=app.models.Vehicle;
 			//check conflict of email, phone number
-			Member.findOne({where: {email:idk.email}},function(err,memIns){
+			Member.findOne({where: {email:dataPoint.email}},function(err,memIns){
 				console.log(memIns);
 				if(err){
 					console.log(err);
 					cb(err,null);
 				}
 				else if(memIns==null){
-					Member.findOne({where: {phone_number: idk.phone_number}},function(err,mmIns){
+					Member.findOne({where: {phone_number: dataPoint.phone_number}},function(err,mmIns){
 						console.log(mmIns);
 						if(err){
 							console.log(err);
@@ -27,12 +27,12 @@ module.exports = function(Member) {
 						else if(mmIns==null){
 							var counter=0;
 							var wrong=false;
-							// if(idk.car.length==0){
-								// Member.register(idk);
+							// if(dataPoint.car.length==0){
+								// Member.register(dataPoint);
 							cb(null,"success");
 							// }
 							// else{
-							// 	idk.car.forEach(function(ka,index,array){
+							// 	dataPoint.car.forEach(function(ka,index,array){
 							// 		veh.findOne({where: {license_number: ka.license_number}},function(err,vehIns){
 							// 			console.log(vehIns);
 							// 			if(err){
@@ -42,7 +42,7 @@ module.exports = function(Member) {
 							// 			else if(vehIns==null){
 							// 				counter++;
 							// 				if(counter==array.length && !wrong){
-							// 					// Member.register(idk);
+							// 					// Member.register(dataPoint);
 							// 					cb(null,"success");
 							// 				}
 							// 				else if(counter==array.length && wrong){
@@ -78,21 +78,21 @@ module.exports = function(Member) {
 	}
 
 	//TODO: possible debt
-	Member.register=function(idk,cb){
+	Member.register=function(dataPoint,cb){
 		try{
-			if(idk.isDriver=="yes"){		//good to go
+			if(dataPoint.isDriver=="yes"){		//good to go
 				var veh=app.models.Vehicle;
 				var data={
 					"id": 0
 				};
 				var counter=0;
-				Member.create(idk,function(err,user){
+				Member.create(dataPoint,function(err,user){
 					//TODO: error handling
 					if(err)
 						console.log(err);
-					console.log(idk.car);
+					console.log(dataPoint.car);
 
-					idk.car.forEach(function(ka,index,array){
+					dataPoint.car.forEach(function(ka,index,array){
 						veh.findOne({where: {license_number: ka.license_number}}, function(err,vehModel){
 							if(err){
 								console.log(err);
@@ -146,7 +146,7 @@ module.exports = function(Member) {
 
 			}
 			else{
-				Member.create(idk,function(err,user){
+				Member.create(dataPoint,function(err,user){
 					if(err)
 						console.log(err);
 					cb(null,user);
@@ -192,10 +192,10 @@ module.exports = function(Member) {
 		}
 	});
 
-	Member.resetPw=function(idk,cb){
+	Member.resetPw=function(dataPoint,cb){
 		try{
-			console.log(idk.email);
-			var mail={ email: idk.email};
+			console.log(dataPoint.email);
+			var mail={ email: dataPoint.email};
 			Member.resetPassword(mail,function(err){
 				console.log("test");
 				if(err){
@@ -230,12 +230,12 @@ module.exports = function(Member) {
 		}
 	});
 
-	Member.updateToken=function(idk,cb){
+	Member.updateToken=function(dataPoint,cb){
 		try{
 			var ctx=loopback.getCurrentContext();
 			var currentUser = ctx && ctx.get('currentUser');
-			console.log(idk.deviceToken);
-			currentUser.updateAttribute("deviceToken",idk.deviceToken,function(err,user){
+			console.log(dataPoint.deviceToken);
+			currentUser.updateAttribute("deviceToken",dataPoint.deviceToken,function(err,user){
 				if(err){
 					console.log(err);
 					cb(err,null);
@@ -260,7 +260,7 @@ module.exports = function(Member) {
 			.......
 		}
 	*/
-	Member.updateVehicle=function(idk,cb){
+	Member.updateVehicle=function(dataPoint,cb){
 		var ctx=loopback.getCurrentContext();
 		var currentUser = ctx && ctx.get('currentUser');
 		var identifier=0;
@@ -268,21 +268,21 @@ module.exports = function(Member) {
 			identifier=currentUser.id;
 		}
 		else{
-			identifier=idk.id;
+			identifier=dataPoint.id;
 		}
 		var veh=app.models.Vehicle;
 		var ownModel=app.models.Own;
 		var okay="ok";
 
-		if(idk.flag==1){
-			veh.findOne({where : {license_number: idk.car.license_number}}, function(err,vehModel){
+		if(dataPoint.flag==1){
+			veh.findOne({where : {license_number: dataPoint.car.license_number}}, function(err,vehModel){
 				if(err){
 					console.log(err);
 					cb(err,null);
 				}
 				//new car
 				else if(vehModel==null){
-					veh.create(idk.car,function(err,createdVeh){
+					veh.create(dataPoint.car,function(err,createdVeh){
 						if(err){
 							console.log(err);
 							cb(err,null);
@@ -333,14 +333,14 @@ module.exports = function(Member) {
 			});
 		}
 		//change
-		else if(idk.flag==2){
-			veh.findOne({where: {license_number: idk.car.license_number}}, function(err,vehModel){
+		else if(dataPoint.flag==2){
+			veh.findOne({where: {license_number: dataPoint.car.license_number}}, function(err,vehModel){
 				if(err){
 					console.log(err);
 					cb(err,null);
 				}
 				else{
-					vehModel.updateAttributes(idk.car,function(err,updatedVeh){
+					vehModel.updateAttributes(dataPoint.car,function(err,updatedVeh){
 						if(err){
 							console.log(err);
 							cb(err,null);
@@ -353,7 +353,7 @@ module.exports = function(Member) {
 			});
 		}
 		else{
-			veh.findOne({where: {license_number: idk.car.license_number}},function(err,vehModel){
+			veh.findOne({where: {license_number: dataPoint.car.license_number}},function(err,vehModel){
 				if(err){
 					console.log(err);
 					cb(err,null);
@@ -620,16 +620,16 @@ module.exports = function(Member) {
 
 	// }
 
-	Member.updatePw=function(idk,cb){
+	Member.updatePw=function(dataPoint,cb){
 		try{
 			var ctx=loopback.getCurrentContext();
 			var currentUser = ctx && ctx.get('currentUser');
 			console.log(currentUser.password);
-			console.log(idk.oldpassword);
+			console.log(dataPoint.oldpassword);
 			// console.log(bcrypt.compareSync("123456",currentUser.password));
 
-			if(bcrypt.compareSync(idk.oldpassword,currentUser.password)){
-				currentUser.updateAttribute("password",idk.newpassword,function(err,user){
+			if(bcrypt.compareSync(dataPoint.oldpassword,currentUser.password)){
+				currentUser.updateAttribute("password",dataPoint.newpassword,function(err,user){
 					if(err){
 						console.log(err);
 						cb(err,null);
@@ -678,8 +678,8 @@ module.exports = function(Member) {
 		});
 	}
 
-	Member.adminChange=function(idk,cb){
-		Member.findById(idk.id,{},function(err,instance){
+	Member.adminChange=function(dataPoint,cb){
+		Member.findById(dataPoint.id,{},function(err,instance){
 			if(err){
 				console.log(err);
 				cb(err,null);
@@ -704,14 +704,14 @@ module.exports = function(Member) {
 	}
 
 
-	Member.clientValidateVehicle=function(idk,cb){
+	Member.clientValidateVehicle=function(dataPoint,cb){
 		// var veh=app.models.Vehicle;
 		// var counter=0;
 		// var wrong=false;
 		// //find the car if yes=>ok
 		// //if no fail (?)
-		// if(idk.length!=0){
-		// 	idk.forEach(function(kaka,index,array){
+		// if(dataPoint.length!=0){
+		// 	dataPoint.forEach(function(kaka,index,array){
 		// 		// console.log(kaka.id);
 		// 		if(kaka.id!=null){
 		// 			veh.findOne({where: {license_number: kaka.license_number}},function(err,returnedIns){
@@ -788,11 +788,11 @@ module.exports = function(Member) {
 		}
 	}
 	*/	
-	// Member.ValidateVehicle=function(idk,cb){
+	// Member.ValidateVehicle=function(dataPoint,cb){
 	// 	var veh=app.models.Vehicle;
 	// 	var counter=0;
 	// 	var wrong=false;
-	// 	idk.forEach(function(kaka,index,array){
+	// 	dataPoint.forEach(function(kaka,index,array){
 	// 		veh.findOne({where: {license_number: kaka.license_number}},function(err,vehIns){
 	// 			if(err){
 	// 				console.log(err);
@@ -803,7 +803,7 @@ module.exports = function(Member) {
 	// 				if(vehIns==null){
 	// 					if(counter==array.length){
 	// 						if(!wrong){
-	// 							// Member.findById(idk.memberId,{},function(err,Ins){
+	// 							// Member.findById(dataPoint.memberId,{},function(err,Ins){
 	// 							// });
 	// 							cb(null,"ok");
 	// 						}
@@ -831,28 +831,28 @@ module.exports = function(Member) {
 	/*	{
 		"memberId":_,
 		"car":{
-			"license_number": "idk"
+			"license_number": "dataPoint"
 		}
 	}
 	*/
 	//for edit and delete call updateVehicle();
-	Member.adminAddVehicle=function(idk,cb){
+	Member.adminAddVehicle=function(dataPoint,cb){
 		var veh=app.models.Vehicle;
 		var okay="ok";
-		Member.findById(idk.memberId,function(err,memIns){
+		Member.findById(dataPoint.memberId,function(err,memIns){
 			if(err){
 				console.log(err);
 				cb(err,null);
 			}
 			else{
-				veh.findOne({where: {license_number: idk.car.license_number}},function(err,vehIns){
+				veh.findOne({where: {license_number: dataPoint.car.license_number}},function(err,vehIns){
 					if(err){
 						console.log(err);
 						cb(err,null);
 					}
 					//create a new car
 					else if(vehIns==null){
-						veh.create(idk.car,function(err,createdVeh){
+						veh.create(dataPoint.car,function(err,createdVeh){
 							if(err){
 								console.log(err);
 								cb(err,null);
@@ -910,9 +910,9 @@ module.exports = function(Member) {
 	}
 	*/
 
-	Member.adminViewVehicle=function(idk,cb){
+	Member.adminViewVehicle=function(dataPoint,cb){
 		var array=[];
-		Member.findById(idk.id,function(err,memIns){
+		Member.findById(dataPoint.id,function(err,memIns){
 			if(err){
 				console.log(err);
 				cb(err,null);
@@ -956,14 +956,14 @@ module.exports = function(Member) {
 	}
 	]
 	*/
-	Member.adminMassImport=function(idk,cb){
+	Member.adminMassImport=function(dataPoint,cb){
 
 	}
 
-	Member.setGenderPreference=function(idk,cb){
+	Member.setGenderPreference=function(dataPoint,cb){
 		var ctx=loopback.getCurrentContext();
 		var currentUser = ctx && ctx.get('currentUser');
-		currentUser.updateAttribute("gender_preference",idk.gender_preference,function(err,updatedIns){
+		currentUser.updateAttribute("gender_preference",dataPoint.gender_preference,function(err,updatedIns){
 			if(err){
 				console.log(err);
 				cb(err, null);

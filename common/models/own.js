@@ -20,7 +20,15 @@ module.exports = function(Own) {
 				console.log(owns);
 				if(owns.length==0){
 					console.log("not own any car");
-					cb(null,veh_array);
+					currentUser.updateAttribute("isDriver","no", function(err,updatedMem){
+						if(err){
+							console.log(err);
+							cb(err,null);
+						}
+						else{
+							cb(null,veh_array);
+						}
+					});
 				}
 				owns.forEach(function(eachown,index,array){
 					console.log(currentUser.id);
@@ -36,7 +44,15 @@ module.exports = function(Own) {
 						// }
 
 						if(veh_array.length==array.length){
-							cb(null,veh_array);
+							currentUser.updateAttribute("isDriver","yes", function(err,updatedMem){
+								if(err){
+									console.log(err);
+									cb(err,null);
+								}
+								else{
+									cb(null,veh_array);									
+								}
+							});
 						}
 					});	
 				});
