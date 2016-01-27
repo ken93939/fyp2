@@ -1,6 +1,7 @@
 var path = require('path');
 var app = require(path.resolve(__dirname, '../server'));
 var loopback = require('loopback');
+var moment= require('moment');
 
 var dataSource = app.dataSources.mySQL;
 
@@ -45,7 +46,8 @@ var member_array=[
   "email": "ken@ken.com",
   "deviceToken": "hkustfyp",
   "emailVerified": 1,
-  "gender_preference": true
+  "gender_preference": true,
+  "created": moment().format()
 },
 {
   "first_name": "sam",
@@ -58,7 +60,8 @@ var member_array=[
   "email": "sam@sam.com",
   "deviceToken": "fypyeah",
   "emailVerified": 1,
-  "gender_preference": false
+  "gender_preference": false,
+  "created": new Date(2016,0,27)
 },
 {
   "first_name": "hin",
@@ -71,7 +74,8 @@ var member_array=[
   "email": "9g@9g.com",
   "deviceToken": "chingwinglok",
   "emailVerified": 1,
-  "gender_preference": true
+  "gender_preference": true,
+  "created": new Date(2016,0,25)
 },
 {
   "first_name": "nicole",
@@ -84,7 +88,8 @@ var member_array=[
   "email": "dd@dd.com",
   "deviceToken": "kong",
   "emailVerified": 1,
-  "gender_preference": false
+  "gender_preference": false,
+  "created": new Date(2016,1,27)
 }
 ];
 
@@ -124,7 +129,7 @@ var pickup_array=[
 var ride_array=[
 {
   "id": 1,
-  "time": new Date("December 1, 2015 11:13:00"),
+  "time": new Date(2016,0,23),
   "seat_number": 3,
   "beforeArrive": 15,
   "status": "inactive",
@@ -160,13 +165,13 @@ var vehicle_array=[
 var request_array=[
 {
   "id": 1,
-  "time": new Date("December 1, 2015 11:13:00"),
+  "time": new Date(2016,0,21),
   "status": "inactive",
   "gender_preference": true
 },
 {
   "id": 2,
-  "time": new Date(),
+  "time": new Date(2016,0,22),
   "status": "inactive",
   "gender_preference": false
 }

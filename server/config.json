@@ -1,6 +1,6 @@
 {
   "restApiRoot": "/api",
-  "host": "ridesharingfyp.ddns.net",
+  "host": "localhost",
   "port": 3000,
   "remoting": {
     "context": {

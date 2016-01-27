@@ -3,6 +3,7 @@ var app = require(path.resolve(__dirname, '../../server/server'));
 var loopback=require('loopback');
 var config = require('../../server/config.json');
 var bcrypt=require('bcryptjs');
+var moment= require('moment');
 
 
 module.exports = function(Admin) {
@@ -10,7 +11,7 @@ module.exports = function(Admin) {
 	Admin.adminDisplay=function(cb){
 		var Member=app.models.Member;
 		var array=[];
-		checkValidAdmin(function(err,adminId){
+		Admin.checkValidAdmin(function(err,adminId){
 			if(err){
 				console.log(err);
 				cb(err,null);
@@ -20,6 +21,7 @@ module.exports = function(Admin) {
 				cb(null,null);
 			}
 			else{
+				console.log("!!");
 				Member.find({},function(err,models){
 					if(err){
 						console.log(err);
@@ -27,8 +29,9 @@ module.exports = function(Admin) {
 					}
 					else{
 						var counter=0;
-						var object={};
+						console.log("123");
 						models.forEach(function(mem,index,arr){
+							var object={};
 							object.id=mem.id;
 							object.first_name=mem.first_name;
 							object.last_name=mem.last_name;
@@ -40,7 +43,7 @@ module.exports = function(Admin) {
 							object.email=mem.email;
 							object.emailVerified=mem.emailVerified;
 							array.push(object);
-							if(index==arr.length){
+							if(index==arr.length-1){
 								cb(null,array);
 							}
 						});
@@ -48,11 +51,23 @@ module.exports = function(Admin) {
 				});
 			}
 		});
+
+		//test only
+		// Admin.rideRequestBetween(1,8,{},function(err,object){
+		// 	if(err){
+		// 		console.log(err);
+		// 		cb(err,null);
+		// 	}
+		// 	else{
+		// 		cb(null,object);
+		// 	}
+		// })
 	}
 
+	//do I need to check phone number and email
 	Admin.adminChange=function(dataPoint,cb){
 		var Member=app.models.Member;
-		checkValidAdmin(function(err,adminId){
+		Admin.checkValidAdmin(function(err,adminId){
 			if(err){
 				console.log(err);
 				cb(err,null);
@@ -62,37 +77,59 @@ module.exports = function(Admin) {
 				cb(null,null);
 			}
 			else{
-				Member.findById(dataPoint.id,{},function(err,instance){
+				Member.findOne({"where": {phone_number:dataPoint.phone_number}}, function(err,returnedIns){
 					if(err){
 						console.log(err);
 						cb(err,null);
 					}
-					else if(instance==null){
-						console.log("missing instance");
-						cb("missing");
+					else if(returnedIns!=null && returnedIns.id!=dataPoint.id){
+						console.log("repeated phone_number");
+						cb(null,"fail");
 					}
 					else{
-						instance.updateAttributes(instance,function(err,updated){
+						Member.findById(dataPoint.id,{},function(err,instance){
 							if(err){
 								console.log(err);
 								cb(err,null);
 							}
+							else if(instance==null){
+								console.log("missing instance");
+								cb("missing");
+							}
 							else{
-								console.log(updated);
-								cb(null,"ok");
+								instance.updateAttributes(dataPoint,function(err,updated){
+									if(err){
+										console.log(err);
+										cb(err,null);
+									}
+									else{
+										console.log(updated);
+										cb(null,"ok");
+									}
+								});
 							}
 						});
 					}
-				});
+				})
 			}
 		});
 	}
 
+	/*
+	{
+	memberId:1,
+	car:{
+		"license_number": dasd
+		......
+	}
+
+	}
+	*/
 	Admin.adminAddVehicle=function(dataPoint,cb){
 		var Member=app.models.Member;
 		var veh=app.models.Vehicle;
 		var okay="ok";
-		checkValidAdmin(function(err,adminId){
+		Admin.checkValidAdmin(function(err,adminId){
 			if(err){
 				console.log(err);
 				cb(err,null);
@@ -178,7 +215,7 @@ module.exports = function(Admin) {
 	Admin.adminViewVehicle=function(dataPoint,cb){
 		var Member=app.models.Member;
 		var array=[];
-		checkValidAdmin(function(err,adminId){
+		Admin.checkValidAdmin(function(err,adminId){
 			if(err){
 				console.log(err);
 				cb(err,null);
@@ -204,6 +241,7 @@ module.exports = function(Admin) {
 									}
 									else{
 										array.push(vehIns);
+										counter++;
 										if(counter==allOwns.length){
 											cb(null,array);
 										}
@@ -239,14 +277,14 @@ module.exports = function(Admin) {
 
 	}
 
-	Admin.adminDashBoard=function(dataPoint,cb){
+	Admin.adminDashBoard=function(cb){
 		var Member=app.models.Member;
 		var request=app.models.request;
 		var Ride=app.models.Ride;
 		var Join=app.models.Join;
 		var object={};
 
-		checkValidAdmin(function(err,adminId){
+		Admin.checkValidAdmin(function(err,adminId){
 			if(err){
 				console.log(err);
 				cb(err,null);
@@ -257,27 +295,33 @@ module.exports = function(Admin) {
 			}
 			else{
 				var curTime=new Date();
-				var today=new Date(curTime.getFullYear(),curTime.getMonth()+1,curTime.getDate());
-				Member.count({created: {gt: today}},function(err,mem_count){
+				console.log(moment().unix());
+				console.log(moment().format());
+				var today=new Date(curTime.getFullYear(),curTime.getMonth(),curTime.getDate());
+				console.log(today);
+				Member.count({created: {gte: today}},function(err,mem_count){
 					if(err){
 						console.log(err);
 						cb(err,null);
 					}
 					else{
 						object.memCount=mem_count;
-						Ride.count({time: {gt:today}},function(err,ride_count){
+						Ride.count({time: {gte:today}},function(err,ride_count){
 							if(err){
 								console.log(err);
 								cb(err,null);
 							}
 							else{
 								object.rideCount=ride_count;
-								request.count({time: {gt: today}},function(err,request_count){
+								request.count({time: {gte: today}},function(err,request_count){
 									if(err){
 										console.log(err);
 										cb(err,null);
 									}
 									else{
+
+
+
 										object.reqeustCount=request_count;
 										Join.count({status: "inProgress"},function(err,join_count){
 											if(err){
@@ -287,70 +331,55 @@ module.exports = function(Admin) {
 											else{
 												object.joinCount=join_count;
 												//7-day stat
-												var counter=0;
-												for(var i=1;i<8;i++){
-													var date=new Date(curTime.getFullYear(),curTime.getMonth()+1,curTime.getDate()-i);
-													var upperDate=new Date(curTime.getFullYear(),curTime.getMonth()+1,curTime.getDate()-i+1);
-													Ride.count({time: {between: [date,upperDate]}},function(err,betweenRideCount){
-														if(err){
-															console.log(err);
-															cb(err,null);
-														}
-														else{
-															object[i+"rideCount"]=betweenRideCount;
-															request.count({time: {between: [date,upperDate]}},function(err,betweenReqCount){
-																if(err){
-																	console.log(err);
-																	cb(err,null);
-																}
-																else{
-																	object[i+"requestCount"]=betweenReqCount;
-																	counter++;
-																	if(counter==7){
-																		Member.count({gender: "male"},function(err,men_count){
+												Admin.rideRequestBetween(1,8,object,function(err,object){
+													if(err){
+														console.log(err);
+														cb(err,null);
+													}
+													else{
+														Member.count({gender: "male"},function(err,men_count){
+															if(err){
+																console.log(err);
+																cb(err,null);
+															}
+															else{
+																object.maleCount=men_count;
+																Member.count({gender: "female"},function(err,women_count){
+																	if(err){
+																		console.log(err);
+																		cb(err,null);
+																	}
+																	else{
+																		object.femaleCount=women_count;
+																		Member.count({isDriver: "yes"},function(err,driver_count){
 																			if(err){
 																				console.log(err);
 																				cb(err,null);
 																			}
 																			else{
-																				object.maleCount=men_count;
-																				Member.count({gender: "female"},function(err,women_count){
+																				object.driverCount=driver_count;
+																				Member.count({isDriver: "no"}, function(err,nondriver_count){
 																					if(err){
 																						console.log(err);
 																						cb(err,null);
 																					}
 																					else{
-																						object.femaleCount=women_count;
-																						Member.count({isDriver: "yes"},function(err,driver_count){
-																							if(err){
-																								console.log(err);
-																								cb(err,null);
-																							}
-																							else{
-																								object.driverCount=driver_count;
-																								Member.count({isDriver: "no"}, function(err,nondriver_count){
-																									if(err){
-																										console.log(err);
-																										cb(err,null);
-																									}
-																									else{
-																										object.passengerCount=nondriver_count;
-																										cb(null,object);
-																									}
-																								});
-																							}
-																						});
+																						object.passengerCount=nondriver_count;
+																						cb(null,object);
 																					}
 																				});
 																			}
 																		});
 																	}
-																}
-															})
-														}
-													});
-												}
+																});
+															}
+														});
+													}
+												});
 											}
+											//7day separator
+
+
 										});
 									}
 								})
@@ -366,23 +395,29 @@ module.exports = function(Admin) {
 		var ctx=loopback.getCurrentContext();
 		var accessToken=ctx.get("accessToken");
 		console.log(accessToken);
-		Admin.findById(accessToken.userId,function(err,adminIns){
-			if(err){
-				console.log(err);
-				cb(err,null);
-			}
-			else if(adminIns==null){
-				cb(null,0);
-			}
-			else{
-				cb(null,adminIns.id);
-			}
-		});
+		if(accessToken==null){
+			console.log("admin not exist");
+			cb(null,0);
+		}
+		else{
+			Admin.findById(accessToken.userId,function(err,adminIns){
+				if(err){
+					console.log(err);
+					cb(err,null);
+				}
+				else if(adminIns==null){
+					cb(null,0);
+				}
+				else{
+					cb(null,adminIns.userId);
+				}
+			});
+		}
 	}
 
 	Admin.addMember=function(dataPoint,cb){
 		var Member=app.models.Member;
-		checkValidAdmin(function(err,adminId){
+		Admin.checkValidAdmin(function(err,adminId){
 			if(err){
 				console.log(err);
 				cb(err,null);
@@ -416,6 +451,39 @@ module.exports = function(Admin) {
 		});
 	}
 
+	Admin.rideRequestBetween=function(start,end,object,cb){
+		var request=app.models.request;
+		var Ride=app.models.Ride;
+		if(start==end){
+			console.log(object);
+			cb(null,object);
+		}
+		else{
+			var curTime=new Date();
+			var date=new Date(curTime.getFullYear(),curTime.getMonth(),curTime.getDate()-start);
+			var upperDate=new Date(curTime.getFullYear(),curTime.getMonth(),curTime.getDate()-start+1);
+			Ride.count({time: {between: [date,upperDate]}},function(err,betweenRideCount){
+				if(err){
+					console.log(err);
+					cb(err,null);
+				}
+				else{
+					object[date.getDate()+"between_rideCount"+upperDate.getDate()]=betweenRideCount;
+					request.count({time: {between: [date,upperDate]}},function(err,betweenReqCount){
+						if(err){
+							console.log(err);
+							cb(err,null);
+						}
+						else{
+							object[date.getDate()+"between_requestCount"+upperDate.getDate()]=betweenReqCount;
+							Admin.rideRequestBetween(start+1,end,object,cb);
+						}
+					});
+				}
+			});
+		}
+
+	}
 
 	Admin.validateMember=function(dataPoint,cb){
 		var Member=app.models.Member;
@@ -476,7 +544,7 @@ module.exports = function(Admin) {
 	Admin.remoteMethod(
 		'adminChange',
 		{
-			http: {path: '/adminDisplay', verb: 'post'},
+			http: {path: '/adminChange', verb: 'post'},
 			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
 			returns: {arg: 'status', type: 'string'}			
 		}

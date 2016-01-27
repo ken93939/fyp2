@@ -38,6 +38,18 @@
         "principalId": "$everyone",
         "permission": "ALLOW",
         "property": "adminMassImport"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW",
+        "property": "adminDashBoard"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW",
+        "property": "addMember"
       }
   ],
   "methods": {}
