@@ -1,5 +1,8 @@
 module.exports = function(server){
 
+	var run_test_script = true;
+	run_test_script && require('../bin/test_script.js');
+
 	// Maybe no need to initialize
 
 	// Load requests from db to RequestQueue
