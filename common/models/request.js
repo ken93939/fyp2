@@ -505,6 +505,7 @@ module.exports = function(Request) {
 			}
 			var hhOFilter = JSON.parse(JSON.stringify(offerQFilter));
 			hhOFilter.where.and.push(data.leaveUst? {"destination_name": "Hang Hau"}: {"pickup_name": "Hang Hau"});
+			// console.log(JSON.stringify(hhOFilter));
 			var hhSeatNum = 0;
 			var j = 0;
 			OfferQueue.find(hhOFilter, function(err, offerQs){
@@ -542,14 +543,16 @@ module.exports = function(Request) {
 			});
 			var chOFilter = JSON.parse(JSON.stringify(offerQFilter));
 			chOFilter.where.and.push(data.leaveUst? {"destination_name": "Choi Hung"}: {"pickup_name": "Choi Hung"});
+			// console.log(JSON.stringify(chOFilter));
 			var chSeatNum = 0;
-			var j = 0;
+			var k = 0;
 			OfferQueue.find(chOFilter, function(err, offerQs){
 				if (err){
 					console.log(err);
 					anyErr = true;
 					cb(err, null);
 				} else{
+					console.log(offerQs);
 					if (offerQs.length == 0){
 						returnObj.chSeatNum = chSeatNum;
 						if (bDebug) console.log("chSeatNum: ", chSeatNum);
@@ -564,7 +567,7 @@ module.exports = function(Request) {
 									anyErr = true;
 								} else{
 									chSeatNum += seatNum;
-									if (++j == array.length){
+									if (++k == array.length){
 										returnObj.chSeatNum = chSeatNum;
 										if (bDebug) console.log("chSeatNum: ", chSeatNum);
 										if (++i == r && !anyErr){

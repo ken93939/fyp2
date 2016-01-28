@@ -322,7 +322,7 @@ module.exports = function(Admin) {
 
 
 
-										object.reqeustCount=request_count;
+										object.requestCount=request_count;
 										Join.count({status: "inProgress"},function(err,join_count){
 											if(err){
 												console.log(err);

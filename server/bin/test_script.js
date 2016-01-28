@@ -3,7 +3,8 @@ var app = require(path.resolve(__dirname, '../server'));
 var loopback = require('loopback');
 var dataSource = app.dataSources.mySQL;
 
-var run = true;
+var run = false;
+var genROJ = true;
 
 if (!run) return;
 
@@ -12,41 +13,46 @@ if (!run) return;
 var table = ['Icon', 'admin', 'request', 'Vehicle', 'Ride', 'pickup', 'Own', 'Join', 'Member', 'destination'];
 
 // recommend max mem = 20
-var mem = 20; // total = mem*7
+var mem = 1; // total = mem*7
 
 var data = {};
 data.memCount = 0;
 data.requestCount = 0;
 data.rideCount = 0;
 data.joinCount = 0;
-data.driverCount = 0;
 data.passengerCount = 0;
+data.driverCount = 0;
 data.maleCount = 0;
 data.femaleCount = 0;
+data.pastOffers = {};
+data.pastRequests = {};
+
+var today = new Date();
 
 var member_array = [];
 for (var j=7; j>0; j--){
 	for (var i=1; i<=mem; i++){
-		member_array.push({
+		var member_data = {
 			"id": member_array.length+1,
 			"first_name": "first_"+(member_array.length+1),
 			"last_name": "last_"+(member_array.length+1),
 			"phone_number": 10000000+(member_array.length+1),
 			"gender": (i+j)%4? "male": "female",
 			"authorized": "yes",
-			"isDriver": (i+j)%3? "yes": "no",
+			"isDriver": (i+j)%3? "no": "yes",
 			"password": "123456",
 			"email": "user"+(member_array.length+1)+"@user.com",
 			"deviceToken": "hkustfyp",
 			"emailVerified": 1,
 			"gender_preference": (i+j)%2,
-			"created": new Date(Date.now()-((j-1)*24*60*60-i)*1000)
-		});
-		!(j-1) && data.memCount++;
+			"created": new Date(today.getTime()-((j-1)*24*60*60-i)*1000)
+		}
+		member_array.push(member_data);
+		today.getDate()==member_data.created.getDate() && data.memCount++;
 		(i+j)%4 && data.maleCount++;
 		!((i+j)%4) && data.femaleCount++;
-		(i+j)%3 && data.driverCount++;
-		!((i+j)%3) && data.passengerCount++;
+		(i+j)%3 && data.passengerCount++;
+		!((i+j)%3) && data.driverCount++;
 	}
 }
 
@@ -80,37 +86,40 @@ for (var i=1; i<=member_array.length/2; i++){
 }
 
 var own_array = [];
+var p = 0;
 for (var i=0; i<member_array.length; i++){
-	if (member_array[i].isDriver == "yes"){
-		for (var j=0; j<i%3+1; j++){
-			own_array.push({
-			  "id": own_array.length+1,
-			  "memberId": member_array[i].id,
-			  "vehicleId": vehicle_array[(i+j)%vehicle_array.length].id
-			});
-		}
-	}
+	own_array.push({
+		"id": own_array.length+1,
+		"memberId": member_array[i].isDriver=="yes"? member_array[i].id: p,
+		"vehicleId": vehicle_array[i%vehicle_array.length].id
+	});
+	p = member_array[i].id;
 }
 
 var request_array = [];
 var request_queue = [];
 var request_queue_ust = [];
-for (var j=10; j>0; j--){
-	for (var i=1; i<=((member_array.length/(j%8+1))%member_array.length+1)*10; i++){
+for (var j=8; j>0; j--){
+	for (var i=1; i<=((member_array.length/(j%6+1))%member_array.length+1)*10; i++){
+		var currTime = new Date(today.getTime()-((j-1)*24*60*60-i)*1000);
 		var request_data = {
 			"id": request_array.length+1,
-			"time": new Date(Date.now()-((j-1)*24*60*60-i)*1000),
-			"status": j-1? "inactive": "active",
+			"time": currTime,
+			"status": today.getDate()==currTime.getDate()? "active": "inactive",
 			"gender_preference": member_array[(i-1)%member_array.length].gender_preference,
 			"memberId": member_array[(i-1)%member_array.length].id,
-			"pickup_name": (i+j)%3? ((i+j)%2? "Hang Hou": "Choi Hung"): "HKUST",
-			"destination_name": (i+j)%3? "HKUST": ((i+j)%2? "Hang Hou": "Choi Hung")
+			"pickup_name": (i+j)%3? ((i+j)%2? "Hang Hau": "Choi Hung"): "HKUST",
+			"destination_name": (i+j)%3? "HKUST": ((i+j)%2? "Hang Hau": "Choi Hung")
 		}
 		request_array.push(request_data);
-		!(j-1) && data.requestCount++;
+		today.getDate()==currTime.getDate() && genROJ && data.requestCount++;
+		if (!data.pastRequests[currTime.getDate()]){
+			data.pastRequests[currTime.getDate()] = 0;
+		}
+		data.pastRequests[currTime.getDate()]++;
 
 		var request_queue_data = JSON.parse(JSON.stringify(request_data));
-		if (!(j-1)){
+		if (today.getDate()==request_data.time.getDate()){
 			if (request_queue_data.pickup_name == "HKUST"){
 				request_queue_data.member_gender = member_array[(i-1)%member_array.length].gender;
 				request_queue_data.requestId = request_queue_data.id;
@@ -129,25 +138,30 @@ for (var j=10; j>0; j--){
 var ride_array = [];
 var ride_queue = [];
 var ride_queue_ust = [];
-for (var j=7; j>0; j--){
+for (var j=8; j>0; j--){
 	for (var i=1; i<=((member_array.length/((j+1)%5+1))%member_array.length+1)*10; i++){
+		var currTime = new Date(today.getTime()-((j-1)*24*60*60-i)*1000);
 		var ride_data = {
 			"id": ride_array.length+1,
-			"time": new Date(Date.now()-((j-1)*24*60*60-i)*1000),
-			"status": j-1? "inactive": "active",
+			"time": currTime,
+			"status": today.getDate()==currTime.getDate()? "active": "inactive",
 			"seat_number": (i+j)%7+1,
 			"beforeArrive": ((i+j)%7+1)*j,
 			"gender_preference": member_array[(i-1)%member_array.length].gender_preference,
 			"memberId": member_array[(i-1)%member_array.length].id,
 			"ownId": member_array[(i-1)%member_array.length].id,
-			"pickup_name": (i+j)%3? ((i+j)%2? "Hang Hou": "Choi Hung"): "HKUST",
-			"destination_name": (i+j)%3? "HKUST": ((i+j)%2? "Hang Hou": "Choi Hung")
+			"pickup_name": (i+j)%3? ((i+j)%2? "Hang Hau": "Choi Hung"): "HKUST",
+			"destination_name": (i+j)%3? "HKUST": ((i+j)%2? "Hang Hau": "Choi Hung")
 		}
 		ride_array.push(ride_data);
-		!(j-1) && data.rideCount++;
+		today.getDate()==currTime.getDate() && genROJ && data.rideCount++;
+		if (!data.pastOffers[currTime.getDate()]){
+			data.pastOffers[currTime.getDate()] = 0;
+		}
+		data.pastOffers[currTime.getDate()]++;
 
 		var ride_queue_data = JSON.parse(JSON.stringify(ride_data));
-		if (!(j-1)){
+		if (today.getDate()==ride_data.time.getDate()){
 			if (ride_queue_data.pickup_name == "HKUST"){
 				ride_queue_data.is_full = false;
 				ride_queue_data.member_gender = member_array[(i-1)%member_array.length].gender;
@@ -174,7 +188,7 @@ for (var i=1; i<=Math.min(request_array.length-data.requestCount, ride_array.len
 		"requestId": i,
 		"iconId": i,
 	});
-	data.joinCount++;
+	// genROJ && data.joinCount++;
 }
 
 // test method
@@ -216,28 +230,32 @@ var createS = function(total, count, cb){
 	});
 };
 
-var createROJ = function(total, count, cb){
-	create("request", app.models.request, request_array, function(){
-		++count == total && cb();
-	});
-	create("Ride", app.models.Ride, ride_array, function(){
-		++count == total && cb();
-	});
-	create("RequestQueue", app.models.RequestQueue, request_queue, function(){
-		++count == total && cb();
-	});
-	create("RequestQueueUST", app.models.RequestQueueUST, request_queue_ust, function(){
-		++count == total && cb();
-	});
-	create("OfferQueue", app.models.OfferQueue, ride_queue, function(){
-		++count == total && cb();
-	});
-	create("OfferQueueUST", app.models.OfferQueueUST, ride_queue_ust, function(){
-		++count == total && cb();
-	});
-	create("Join", app.models.Join, join_array, function(){
-		++count == total && cb();
-	});
+var createROJ = function(total, count, genROJ, cb){
+	if (genROJ){
+		create("request", app.models.request, request_array, function(){
+			++count == total && cb();
+		});
+		create("Ride", app.models.Ride, ride_array, function(){
+			++count == total && cb();
+		});
+		create("RequestQueue", app.models.RequestQueue, request_queue, function(){
+			++count == total && cb();
+		});
+		create("RequestQueueUST", app.models.RequestQueueUST, request_queue_ust, function(){
+			++count == total && cb();
+		});
+		create("OfferQueue", app.models.OfferQueue, ride_queue, function(){
+			++count == total && cb();
+		});
+		create("OfferQueueUST", app.models.OfferQueueUST, ride_queue_ust, function(){
+			++count == total && cb();
+		});
+		create("Join", app.models.Join, join_array, function(){
+			++count == total && cb();
+		});
+	} else{
+		cb();
+	}
 }
 
 // main
@@ -248,7 +266,7 @@ automigrate(table, 0, function(){
 	console.log("...");
 	createS(5, 0, function(){
 		console.log("...");
-		createROJ(7, 0, function(){
+		createROJ(7, 0, genROJ, function(){
 			console.log("...");
 			console.log(data);
 			console.log("...");
