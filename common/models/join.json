@@ -6,6 +6,10 @@
     "validateUpsert": true
   },
   "properties": {
+    "time": {
+      "type": "date",
+      "required": true
+    },
     "status": {
       "type": "string",
       "default": "inProgress"

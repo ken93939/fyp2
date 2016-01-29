@@ -9,48 +9,48 @@
   "validations": [],
   "relations": {},
   "acls": [
-      {
-        "principalType": "ROLE",
-        "principalId": "$everyone",
-        "permission": "ALLOW",
-        "property": "adminChange"
-      },
-      {
-        "principalType": "ROLE",
-        "principalId": "$everyone",
-        "permission": "ALLOW",
-        "property": "adminDisplay"
-      },
-      {
-        "principalType": "ROLE",
-        "principalId": "$everyone",
-        "permission": "ALLOW",
-        "property": "adminAddVehicle"
-      },
-      {
-        "principalType": "ROLE",
-        "principalId": "$everyone",
-        "permission": "ALLOW",
-        "property": "adminViewVehicle"
-      },
-      {
-        "principalType": "ROLE",
-        "principalId": "$everyone",
-        "permission": "ALLOW",
-        "property": "adminMassImport"
-      },
-      {
-        "principalType": "ROLE",
-        "principalId": "$everyone",
-        "permission": "ALLOW",
-        "property": "adminDashBoard"
-      },
-      {
-        "principalType": "ROLE",
-        "principalId": "$everyone",
-        "permission": "ALLOW",
-        "property": "addMember"
-      }
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "adminChange"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "adminDisplay"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "adminAddVehicle"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "adminViewVehicle"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "adminMassImport"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "adminDashBoard"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "addMember"
+    }
   ],
   "methods": {}
 }

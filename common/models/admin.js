@@ -323,7 +323,7 @@ module.exports = function(Admin) {
 
 
 										object.requestCount=request_count;
-										Join.count({status: "inProgress"},function(err,join_count){
+										Join.count({time: {gte: today}},function(err,join_count){
 											if(err){
 												console.log(err);
 												cb(err,null);
@@ -455,7 +455,7 @@ module.exports = function(Admin) {
 		var request=app.models.request;
 		var Ride=app.models.Ride;
 		if(start==end){
-			console.log(object);
+			// console.log(object);
 			cb(null,object);
 		}
 		else{

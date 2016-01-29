@@ -1,0 +1,48 @@
+{
+  "name": "Dashboard",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "memCount": {
+      "type": "number"
+    },
+    "rideCount": {
+      "type": "number"
+    },
+    "requestCount": {
+      "type": "number"
+    },
+    "joinCount": {
+      "type": "number"
+    },
+    "passengerCount": {
+      "type": "number"
+    },
+    "driverCount": {
+      "type": "number"
+    },
+    "maleCount": {
+      "type": "number"
+    },
+    "femaleCount": {
+      "type": "number"
+    },
+    "pastRequests": {
+      "type": [
+        "number"
+      ]
+    },
+    "pastOffers": {
+      "type": [
+        "number"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

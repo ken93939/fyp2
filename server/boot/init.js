@@ -1,41 +1,80 @@
+var es = require('event-stream');
+var ts = require('../bin/test_script.js');
+
 module.exports = function(server){
 
 	var run_test_script = true;
-	run_test_script && require('../bin/test_script.js');
 
-	// Maybe no need to initialize
+	ts.runScript(run_test_script, function(){
 
-	// Load requests from db to RequestQueue
-	// server.models.request.find({"where": {"status": "active"}}, function(err, requests) {
-	// 	if (err) console.log(err);
-	// 	requests.forEach(function(request, index, array){
-	// 		request.requestId = request.id;
-	// 		request.member(function(err, mem){
-	// 			if (err) console.log(err);
-	// 			request.member_gender = mem.gender;
-	// 			server.models.RequestQueue.create(request, function(err, req){
-	// 				if (err) console.log(err);
+		// admin real-time dashboard
+		var Dashboard = server.models.Dashboard;
+		Dashboard.createChangeStream(function(err, changes) {
+			changes.pipe(es.stringify()); // .pipe(process.stdout);
+		});
+		Dashboard.updateAllInfo(function(err, status){
+			if (err) console.log(err);
 
-	// 			});
-	// 		});
-	// 	});
-	// });
+			// model observers
+			var hookArray = ['after save', 'after delete'];
+			var Member = server.models.Member;
+			var request = server.models.request;
+			var Ride = server.models.Ride;
+			var Join = server.models.Join;
 
-	// Load Rides from db to OfferQueue
-	// server.models.Ride.find({"where": {"status": "active"}}, function(err, rides) {
-	// 	if (err) console.log(err);
-	// 	rides.forEach(function(ride, index, array){
-	// 		ride.rideId = ride.id;
-	// 		ride.member(function(err, mem){
-	// 			if (err) console.log(err);
-	// 			ride.member_gender = mem.gender;
-	// 			server.models.OfferQueue.create(ride, function(err, offer){
-	// 				if (err) console.log(err);
+			hookArray.forEach(function(hook){
+				Member.observe(hook, function(ctx, next) {
+					var curTime = new Date();
+					var today = new Date(curTime.getFullYear(), curTime.getMonth(), curTime.getDate());
+					Dashboard.updateCount(Member, {created: {gte: today}}, "memCount", function(err, db){
+						if (err) console.log(err);
+						Dashboard.updateCount(Member, {isDriver: "no"}, "passengerCount", function(err, db){
+							if (err) console.log(err);
+							Dashboard.updateCount(Member, {isDriver: "yes"}, "driverCount", function(err, db){
+								if (err) console.log(err);
+								Dashboard.updateCount(Member, {gender: "male"}, "maleCount", function(err, db){
+									if (err) console.log(err);
+									Dashboard.updateCount(Member, {gender: "female"}, "femaleCount", function(err, db){
+										if (err) console.log(err);
+										next();
+									});
+								});
+							});
+						});
+					});
+				});
+				Ride.observe(hook, function(ctx, next) {
+					var curTime = new Date();
+					var today = new Date(curTime.getFullYear(), curTime.getMonth(), curTime.getDate());
+					Dashboard.updateCount(Ride, {time: {gte: today}}, "rideCount", function(err, db){
+						if (err) console.log(err);
+						next();
+					});
+				});
+				request.observe(hook, function(ctx, next) {
+					var curTime = new Date();
+					var today = new Date(curTime.getFullYear(), curTime.getMonth(), curTime.getDate());
+					Dashboard.updateCount(request, {time: {gte: today}}, "requestCount", function(err, db){
+						if (err) console.log(err);
+						Dashboard.updateArray(function(err, db){
+							if (err) console.log(err);
+							next();
+						});
+					});
+				});
+				Join.observe(hook, function(ctx, next) {
+					var curTime = new Date();
+					var today = new Date(curTime.getFullYear(), curTime.getMonth(), curTime.getDate());
+					Dashboard.updateCount(Join, {time: {gte: today}}, "joinCount", function(err, db){
+						if (err) console.log(err);
+						Dashboard.updateArray(function(err, db){
+							if (err) console.log(err);
+							next();
+						});
+					});
+				});
+			});
+		});
+	});
 
-	// 			});
-	// 		});
-	// 	});
-	// });
-
-	// TODO: Load PendingQueue & MatchedQueue?
 };

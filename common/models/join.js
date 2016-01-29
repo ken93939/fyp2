@@ -5,6 +5,7 @@ var loopback = require('loopback');
 module.exports = function(Join) {
 
 	Join.addJoin = function(joinObj, cb){
+		joinObj.time = new Date();
 		Join.create(joinObj, function(err, join){
 			if (err){
 				console.log(err);

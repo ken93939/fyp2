@@ -96,11 +96,13 @@ var member_array=[
 var join_array=[
 {
   "id": 1,
-  "status": null
+  "status": null,
+  "time": new Date(2016,1,27)
 },
 {
   "id": 2,
-  "status": null
+  "status": null,
+  "time": new Date(2016,1,27)
 }
 ];
 

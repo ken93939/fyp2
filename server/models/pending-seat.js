@@ -138,7 +138,7 @@ module.exports = function(PendingSeat) {
 						}
 					});
 				} else{
-					cb(null, matchedS);
+					cb(null, null);
 				}
 			}
 		});

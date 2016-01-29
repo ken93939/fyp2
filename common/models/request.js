@@ -552,7 +552,6 @@ module.exports = function(Request) {
 					anyErr = true;
 					cb(err, null);
 				} else{
-					console.log(offerQs);
 					if (offerQs.length == 0){
 						returnObj.chSeatNum = chSeatNum;
 						if (bDebug) console.log("chSeatNum: ", chSeatNum);

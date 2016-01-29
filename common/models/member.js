@@ -80,6 +80,7 @@ module.exports = function(Member) {
 	//TODO: possible debt
 	Member.register=function(dataPoint,cb){
 		try{
+			dataPoint.created = new Date();
 			if(dataPoint.isDriver=="yes"){		//good to go
 				var veh=app.models.Vehicle;
 				var data={
@@ -168,7 +169,7 @@ module.exports = function(Member) {
 					console.log(err);
 				var options = {
 					type: 'email',
-					to: "kenkwoktszting@gmail.com",
+					to: "kenkwoktsztingaaa@gmail.com",
 					from: 'hkustfyp2016@gmail.com',
 					subject: 'Thanks for registering.',
 					user: mem,
