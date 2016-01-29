@@ -147,7 +147,7 @@ module.exports = function(Dashboard) {
 																				console.log(err);
 																				cb(err, null);
 																			} else{
-																				cb(null, "updateAll done");
+																				cb(null, db);
 																			}
 																		});
 																	}
