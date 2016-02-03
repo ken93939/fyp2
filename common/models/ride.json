@@ -25,6 +25,10 @@
     "gender_preference": {
       "type": "boolean",
       "required": true
+    },
+    "created": {
+      "type": "date",
+      "required": true
     }
   },
   "validations": [],

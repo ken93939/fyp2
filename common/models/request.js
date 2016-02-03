@@ -589,6 +589,42 @@ module.exports = function(Request) {
 
 	}
 
+	Request.checkValid = function(data, cb){
+		if (data != null && data.requestId != null){
+			var Join = app.models.Join;
+			Join.findOne({where: {requestId: data.requestId}}, function(err, join){
+				if (err){
+					console.log(err);
+					cb(err, null);
+				} else{
+					cb(null, (join!=null && join.status=="inProgress"));
+				}
+			});
+			// Request.findById(data.requestId, function(err, request){
+			// 	if (err){
+			// 		console.log(err);
+			// 		cb(err, null);
+			// 	} else{
+			// 		if (request != null && request.status == "active"){
+			// 			var RequestQueue = request.destination_name != "HKUST"? app.models.RequestQueue: app.models.RequestQueueUST;
+			// 			RequestQueue.findOne({requestId: data.requestId}, function(err, requestQ){
+			// 				if (err){
+			// 					console.log(err);
+			// 					cb(err, null);
+			// 				} else{
+			// 					cb(null, requestQ != null);
+			// 				}
+			// 			});
+			// 		} else{
+			// 			cb(null, false);
+			// 		}
+			// 	}
+			// });
+		} else{
+			cb(null, false);
+		}
+	}
+
 	Request.remoteMethod(
 		'confirmMatch',
 		{
@@ -659,6 +695,15 @@ module.exports = function(Request) {
 			http: {path: '/getQueueSeatNumber', verb: 'post'},
 			accepts: {arg: 'data', type: 'object', http:{source:'body'}},
 			returns: {arg: 'num', type: 'obj'}
+		}
+	);
+
+	Request.remoteMethod(
+		'checkValid',
+		{
+			http: {path: '/checkValid', verb: 'post'},
+			accepts: {arg: 'data', type: 'object', http:{source:'body'}},
+			returns: {arg: 'valid', type: 'boolean'}
 		}
 	);
 }

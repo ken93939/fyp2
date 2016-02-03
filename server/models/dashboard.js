@@ -94,6 +94,47 @@ module.exports = function(Dashboard) {
 		});
 	};
 
+	Dashboard.updateTimeline = function(cb){
+		var requestIds = [];
+		var rideIds = [];
+		for (var i=0; i<5; i++){
+			var RequestQueue = app.models.RequestQueue;
+			RequestQueue.findOne({where: {id: {inq: requestIds}}, order: "time DESC"}, function(err, requestQ){
+				if (err){
+					console.log(err);
+					cb(err, null);
+				} else{
+					var RequestQueueUST = app.models.RequestQueueUST;
+					RequestQueueUST.findOne({where: {id: {inq: requestIds}}, order: "time DESC"}, function(err, requestQUst){
+						if (err){
+							console.log(err);
+							cb(err, null);
+						} else{
+							var OfferQueue = app.models.OfferQueue;
+							OfferQueue.findOne({where: {id: {inq: rideIds}}, order: "created DESC"}, function(err, offerQ){
+								if (err){
+									console.log(err);
+									cb(err, null);
+								} else{
+									var OfferQueueUST = app.models.OfferQueueUST;
+									OfferQueueUST.findOne({where: {id: {inq: rideIds}}, order: "created DESC"}, function(err, offerQUst){
+										if (err){
+											console.log(err);
+											cb(err, null);
+										} else{
+											// TODO: compare and push id to array, finally return object array
+											cb(null, null);
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+		}
+	}
+
 	Dashboard.updateAllInfo = function(cb){
 		var Member = app.models.Member;
 		var request = app.models.request;

@@ -18,6 +18,7 @@ module.exports = function(Ride) {
 			// var d=new Date();
 			// idk["time"]=new Date(d.getTime()+idk.beforeArrive*60000);
 
+			idk["created"] = new Date();
 			idk["memberId"]=currentUser.id;
 			if (idk.leaveUst){
 				if (idk.destination_name == "Hang Hau"){

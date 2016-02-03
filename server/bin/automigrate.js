@@ -1,7 +1,7 @@
 var path = require('path');
 var app = require(path.resolve(__dirname, '../server'));
 var loopback = require('loopback');
-var moment= require('moment');
+// var moment= require('moment');
 
 var dataSource = app.dataSources.mySQL;
 
@@ -47,7 +47,7 @@ var member_array=[
   "deviceToken": "hkustfyp",
   "emailVerified": 1,
   "gender_preference": true,
-  "created": moment().format()
+  "created": new Date()//moment().format()
 },
 {
   "first_name": "sam",
@@ -137,7 +137,8 @@ var ride_array=[
   "status": "inactive",
   "gender_preference": true,
   "ownId": 1,
-  "memberId": 1
+  "memberId": 1,
+  "created": new Date()
 },
 {
   "id": 2,
@@ -147,7 +148,8 @@ var ride_array=[
   "status": "inactive",
   "gender_preference": false,
   "ownId": 1,
-  "memberId": 1
+  "memberId": 1,
+  "created": new Date()
 }
 ]
 

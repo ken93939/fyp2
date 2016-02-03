@@ -10,8 +10,7 @@
     "username": "root",
     "password": "admin",
     "name": "mySQL",
-    "connector": "mysql",
-    "timezone": "Asia/Hong_Kong"
+    "connector": "mysql"
   },
   "email": {
     "name": "email",

@@ -39,6 +39,11 @@
       "type": [
         "number"
       ]
+    },
+    "timeline": {
+      "type": [
+        "object"
+      ]
     }
   },
   "validations": [],

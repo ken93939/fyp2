@@ -12028,6 +12028,45 @@ module.factory(
           method: "POST"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Request#checkValid
+         * @methodOf lbServices.Request
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `valid` – `{boolean=}` - 
+         */
+        "checkValid": {
+          url: urlBase + "/requests/checkValid",
+          method: "POST"
+        },
+
         // INTERNAL. Use Member.requests.findById() instead.
         "::findById::Member::requests": {
           params: {
@@ -38677,41 +38716,6 @@ module.factory(
         "createChangeStream": {
           url: urlBase + "/Dashboards/change-stream",
           method: "POST"
-        },
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Dashboard#getChangeStream
-         * @methodOf lbServices.Dashboard
-         *
-         * @description
-         *
-         * <em>
-         * (The remote method definition does not provide any description.)
-         * </em>
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *   This method does not accept any parameters.
-         *   Supply an empty object or omit this argument altogether.
-         *
-         * @param {function(Object,Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @returns {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * Data properties:
-         *
-         *  - `cstream` – `{ReadableStream=}` - 
-         */
-        "getChangeStream": {
-          url: urlBase + "/Dashboards/getChangeStream",
-          method: "GET"
         },
       }
     );

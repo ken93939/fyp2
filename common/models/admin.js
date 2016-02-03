@@ -3,7 +3,7 @@ var app = require(path.resolve(__dirname, '../../server/server'));
 var loopback=require('loopback');
 var config = require('../../server/config.json');
 var bcrypt=require('bcryptjs');
-var moment= require('moment');
+// var moment= require('moment');
 
 
 module.exports = function(Admin) {

@@ -3,13 +3,13 @@ var app = require(path.resolve(__dirname, '../server'));
 var loopback = require('loopback');
 var dataSource = app.dataSources.mySQL;
 
-var genROJ = true;
+var genROJ = false;
 
 // instance array
 var table = ['Icon', 'admin', 'request', 'Vehicle', 'Ride', 'pickup', 'Own', 'Join', 'Member', 'destination'];
 
 // recommend max mem = 20
-var mem = 20; // total = mem*7
+var mem = 1; // total = mem*7
 
 var data = {};
 data.memCount = 0;
@@ -149,7 +149,8 @@ if (genROJ){
 				"memberId": member_array[(i-1)%member_array.length].id,
 				"ownId": member_array[(i-1)%member_array.length].id,
 				"pickup_name": (i+j)%3? ((i+j)%2? "Hang Hau": "Choi Hung"): "HKUST",
-				"destination_name": (i+j)%3? "HKUST": ((i+j)%2? "Hang Hau": "Choi Hung")
+				"destination_name": (i+j)%3? "HKUST": ((i+j)%2? "Hang Hau": "Choi Hung"),
+				"created": new Date(currTime.getTime()-((i+j)%7+1)*j*60*1000)
 			}
 			ride_array.push(ride_data);
 			today.getDate()==currTime.getDate() && data.rideCount++;
