@@ -3,7 +3,7 @@ var ts = require('../bin/test_script.js');
 
 module.exports = function(server){
 
-	var run_test_script = false;
+	var run_test_script = true;
 
 	ts.runScript(run_test_script, function(){
 
@@ -48,7 +48,13 @@ module.exports = function(server){
 					var today = new Date(curTime.getFullYear(), curTime.getMonth(), curTime.getDate());
 					Dashboard.updateCount(Ride, {time: {gte: today}}, "rideCount", function(err, db){
 						if (err) console.log(err);
-						next();
+						Dashboard.updateArray(function(err, db){
+							if (err) console.log(err);
+							Dashboard.updateTimeline(function(err, db){
+								if (err) console.log(err);
+								next();
+							});
+						});
 					});
 				});
 				request.observe(hook, function(ctx, next) {
@@ -58,7 +64,10 @@ module.exports = function(server){
 						if (err) console.log(err);
 						Dashboard.updateArray(function(err, db){
 							if (err) console.log(err);
-							next();
+							Dashboard.updateTimeline(function(err, db){
+								if (err) console.log(err);
+								next();
+							});
 						});
 					});
 				});

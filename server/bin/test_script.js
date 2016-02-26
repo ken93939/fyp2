@@ -9,7 +9,7 @@ var genROJ = false;
 var table = ['Icon', 'admin', 'request', 'Vehicle', 'Ride', 'pickup', 'Own', 'Join', 'Member', 'destination'];
 
 // recommend max mem = 20
-var mem = 1; // total = mem*7
+var mem = 5; // total = mem*7
 
 var data = {};
 data.memCount = 0;

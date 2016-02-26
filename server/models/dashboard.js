@@ -94,36 +94,87 @@ module.exports = function(Dashboard) {
 		});
 	};
 
-	Dashboard.updateTimeline = function(cb){
-		var requestIds = [];
-		var rideIds = [];
-		for (var i=0; i<5; i++){
+	Dashboard.getTimelineObj = function(obj, requestIds, rideIds, count, cb){
+		if (count >= 5){
+			cb(null, obj);
+		} else{
+			var max = 0;
+			var maxType = "";
+			var maxObj = null;
 			var RequestQueue = app.models.RequestQueue;
-			RequestQueue.findOne({where: {id: {inq: requestIds}}, order: "time DESC"}, function(err, requestQ){
+			RequestQueue.findOne({where: {requestId: {nin: requestIds}}, order: "time DESC"}, function(err, requestQ){
 				if (err){
 					console.log(err);
 					cb(err, null);
 				} else{
+					// console.log(count, requestQ);
+					if (requestQ != null && requestQ.time > max){
+						max = requestQ.time;
+						maxType = "Request";
+						maxObj = requestQ;
+					}
 					var RequestQueueUST = app.models.RequestQueueUST;
-					RequestQueueUST.findOne({where: {id: {inq: requestIds}}, order: "time DESC"}, function(err, requestQUst){
+					RequestQueueUST.findOne({where: {requestId: {nin: requestIds}}, order: "time DESC"}, function(err, requestQUst){
 						if (err){
 							console.log(err);
 							cb(err, null);
 						} else{
+							// console.log(count, requestQUst);
+							if (requestQUst != null && requestQUst.time > max){
+								max = requestQUst.time;
+								maxType = "Request";
+								maxObj = requestQUst;
+							}
 							var OfferQueue = app.models.OfferQueue;
-							OfferQueue.findOne({where: {id: {inq: rideIds}}, order: "created DESC"}, function(err, offerQ){
+							OfferQueue.findOne({where: {rideId: {nin: rideIds}}, order: "created DESC"}, function(err, offerQ){
 								if (err){
 									console.log(err);
 									cb(err, null);
 								} else{
+									// console.log(count, offerQ);
+									if (offerQ != null && offerQ.created > max){
+										max = offerQ.created;
+										maxType = "Offer";
+										maxObj = offerQ;
+									}
 									var OfferQueueUST = app.models.OfferQueueUST;
-									OfferQueueUST.findOne({where: {id: {inq: rideIds}}, order: "created DESC"}, function(err, offerQUst){
+									OfferQueueUST.findOne({where: {rideId: {nin: rideIds}}, order: "created DESC"}, function(err, offerQUst){
 										if (err){
 											console.log(err);
 											cb(err, null);
 										} else{
-											// TODO: compare and push id to array, finally return object array
-											cb(null, null);
+											// console.log(count, offerQUst);
+											if (offerQUst != null && offerQUst.created > max){
+												max = offerQUst.created;
+												maxType = "Offer";
+												maxObj = offerQUst;
+											}
+											if (maxObj != null){
+												// console.log(max, maxType, maxObj);
+												var item = {};
+												item.type = maxType;
+												item.from = maxObj.pickup_name;
+												item.to = maxObj.destination_name;
+												if (maxType == "Request"){
+													requestIds.push(maxObj.requestId);
+													item.time = maxObj.time;
+												} else{
+													rideIds.push(maxObj.rideId);
+													item.time = maxObj.created;
+												}
+												maxObj.member(function(err, mem){
+													if (err){
+														console.log(err);
+														cb(err, null);
+													} else{
+														item.email = mem.email;
+														obj.push(item);
+														Dashboard.getTimelineObj(obj, requestIds, rideIds, count+1, cb);
+													}
+												});
+											} else{
+												Dashboard.getTimelineObj(obj, requestIds, rideIds, count+1, cb);
+											}
 										}
 									});
 								}
@@ -133,6 +184,35 @@ module.exports = function(Dashboard) {
 				}
 			});
 		}
+	}
+
+	Dashboard.updateTimeline = function(cb){
+		var requestIds = [];
+		var rideIds = [];
+		var obj = [];
+		Dashboard.getTimelineObj(obj, requestIds, rideIds, 0, function(err, returnObj){
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				Dashboard.getDashboard(function(err, dashboard){
+					if (err){
+						console.log(err);
+						cb(err, null);
+					} else{
+						// console.log(returnObj);	
+						dashboard.updateAttributes({timeline: returnObj}, function(err, db){
+							if (err){
+								console.log(err);
+								cb(err, null);
+							} else{
+								cb(null, db);
+							}
+						});
+					}
+				});
+			}
+		})
 	}
 
 	Dashboard.updateAllInfo = function(cb){
@@ -188,7 +268,14 @@ module.exports = function(Dashboard) {
 																				console.log(err);
 																				cb(err, null);
 																			} else{
-																				cb(null, db);
+																				Dashboard.updateTimeline(function(err, db){
+																					if (err){
+																						console.log(err);
+																						cb(err, null);
+																					} else{
+																						cb(null, db);
+																					}
+																				});
 																			}
 																		});
 																	}

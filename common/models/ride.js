@@ -177,93 +177,99 @@ module.exports = function(Ride) {
 								cb(err, null);
 							} else{
 								console.log("OfferQueue Removed: ", offerQIns);
+								var joinStatus = idk.byDriver? "cancelled": "finished";
 								// update join records
 								var Join = app.models.Join;
-								Join.updateAll({"rideId": offerQ.rideId}, {"status": "cancelled"}, function(err, joins){
+								Join.updateAll({"rideId": offerQ.rideId}, {"status": joinStatus}, function(err, joins){
 									if (err){
 										console.log(err);
 										cb(err, null);
 									} else{
-										// remove pending passenger
-										var PendingSeat = idk.leaveUst? app.models.PendingSeat: app.models.PendingSeatUST;
-										PendingSeat.find({"where": {"rideId": offerQ.rideId}}, function(err, pendingS){
-											if (err){
-												console.log(err);
-												cb(err, null);
-											} else{
-												console.log("pendingSeat: ", pendingS.length);
-												pendingS.forEach(function(item, index, array){
-													var data = {};
-													data.requestId = item.requestId;
-													data.leaveUst = idk.leaveUst;
-													PendingSeat.removePending(data, function(err, pendS){
+										if (!idk.byDriver){
+											console.log("Done");
+											cb(null, "Done");
+										} else{
+											// remove pending passenger
+											var PendingSeat = idk.leaveUst? app.models.PendingSeat: app.models.PendingSeatUST;
+											PendingSeat.find({"where": {"rideId": offerQ.rideId}}, function(err, pendingS){
+												if (err){
+													console.log(err);
+													cb(err, null);
+												} else{
+													console.log("pendingSeat: ", pendingS.length);
+													pendingS.forEach(function(item, index, array){
+														var data = {};
+														data.requestId = item.requestId;
+														data.leaveUst = idk.leaveUst;
+														PendingSeat.removePending(data, function(err, pendS){
+															if (err){
+																console.log(err);
+															} else{
+																// remove RequestQueue(if exist)
+																var RequestQueue = idk.leaveUst? app.models.RequestQueue: app.models.RequestQueueUST;
+																RequestQueue.removeRequest(data, function(err, requestQ){
+																	if (err){
+																		console.log(err);
+																	} else{
+																		// // create new requests(with original time)
+																		// var Request = app.models.Request;
+																		// Request.addRequestAgain(data, function(err, req){
+																		// 	if (err){
+																		// 		console.log(err);
+																		// 	} else{
+																				// push to passenger
+																				Ride.pushNewRequest(data, function(err, msg){
+																					if (err){
+																						console.log(err);
+																					}
+																				});
+																		// 	}
+																		// });
+																	}
+																});
+															}
+														});
+													});
+													// remove matched passenger
+													var MatchedSeat = idk.leaveUst? app.models.MatchedSeat: app.models.MatchedSeatUST;
+													MatchedSeat.find({"where": {"rideId": offerQ.rideId}}, function(err, matchedS){
 														if (err){
 															console.log(err);
+															cb(err, null);
 														} else{
-															// remove RequestQueue(if exist)
-															var RequestQueue = idk.leaveUst? app.models.RequestQueue: app.models.RequestQueueUST;
-															RequestQueue.removeRequest(data, function(err, requestQ){
-																if (err){
-																	console.log(err);
-																} else{
-																	// create new requests(with original time)
-																	var Request = app.models.Request;
-																	Request.addRequestAgain(data, function(err, req){
-																		if (err){
-																			console.log(err);
-																		} else{
-																			// push to passenger
-																			Ride.pushNewRequest(req, function(err, msg){
-																				if (err){
-																					console.log(err);
-																				}
-																			});
-																		}
-																	});
-																}
+															console.log("MatchedSeat: ", matchedS.length);
+															matchedS.forEach(function(item, index, array){
+																var data = {};
+																data.requestId = item.requestId;
+																data.leaveUst = idk.leaveUst;
+																MatchedSeat.removeMatched(data, function(err, matchS){
+																	if (err){
+																		console.log(err);
+																	} else{
+																		// create new requests(with original time)
+																		// var Request = app.models.Request;
+																		// Request.addRequestAgain(data, function(err, req){
+																		// 	if (err){
+																		// 		console.log(err);
+																		// 	} else{
+																				// push to passenger
+																				Ride.pushNewRequest(data, function(err, msg){
+																					if (err){
+																						console.log(err);
+																					}
+																				});
+																		// 	}
+																		// });
+																	}
+																});
 															});
+															console.log("Done");
+															cb(null, "Done");
 														}
 													});
-												});
-												// remove matched passenger
-												var MatchedSeat = idk.leaveUst? app.models.MatchedSeat: app.models.MatchedSeatUST;
-												MatchedSeat.find({"where": {"rideId": offerQ.rideId}}, function(err, matchedS){
-													if (err){
-														console.log(err);
-														cb(err, null);
-													} else{
-														console.log("MatchedSeat: ", matchedS.length);
-														matchedS.forEach(function(item, index, array){
-															var data = {};
-															data.requestId = item.requestId;
-															data.leaveUst = idk.leaveUst;
-															MatchedSeat.removeMatched(data, function(err, matchS){
-																if (err){
-																	console.log(err);
-																} else{
-																	// create new requests(with original time)
-																	var Request = app.models.Request;
-																	Request.addRequestAgain(data, function(err, req){
-																		if (err){
-																			console.log(err);
-																		} else{
-																			// push to passenger
-																			Ride.pushNewRequest(req, function(err, msg){
-																				if (err){
-																					console.log(err);
-																				}
-																			});
-																		}
-																	});
-																}
-															});
-														});
-														console.log("Done");
-														cb(null, "Done");
-													}
-												});
-											}
-										});
+												}
+											});
+										}
 									}
 								});
 							}
@@ -295,33 +301,70 @@ module.exports = function(Ride) {
 								console.log(err);
 								cb(err, null);
 							} else{
-								var array = [];
-								console.log(mem.deviceToken);
-								array.push(mem.deviceToken+"");
-								obj["tokens"] = array;
-								obj["notification"] = {
-									"alert": "Driver has cancelled the offer!",
-									"android":{
-										"payload":{
-											"status": "cancel",
-											"requestId": data.requestId,
-											"newDesName": data.newDesName
-										}
-									}
+								// var array = [];
+								// console.log(mem.deviceToken);
+								// array.push(mem.deviceToken+"");
+								// obj["tokens"] = array;
+								// obj["notification"] = {
+								// 	"alert": "Driver has cancelled the offer!",
+								// 	"android":{
+								// 		"payload":{
+								// 			"status": "cancel",
+								// 			"requestId": data.requestId,
+								// 			"newDesName": data.newDesName
+								// 		}
+								// 	}
+								// };
+								
+								// var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/\r\n/g,"\n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}}
+								// //var auth="basic "+Base64.encode("83203dab26c5e0e1904d2d822f6eef3efb4eebc0b16bea7d"+":");
+								// var auth="basic "+Base64.encode("766e0edd8c6e41a81da5b8d141b4181b5b7d4f93d4c4a6ab"+":");
+
+								// console.log(obj.notification.android.payload);
+
+								// req.post({
+								// 	url: "https://push.ionic.io/api/v1/push",
+								// 	method: 'POST',
+								// 	headers: {
+								// 		'Content-Type': 'application/json',
+								// 		'X-Ionic-Application-Id': "d38fa26f", //"2d9c3ded",
+								// 		'Authorization': auth
+								// 	},
+								// 	json: obj
+								// 	},function(err,res,body){
+								// 		if(err){
+								// 			console.log("req error:",err);
+								// 			cb(err, null);
+								// 		} else{
+								// 			// console.log(res);
+								// 			console.log(res.statusCode);
+								// 			cb(null, "OK");
+								// 		}
+								// });
+
+								obj["to"] = mem.deviceToken;
+								obj["collapse_key"] = "Ride";
+								obj["data"] = {
+									"status": "cancel",
+									"title": "Warning",
+									"message": "The driver has cancelled the offer!",
+									"image": "icon"
 								};
-								var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/\r\n/g,"\n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}}
-								//var auth="basic "+Base64.encode("83203dab26c5e0e1904d2d822f6eef3efb4eebc0b16bea7d"+":");
-								var auth="basic "+Base64.encode("766e0edd8c6e41a81da5b8d141b4181b5b7d4f93d4c4a6ab"+":");
-
-								console.log(obj.notification.android.payload);
-
+								// obj["data"] = {
+								// 	"status": "cancel",
+								// 	"requestId": data.requestId,
+								// 	"newDesName": data.newDesName,
+								// 	"title": "Warning",
+								// 	"message": "The driver has cancelled the offer!",
+								// 	"image": "icon"
+								// };
+								console.log("obj: ", obj);
 								req.post({
-									url: "https://push.ionic.io/api/v1/push",
+									url: "https://gcm-http.googleapis.com/gcm/send",
 									method: 'POST',
 									headers: {
 										'Content-Type': 'application/json',
-										'X-Ionic-Application-Id': "d38fa26f", //"2d9c3ded",
-										'Authorization': auth
+										'Authorization': 'key=' + 'AIzaSyAmLirUryoDgIh4siI9I2MIOcGiE1NszU4'
 									},
 									json: obj
 									},function(err,res,body){
@@ -334,6 +377,8 @@ module.exports = function(Ride) {
 											cb(null, "OK");
 										}
 								});
+								
+								
 							}
 						});
 					} else{
