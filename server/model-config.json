@@ -116,6 +116,12 @@
         "principalId": "$everyone",
         "permission": "ALLOW",
         "property": "clientValidateVehicle"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW",
+        "property": "registerNonUST"
       }
     ]
   },
@@ -197,6 +203,10 @@
   },
   "Dashboard": {
     "dataSource": "db",
+    "public": true
+  },
+  "emailTemplate": {
+    "dataSource": "mySQL",
     "public": true
   }
 }

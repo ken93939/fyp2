@@ -6,7 +6,7 @@ var dataSource = app.dataSources.mySQL;
 var genROJ = false;
 
 // instance array
-var table = ['Icon', 'admin', 'request', 'Vehicle', 'Ride', 'pickup', 'Own', 'Join', 'Member', 'destination'];
+var table = ['Icon', 'admin', 'request', 'Vehicle', 'Ride', 'pickup', 'Own', 'Join', 'Member', 'destination', 'emailTemplate'];
 
 // recommend max mem = 20
 var mem = 5; // total = mem*7
@@ -91,6 +91,11 @@ for (var i=0; i<member_array.length; i++){
 	});
 	p = member_array[i].id;
 }
+
+var emailTemplate_array = [];
+emailTemplate_array[0] = {
+	"text": "Dear Sir/Madam\n\nAn account has already been created.Please seek help from the administrator by going to his office at 1234 since you do not possess an ust email.\n\nRegards,\nRideSharingTeam"
+};
 
 if (genROJ){
 
@@ -229,6 +234,9 @@ var createS = function(total, count, cb){
 	create("Own", app.models.Own, own_array, function(){
 		++count == total && cb();
 	});
+	create("emailTemplate", app.models.emailTemplate, emailTemplate_array, function(){
+		++count == total && cb();
+	});
 };
 
 var createROJ = function(total, count, genROJ, cb){
@@ -267,7 +275,7 @@ module.exports = {
 			var st = Date.now();
 			automigrate(table, 0, function(){
 				console.log("...");
-				createS(5, 0, function(){
+				createS(6, 0, function(){
 					console.log("...");
 					createROJ(7, 0, genROJ, function(){
 						console.log("...");

@@ -193,6 +193,124 @@ module.exports = function(Member) {
 		}
 	});
 
+	//email
+	//admin email
+
+	Member.sendEmailNonUST=function(dataPoint){
+		var emailModel=app.models.Email;
+		var emailTemplate=app.models.emailTemplate;
+		//send to the person who wants to register an account
+		emailTemplate.getEmailTemplate(function(err,text){
+			if(err){
+				console.log(err);
+			}
+			else{
+				emailModel.send({
+					to: "kenkwoktszting@gmail.com",
+					from: "hkustfyp2016@gmail.com",
+					subject: 'Thank you for your registration',
+					text: text
+					
+				},function(err,mail){
+					if(err){
+						console.log(err);
+						// cb(err,null);
+					}
+					else{
+						console.log('email sent');
+						// cb(null,"ok");
+					}
+				});
+			}
+		});
+
+	}
+
+	Member.registerNonUST=function(dataPoint,cb){
+		try{
+			dataPoint.created = new Date();
+			if(dataPoint.isDriver=="yes"){		//good to go
+				var veh=app.models.Vehicle;
+				var data={
+					"id": 0
+				};
+				var counter=0;
+				Member.create(dataPoint,function(err,user){
+					//TODO: error handling
+					if(err)
+						console.log(err);
+					console.log(dataPoint.car);
+
+					dataPoint.car.forEach(function(ka,index,array){
+						veh.findOne({where: {license_number: ka.license_number}}, function(err,vehModel){
+							if(err){
+								console.log(err);
+								cb(err,null);
+							}
+							if(vehModel==null){
+								// user.owns.create(data, function(err,own){
+								// 	if(err)
+								// 		console.log(err);
+								// 	own.vehicles.create(ka,function(err,vehicle){
+								// 		if(err)
+								// 			console.log(err);
+								// 	});
+								// });
+								console.log(ka);
+								veh.create(ka,function(err,vehicle){
+									if(err)
+										console.log(err);
+									vehicle.owns.create(ka, function(err,own){
+										if(err)
+											console.log(err);
+										own.updateAttribute("memberId",user.id,function(err,fown){
+											if(err)
+												console.log(err);
+											counter++;
+											if(counter==array.length){
+												Member.sendEmailNonUST(dataPoint);
+												cb(null,user);
+											}
+										})
+									});
+								});								
+							}
+							else{
+								vehModel.owns.create(ka,function(err,own){
+									if(err){
+										console.log(err);
+									}
+									own.updateAttribute("memberId", user.id, function(err,fown){
+										if(err)
+											console.log(err);
+										counter++;
+										if(counter==array.length){
+											Member.sendEmailNonUST(dataPoint);
+											cb(null,user);
+										}
+									});
+								});
+							}
+						});
+					});
+				});
+
+			}
+			else{
+				Member.create(dataPoint,function(err,user){
+					if(err)
+						console.log(err);
+					Member.sendEmailNonUST(dataPoint);
+					cb(null,user);
+				});
+			}
+		}
+		catch(err){
+			console.log(err);
+			cb(err,"fk");
+		}
+	}
+
 	Member.resetPw=function(dataPoint,cb){
 		try{
 			console.log(dataPoint.email);
@@ -1109,6 +1227,15 @@ module.exports = function(Member) {
 		'register',
 		{
 			http: {path: '/register', verb: 'post'},
+			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'object'}
+		}
+	);
+
+	Member.remoteMethod(
+		'registerNonUST',
+		{
+			http: {path: '/registerNonUST', verb: 'post'},
 			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
 			returns: {arg: 'status', type: 'object'}
 		}

@@ -8,6 +8,32 @@ var bcrypt=require('bcryptjs');
 
 module.exports = function(Admin) {
 
+	Admin.updateEmailTemplate=function(dataPoint,cb){
+		var emailTemplate=app.models.emailTemplate;
+		Admin.checkValidAdmin(function(err,adminId){
+			if(err){
+				console.log(err);
+				cb(err,null);
+			}
+			else if(adminId==0){
+				console.log("admin not exist");
+				cb(null,null);
+			}
+			else{
+				console.log("!!");
+				emailTemplate.updateEmailTemplate(dataPoint.text,function(err,returnedIns){
+					if(err){
+						console.log(err);
+						cb(err,null);
+					}
+					else{
+						cb(null,"ok");
+					}
+				})
+			}
+		})
+	}
+
 	Admin.adminDisplay=function(cb){
 		var Member=app.models.Member;
 		var array=[];
@@ -591,6 +617,15 @@ module.exports = function(Admin) {
 		'adminMassImport',
 		{
 			http: {path: '/adminMassImport', verb: 'post'},
+			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}			
+		}
+	);
+
+	Admin.remoteMethod(
+		'updateEmailTemplate',
+		{
+			http: {path: '/updateEmailTemplate', verb: 'post'},
 			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
 			returns: {arg: 'status', type: 'string'}			
 		}

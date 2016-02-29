@@ -17,6 +17,11 @@ var destination_array=[
 }
 ];
 
+var emailTemplate_array=[
+{
+  "text": "Dear Sir/Madam\n\nAn account has already been created.Please seek help from the administrator by going to his office at 1234 since you do not possess an ust email.\n\nRegards,\nRideSharingTeam"
+}
+]
 var admin_array=[
 {
   "password": "123456",
@@ -384,6 +389,24 @@ dataSource.automigrate('admin', function(err) {
       count--;
       if(count==0){
         console.log("admin_ko");
+      }
+    });
+  });
+});
+
+dataSource.automigrate('emailTemplate', function(err) {
+  if(err) throw err;
+  console.log("emailTemplate!");
+  var email=app.models.emailTemplate;
+  var count=emailTemplate_array.length;
+  emailTemplate_array.forEach(function(Email){
+    email.create(Email,function(err,record){
+      if(err)
+        return console.log(err);
+      console.log("emailTemplate_done",record);
+      count--;
+      if(count==0){
+        console.log("emailTemplate_ko");
       }
     });
   });
