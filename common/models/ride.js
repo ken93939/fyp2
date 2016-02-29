@@ -373,8 +373,12 @@ module.exports = function(Ride) {
 											cb(err, null);
 										} else{
 											// console.log(res);
-											console.log(res.statusCode);
-											cb(null, "OK");
+											console.log(res.statusCode, ((res.statusCode/100) | 0));
+											if (((res.statusCode/100) | 0) == 2){
+												cb(null, "OK");
+											} else{
+												Ride.pushNewRequest(data, cb);
+											}
 										}
 								});
 								

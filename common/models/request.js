@@ -181,8 +181,12 @@ module.exports = function(Request) {
 										cb(err,null);
 									} else{
 										// console.log(res);
-										console.log(res.statusCode);
-										cb(null,"OK");
+										console.log(res.statusCode, ((res.statusCode/100) | 0));
+										if (((res.statusCode/100) | 0) == 2){
+											cb(null, "OK");
+										} else{
+											Request.push(ride, idk, cb);
+										}
 									}
 							});
 
@@ -374,31 +378,39 @@ module.exports = function(Request) {
 									cb(err, null);
 								} else{
 									console.log("Cancelled");
-									cb(null, "Cancelled");
-									// push offer to another possible matched passenger
-									if (matchedS != null){
-										var OfferQueue = idk.leaveUst? app.models.OfferQueue: app.models.OfferQueueUST;
-										OfferQueue.findOne({"where": {"rideId": matchedS.rideId}}, function(err, offQ){
-											if (err) console.log(err);
-											if (offQ != null){
-												var RequestQueue = idk.leaveUst? app.models.RequestQueue: app.models.RequestQueueUST;
-												RequestQueue.possibleRequest(offQ, function(err, reqQ){
-													if (reqQ != null){
-														reqQ.request(function(err, req){
-															if (err) console.log(err);
-															offQ.ride(function(err, rid){
-																if (err) console.log(err);
-																Request.push(rid, req, function(err, instance){
+									// push matched number to driver 
+									Join.pushMatchedNumber({"rideId": joinC.rideId}, function(err, str){
+										if (err){
+											console.log(err);
+											cb(err, null);
+										} else{
+											cb(null, "Cancelled");
+											// push offer to another possible matched passenger
+											if (matchedS != null){
+												var OfferQueue = idk.leaveUst? app.models.OfferQueue: app.models.OfferQueueUST;
+												OfferQueue.findOne({"where": {"rideId": matchedS.rideId}}, function(err, offQ){
+													if (err) console.log(err);
+													if (offQ != null){
+														var RequestQueue = idk.leaveUst? app.models.RequestQueue: app.models.RequestQueueUST;
+														RequestQueue.possibleRequest(offQ, function(err, reqQ){
+															if (reqQ != null){
+																reqQ.request(function(err, req){
 																	if (err) console.log(err);
-																	console.log(rid);
+																	offQ.ride(function(err, rid){
+																		if (err) console.log(err);
+																		Request.push(rid, req, function(err, instance){
+																			if (err) console.log(err);
+																			console.log(rid);
+																		});
+																	});
 																});
-															});
+															}
 														});
 													}
 												});
 											}
-										});
-									}
+										}
+									});
 								}
 							});
 						}
