@@ -21,11 +21,10 @@ module.exports = function(Request) {
 
 			var returnObj = {};
 
-			var Destination = app.models.Destination;
-			Destination.getDestination(idk.destination_name, function(err, newDesName){
+			Request.CheckLocation(idk, function(err, newName){
 				if (err) console.log(err);
-				idk.destination_name = newDesName;
-				returnObj.newDesName = newDesName;
+				idk.destination_name = newName;
+				returnObj.newDesName = newName;
 				if (idk.leaveUst){
 					if (idk.destination_name == "Hang Hau"){
 						idk["pickup_name"] = "North Gate";
@@ -79,6 +78,30 @@ module.exports = function(Request) {
 		}
 		catch(error){
 			console.log(error);
+		}
+	}
+
+	Request.CheckLocation = function(idk, cb){
+		if (idk.leaveUst){
+			var Destination = app.models.Destination;
+			Destination.getDestination(idk.destination_name, function(err, newDesName){
+				if (err){
+					console.log(err);
+					cb(err, null);
+				} else{
+					cb(null, newDesName);
+				}
+			});
+		} else{
+			var Pickup = app.models.Pickup;
+			Pickup.getPickup(idk.destination_name, function(err, newPuName){
+				if (err){
+					console.log(err);
+					cb(err, null);
+				} else{
+					cb(null, newPuName);
+				}
+			});
 		}
 	}
 
@@ -541,7 +564,7 @@ module.exports = function(Request) {
 							{"gender_preference": false}
 						]},
 						{"is_full": false},
-						{"time": {"gt": currTime}}
+						{"time": {"gt": currTime + 60*1000}}
 					]
 				}
 			};
@@ -642,29 +665,34 @@ module.exports = function(Request) {
 					console.log(err);
 					cb(err, null);
 				} else{
-					cb(null, (join!=null && join.status=="inProgress"));
+					var inJoin = (join!=null && join.status=="inProgress");
+					if (inJoin){
+						cb(null, true);
+					} else{
+						Request.findById(data.requestId, function(err, request){
+							if (err){
+								console.log(err);
+								cb(err, null);
+							} else{
+								if (request != null && request.status == "active"){
+									var RequestQueue = request.destination_name != "HKUST"? app.models.RequestQueue: app.models.RequestQueueUST;
+									RequestQueue.findOne({requestId: data.requestId}, function(err, requestQ){
+										if (err){
+											console.log(err);
+											cb(err, null);
+										} else{
+											cb(null, requestQ != null);
+										}
+									});
+								} else{
+									cb(null, false);
+								}
+							}
+						});
+					}
 				}
 			});
-			// Request.findById(data.requestId, function(err, request){
-			// 	if (err){
-			// 		console.log(err);
-			// 		cb(err, null);
-			// 	} else{
-			// 		if (request != null && request.status == "active"){
-			// 			var RequestQueue = request.destination_name != "HKUST"? app.models.RequestQueue: app.models.RequestQueueUST;
-			// 			RequestQueue.findOne({requestId: data.requestId}, function(err, requestQ){
-			// 				if (err){
-			// 					console.log(err);
-			// 					cb(err, null);
-			// 				} else{
-			// 					cb(null, requestQ != null);
-			// 				}
-			// 			});
-			// 		} else{
-			// 			cb(null, false);
-			// 		}
-			// 	}
-			// });
+			
 		} else{
 			cb(null, false);
 		}

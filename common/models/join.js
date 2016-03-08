@@ -76,6 +76,9 @@ module.exports = function(Join) {
 										obj["to"] = mem.deviceToken;
 										obj["collapse_key"] = "numOfPassenger";
 										obj["data"] = {
+											"title": "Attention",
+											"message": "Changes in number of passenger",
+											"image": "icon",
 											"status": "A0",
 											"joinNum": joinNum
 										};
