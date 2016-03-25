@@ -91,6 +91,9 @@ module.exports = function(Admin) {
 	}
 
 	//do I need to check phone number and email
+	/*
+	
+	*/
 	Admin.adminChange=function(dataPoint,cb){
 		var Member=app.models.Member;
 		Admin.checkValidAdmin(function(err,adminId){
@@ -460,6 +463,7 @@ module.exports = function(Admin) {
 		}
 	}
 
+	//
 	Admin.addMember=function(dataPoint,cb){
 		var Member=app.models.Member;
 		Admin.checkValidAdmin(function(err,adminId){
