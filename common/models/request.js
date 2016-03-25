@@ -94,7 +94,7 @@ module.exports = function(Request) {
 			});
 		} else{
 			var Pickup = app.models.Pickup;
-			Pickup.getPickup(idk.destination_name, function(err, newPuName){
+			Pickup.getPickup(idk.pickup_name, function(err, newPuName){
 				if (err){
 					console.log(err);
 					cb(err, null);
@@ -698,6 +698,46 @@ module.exports = function(Request) {
 		}
 	}
 
+	Request.checkPending = function(data, cb){
+		if (data != null && data.requestId != null && data.leaveUst != null){
+			var PendingSeat = data.leaveUst? app.models.PendingSeat: app.models.PendingSeatUST;
+			PendingSeat.findOne({"where": {"requestId": data.requestId}}, function(err, pendingS){
+				if (err){
+					console.log(err);
+					cb(err, null);
+				} else{
+					if (pendingS != null){
+						pendingS.ride(function(err, ride){
+							if (err){
+								console.log(err);
+								cb(err, null);
+							} else{
+								ride.own(function(err, own){
+									if (err){
+										console.log(err);
+										cb(err, null);
+									} else{
+										own.vehicle(function(err, vehicle){
+											if (err){
+												console.log(err);
+												cb(err, null);
+											} else{
+												ride.license_number = vehicle.license_number;
+												cb(null, ride);
+											}
+										});
+									}
+								});
+							}
+						});
+					} else{
+						cb(null, null);
+					}
+				}
+			});
+		}
+	}
+
 	Request.remoteMethod(
 		'confirmMatch',
 		{
@@ -777,6 +817,15 @@ module.exports = function(Request) {
 			http: {path: '/checkValid', verb: 'post'},
 			accepts: {arg: 'data', type: 'object', http:{source:'body'}},
 			returns: {arg: 'valid', type: 'boolean'}
+		}
+	);
+
+	Request.remoteMethod(
+		'checkPending',
+		{
+			http: {path: '/checkPending', verb: 'post'},
+			accepts: {arg: 'data', type: 'object', http:{source:'body'}},
+			returns: {arg: 'request', type: 'object'}
 		}
 	);
 }

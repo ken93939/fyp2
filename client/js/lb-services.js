@@ -10215,6 +10215,45 @@ module.factory(
 
         /**
          * @ngdoc method
+         * @name lbServices.Join#getMatchedNumber
+         * @methodOf lbServices.Join
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `num` – `{number=}` - 
+         */
+        "getMatchedNumber": {
+          url: urlBase + "/Joins/getMatchedNumber",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
          * @name lbServices.Join#pushMatchedNumber
          * @methodOf lbServices.Join
          *
@@ -12142,6 +12181,45 @@ module.factory(
          */
         "checkValid": {
           url: urlBase + "/requests/checkValid",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Request#checkPending
+         * @methodOf lbServices.Request
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `request` – `{object=}` - 
+         */
+        "checkPending": {
+          url: urlBase + "/requests/checkPending",
           method: "POST"
         },
 
@@ -29065,6 +29143,41 @@ module.factory(
         "updateEmailTemplate": {
           url: urlBase + "/admins/updateEmailTemplate",
           method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Admin#adminGetRide
+         * @methodOf lbServices.Admin
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `status` – `{object=}` - 
+         */
+        "adminGetRide": {
+          url: urlBase + "/admins/adminGetRide",
+          method: "GET"
         },
 
         /**

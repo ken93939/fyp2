@@ -79,7 +79,7 @@ module.exports = function(Ride) {
 																cb(err, null);
 															} else{
 																console.log("match_icon for driver: ", icon[0]);
-																cb(null, {"matchicon": icon[0].match_icon});
+																cb(null, {"rideId": ride.id, "matchicon": icon[0].match_icon});
 															}
 														});
 													}

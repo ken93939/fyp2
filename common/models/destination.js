@@ -4,7 +4,6 @@ var loopback = require('loopback');
 
 module.exports = function(Destination) {
 
-	// TODO: fix bug: go to hkust
 	Destination.getDestination = function(oriDesName, cb){
 		if (oriDesName == "Hang Hau" || oriDesName == "Choi Hung"){
 			console.log(oriDesName);

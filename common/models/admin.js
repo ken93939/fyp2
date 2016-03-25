@@ -561,6 +561,60 @@ module.exports = function(Admin) {
 
 	}
 
+	Admin.adminGetRide = function(cb){
+		var Ride = app.models.Ride;
+		Ride.find({}, function(err, ride){
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				var rides = [];
+				Admin.getAllRideDetail(ride, 0, rides, function(err, rid){
+					if (err){
+						console.log(err);
+						cb(err, null);
+					} else{
+						console.log(rid);
+						cb(null, rid);
+					}
+				});
+			}
+		});
+
+	}
+
+	Admin.getAllRideDetail = function(ride, index, rides, cb){
+		if (index >= ride.length){
+			cb(null, rides);
+		} else{
+			ride[index].member(function(err, mem){
+				if (err){
+					console.log(err);
+					cb(err, null);
+				} else{
+					ride[index].user = mem.email;
+					ride[index].own(function(err, own){
+						if (err){
+							console.log(err);
+							cb(err, null);
+						} else{
+							own.vehicle(function(err, veh){
+								if (err){
+									console.log(err);
+									cb(err, null);
+								} else{
+									ride[index].license_number = veh.license_number;
+									rides.push(ride[index]);
+									Admin.getAllRideDetail(ride, index+1, rides, cb);
+								}
+							})
+						}
+					});
+				}
+			});
+		}
+	}
+
 	Admin.remoteMethod(
 		'addMember',
 		{
@@ -628,6 +682,14 @@ module.exports = function(Admin) {
 			http: {path: '/updateEmailTemplate', verb: 'post'},
 			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
 			returns: {arg: 'status', type: 'string'}			
+		}
+	);
+
+	Admin.remoteMethod(
+		'adminGetRide',
+		{
+			http: {path: '/adminGetRide', verb: 'get'},
+			returns: {arg: 'status', type: 'object'}			
 		}
 	);
 };

@@ -45,6 +45,43 @@ module.exports = function(Join) {
 		});
 	}
 
+	Join.getMatchedNumber = function(data, cb){
+		var Ride = app.models.Ride;
+		Ride.findById(data.rideId, function(err, ride){
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				if (ride != null){
+					ride.member(function(err, mem){
+						if (err){
+							console.log(err);
+							cb(err, null);
+						} else{
+							var filter = {
+								"and": [
+									{"rideId": data.rideId}, 
+									{"status": "inProgress"}
+								]
+							};
+							Join.count(filter, function(err, joinNum){
+								if (err){
+									console.log(err);
+									cb(err, null);
+								} else{
+									console.log(data.rideId+": "+joinNum);
+									cb(null, joinNum);
+								}
+							});
+						}
+					});
+				} else{
+					cb(null, 0);
+				}
+			}
+		});
+	}
+
 	Join.pushMatchedNumber = function(data, cb){
 		try{
 			var obj = {};
@@ -126,6 +163,12 @@ module.exports = function(Join) {
 		http: {path: '/addJoin', verb: 'post'},
 		accepts: {arg: 'data', type: 'object', http: {source:'body'}},
 		returns: {arg: 'join', type: 'object'}
+	});
+
+	Join.remoteMethod('getMatchedNumber', {
+		http: {path: '/getMatchedNumber', verb: 'post'},
+		accepts: {arg: 'data', type: 'object', http: {source:'body'}},
+		returns: {arg: 'num', type: 'number'}
 	});
 
 	Join.remoteMethod('pushMatchedNumber', {
