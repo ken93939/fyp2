@@ -15,7 +15,11 @@
     "loopback-connector-mysql": "^2.2.0",
     "loopback-datasource-juggler": "^2.39.0",
     "moment": "^2.11.1",
-    "serve-favicon": "^2.0.1"
+    "serve-favicon": "^2.0.1",
+    "body-parser": "^1.15.0",
+    "loopback-component-storage": "^1.7.0",
+    "bcryptjs": "^2.3.0",
+    "request": "^2.69.0"
   },
   "devDependencies": {
     "jshint": "^2.5.6"
@@ -24,5 +28,21 @@
     "type": "",
     "url": ""
   },
-  "description": "fyp"
+  "description": "fyp",
+  "bundleDependencies": [
+    "compression",
+    "cors",
+    "event-stream",
+    "loopback",
+    "loopback-boot",
+    "loopback-component-explorer",
+    "loopback-connector-mysql",
+    "loopback-datasource-juggler",
+    "moment",
+    "serve-favicon",
+    "body-parser",
+    "loopback-component-storage",
+    "bcryptjs",
+    "request"
+  ]
 }

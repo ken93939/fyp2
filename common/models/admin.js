@@ -578,7 +578,6 @@ module.exports = function(Admin) {
 						console.log(err);
 						cb(err, null);
 					} else{
-						console.log(rid);
 						cb(null, rid);
 					}
 				});
@@ -614,6 +613,44 @@ module.exports = function(Admin) {
 							})
 						}
 					});
+				}
+			});
+		}
+	}
+
+	Admin.adminGetRequest = function(cb){
+		var Request = app.models.Request;
+		Request.find({}, function(err, request){
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				var requests = [];
+				Admin.getAllRequestDetail(request, 0, requests, function(err, req){
+					if (err){
+						console.log(err);
+						cb(err, null);
+					} else{
+						cb(null, req);
+					}
+				});
+			}
+		});
+
+	}
+
+	Admin.getAllRequestDetail = function(request, index, requests, cb){
+		if (index >= request.length){
+			cb(null, requests);
+		} else{
+			request[index].member(function(err, mem){
+				if (err){
+					console.log(err);
+					cb(err, null);
+				} else{
+					request[index].user = mem.email;
+					requests.push(request[index]);
+					Admin.getAllRequestDetail(request, index+1, requests, cb);
 				}
 			});
 		}
@@ -693,6 +730,14 @@ module.exports = function(Admin) {
 		'adminGetRide',
 		{
 			http: {path: '/adminGetRide', verb: 'get'},
+			returns: {arg: 'status', type: 'object'}			
+		}
+	);
+
+	Admin.remoteMethod(
+		'adminGetRequest',
+		{
+			http: {path: '/adminGetRequest', verb: 'get'},
 			returns: {arg: 'status', type: 'object'}			
 		}
 	);

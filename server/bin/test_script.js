@@ -97,6 +97,20 @@ emailTemplate_array[0] = {
 	"text": "Dear Sir/Madam\n\nAn account has already been created.Please seek help from the administrator by going to his office at 1234 since you do not possess an ust email.\n\nRegards,\nRideSharingTeam"
 };
 
+var destination_array = [];
+destination_array.push({
+	"location_name": "Hang Hau"
+}, {
+	"location_name": "Choi Hung"
+})
+
+var pickup_array = [];
+pickup_array.push({
+	"location_name": "Hang Hau"
+}, {
+	"location_name": "Choi Hung"
+})
+
 if (genROJ){
 
 	var request_array = [];
@@ -237,6 +251,12 @@ var createS = function(total, count, cb){
 	create("emailTemplate", app.models.emailTemplate, emailTemplate_array, function(){
 		++count == total && cb();
 	});
+	create("destination", app.models.destination, destination_array, function(){
+		++count == total && cb();
+	});
+	create("pickup", app.models.pickup, pickup_array, function(){
+		++count == total && cb();
+	});
 };
 
 var createROJ = function(total, count, genROJ, cb){
@@ -275,7 +295,7 @@ module.exports = {
 			var st = Date.now();
 			automigrate(table, 0, function(){
 				console.log("...");
-				createS(6, 0, function(){
+				createS(8, 0, function(){
 					console.log("...");
 					createROJ(7, 0, genROJ, function(){
 						console.log("...");
