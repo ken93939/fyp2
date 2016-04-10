@@ -8,7 +8,7 @@
     "port": 3306,
     "database": "db",
     "username": "root",
-    "password": "ken24657021",
+    "password": "admin",
     "name": "mySQL",
     "connector": "mysql"
   },

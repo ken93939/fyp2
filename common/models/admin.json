@@ -68,6 +68,12 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "adminGetRequest"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "adminGetJoin"
     }
   ],
   "methods": {}

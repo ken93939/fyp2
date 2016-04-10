@@ -656,6 +656,44 @@ module.exports = function(Admin) {
 		}
 	}
 
+	Admin.adminGetJoin = function(cb){
+		var Join = app.models.Join;
+		Join.find({}, function(err, join){
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				var joins = [];
+				Admin.getAllJoinDetail(join, 0, joins, function(err, jo){
+					if (err){
+						console.log(err);
+						cb(err, null);
+					} else{
+						cb(null, jo);
+					}
+				});
+			}
+		});
+
+	}
+
+	Admin.getAllJoinDetail = function(join, index, joins, cb){
+		if (index >= join.length){
+			cb(null, joins);
+		} else{
+			join[index].icon(function(err, ico){
+				if (err){
+					console.log(err);
+					cb(err, null);
+				} else{
+					join[index].match_icon = ico.match_icon;
+					joins.push(join[index]);
+					Admin.getAllJoinDetail(join, index+1, joins, cb);
+				}
+			});
+		}
+	}
+
 	Admin.remoteMethod(
 		'addMember',
 		{
@@ -738,6 +776,14 @@ module.exports = function(Admin) {
 		'adminGetRequest',
 		{
 			http: {path: '/adminGetRequest', verb: 'get'},
+			returns: {arg: 'status', type: 'object'}			
+		}
+	);
+
+	Admin.remoteMethod(
+		'adminGetJoin',
+		{
+			http: {path: '/adminGetJoin', verb: 'get'},
 			returns: {arg: 'status', type: 'object'}			
 		}
 	);

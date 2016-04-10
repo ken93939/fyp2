@@ -276,7 +276,8 @@ module.exports = function(Ride) {
 						});
 						
 					} else{
-						cb(null, "Offer not found");
+						console.log("No such rideId");
+						cb(null, "Offer Not Found!");
 					}
 				}
 			});

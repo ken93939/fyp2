@@ -370,7 +370,7 @@ module.exports = function(Request) {
 							}
 						} else{
 							console.log("No such requestId");
-							cb(null, "No such requestId");
+							cb(null, "Request Not Found!");
 						}
 					}
 				});
