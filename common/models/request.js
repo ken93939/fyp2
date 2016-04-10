@@ -23,17 +23,17 @@ module.exports = function(Request) {
 
 			Request.CheckLocation(idk, function(err, newName){
 				if (err) console.log(err);
-				idk.destination_name = newName;
 				returnObj.newDesName = newName;
 				if (idk.leaveUst){
+					idk.destination_name = newName;
 					if (idk.destination_name == "Hang Hau"){
-						idk["pickup_name"] = "North Gate";
+						idk.pickup_name = "North Gate";
 					} else if (idk.destination_name == "Choi Hung"){
-						idk["pickup_name"] = "South Gate";
+						idk.pickup_name = "South Gate";
 					}
 				} else{
-					idk["pickup_name"] = idk.destination_name;
-					idk["destination_name"] = "HKUST";
+					idk.pickup_name = newName;
+					idk.destination_name = "HKUST";
 				}
 
 				Request.create(idk,function(err,request){
