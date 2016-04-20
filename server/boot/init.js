@@ -3,7 +3,7 @@ var ts = require('../bin/test_script.js');
 
 module.exports = function(server){
 
-	var run_test_script = false;
+	var run_test_script = true;
 
 	ts.runScript(run_test_script, function(){
 

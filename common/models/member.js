@@ -169,7 +169,7 @@ module.exports = function(Member) {
 					console.log(err);
 				var options = {
 					type: 'email',
-					to: "kenkwoktszting@gmail.com",
+					to: mem.email, //"kenkwoktszting@gmail.com",
 					from: 'hkustfyp2016@gmail.com',
 					subject: 'Thanks for registering.',
 					user: mem,

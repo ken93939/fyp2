@@ -351,6 +351,7 @@ module.exports = function(Ride) {
 									"message": "The driver has cancelled the offer!",
 									"image": "icon"
 								};
+								obj["time_to_live"] = 0;
 								// obj["data"] = {
 								// 	"status": "cancel",
 								// 	"requestId": data.requestId,

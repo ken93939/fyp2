@@ -189,6 +189,7 @@ module.exports = function(Request) {
 								"message": "Click here to see the details",
 								"image": "icon"
 							};
+							obj["time_to_live"] = 0;
 							console.log("obj: ", obj);
 							req.post({
 								url: "https://gcm-http.googleapis.com/gcm/send",

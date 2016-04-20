@@ -686,7 +686,7 @@ module.exports = function(Admin) {
 					console.log(err);
 					cb(err, null);
 				} else{
-					join[index].match_icon = ico.match_icon;
+					join[index].match_icon = (ico != null) ? ico.match_icon: -1;
 					joins.push(join[index]);
 					Admin.getAllJoinDetail(join, index+1, joins, cb);
 				}
