@@ -694,6 +694,47 @@ module.exports = function(Admin) {
 		}
 	}
 
+	Admin.adminGetMember = function(cb){
+		var Member = app.models.Member;
+		Member.find({}, function(err, mems){
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				cb(null, mems);
+			}
+		});
+	}
+
+	Admin.adminGetOwnership = function(cb){
+		var Own = app.models.Own;
+		var count = 0;
+		Own.find({}, function(err, owns){
+			if (err){
+				console.log(err);
+			} else{
+				if (owns != null){
+					owns.forEach(function(own, index, arr){
+						own.vehicle(function(err, veh){
+							if (err){
+								console.log(err);
+							} else{
+								if (veh != null){
+									owns[index].license_number = veh.license_number;
+									owns[index].color = veh.color;
+									owns[index].maker = veh.maker;
+									if (++count >= owns.length){
+										cb(null, owns);
+									}
+								}
+							}
+						});
+					});
+				}
+			}
+		});
+	}
+
 	Admin.remoteMethod(
 		'addMember',
 		{
@@ -784,6 +825,22 @@ module.exports = function(Admin) {
 		'adminGetJoin',
 		{
 			http: {path: '/adminGetJoin', verb: 'get'},
+			returns: {arg: 'status', type: 'object'}			
+		}
+	);
+
+	Admin.remoteMethod(
+		'adminGetMember',
+		{
+			http: {path: '/adminGetMember', verb: 'get'},
+			returns: {arg: 'status', type: 'object'}			
+		}
+	);
+
+	Admin.remoteMethod(
+		'adminGetOwnership',
+		{
+			http: {path: '/adminGetOwnership', verb: 'get'},
 			returns: {arg: 'status', type: 'object'}			
 		}
 	);

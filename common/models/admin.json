@@ -74,6 +74,18 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "adminGetJoin"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "adminGetMember"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "adminGetOwnership"
     }
   ],
   "methods": {}
