@@ -314,6 +314,8 @@ module.exports = function(Admin) {
 						if (status != "success"){
 							valid = false;
 						}
+						dataPoint[index].created = new Date();
+						dataPoint[index].emailVerified = true;
 						if (++count >= array.length){
 							if (valid){
 								Member.create(dataPoint, function(err, mems){
