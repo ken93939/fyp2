@@ -24,15 +24,14 @@
     },
     "gender_preference": {
       "type": "boolean",
-      "required": true
+      "default": false
     },
     "authorized": {
       "type": "string",
-      "required": true
+      "default": "yes"
     },
     "isDriver": {
       "type": "string",
-      "required": true,
       "default": "no"
     },
     "deviceToken": {

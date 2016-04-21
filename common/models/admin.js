@@ -302,8 +302,42 @@ module.exports = function(Admin) {
 	]
 	*/
 	Admin.adminMassImport=function(dataPoint,cb){
-		var Member=app.models.Member;
-
+		if (dataPoint != null){
+			var valid = true;
+			var count = 0;
+			dataPoint.forEach(function(data, index, array){
+				var Member = app.models.Member;
+				Member.validationandregister(data, function(err, status){
+					if (err){
+						console.log(err);
+					} else{
+						if (status != "success"){
+							valid = false;
+						}
+						if (++count >= array.length){
+							if (valid){
+								Member.create(dataPoint, function(err, mems){
+									if (err){
+										console.log(err);
+										cb(err, null);
+									} else{
+										console.log("Mass import: success");
+										cb(null, "success");
+									}
+								});
+							} else{
+								console.log("Mass import: fail");
+								cb(null, "fail");
+							}
+							
+						}
+					}
+				});
+			});
+		} else{
+			console.log("Mass import: fail");
+			cb(null, "fail");
+		}
 	}
 
 	Admin.adminDashBoard=function(cb){
