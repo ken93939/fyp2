@@ -6,11 +6,8 @@ module.exports = function(Own) {
 	Own.getVehicle=function(cb){
 		try{
 			var ctx=loopback.getCurrentContext();
-			// console.log(ctx);
 			var accessToken=ctx.get('accessToken');
-			// console.log(accessToken);
 			var currentUser = ctx && ctx.get('currentUser');
-			// console.log('currentUser.username: ', currentUser);
 
 			var veh_array=[];
 
@@ -39,9 +36,6 @@ module.exports = function(Own) {
 							console.log(err);
 						console.log(veh);
 						veh_array.push(veh);
-						// if(index==array.length-1){
-						// 	cb(null,veh_array);
-						// }
 
 						if(veh_array.length==array.length){
 							currentUser.updateAttribute("isDriver","yes", function(err,updatedMem){

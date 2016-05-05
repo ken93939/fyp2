@@ -27,38 +27,7 @@ module.exports = function(Member) {
 						else if(mmIns==null){
 							var counter=0;
 							var wrong=false;
-							// if(dataPoint.car.length==0){
-								// Member.register(dataPoint);
 							cb(null,"success");
-							// }
-							// else{
-							// 	dataPoint.car.forEach(function(ka,index,array){
-							// 		veh.findOne({where: {license_number: ka.license_number}},function(err,vehIns){
-							// 			console.log(vehIns);
-							// 			if(err){
-							// 				console.log(err);
-							// 				cb(err,null);
-							// 			}
-							// 			else if(vehIns==null){
-							// 				counter++;
-							// 				if(counter==array.length && !wrong){
-							// 					// Member.register(dataPoint);
-							// 					cb(null,"success");
-							// 				}
-							// 				else if(counter==array.length && wrong){
-							// 					cb(null,"fail");
-							// 				}
-							// 			}
-							// 			else{
-							// 				wrong=true;
-							// 				counter++;
-							// 				if(counter==array.length){
-							// 					cb(null,"fail");
-							// 				}
-							// 			}
-							// 		});
-							// 	});
-							// }
 
 						}
 						else{
@@ -77,20 +46,19 @@ module.exports = function(Member) {
 		}
 	}
 
-	//TODO: possible debt
 	Member.register=function(dataPoint,cb){
 		try{
 			dataPoint.created = new Date();
-			if(dataPoint.isDriver=="yes"){		//good to go
+			if(dataPoint.isDriver=="yes"){
 				var veh=app.models.Vehicle;
 				var data={
 					"id": 0
 				};
 				var counter=0;
 				Member.create(dataPoint,function(err,user){
-					//TODO: error handling
 					if(err)
 						console.log(err);
+
 					console.log(dataPoint.car);
 
 					dataPoint.car.forEach(function(ka,index,array){
@@ -100,14 +68,6 @@ module.exports = function(Member) {
 								cb(err,null);
 							}
 							if(vehModel==null){
-								// user.owns.create(data, function(err,own){
-								// 	if(err)
-								// 		console.log(err);
-								// 	own.vehicles.create(ka,function(err,vehicle){
-								// 		if(err)
-								// 			console.log(err);
-								// 	});
-								// });
 								console.log(ka);
 								veh.create(ka,function(err,vehicle){
 									if(err)
@@ -169,12 +129,12 @@ module.exports = function(Member) {
 					console.log(err);
 				var options = {
 					type: 'email',
-					to: mem.email, //"kenkwoktszting@gmail.com",
+					to: mem.email,
 					from: 'hkustfyp2016@gmail.com',
 					subject: 'Thanks for registering.',
 					user: mem,
 					template: path.resolve(__dirname, '../../server/views/verify.ejs'),
-					redirect: '/verified'	//TODO:change it
+					redirect: '/verified'
 				};
 				console.log(mem);
 				mem.verify(options, function(err, response, next) {
@@ -185,7 +145,7 @@ module.exports = function(Member) {
 					}
 					console.log('> verification email sent:', response);
 				});	
-			})	//TODO: callback?
+			});
 			next();
 		}
 		catch(err){
@@ -206,7 +166,7 @@ module.exports = function(Member) {
 			}
 			else{
 				emailModel.send({
-					to: "kenkwoktszting@gmail.com",
+					to: dataPoint.email,
 					from: "hkustfyp2016@gmail.com",
 					subject: 'Thank you for your registration',
 					text: text
@@ -214,11 +174,9 @@ module.exports = function(Member) {
 				},function(err,mail){
 					if(err){
 						console.log(err);
-						// cb(err,null);
 					}
 					else{
 						console.log('email sent');
-						// cb(null,"ok");
 					}
 				});
 			}
@@ -236,7 +194,6 @@ module.exports = function(Member) {
 				};
 				var counter=0;
 				Member.create(dataPoint,function(err,user){
-					//TODO: error handling
 					if(err)
 						console.log(err);
 					console.log(dataPoint.car);
@@ -248,14 +205,7 @@ module.exports = function(Member) {
 								cb(err,null);
 							}
 							if(vehModel==null){
-								// user.owns.create(data, function(err,own){
-								// 	if(err)
-								// 		console.log(err);
-								// 	own.vehicles.create(ka,function(err,vehicle){
-								// 		if(err)
-								// 			console.log(err);
-								// 	});
-								// });
+
 								console.log(ka);
 								veh.create(ka,function(err,vehicle){
 									if(err)
@@ -336,7 +286,7 @@ module.exports = function(Member) {
 			var html = 'Click <a href="' + url + '?access_token=' +
 			info.accessToken.id + '">here</a> to reset your password';
 			app.models.Email.send({
-				to: "kenkwoktszting@gmail.com",
+				to: indo.email,
 				subject: "Password reset",
 				html: html
 			}, function(err){
@@ -359,7 +309,6 @@ module.exports = function(Member) {
 					console.log(err);
 					cb(err,null);
 				}
-				// console.log(user);
 				cb(null,user);
 			});
 		}
@@ -547,198 +496,6 @@ module.exports = function(Member) {
 		}
 	}
 
-	// Member.updateVehicle=function(carArr,cb){
-	// 	try{
-	// 		var ctx=loopback.getCurrentContext();
-	// 		var currentUser = ctx && ctx.get('currentUser');
-	// 		var veh=app.models.Vehicle;
-	// 		var ownModel=app.models.Own;
-	// 		var okay="ok";
-	// 		console.log(carArr);
-	// 		console.log(carArr.length);
-	// 		var counter=0;
-
-	// 		currentUser.owns({},function(err,ownIns){
-	// 			ownIns.forEach(function(ownObj,index,ownArr){
-	// 				ownObj.vehicle(function(err,ownVeh){
-	// 					var equal=false;
-	// 					var count=0;	//counter for carArr
-	// 					if(err){
-	// 						console.log(err);
-	// 						//cb(err,null);
-	// 					}
-	// 					else{
-	// 						//+ - change
-	// 						//- = ownIns yes carArr no
-	// 						//change
-	// 						//must be delete
-	// 						if(carArr.length==0){
-
-	// 							veh.findById(Number(ownVeh.id),{},function(err,foundVeh){
-	// 								console.log(foundVeh);
-	// 								var counterForRide=0;
-	// 								if(err){
-	// 									console.log(err);														
-	// 								}
-	// 								else{
-	// 									foundVeh.owns(function(err,allOwns){
-	// 										if(err)
-	// 											console.log(err)
-	// 										else{
-	// 											allOwns.forEach(function(idkOwns){
-	// 												idkOwns.rides({},function(err,rideIns){
-	// 													rideIns.forEach(function(rideObj,index,rideArray){
-	// 														counterForRide++;
-	// 														rideObj.updateAttribute("ownId",null,function(err,updatedRide){
-	// 															if(err)
-	// 																console.log(err)
-	// 															else{
-	// 																if(counterForRide==rideArray.length){
-	// 																	counter++;
-	// 																	if(counter==carArr.length){
-	// 																		cb(null,okay);
-	// 																	}
-	// 																}
-	// 															}
-	// 														});
-	// 													});
-
-	// 													ownModel.destroyById(idkOwns.id,function(err){
-	// 														if(err){
-	// 															console.log(err);
-	// 															cb(err,null);
-	// 														}
-	// 													});
-
-	// 													veh.destroyById(foundVeh.id,function(err){
-	// 														if(err){
-	// 															console.log(err);
-	// 															cb(err,null);
-	// 														}
-	// 													})
-	// 												});
-	// 											});
-	// 										}
-	// 									});													
-	// 								}
-
-	// 							});	
-	// 						}
-	// 						else{
-	// 							carArr.forEach(function(ka){
-	// 								count++;
-	// 								// console.log(ka.id);
-	// 								if(ka.id==ownVeh.id){
-	// 									equal=true;												
-	// 									ownVeh.updateAttributes(ka,function(err,updatedIns){
-	// 										counter++;
-	// 										if(counter==carArr.length){
-	// 											cb(null,okay);
-	// 										}
-	// 									});
-	// 								}
-	// 								//cant find the instance =>delete
-	// 								// make the ownid associated with that vehicle of the ride null
-	// 								else if(count==carArr.length && !equal){
-	// 									if(ka.id!=null){
-	// 										var counterForRide=0;
-	// 										console.log(ka.id);
-	// 										veh.findById(Number(ownVeh.id),{},function(err,foundVeh){
-	// 											if(err){
-	// 												console.log(err);														
-	// 											}
-
-	// 											else{
-	// 												foundVeh.owns(function(err,allOwns){
-	// 													if(err)
-	// 														console.log(err)
-	// 													else{
-	// 														allOwns.forEach(function(idkOwns){
-	// 															idkOwns.rides({},function(err,rideIns){
-	// 																rideIns.forEach(function(rideObj,index,rideArray){
-	// 																	counterForRide++;
-	// 																	rideObj.updateAttribute("ownId",null,function(err,updatedRide){
-	// 																		if(err)
-	// 																			console.log(err)
-	// 																		else{
-	// 																			if(counterForRide==rideArray.length){
-	// 																				counter++;
-	// 																				if(counter==carArr.length){
-	// 																					cb(null,okay);
-	// 																				}
-	// 																			}
-	// 																		}
-	// 																	});
-	// 																});
-
-	// 																ownModel.destroyById(idkOwns.id,function(err){
-	// 																	if(err){
-	// 																		console.log(err);
-	// 																		cb(err,null);
-	// 																	}
-	// 																});
-
-	// 																veh.destroyById(foundVeh.id,function(err){
-	// 																	if(err){
-	// 																		console.log(err);
-	// 																		cb(err,null);
-	// 																	}
-	// 																})
-	// 															});
-	// 														});
-	// 													}
-	// 												});													
-	// 											}
-
-	// 										});													
-	// 									}
-	// 								}
-	// 							});	
-	// 						}
-	// 					}
-	// 				});
-	// 			});
-	// 			//+
-	// 			carArr.forEach(function(kakaka, index,car_array){
-	// 				if(kakaka.id==null){
-	// 					veh.create(kakaka,function(err,vehIns){
-	// 						if(err){
-	// 							console.log(err)
-	// 						}
-	// 						else{
-	// 							vehIns.owns.create({},function(err,vehOwnIns){
-	// 								if(err)
-	// 									console.log(err)
-	// 								else{
-	// 									vehOwnIns.updateAttribute("memberId",currentUser.id,function(err,updatedVehOwnIns){
-	// 										if(err)
-	// 											console.log(err)
-	// 										else{
-	// 											counter++;
-	// 											okay=vehIns.id;
-	// 											if(counter==carArr.length){
-	// 												cb(null,okay);
-	// 											}
-	// 										}
-	// 									});
-	// 								}
-
-	// 							});
-	// 						}
-	// 					});
-	// 				}
-	// 			});
-	// 		});
-
-
-	// 	}
-	// 	catch(err){
-	// 		console.log(err);
-	// 		cb(err,null);
-	// 	}
-
-	// }
-
 	Member.updatePw=function(dataPoint,cb){
 		try{
 			var ctx=loopback.getCurrentContext();
@@ -822,139 +579,6 @@ module.exports = function(Member) {
 		});
 	}
 
-
-	Member.clientValidateVehicle=function(dataPoint,cb){
-		// var veh=app.models.Vehicle;
-		// var counter=0;
-		// var wrong=false;
-		// //find the car if yes=>ok
-		// //if no fail (?)
-		// if(dataPoint.length!=0){
-		// 	dataPoint.forEach(function(kaka,index,array){
-		// 		// console.log(kaka.id);
-		// 		if(kaka.id!=null){
-		// 			veh.findOne({where: {license_number: kaka.license_number}},function(err,returnedIns){
-		// 				if(err){
-		// 					console.log(err);
-		// 					cb(err,null);
-		// 				}
-		// 				else if(returnedIns!=null){
-		// 					// console.log(returnedIns);
-		// 					counter++;
-		// 					if(counter==array.length){
-		// 						if(!wrong){
-		// 							console.log("validateok");
-		// 							cb(null,"ok");
-		// 						}
-		// 						else{
-		// 							cb(null,"fail");
-		// 						}
-		// 					}
-		// 				}
-		// 				else {
-		// 					console.log("wrong");
-		// 					wrong=true;
-		// 					counter++;
-		// 					if(counter==array.length){
-		// 						cb(null,"fail");
-		// 					}
-		// 				}
-		// 			});
-		// 		}
-		// 		else{
-		// 			veh.findOne({where: {license_number: kaka.license_number}},function(err,returnedIns){
-		// 				if(err){
-		// 					console.log(err);
-		// 					cb(err,null);
-		// 				}
-		// 				else if(returnedIns==null){
-		// 					counter++;
-		// 					if(counter==array.length){
-		// 						if(!wrong){
-		// 							console.log("ok");
-		// 							cb(null,"ok");
-		// 						}
-		// 						else{
-		// 							cb(null,"fail");
-		// 						}
-		// 					}
-		// 				}
-		// 				else{
-		// 					wrong=true;
-		// 					counter++;
-		// 					console.log("exisitng instance");
-		// 					// console.log(returnedIns);
-		// 					if(counter==array.length){
-		// 						cb(null,"fail");
-		// 					}
-		// 				}
-		// 			});
-		// 		}
-		// 	});
-		// }
-		// else{
-		// 	cb(null,"ok");
-		// }
-	}
-
-	//provide member id, vehicle
-	/*	{
-		"memberId":_,
-		"car":{
-			[0]:{
-	
-			}
-		}
-	}
-	*/	
-	// Member.ValidateVehicle=function(dataPoint,cb){
-	// 	var veh=app.models.Vehicle;
-	// 	var counter=0;
-	// 	var wrong=false;
-	// 	dataPoint.forEach(function(kaka,index,array){
-	// 		veh.findOne({where: {license_number: kaka.license_number}},function(err,vehIns){
-	// 			if(err){
-	// 				console.log(err);
-	// 				cb(err,null);
-	// 			}
-	// 			else{
-	// 				counter++;
-	// 				if(vehIns==null){
-	// 					if(counter==array.length){
-	// 						if(!wrong){
-	// 							// Member.findById(dataPoint.memberId,{},function(err,Ins){
-	// 							// });
-	// 							cb(null,"ok");
-	// 						}
-	// 						else{
-	// 							console.log("fail");
-	// 							cb(null,"fail");
-	// 						}
-	// 					}
-	// 				}
-	// 				else{
-	// 					wrong=true;
-	// 					if(counter==array.length){
-	// 						console.log("fail");
-	// 						cb(null,"fail");
-	// 					}
-	// 				}
-	// 			}
-	// 		});
-	// 	});
-	// }
-
-
-	//TODO: call validate and create
-	//provide member id, vehicle
-	/*	{
-		"memberId":_,
-		"car":{
-			"license_number": "dataPoint"
-		}
-	}
-	*/
-	//for edit and delete call updateVehicle();
 	Member.adminAddVehicle=function(dataPoint,cb){
 		var veh=app.models.Vehicle;
 		var okay="ok";
@@ -1145,15 +769,6 @@ module.exports = function(Member) {
 	);
 
 	Member.remoteMethod(
-		'clientValidateVehicle',
-		{
-			http: {path: '/clientValidateVehicle', verb: 'post'},
-			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
-			returns: {arg: 'status', type: 'string'}			
-		}
-	);
-
-	Member.remoteMethod(
 		'adminDisplay',
 		{
 			http: {path: '/adminDisplay', verb: 'get'},
@@ -1187,15 +802,6 @@ module.exports = function(Member) {
 			returns: {arg: 'status', type: 'object'}			
 		}
 	);
-
-	// Member.remoteMethod(
-	// 	'ValidateVehicle',
-	// 	{
-	// 		http: {path: '/ValidateVehicle', verb: 'post'},
-	// 		accepts: {arg: 'well', type: 'object', http:{source:'body'}},
-	// 		returns: {arg: 'status', type: 'string'}			
-	// 	}
-	// );
 
 	Member.remoteMethod(
 		'adminMassImport',

@@ -6,10 +6,9 @@ var req=require('request');
 module.exports = function(Request) {
 	Request.addRequest=function(idk,cb){
 		try{
+			var st = Date.now();
 			var ctx=loopback.getCurrentContext();
-			// console.log(ctx);
 			var accessToken=ctx.get('accessToken');
-			// console.log(accessToken);
 			var currentUser = ctx && ctx.get('currentUser');
 			console.log('currentUser.email: ', currentUser.email);
 			if (idk["memberId"] == null){
@@ -58,6 +57,7 @@ module.exports = function(Request) {
 											Request.push(offer, request, function(err, instance){
 												if (err) console.log(err);
 												console.log(offer);
+												console.log((Date.now()-st)/1000);
 											});
 										});
 									} else{
@@ -105,21 +105,12 @@ module.exports = function(Request) {
 		}
 	}
 
-	//userId,matchicon,ridetime,destination
-	//header: X-Ionic-Application-Id: d38fa26f
-	//Content type: application/json
-
-	//pay the debt should be solved
-	//TODO: PUSH problem remaining.
 	Request.push=function(ride,idk,cb){
 		try{
 			var obj={};
 			var Ride=app.models.Ride;
 			var Member=app.models.Member;
-			
-			// console.log(ride);
-			// console.log("123");
-			// console.log(idk);
+
 			console.log(idk.memberId);
 
 			Member.findById(idk.memberId,function(err,Mem){	
@@ -135,48 +126,6 @@ module.exports = function(Request) {
 					}
 					rideIns.own(function(err,ownIns){
 						ownIns.vehicle(function(err,vehicleIns){
-							// var array=[];
-							// // console.log(Mem.deviceToken);
-							// array.push(Mem.deviceToken+"");
-							// obj["tokens"]=array;
-
-							// obj["notification"]={
-							// 	"alert":"Found a match!",
-							// 	"android":{
-							// 		"payload":{
-							// 			"status": "match",
-							// 			"ridetime": ride.time,
-							// 			"destination": ride.destination_name,
-							// 			"license_number": vehicleIns.license_number	//debt solved?,
-							// 		}
-							// 	}
-							// };
-
-							// var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/\r\n/g,"\n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}}
-							// //var auth="basic "+Base64.encode("83203dab26c5e0e1904d2d822f6eef3efb4eebc0b16bea7d"+":");
-							// var auth="basic "+Base64.encode("766e0edd8c6e41a81da5b8d141b4181b5b7d4f93d4c4a6ab"+":");
-
-							// console.log(obj.notification.android.payload);
-
-							// req.post({
-							// 	url: "https://push.ionic.io/api/v1/push",
-							// 	method: 'POST',
-							// 	headers: {
-							// 		'Content-Type': 'application/json',
-							// 		'X-Ionic-Application-Id': "d38fa26f", //"2d9c3ded",
-							// 		'Authorization': auth
-							// 	},
-							// 	json: obj
-							// 	},function(err,res,body){
-							// 		if(err){
-							// 			console.log("req error:",err);
-							// 			cb(err,null);
-							// 		} else{
-							// 			// console.log(res);
-							// 			console.log(res.statusCode);
-							// 			cb(null,"OK");
-							// 		}
-							// });
 							
 							obj["to"]= Mem.deviceToken;
 							obj["collapse_key"] = "Ride";
@@ -184,7 +133,7 @@ module.exports = function(Request) {
 								"status": "match",
 								"ridetime": ride.time,
 								"destination": ride.destination_name,
-								"license_number": vehicleIns.license_number,	//debt solved?,
+								"license_number": vehicleIns.license_number,
 								"title": "Found a match",
 								"message": "Click here to see the details",
 								"image": "icon"
@@ -199,19 +148,18 @@ module.exports = function(Request) {
 									'Authorization': 'key=' + 'AIzaSyAmLirUryoDgIh4siI9I2MIOcGiE1NszU4' 
 								},
 								json: obj
-								},function(err,res,body){
-									if(err){
-										console.log("req error:",err);
-										cb(err,null);
+							},function(err,res,body){
+								if(err){
+									console.log("req error:",err);
+									cb(err,null);
+								} else{
+									console.log(res.statusCode, ((res.statusCode/100) | 0));
+									if (((res.statusCode/100) | 0) == 2){
+										cb(null, "OK");
 									} else{
-										// console.log(res);
-										console.log(res.statusCode, ((res.statusCode/100) | 0));
-										if (((res.statusCode/100) | 0) == 2){
-											cb(null, "OK");
-										} else{
-											Request.push(ride, idk, cb);
-										}
+										Request.push(ride, idk, cb);
 									}
+								}
 							});
 
 							
@@ -290,10 +238,6 @@ module.exports = function(Request) {
 																						if (ride != null){
 																							ride.updateAttributes({"status": "inactive"}, function(err, rid){
 																								if (err) console.log(err);
-																								// offerQ.destroy(function(err){
-																								// 	if (err) console.log(err);
-																								// 	console.log("Removed from OfferQueue: ", offerQ);
-																								// });
 																							});
 																						}
 																					});
@@ -505,10 +449,6 @@ module.exports = function(Request) {
 		var accessToken = ctx.get('accessToken');
 		var currentUser = ctx && ctx.get('currentUser');
 		var returnObj = {};
-	
-	// var Member = app.models.Member;
-	// Member.findById(3, function(err, mem){
-	// currentUser = mem;
 
 		if (currentUser != null){
 			var i = 0;
@@ -652,9 +592,6 @@ module.exports = function(Request) {
 		} else{
 			cb("Invalid Current User", null);
 		}
-
-	// });
-		
 
 	}
 

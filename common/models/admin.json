@@ -86,6 +86,12 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "adminGetOwnership"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "adminRemoveRecord"
     }
   ],
   "methods": {}

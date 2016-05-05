@@ -77,23 +77,8 @@ module.exports = function(Admin) {
 				});
 			}
 		});
-
-		//test only
-		// Admin.rideRequestBetween(1,8,{},function(err,object){
-		// 	if(err){
-		// 		console.log(err);
-		// 		cb(err,null);
-		// 	}
-		// 	else{
-		// 		cb(null,object);
-		// 	}
-		// })
 	}
 
-	//do I need to check phone number and email
-	/*
-	
-	*/
 	Admin.adminChange=function(dataPoint,cb){
 		var Member=app.models.Member;
 		Admin.checkValidAdmin(function(err,adminId){
@@ -187,24 +172,28 @@ module.exports = function(Admin) {
 										cb(err,null);
 									}
 									else{
-										createdVeh.owns.create({},function(err,createdOwn){
-											if(err){
-												console.log(err);
-												cb(err,null);
-											}
-											else{
-												createdOwn.updateAttribute("memberId",memIns.id,function(err,updatedOwn){
-													if(err){
-														console.log(err);
-														cb(err,null);
-													}
-													else{
-														okay=createdVeh.id;
-														cb(null,okay);
-													}
-												});
-											}
-										});
+										if (dataPoint.memberId > 0){
+											createdVeh.owns.create({},function(err,createdOwn){
+												if(err){
+													console.log(err);
+													cb(err,null);
+												}
+												else{
+													createdOwn.updateAttribute("memberId",memIns.id,function(err,updatedOwn){
+														if(err){
+															console.log(err);
+															cb(err,null);
+														}
+														else{
+															okay=createdVeh.id;
+															cb(null,okay);
+														}
+													});
+												}
+											});
+										} else{
+											cb(null, okay);
+										}
 									}
 								});
 							}
@@ -362,117 +351,6 @@ module.exports = function(Admin) {
 				});
 			}
 		});
-		// var Member=app.models.Member;
-		// var request=app.models.request;
-		// var Ride=app.models.Ride;
-		// var Join=app.models.Join;
-		// var object={};
-
-		// Admin.checkValidAdmin(function(err,adminId){
-		// 	if(err){
-		// 		console.log(err);
-		// 		cb(err,null);
-		// 	}
-		// 	else if(adminId==0){
-		// 		console.log("admin not exist");
-		// 		cb(null,null);
-		// 	}
-		// 	else{
-		// 		var curTime=new Date();
-		// 		console.log(moment().unix());
-		// 		console.log(moment().format());
-		// 		var today=new Date(curTime.getFullYear(),curTime.getMonth(),curTime.getDate());
-		// 		console.log(today);
-		// 		Member.count({created: {gte: today}},function(err,mem_count){
-		// 			if(err){
-		// 				console.log(err);
-		// 				cb(err,null);
-		// 			}
-		// 			else{
-		// 				object.memCount=mem_count;
-		// 				Ride.count({time: {gte:today}},function(err,ride_count){
-		// 					if(err){
-		// 						console.log(err);
-		// 						cb(err,null);
-		// 					}
-		// 					else{
-		// 						object.rideCount=ride_count;
-		// 						request.count({time: {gte: today}},function(err,request_count){
-		// 							if(err){
-		// 								console.log(err);
-		// 								cb(err,null);
-		// 							}
-		// 							else{
-
-
-
-		// 								object.requestCount=request_count;
-		// 								Join.count({time: {gte: today}},function(err,join_count){
-		// 									if(err){
-		// 										console.log(err);
-		// 										cb(err,null);
-		// 									}
-		// 									else{
-		// 										object.joinCount=join_count;
-		// 										//7-day stat
-		// 										Admin.rideRequestBetween(1,8,object,function(err,object){
-		// 											if(err){
-		// 												console.log(err);
-		// 												cb(err,null);
-		// 											}
-		// 											else{
-		// 												Member.count({gender: "male"},function(err,men_count){
-		// 													if(err){
-		// 														console.log(err);
-		// 														cb(err,null);
-		// 													}
-		// 													else{
-		// 														object.maleCount=men_count;
-		// 														Member.count({gender: "female"},function(err,women_count){
-		// 															if(err){
-		// 																console.log(err);
-		// 																cb(err,null);
-		// 															}
-		// 															else{
-		// 																object.femaleCount=women_count;
-		// 																Member.count({isDriver: "yes"},function(err,driver_count){
-		// 																	if(err){
-		// 																		console.log(err);
-		// 																		cb(err,null);
-		// 																	}
-		// 																	else{
-		// 																		object.driverCount=driver_count;
-		// 																		Member.count({isDriver: "no"}, function(err,nondriver_count){
-		// 																			if(err){
-		// 																				console.log(err);
-		// 																				cb(err,null);
-		// 																			}
-		// 																			else{
-		// 																				object.passengerCount=nondriver_count;
-		// 																				cb(null,object);
-		// 																			}
-		// 																		});
-		// 																	}
-		// 																});
-		// 															}
-		// 														});
-		// 													}
-		// 												});
-		// 											}
-		// 										});
-		// 									}
-		// 									//7day separator
-
-
-		// 								});
-		// 							}
-		// 						})
-		// 					}
-		// 				})
-		// 			}
-		// 		});
-		// 	}
-		// })
 	}
 
 	Admin.checkValidAdmin=function(cb){
@@ -511,7 +389,7 @@ module.exports = function(Admin) {
 				cb(null,null);
 			}
 			else{
-				validateMember(dataPoint,function(err,status){
+				Admin.validateMember(dataPoint,function(err,status){
 					if(err){
 						console.log(err);
 						cb(err,null);
@@ -771,6 +649,48 @@ module.exports = function(Admin) {
 		});
 	}
 
+	Admin.adminRemoveRecord = function(data, cb){
+		if (data.item == "User"){
+			var Member = app.models.Member;
+			Member.destroyById(data.info.id, function(err){
+				if (err){
+					console.log(err);
+					cb(err, null);
+				} else{
+					cb(null, "ok");
+				}
+			});
+		} else if (data.item == "Vehicle"){
+			var Vehicle = app.models.Vehicle;
+			Vehicle.destroyById(data.info.id, function(err){
+				if (err){
+					console.log(err);
+					cb(err, null);
+				} else{
+					var Own = app.models.Own;
+					Own.destroyAll({vehicleId: data.info.id}, function(err){
+						if (err){
+							console.log(err);
+							cb(err, null);
+						} else{
+							cb(null, "ok");
+						}
+					});
+				}
+			});
+		} else if (data.item == "Own"){
+			var Own = app.models.Own;
+			Own.destroyById(data.info.id, function(err){
+				if (err){
+					console.log(err);
+					cb(err, null);
+				} else{
+					cb(null, "ok");
+				}
+			});
+		}
+	}
+
 	Admin.remoteMethod(
 		'addMember',
 		{
@@ -878,6 +798,15 @@ module.exports = function(Admin) {
 		{
 			http: {path: '/adminGetOwnership', verb: 'get'},
 			returns: {arg: 'status', type: 'object'}			
+		}
+	);
+
+	Admin.remoteMethod(
+		'adminRemoveRecord',
+		{
+			http: {path: '/adminRemoveRecord', verb: 'post'},
+			accepts: {arg: 'well', type: 'object', http:{source:'body'}},
+			returns: {arg: 'status', type: 'string'}
 		}
 	);
 };

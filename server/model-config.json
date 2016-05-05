@@ -115,12 +115,6 @@
         "principalType": "ROLE",
         "principalId": "$everyone",
         "permission": "ALLOW",
-        "property": "clientValidateVehicle"
-      },
-      {
-        "principalType": "ROLE",
-        "principalId": "$everyone",
-        "permission": "ALLOW",
         "property": "registerNonUST"
       }
     ]
